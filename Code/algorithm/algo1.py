@@ -50,16 +50,8 @@ scaler = StandardScaler()
 Xts = scaler.fit_transform(Xts.T).T
 Xtr = scaler.fit_transform(Xtr.T).T
 
-search=0 #search for parameters
-if search:
-    C_range = np.logspace(-1, 3, 4)
-    gamma_range = np.logspace(-4, 1, 4)
-    param_grid = dict(gamma=gamma_range, C=C_range)
-    cv = StratifiedShuffleSplit(n_splits=5, test_size=0.2)
-    grid = GridSearchCV(svm.SVC(), param_grid=param_grid, cv=cv)
-    grid.fit(Xts, Yts)
-    print("The best parameters are %s with a score of %0.2f"
-          % (grid.best_params_, grid.best_score_))
+search=1 #search for parameters
+
 
 indices = np.random.choice(Xts.shape[0], 
                            int(Xts.shape[0]*0.8), replace=False)
@@ -78,6 +70,15 @@ Str[ind]=1-Str[ind]
 
 ind_p=int(10000/3)
 ind5=np.hstack((np.argsort(-bb[:,1])[0:ind_p],np.argsort(-bb[:,0])[0:ind_p]))
+if search:
+    C_range = np.logspace(-1, 3, 4)
+    gamma_range = np.logspace(-4, 1, 4)
+    param_grid = dict(gamma=gamma_range, C=C_range)
+    cv = StratifiedShuffleSplit(n_splits=5, test_size=0.2)
+    grid = GridSearchCV(svm.SVC(), param_grid=param_grid, cv=cv)
+    grid.fit(Xtr[ind5,:],Str[ind5])
+    print("The best parameters are %s with a score of %0.2f"
+          % (grid.best_params_, grid.best_score_))
 clf2 = svm.SVC(gamma='scale')
 clf2.fit(Xtr[ind5,:],Str[ind5])
 clf2.score(Xts,Yts)
