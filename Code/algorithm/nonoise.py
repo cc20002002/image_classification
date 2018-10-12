@@ -12,6 +12,7 @@ from sklearn.datasets import load_iris
 from sklearn.model_selection import StratifiedShuffleSplit
 from sklearn.model_selection import GridSearchCV
 from sklearn import svm
+from random import sample
 class MidpointNormalize(Normalize):
 
     def __init__(self, vmin=None, vmax=None, midpoint=None, clip=False):
@@ -56,11 +57,15 @@ if search:
 
 clf = svm.SVC(gamma='scale')
 
+indices = np.random.choice(Xts.shape[0], int(Xts.shape[0]*0.8), replace=False)
+
+#indices = sample(range(Xts.shape[0]),k=1600)
 clf.fit(Xts[0:1600,:],Yts[0:1600].ravel())
 clf.score(Xts[1600:2000,:],Yts[1600:2000].ravel())
 Xts.shape
-clf.n_support_
 
+clf.n_support_
+a=int(Xts.shape[0])*.8
 import sklearn
 print('The scikit-learn version is {}.'.format(sklearn.__version__))
 Xts[:,1].mean()
