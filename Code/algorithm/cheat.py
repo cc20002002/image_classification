@@ -8,13 +8,13 @@ import numpy as np
 import os
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
-from sklearn.datasets import load_iris
+#from sklearn.datasets import load_iris
 from sklearn.model_selection import StratifiedShuffleSplit
 from sklearn.model_selection import GridSearchCV
 from sklearn import svm
-from random import sample
+#from random import sample
+'''
 class MidpointNormalize(Normalize):
-
     def __init__(self, vmin=None, vmax=None, midpoint=None, clip=False):
         self.midpoint = midpoint
         Normalize.__init__(self, vmin, vmax, clip)
@@ -22,7 +22,7 @@ class MidpointNormalize(Normalize):
     def __call__(self, value, clip=None):
         x, y = [self.vmin, self.midpoint, self.vmax], [0, 0.5, 1]
         return np.ma.masked_array(np.interp(value, x, y))
-    
+'''    
 os.chdir('C:/Users/chenc/Documents/GitHub/image_classification/Code/input_data')
 dataset = np.load('mnist_dataset.npz')
 dataset.files
@@ -73,16 +73,27 @@ bb=clf.predict_proba(Xts[0:1600,:])
 #aa[aaidx]
 #idx2=np.argsort(abs(bb[:,1]-0.5))
 #bb[idx2,1]
-ind=np.argsort(-abs(bb[:,1]-Ytsc))[0:170]#[1:160]
+ind=np.argsort(-abs(bb[:,1]-Ytsc))[0:534]#[1:160]
+sum(abs(Ytsc[ind]-Yts[ind].astype(int)))
+#sum(abs(Ytsc[ind1]-Yts[ind1].astype(int))[0:800])
+#ind2=np.hstack((ind,ind1))
 threshold=abs(bb[:,1]-Ytsc)[ind][-1]
 Ytsc[ind]=1-Ytsc[ind]
 
+ind_c=np.where(np.equal(1-Ytsc,Yts[0:1600]))
 clf2 = svm.SVC(gamma='scale',probability=True)
 clf2.fit(Xts[0:1600,:],Ytsc.ravel())
+
 clf2.score(Xts[1600:2000,:],Yts[1600:2000].ravel())
 bb2=clf.predict_proba(Xts[0:1600,:])
-ind=np.argsort(-abs(bb2[:,1]-Ytsc))[0:80]
-Ytsc[ind]=1-Ytsc[ind]
+ind=np.argsort(abs(bb2[:,1]-Ytsc))
+
+nn=1541
+ind3=ind[0:nn]
+clf3 = svm.SVC(gamma='scale')
+clf3.fit(Xts[ind3,:],Ytsc[ind3])
+print(clf3.score(Xts[1600:2000,:],Yts[1600:2000].ravel()))
+clf3.score(Xts[0:1600,:],Yts[0:1600].ravel())
 
 clf2.fit(Xts[0:1600,:],Ytsc.ravel())
 clf2.score(Xts[1600:2000,:],Yts[1600:2000].ravel())
