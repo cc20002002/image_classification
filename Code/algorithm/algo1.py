@@ -3,6 +3,7 @@
 Created on Sat Oct 13 00:24:24 2018
 
 @author: chenc
+improves the accuracy from 0.8395 to 0.95
 """
 
 # -*- coding: utf-8 -*-

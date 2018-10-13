@@ -3,14 +3,10 @@
 Created on Sat Oct 13 11:22:18 2018
 
 @author: chenc
+improves the accuracy from 0.8395 to 0.9235 0.9355 0.946
 """
 
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Oct 13 00:24:24 2018
 
-@author: chenc
-"""
 
 # -*- coding: utf-8 -*-
 """
@@ -23,13 +19,13 @@ import os
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 #from sklearn.datasets import load_iris
-from sklearn.model_selection import StratifiedShuffleSplit
-from sklearn.model_selection import GridSearchCV
+#from sklearn.model_selection import StratifiedShuffleSplit
+#from sklearn.model_selection import GridSearchCV
 from sklearn import svm
 from scipy.spatial.distance import cdist
 from scipy import exp
-from cvxopt import blas
-from cvxopt.base import matrix
+#from cvxopt import blas
+#from cvxopt.base import matrix
 #from random import sample
 '''
 class MidpointNormalize(Normalize):
@@ -73,7 +69,7 @@ def my_kernel(X, Y):
         N = X.shape[0]
         M=(1-S)*np.ones((N,N))+S*np.eye(N)
     else:
-        M=1
+        M=10
     
     pairwise_sq_dists = cdist(X, Y, 'sqeuclidean')
     K = exp(-0.0087*pairwise_sq_dists)*M
@@ -87,9 +83,11 @@ def my_kernel(X, Y):
     #blas.syr2(a, ones, Q, alpha = -0.5)  
     #Q = exp(Q)
     return K
-
+# error on the training data and minimising the norm of the weights. It is analageous to the ridge parameter in ridge regression (in fact in practice there is little difference in performance or theory between linear SVMs and ridge regression, so I generally use the latter - or kernel ridge regression if there are more attributes than observations).
+#For large values of C, the optimization will choose a smaller-margin hyperplane if that hyperplane does a better job of getting all the training points classified correctly.
 clf = svm.SVC(kernel=my_kernel)
 clf.fit(Xtr,Str)
+clf.score(Xtr,Str)
 clf.score(Xts,Yts)
 
 
