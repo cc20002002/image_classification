@@ -69,7 +69,7 @@ np.amin(bb, axis=0)
 #ind=np.argsort(-abs(bb[:,1]-Str))[0:int(nn/3)]#[1:160]
 Str[ind]=1-Str[ind]
 
-ind_p=int(10000/3)
+ind_p=int(nn/3)
 ind5=np.hstack((np.argsort(-bb[:,1])[0:ind_p],np.argsort(-bb[:,0])[0:ind_p]))
 
 #The best parameters are {'C': 2.1544346900318834, 'gamma': 0.01} with a score of 1.00
@@ -83,44 +83,9 @@ if search:
     grid.fit(Xtr[ind5,:],Str[ind5])
     print("The best parameters are %s with a score of %0.2f"
           % (grid.best_params_, grid.best_score_))
-clf2 = svm.SVC(C=2.1544346900318834, gamma=0.004641588833612782)
+clf2 = svm.SVC(gamma=0.00865)
 clf2.fit(Xtr[ind5,:],Str[ind5])
 clf2.score(Xts,Yts)
 
-clf2 = svm.SVC(gamma=0.00865)
-clf2.fit(Xtr[ind5,:],Str[ind5])
-print(clf2.score(Xts,Yts))
-
-clf2 = svm.SVC(gamma=0.0086)
-clf2.fit(Xtr[ind5,:],Str[ind5])
-print(clf2.score(Xts,Yts))
-
-clf2 = svm.SVC(C=3, gamma=0.00865)
-clf2.fit(Xtr[ind5,:],Str[ind5])
-print(clf2.score(Xts,Yts))
-
-clf2 = svm.SVC(C=3, gamma=0.00875)
-clf2.fit(Xtr[ind5,:],Str[ind5])
-print(clf2.score(Xts,Yts))
-
-clf2 = svm.SVC(C=0.001, gamma=0.0087)
-clf2.fit(Xtr[ind5,:],Str[ind5])
-print(clf2.score(Xts,Yts))
-
-clf2 = svm.SVC(C=0.0001, gamma=0.0087)
-clf2.fit(Xtr[ind5,:],Str[ind5])
-print(clf2.score(Xts,Yts))
-
-clf2 = svm.SVC(C=1000000, gamma=0.0087)
-clf2.fit(Xtr[ind5,:],Str[ind5])
-print(clf2.score(Xts,Yts))
-
-clf2 = svm.SVC(C=100000, gamma=0.0087)
-clf2.fit(Xtr[ind5,:],Str[ind5])
-print(clf2.score(Xts,Yts))
-
-clf2 = svm.SVC(C=10000, gamma=0.0087)
-clf2.fit(Xtr[ind5,:],Str[ind5])
-print(clf2.score(Xts,Yts))
 
 #gamma 0.0087 c=3
