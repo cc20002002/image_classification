@@ -50,7 +50,7 @@ scaler = StandardScaler()
 Xts = scaler.fit_transform(Xts.T).T
 Xtr = scaler.fit_transform(Xtr.T).T
 
-search=1 #search for parameters
+
 
 
 indices = np.random.choice(Xts.shape[0], 
@@ -70,17 +70,56 @@ Str[ind]=1-Str[ind]
 
 ind_p=int(10000/3)
 ind5=np.hstack((np.argsort(-bb[:,1])[0:ind_p],np.argsort(-bb[:,0])[0:ind_p]))
+
+#The best parameters are {'C': 2.1544346900318834, 'gamma': 0.01} with a score of 1.00
+search=1 #search for parameters
 if search:
-    C_range = np.logspace(-1, 3, 4)
-    gamma_range = np.logspace(-4, 1, 4)
+    C_range = 1
+    gamma_range = np.linspace(0.0086,0.0089, 4)
     param_grid = dict(gamma=gamma_range, C=C_range)
     cv = StratifiedShuffleSplit(n_splits=5, test_size=0.2)
     grid = GridSearchCV(svm.SVC(), param_grid=param_grid, cv=cv)
     grid.fit(Xtr[ind5,:],Str[ind5])
     print("The best parameters are %s with a score of %0.2f"
           % (grid.best_params_, grid.best_score_))
-clf2 = svm.SVC(gamma='scale')
+clf2 = svm.SVC(C=2.1544346900318834, gamma=0.004641588833612782)
 clf2.fit(Xtr[ind5,:],Str[ind5])
 clf2.score(Xts,Yts)
 
+clf2 = svm.SVC(gamma=0.00865)
+clf2.fit(Xtr[ind5,:],Str[ind5])
+print(clf2.score(Xts,Yts))
 
+clf2 = svm.SVC(gamma=0.0086)
+clf2.fit(Xtr[ind5,:],Str[ind5])
+print(clf2.score(Xts,Yts))
+
+clf2 = svm.SVC(C=3, gamma=0.00865)
+clf2.fit(Xtr[ind5,:],Str[ind5])
+print(clf2.score(Xts,Yts))
+
+clf2 = svm.SVC(C=3, gamma=0.00875)
+clf2.fit(Xtr[ind5,:],Str[ind5])
+print(clf2.score(Xts,Yts))
+
+clf2 = svm.SVC(C=0.001, gamma=0.0087)
+clf2.fit(Xtr[ind5,:],Str[ind5])
+print(clf2.score(Xts,Yts))
+
+clf2 = svm.SVC(C=0.0001, gamma=0.0087)
+clf2.fit(Xtr[ind5,:],Str[ind5])
+print(clf2.score(Xts,Yts))
+
+clf2 = svm.SVC(C=1000000, gamma=0.0087)
+clf2.fit(Xtr[ind5,:],Str[ind5])
+print(clf2.score(Xts,Yts))
+
+clf2 = svm.SVC(C=100000, gamma=0.0087)
+clf2.fit(Xtr[ind5,:],Str[ind5])
+print(clf2.score(Xts,Yts))
+
+clf2 = svm.SVC(C=10000, gamma=0.0087)
+clf2.fit(Xtr[ind5,:],Str[ind5])
+print(clf2.score(Xts,Yts))
+
+#gamma 0.0087 c=3
