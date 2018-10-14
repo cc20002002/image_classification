@@ -37,18 +37,23 @@ class MidpointNormalize(Normalize):
         x, y = [self.vmin, self.midpoint, self.vmax], [0, 0.5, 1]
         return np.ma.masked_array(np.interp(value, x, y))
 '''    
-os.chdir('C:/Users/chenc/Documents/GitHub/image_classification/Code/input_data')
-dataset = np.load('mnist_dataset.npz')
+
+#dataset = np.load('mnist_dataset.npz')
+dataset = np.load('../input_data/cifar_dataset.npz')
+#size_image=28
+#dim_image=1
+size_image=32
+dim_image=3
 Xtr = dataset ['Xtr']
 Str = dataset ['Str'].ravel()
 Xts = dataset ['Xts']
 Yts = dataset ['Yts'].ravel()
-plt.gray()
+#plt.gray()
 plt.figure()
 for i in range(0,30):
-    image=Xts[i,].reshape(28,28)
+    image=Xts[i,].reshape(size_image,size_image,dim_image)
     plt.subplot(5, 6, i+1)
-    plt.imshow(image)
+    plt.imshow(image[:,:,1])
     plt.title(Yts[i])
 Y=Yts
 Xts.shape
@@ -87,7 +92,7 @@ def my_kernel(X, Y):
 #For large values of C, the optimization will choose a smaller-margin hyperplane if that hyperplane does a better job of getting all the training points classified correctly.
 clf = svm.SVC(kernel=my_kernel)
 clf.fit(Xtr,Str)
-clf.score(Xtr,Str)
+print(clf.score(Xtr,Str))
 clf.score(Xts,Yts)
 
 
