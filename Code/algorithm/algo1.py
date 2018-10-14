@@ -32,6 +32,9 @@ class MidpointNormalize(Normalize):
         x, y = [self.vmin, self.midpoint, self.vmax], [0, 0.5, 1]
         return np.ma.masked_array(np.interp(value, x, y))
 '''    
+
+#os.chdir('C:/Users/chenc/Documents/GitHub/image_classification/Code/input_data')
+
 dset=2
 
 if dset==1:
@@ -49,33 +52,29 @@ Xtr = dataset ['Xtr']
 Str = dataset ['Str'].ravel()
 Xts = dataset ['Xts']
 Yts = dataset ['Yts'].ravel()
-scaler = StandardScaler()
-Xts = scaler.fit_transform(Xts.T).T
-Xtr = scaler.fit_transform(Xtr.T).T
+
 if dset==2:
-    #Xtr=Xtr.reshape(10000,dim_image,size_image,size_image).transpose([0,2, 3, 1]).mean(3).reshape(10000,size_image*size_image)
-    #Xts=Xts.reshape(2000,dim_image,size_image,size_image).transpose([0,2, 3, 1]).mean(3).reshape(2000,size_image*size_image)
-    pca = PCA(n_components=100)
-    pca.fit(Xtr)
-    Xtr=pca.transform(Xtr)
-    Xts=pca.transform(Xts)
-    print(sum(pca.explained_variance_ratio_))
-
-
-#Xts = scaler.fit_transform(Xts.T).T
-#Xtr = scaler.fit_transform(Xtr.T).T
-xplot=scaler.fit_transform(pca.inverse_transform(Xts).T).T
-##1plt.jet()
+    Xtr=Xtr.reshape(10000,dim_image,size_image,size_image).transpose([0,2, 3, 1]).mean(3).reshape(10000,size_image*size_image)
+    Xts=Xts.reshape(2000,dim_image,size_image,size_image).transpose([0,2, 3, 1]).mean(3).reshape(2000,size_image*size_image)
+plt.gray()
 plt.figure()
 for i in range(0,30):
-    image=xplot[i,].reshape(dim_image,size_image,size_image).transpose([1, 2, 0])
+    image=Xts[i,].reshape(size_image,size_image)
     plt.subplot(5, 6, i+1)
     plt.imshow(image[:,:,:],interpolation='bicubic')
     plt.title(Yts[i])
 Y=Yts
 Xts.shape
-indices = np.random.choice(Xts.shape[0], 
-                           int(Xts.shape[0]*0.8), replace=False)
+
+scaler = StandardScaler()
+Xts = scaler.fit_transform(Xts.T).T
+Xtr = scaler.fit_transform(Xtr.T).T
+
+
+
+
+indices = np.random.choice(Xts.shape[0],int(Xts.shape[0]*0.8), replace=False)
+
 
 
 clf = svm.SVC(gamma='scale',probability=True)
@@ -108,4 +107,4 @@ clf2.fit(Xtr[ind5,:],Str[ind5])
 clf2.score(Xts,Yts)
 
 
-#gamma 0.0087 c=3
+#gamma 0.00865 c=1

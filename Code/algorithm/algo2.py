@@ -55,37 +55,31 @@ Xtr = dataset ['Xtr']
 Str = dataset ['Str'].ravel()
 Xts = dataset ['Xts']
 Yts = dataset ['Yts'].ravel()
+
+if dset==2:
+    Xtr=Xtr.reshape(10000,dim_image,size_image,size_image).transpose([0,2, 3, 1]).mean(3).reshape(10000,size_image*size_image)
+    Xts=Xts.reshape(2000,dim_image,size_image,size_image).transpose([0,2, 3, 1]).mean(3).reshape(2000,size_image*size_image)
+plt.gray()
+plt.figure()
+for i in range(0,30):
+    image=Xts[i,].reshape(size_image,size_image)#.reshape(dim_image,size_image,size_image).transpose([1, 2, 0])
+    plt.subplot(5, 6, i+1)
+    plt.imshow(image[:,:],interpolation='bicubic')
+    plt.title(Yts[i])
+Y=Yts
+X=Xts
+
 scaler = StandardScaler()
 Xts = scaler.fit_transform(Xts.T).T
 Xtr = scaler.fit_transform(Xtr.T).T
-if dset==2:
-    #Xtr=Xtr.reshape(10000,dim_image,size_image,size_image).transpose([0,2, 3, 1]).mean(3).reshape(10000,size_image*size_image)
-    #Xts=Xts.reshape(2000,dim_image,size_image,size_image).transpose([0,2, 3, 1]).mean(3).reshape(2000,size_image*size_image)
-    pca = PCA(n_components=100)
-    pca.fit(Xtr)
-    Xtr=pca.transform(Xtr)
-    Xts=pca.transform(Xts)
-    print(sum(pca.explained_variance_ratio_))
-
-
-#Xts = scaler.fit_transform(Xts.T).T
-#Xtr = scaler.fit_transform(Xtr.T).T
-xplot=scaler.fit_transform(pca.inverse_transform(Xts).T).T
-##1plt.jet()
-plt.figure()
-for i in range(0,30):
-    image=xplot[i,].reshape(dim_image,size_image,size_image).transpose([1, 2, 0])
-    plt.subplot(5, 6, i+1)
-    plt.imshow(image[:,:,:],interpolation='bicubic')
-    plt.title(Yts[i])
-Y=Yts
-Xts.shape
 
 S=0.84#parameter from rhos
 
 indices = np.random.choice(Xts.shape[0], 
                            int(Xts.shape[0]*0.8), replace=False)
+
 #no dimension reduction 0.8179 0.765 classic model
+
 gamma= 620/ (size_image**2 * Xtr.std())
 def my_kernel(X, Y):
     """
@@ -97,7 +91,7 @@ def my_kernel(X, Y):
         N = X.shape[0]
         M=(1-S)*np.ones((N,N))+S*np.eye(N)
     else:
-        M=10
+        M=1
     
     pairwise_sq_dists = cdist(X, Y, 'sqeuclidean')
     K = exp(-gamma*pairwise_sq_dists)*M
@@ -113,18 +107,9 @@ def my_kernel(X, Y):
     return K
 # error on the training data and minimising the norm of the weights. It is analageous to the ridge parameter in ridge regression (in fact in practice there is little difference in performance or theory between linear SVMs and ridge regression, so I generally use the latter - or kernel ridge regression if there are more attributes than observations).
 #For large values of C, the optimization will choose a smaller-margin hyperplane if that hyperplane does a better job of getting all the training points classified correctly.
-search=1 #search for parameters
-if search:
-    C_range = np.logspace(2**-5,2**5, 3)
-    gamma_range = np.logspace(2**-15,2**3, 4)
-    param_grid = dict(gamma=gamma_range, C=C_range)
-    cv = StratifiedShuffleSplit(n_splits=5, test_size=0.2)
-    grid = GridSearchCV(svm.SVC(), param_grid=param_grid, cv=cv)
-    grid.fit(Xtr,Str)
-    print("The best parameters are %s with a score of %0.2f"
-          % (grid.best_params_, grid.best_score_))
-    
-clf = svm.SVC(C=2.4,gamma=0.000225)
+
+clf = svm.SVC(gamma=gamma)
+
 clf.fit(Xtr,Str)
 print(clf.score(Xtr,Str))
 clf.score(Xts,Yts)
