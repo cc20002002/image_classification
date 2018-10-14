@@ -31,17 +31,31 @@ class MidpointNormalize(Normalize):
         x, y = [self.vmin, self.midpoint, self.vmax], [0, 0.5, 1]
         return np.ma.masked_array(np.interp(value, x, y))
 '''    
-os.chdir('C:/Users/chenc/Documents/GitHub/image_classification/Code/input_data')
-dataset = np.load('mnist_dataset.npz')
-dataset.files
+#os.chdir('C:/Users/chenc/Documents/GitHub/image_classification/Code/input_data')
+dset=2
+
+if dset==1:
+    dataset = np.load('../input_data/mnist_dataset.npz')
+    size_image=28
+    dim_image=1 
+else:
+    dataset = np.load('../input_data/cifar_dataset.npz')
+    size_image=32
+    dim_image=3
+#size_image=28
+#dim_image=1
+
 Xtr = dataset ['Xtr']
 Str = dataset ['Str'].ravel()
 Xts = dataset ['Xts']
 Yts = dataset ['Yts'].ravel()
+if dset==2:
+    Xtr=Xtr.reshape(10000,dim_image,size_image,size_image).transpose([0,2, 3, 1]).mean(3).reshape(10000,size_image*size_image)
+    Xts=Xts.reshape(2000,dim_image,size_image,size_image).transpose([0,2, 3, 1]).mean(3).reshape(2000,size_image*size_image)
 plt.gray()
 plt.figure()
 for i in range(0,30):
-    image=Xts[i,].reshape(28,28)
+    image=Xts[i,].reshape(size_image,size_image)
     plt.subplot(5, 6, i+1)
     plt.imshow(image)
     plt.title(Yts[i])
@@ -54,8 +68,7 @@ Xtr = scaler.fit_transform(Xtr.T).T
 
 
 
-indices = np.random.choice(Xts.shape[0], 
-                           int(Xts.shape[0]*0.8), replace=False)
+indices = np.random.choice(Xts.shape[0],int(Xts.shape[0]*0.8), replace=False)
 
 
 clf = svm.SVC(gamma='scale',probability=True)
@@ -73,7 +86,7 @@ ind_p=int(nn/3)
 ind5=np.hstack((np.argsort(-bb[:,1])[0:ind_p],np.argsort(-bb[:,0])[0:ind_p]))
 
 #The best parameters are {'C': 2.1544346900318834, 'gamma': 0.01} with a score of 1.00
-search=1 #search for parameters
+search=0 #search for parameters
 if search:
     C_range = 1
     gamma_range = np.linspace(0.0086,0.0089, 4)
@@ -88,4 +101,4 @@ clf2.fit(Xtr[ind5,:],Str[ind5])
 clf2.score(Xts,Yts)
 
 
-#gamma 0.0087 c=3
+#gamma 0.00865 c=1
