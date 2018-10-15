@@ -3,6 +3,7 @@
 Created on Sat Oct 13 11:22:18 2018
 
 @author: chenc
+by expectation maximisation
 improves the accuracy from 0.8395 to 0.9235 0.9355 0.946
 """
 
@@ -88,11 +89,13 @@ S=0.84#parameter from rhos
 indices = np.random.choice(Xts.shape[0], 
                            int(Xts.shape[0]*0.8), replace=False)
 #no dimension reduction 0.8179 0.765 classic model
-CC=2.5
+
 if dset==1:
     gamma= 0.0005    
+    CC=2.5
 else:
-    gamma= 0.0087 # maximise variance of kernel matrix
+    gamma= 0.00087 # maximise variance of kernel matrix
+    CC=2.5
 def my_kernel(X, Y):
     """
     We create a custom kernel:
