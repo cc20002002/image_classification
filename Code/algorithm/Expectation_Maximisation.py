@@ -4,7 +4,8 @@ Created on Sat Oct 13 11:22:18 2018
 
 @author: chenc
 by expectation maximisation
-improves the accuracy from 0.8395 to 0.9235 0.9355 0.946
+improves the accuracy from 0.8395 to 0.946
+accuracy of the car dataset from 0.77 to 0.8575
 """
 
 
@@ -38,7 +39,7 @@ class MidpointNormalize(Normalize):
         x, y = [self.vmin, self.midpoint, self.vmax], [0, 0.5, 1]
         return np.ma.masked_array(np.interp(value, x, y))
 '''    
-dset=1
+dset=2
 plot=0
 if dset==1:
     dataset = np.load('../input_data/mnist_dataset.npz')

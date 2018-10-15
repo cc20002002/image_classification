@@ -3,8 +3,8 @@ Created on Sat Oct 13 00:24:24 2018
 
 @author: chenc
 reweighting method from tut 2
-dataset1 improves the accuracy  to 0.946
-dataset1 improves the accuracy  to 0.855
+dataset1 improves the accuracy from 0.92 to 0.946
+dataset1 improves the accuracy from 0.77 to 0.855
 """
 
 # -*- coding: utf-8 -*-

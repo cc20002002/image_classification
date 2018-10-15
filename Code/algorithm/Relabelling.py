@@ -4,7 +4,8 @@ Created on Sat Oct 13 00:24:24 2018
 
 @author: chenc
 by label correction
-improves the accuracy from 0.8395 to 0.95
+improves the 1st data (Tshirt) set accuracy from 0.92 to 0.95
+improves the 2nd data (car) set accuracy from 0.77 to 0.82
 """
 
 # -*- coding: utf-8 -*-
@@ -85,7 +86,7 @@ if dset==2:
     clf = svm.SVC(C=2.5,gamma=0.000225,probability=True)
 else:
     clf = svm.SVC(gamma='scale',probability=True)
-print(clf.fit(Xtr,Str))
+clf.fit(Xtr,Str)
 print(clf.score(Xts,Yts))
 clf.score(Xtr,Str)
 bb=clf.predict_proba(Xtr)
@@ -116,7 +117,7 @@ if dset==2:
 else:
     clf2 = svm.SVC(gamma=0.00865)
 clf2.fit(Xtr[ind5,:],Str[ind5])
-clf2.score(Xts,Yts)
+print(clf2.score(Xts,Yts))
 
 
 #gamma 0.0087 c=3
