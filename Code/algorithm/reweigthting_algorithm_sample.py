@@ -3,8 +3,8 @@ Created on Sat Oct 13 00:24:24 2018
 
 @author: chenc
 reweighting method from tut 2
-dataset1 improves the accuracy from 0.92 to 0.946
-dataset1 improves the accuracy from 0.77 to 0.855
+dataset1 improves the accuracy  to 0.946
+dataset1 improves the accuracy  to 0.855
 """
 
 # -*- coding: utf-8 -*-
@@ -21,6 +21,7 @@ from sklearn.model_selection import StratifiedShuffleSplit
 from sklearn.model_selection import GridSearchCV
 from sklearn import svm
 from sklearn.decomposition import IncrementalPCA as PCA
+from sklearn.model_selection import train_test_split
 #from random import sample
 dset=2
 plot=0
@@ -36,9 +37,9 @@ else:
 #size_image=28
 #dim_image=1
 
-Xtr = dataset ['Xtr']
+Xtr = dataset ['Xtr'].astype(float)
 Str = dataset ['Str'].ravel()
-Xts = dataset ['Xts']
+Xts = dataset ['Xts'].astype(float)
 Yts = dataset ['Yts'].ravel()
 scaler = StandardScaler()
 Xts = scaler.fit_transform(Xts.T).T
@@ -51,7 +52,7 @@ if dset==2:
     pca.fit(Xtr)
     Xtr=pca.transform(Xtr)
     Xts=pca.transform(Xts)
-    print(sum(pca.explained_variance_ratio_))
+    print('pca explained variance:',sum(pca.explained_variance_ratio_))
     if plot:
         xplot=scaler.fit_transform(pca.inverse_transform(Xts).T).T
 
@@ -68,19 +69,7 @@ if plot:
         plt.imshow(image[:,:,:],interpolation='bicubic')
         plt.title(Yts[i])
 
-indices = np.random.choice(Xts.shape[0], 
-                           int(Xts.shape[0]*0.8), replace=False)
-
-if dset==1:
-    clf = svm.SVC(C=.8,gamma=0.000225,probability=True)
-else:
-    clf = svm.SVC(gamma='scale',probability=True,C=.4)
-    
-  
-
-clf.fit(Xtr,Str)
-print(clf.score(Xts,Yts))
-clf.score(Xtr,Str)
+#indices = np.random.choice(Xts.shape[0],int(Xts.shape[0]*0.8), replace=False)
 
 def estimateBeta(S,prob,rho0,rho1):
     S=S.astype(int)
@@ -90,24 +79,56 @@ def estimateBeta(S,prob,rho0,rho1):
     
     #print(S)
     prob=prob[:,0]*(1-S[:])+prob[:,1]*(S[:])
-    print(sum(prob>.5)/700)
+    #print(sum(prob>.5)/700)
     #print(S[0:11])
     beta=(prob[:]-rho[S].ravel())/(1-rho0-rho1)/prob[:]
     return beta
 
-probS = clf.predict_proba(Xtr)
-weights = estimateBeta(Str, probS, 0.2, 0.4)
-print(weights.shape)
+# dset chooses dataset. num_run determines the number of iterations.
+def cv_reweighting(dset, num_run):
+    if dset==1:
+        clf = svm.SVC(C=.8,gamma=0.000225,probability=True)
+        print('running for fashion_mnist')
+    else:
+        #removed 'gamma=scale'. should be the default.
+        clf = svm.SVC(probability=True,C=.4,gamma=scale)
+        print('running for cifar')
+    
+    val_score=np.zeros(num_run)
+    
+    for run in range(num_run):
+        X_train, X_val, y_train, y_val = train_test_split(Xtr, Str, test_size=0.0001)
 
-for i in range(len(weights)):
-    if weights[i] < 0:
-        weights[i] = 0.0    
-if dset==2:
-    clf = svm.SVC(gamma=0.000225,C=0.8)
-else:
-    clf = svm.SVC(gamma=0.00865,C=.4)
-clf.fit(Xtr,Str,sample_weight=weights)
-print(clf.score(Xts,Yts))
-clf.score(Xtr,Str)
-# to accuracy 94.6 for dataset 1
-# 85.5 for dataset 2.
+        clf.fit(X_train,y_train)
+        #print(clf.score(Xts,Yts))
+        #clf.score(Xtr,Str)
+        probS = clf.predict_proba(X_train)
+        weights = estimateBeta(y_train, probS, 0.2, 0.4)
+        #print(weights.shape)
+
+        for i in range(len(weights)):
+            if weights[i] < 0:
+                weights[i] = 0.0    
+                
+        if dset==2:
+            clf = svm.SVC(gamma=0.000225,C=0.8,probability=True)
+        else:
+            clf = svm.SVC(gamma=0.00865,C=.4,probability=True)
+            
+        clf.fit(X_train,y_train,sample_weight=weights)
+        val_score[run]=clf.score(X_val,y_val)
+        print('run ',run,' validation score after reweighting:',val_score[run])
+        #clf.score(Xtr,Str)
+        # to accuracy 94.6 for dataset 1
+        # 85.5 for dataset 2.
+    average_score=np.mean(val_score)
+    print('average score: ',average_score)
+    return average_score, clf
+
+
+average_score,clf1=cv_reweighting(1, 5)
+average_score,clf2=cv_reweighting(2, 5)
+
+print("score for dataset 1: ",clf1.score(Xts,Yts))
+print("score for dataset 2: ",clf2.score(Xts,Yts))
+
