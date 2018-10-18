@@ -17,17 +17,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 #from sklearn.datasets import load_iris
-#from sklearn.model_selection import StratifiedShuffleSplit
-#from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import StratifiedShuffleSplit
+from sklearn.model_selection import GridSearchCV
 from sklearn import svm
-from os import cpu_count
 from sklearn.decomposition import IncrementalPCA as PCA
 from sklearn.model_selection import train_test_split
-from multiprocessing import Pool
+from sklearn.ensemble import BaggingClassifier
 #from random import sample
 dset=2
 plot=0
-
+n_estimators = 16
 if dset==1:
     dataset = np.load('../input_data/mnist_dataset.npz')
     size_image=28
@@ -87,58 +86,72 @@ def estimateBeta(S,prob,rho0,rho1):
     return beta
 
 # dset chooses dataset. num_run determines the number of iterations.
-num_run=16
-def cv_reweighting(run): 
-    np.random.seed((run**5+1323002)%123123)
-    X_train, X_val, y_train, y_val = train_test_split(Xtr, Str, test_size=0.2)
-    #print(y_train[0:10])
+def cv_reweighting(dset, num_run):
     if dset==1:
         clf = svm.SVC(C=.8,gamma=0.000225,probability=True)
-        print('running for fashion_mnist thread ',run+1)
+        print('running for fashion_mnist')
     else:
-    #removed 'gamma=scale'. should be the default.
+        #removed 'gamma=scale'. should be the default.
         clf = svm.SVC(probability=True,C=.4,gamma=0.00865)
         print('running for cifar')
-    clf.fit(X_train,y_train)
-    #print(clf.score(Xts,Yts))
-    #clf.score(Xtr,Str)
-    probS = clf.predict_proba(X_train)
-    weights = estimateBeta(y_train, probS, 0.2, 0.4)
-    #print(weights.shape)
+    
+    val_score=np.zeros(num_run)
+    
+    for run in range(num_run):
+        X_train, X_val, y_train, y_val = train_test_split(Xtr, Str, test_size=0.2)
 
-    for i in range(len(weights)):
-        if weights[i] < 0:
-            weights[i] = 0.0    
-            
-    if dset==2:
-        clf = svm.SVC(gamma=0.000225,C=0.8)
-    else:
-        clf = svm.SVC(gamma=0.00865,C=.4)
-        
-    clfs=clf.fit(X_train,y_train,sample_weight=weights)
+        clf.fit(X_train,y_train)
+        #print(clf.score(Xts,Yts))
+        #clf.score(Xtr,Str)
+        probS = clf.predict_proba(X_train)
+        weights = estimateBeta(y_train, probS, 0.2, 0.4)
+        #print(weights.shape)
 
-    return clfs
-
-
-
-
-pool = Pool(processes=cpu_count())
-it = pool.map(cv_reweighting, range(num_run))
-#val_score=clf.fit(Xts,Yts)
-#print('run ',run,' validation score after reweighting:',val_score)
-val_score= [result.score(Xts,Yts) for result in it]
-average_score=np.mean(val_score)
-std=np.std(val_score)
-
+        for i in range(len(weights)):
+            if weights[i] < 0:
+                weights[i] = 0.0    
+                
+        if dset==2:
+            clf = svm.SVC(gamma=0.000225/5**2,C=0.8,probability=True)
+        else:
+            clf = svm.SVC(gamma=0.00865/5**2,C=.4,probability=True)
+        clf=BaggingClassifier(clf, max_samples=1.0 / 5, n_estimators=n_estimators,n_jobs =-1)  
+        clf.fit(X_train,y_train,sample_weight=weights)
+        val_score[run]=clf.score(Xts,Yts)
+        print('run ',run,' validation score after reweighting:',val_score[run])
         #clf.score(Xtr,Str)
         # to accuracy 94.6 for dataset 1
         # 85.5 for dataset 2.
-    
-print('average score: ',average_score,'\nstandard deviation: ',std) # help to format here!
-#average_score,clf1=cv_reweighting(dset, 1)
-#average_score,clf2=cv_reweighting(2, 1)
-with open('result.txt', 'w') as f: #better way to output result? I would like they can be read into python easily
-    for item in val_score:
-        f.write("%s\n" % item)
+    average_score=np.mean(val_score)
+    print('average score: ',average_score)
+    return average_score, clf
 
+
+average_score,clf=cv_reweighting(dset, 1)
+#average_score,clf2=cv_reweighting(2, 1)
+
+X_train, X_val, y_train, y_val = train_test_split(Xtr, Str, test_size=0.2)
+temp=10000 / (2 * np.bincount(y_train)/np.array((1.2,0.8)))
+temp={0:temp[0],1:temp[1]}
+clf=BaggingClassifier(svm.SVC(probability=True,C=.4,gamma=0.0004\
+                              ,class_weight=temp)\
+    , max_samples=1.0 / 5, n_estimators=n_estimators,n_jobs =-1)
+clf.fit(X_train,y_train)
+clf.score(Xts,Yts)
+probS = clf.predict_proba(X_train)
+weights = estimateBeta(y_train, probS, 0.2, 0.4)
+#print(weights.shape)
+
+for i in range(len(weights)):
+    if weights[i] < 0:
+        weights[i] = 0.0    
+        
+if dset==2:
+    clf = svm.SVC(gamma=0.0006,C=0.7,probability=True,class_weight=temp)
+else:
+    clf = svm.SVC(gamma=0.00865,C=.4,probability=True,class_weight=temp)
+clf=BaggingClassifier(clf, max_samples=1.0 / 5, n_estimators=n_estimators,n_jobs =-1)  
+clf.fit(X_train,y_train,sample_weight=weights)
+clf.score(Xts,Yts)
+print("score for dataset dset: ",clf.score(Xts,Yts)) #yutong please include dset variable in this print
 

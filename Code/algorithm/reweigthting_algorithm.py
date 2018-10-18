@@ -22,7 +22,7 @@ from sklearn.model_selection import GridSearchCV
 from sklearn import svm
 from sklearn.decomposition import IncrementalPCA as PCA
 #from random import sample
-dset=2
+dset=1
 plot=0
 
 if dset==1:
