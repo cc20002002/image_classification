@@ -89,9 +89,9 @@ def estimateBeta(S,prob,rho0,rho1):
 # dset chooses dataset. num_run determines the number of iterations.
 num_run=16
 def cv_reweighting(run): 
-    np.random.seed((run**5+1323002)%123123)
+    np.random.seed((run**5+1323002)%123123)#np.random.seed() alternatively
     X_train, X_val, y_train, y_val = train_test_split(Xtr, Str, test_size=0.2)
-    #print(y_train[0:10])
+    print(y_train[0:10])
     if dset==1:
         clf = svm.SVC(C=.8,gamma=0.000225,probability=True)
         print('running for fashion_mnist thread ',run+1)

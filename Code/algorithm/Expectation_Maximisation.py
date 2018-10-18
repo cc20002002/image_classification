@@ -39,7 +39,7 @@ class MidpointNormalize(Normalize):
         x, y = [self.vmin, self.midpoint, self.vmax], [0, 0.5, 1]
         return np.ma.masked_array(np.interp(value, x, y))
 '''    
-dset=2
+dset=1
 plot=0
 if dset==1:
     dataset = np.load('../input_data/mnist_dataset.npz')
