@@ -92,12 +92,12 @@ def cv_reweighting(run):
     np.random.seed((run**5+1323002)%123123)#np.random.seed() alternatively
     X_train, X_val, y_train, y_val = train_test_split(Xtr, Str, test_size=0.2)
     print(y_train[0:10])
-    if dset==1:
-        clf = svm.SVC(C=.8,gamma=0.000225,probability=True)
+    if dset==2:
+        clf = svm.SVC(C=2.5,gamma=0.000225,probability=True)
         print('running for fashion_mnist thread ',run+1)
     else:
     #removed 'gamma=scale'. should be the default.
-        clf = svm.SVC(probability=True,C=.4,gamma=0.00865)
+        clf = svm.SVC(probability=True,gamma=0.00865)
         print('running for cifar')
     clf.fit(X_train,y_train)
     #print(clf.score(Xts,Yts))

@@ -71,7 +71,7 @@ if plot:
 indices = np.random.choice(Xts.shape[0], 
                            int(Xts.shape[0]*0.8), replace=False)
 
-if dset==1:
+if dset==2:
     clf = svm.SVC(C=.8,gamma=0.000225,probability=True)
 else:
     clf = svm.SVC(gamma='scale',probability=True,C=.4)

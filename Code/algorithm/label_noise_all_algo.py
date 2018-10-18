@@ -28,7 +28,7 @@ from multiprocessing import Pool
 #from random import sample
 
 
-dset=2
+#
 plot=0
 
 
@@ -74,7 +74,7 @@ print('pca explained variance:',sum(pca.explained_variance_ratio_))
 if plot:
     xplot=scaler.fit_transform(pca.inverse_transform(Xts2).T).T
 ##1plt.jet()
-
+dset=1
 if plot:
     plt.figure()
     for i in range(0,30):
@@ -110,19 +110,22 @@ import time
 # dset chooses dataset. num_run determines the number of iterations.
 def cv_reweighting(run):    
     np.random.seed((run**5+1323002)%123123)#np.random.seed() alternatively
-    print("dset:",dset)
+    print("dset:",dset,'run',run)
     Xtr,Str,Xts,Yts = data_cache[dset]
     X_train, X_val, y_train, y_val = train_test_split(Xtr, Str, test_size=0.2)
     #clf1 is the first classifier while clf2 is the second
-    if dset==1:
-        clf1 = svm.SVC(C=.8,gamma=0.000225,probability=True)
+    if dset==2:
+        clf1 = svm.SVC(C=2.5,gamma=0.000225,probability=True)
     else:
         #removed 'gamma=scale'. should be the default.
-        clf1 = svm.SVC(probability=True,C=.4,gamma=0.00865)
-        
+        clf1 = svm.SVC(probability=True,gamma=0.00865)
+    if run==1:
+        print("learn initial probability dset:",dset)        
     clf1.fit(X_train,y_train)
     #print(clf.score(Xts,Yts))
     #clf.score(Xtr,Str)
+    if run==1:
+        print("calculating weighting dset:",dset)
     probS = clf1.predict_proba(X_train)
     weights = estimateBeta(y_train, probS, 0.2, 0.4)
     #print(weights.shape)
@@ -130,7 +133,8 @@ def cv_reweighting(run):
     for i in range(len(weights)):
         if weights[i] < 0:
             weights[i] = 0.0    
-
+    if run==1:
+        print("calculating final model dset:",dset)
     if dset==2:
         clf2 = svm.SVC(gamma=0.000225,C=0.8)
     else:
@@ -142,9 +146,9 @@ def cv_reweighting(run):
     # to accuracy 94.6 for dataset 1
     # 85.5 for dataset 2.
     return clf2.score(Xts,Yts)
-
+    #23:08 23:12 23:28 4.2577 
 def run_algorithm(alg_type, dset, num_run):   #alg_type: type of the algorithm, choose from 'reweighting',...tbc
-    start=time.clock()
+    start=time.time()
     print('start of the whole algorithm with dataset',dset)
     if alg_type=='reweighting':
         print('start of reweighting algorithm')
@@ -159,14 +163,16 @@ def run_algorithm(alg_type, dset, num_run):   #alg_type: type of the algorithm, 
     average_score=np.mean(test_score)
     std_score=np.std(test_score)
     print('average score: ',average_score,'\nstandard deviation: ',std_score) # help to format here!
-    end=time.clock()
-    with open('result.txt'+'_data'+str(dset)+'_'+alg_type, 'w') as f: #better way to output result? I would like they can be read into python easily
+    end=time.time()
+    with open('result'+'_data'+str(dset)+'_'+alg_type+'.txt', 'w') as f: #better way to output result? I would like they can be read into python easily
         for item in test_score:
             f.write("%s\n" % item)
     
     print('total process time is',round(end-start,4),'sec')
     
     return average_score, std_score
-
-average_score1, std_score1 = run_algorithm('reweighting',1,16)
-average_score2, std_score2 = run_algorithm('reweighting',2,16)
+#change it to for loop?
+dset=1
+average_score1, std_score1 = run_algorithm('reweighting',dset,16)
+dset=2
+average_score2, std_score2 = run_algorithm('reweighting',dset,16)
