@@ -1,6 +1,7 @@
 """
 Created on Sat Oct 13 00:24:24 2018
-
+Please install sklearn 0.20.0
+Plase install latest version of multiprocessing,numpy and matplotlib
 @author: chenc TinyC
 reweighting method from tut 2
 dataset1 improves the accuracy  to 0.946
@@ -107,8 +108,9 @@ def estimateBeta(S,prob,rho0,rho1):
 
 import time
 # dset chooses dataset. num_run determines the number of iterations.
-def cv_reweighting(dset):
-    print('start of reweighting algorithm')
+def cv_reweighting(run):    
+    np.random.seed((run**5+1323002)%123123)#np.random.seed() alternatively
+    print("dset:",dset)
     Xtr,Str,Xts,Yts = data_cache[dset]
     X_train, X_val, y_train, y_val = train_test_split(Xtr, Str, test_size=0.2)
     #clf1 is the first classifier while clf2 is the second
@@ -116,7 +118,7 @@ def cv_reweighting(dset):
         clf1 = svm.SVC(C=.8,gamma=0.000225,probability=True)
     else:
         #removed 'gamma=scale'. should be the default.
-        clf1 = svm.SVC(probability=True,C=.4)
+        clf1 = svm.SVC(probability=True,C=.4,gamma=0.00865)
         
     clf1.fit(X_train,y_train)
     #print(clf.score(Xts,Yts))
@@ -130,9 +132,9 @@ def cv_reweighting(dset):
             weights[i] = 0.0    
 
     if dset==2:
-        clf2 = svm.SVC(gamma=0.000225,C=0.8,probability=True)
+        clf2 = svm.SVC(gamma=0.000225,C=0.8)
     else:
-        clf2 = svm.SVC(gamma=0.00865,C=.4,probability=True)
+        clf2 = svm.SVC(gamma=0.00865,C=.4)
 
     clf2.fit(X_train,y_train,sample_weight=weights)
     #test_score=clf.score(Xts,Yts)
@@ -145,17 +147,20 @@ def run_algorithm(alg_type, dset, num_run):   #alg_type: type of the algorithm, 
     start=time.clock()
     print('start of the whole algorithm with dataset',dset)
     if alg_type=='reweighting':
+        print('start of reweighting algorithm')
         pool = Pool(processes=cpu_count())
         it = pool.map(cv_reweighting, range(num_run))  #using the number of runs
         #test_score=np.zeros(num_run)
         #for i in range(num_run):
             #test_score[i]=cv_reweighting(1)
+    pool.close()
+    pool.join()
     test_score= it
     average_score=np.mean(test_score)
     std_score=np.std(test_score)
     print('average score: ',average_score,'\nstandard deviation: ',std_score) # help to format here!
     end=time.clock()
-    with open('result.txt', 'w') as f: #better way to output result? I would like they can be read into python easily
+    with open('result.txt'+'_data'+str(dset)+'_'+alg_type, 'w') as f: #better way to output result? I would like they can be read into python easily
         for item in test_score:
             f.write("%s\n" % item)
     
