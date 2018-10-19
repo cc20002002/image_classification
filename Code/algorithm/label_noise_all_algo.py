@@ -29,9 +29,10 @@ import time
 from scipy.spatial.distance import cdist
 from scipy import exp
 from itertools import product
+import csv
 #
 plot=0
-
+max_itera=100
 
 dataset1 = np.load('../input_data/mnist_dataset.npz')
 size_image1 = 28
@@ -135,7 +136,7 @@ def expectationMaximisation(run):
     Xtr,Str,Xts,Yts = data_cache[dset]
     X_train, X_val, y_train, y_val = train_test_split(Xtr, Str, test_size=0.2)
     #clf1 is the first classifier while clf2 is the second
-    clf = svm.SVC(C=2.5,kernel=my_kernel)
+    clf = svm.SVC(C=2.5,kernel=my_kernel,max_iter=max_itera)
     if run==1:
         print("learn initial probability dset:",dset)  
     clf.fit(X_train,y_train)
@@ -149,10 +150,10 @@ def cv_reweighting(run):
     X_train, X_val, y_train, y_val = train_test_split(Xtr, Str, test_size=0.2)
     #clf1 is the first classifier while clf2 is the second
     if dset==2:
-        clf1 = svm.SVC(C=2.5,gamma=0.000225,probability=True)
+        clf1 = svm.SVC(C=2.5,gamma=0.000225,probability=True,max_iter=max_itera)
     else:
         #removed 'gamma=scale'. should be the default.
-        clf1 = svm.SVC(probability=True,gamma='scale')
+        clf1 = svm.SVC(probability=True,gamma='scale',max_iter=max_itera)
     if run==1:
         print("learn initial probability dset:",dset)        
     clf1.fit(X_train,y_train)
@@ -170,9 +171,9 @@ def cv_reweighting(run):
     if run==1:
         print("calculating final model dset:",dset)
     if dset==2:
-        clf2 = svm.SVC(gamma=0.000225,C=0.8)
+        clf2 = svm.SVC(gamma=0.000225,C=0.8,max_iter=max_itera)
     else:
-        clf2 = svm.SVC(gamma=0.00865,C=.4)
+        clf2 = svm.SVC(gamma=0.00865,C=.4,max_iter=max_itera)
 
     clf2.fit(X_train,y_train,sample_weight=weights)
     #test_score=clf.score(Xts,Yts)
@@ -189,9 +190,9 @@ def relabelling(run):
     X_train, X_val, y_train, y_val = train_test_split(Xtr, Str, test_size=0.2)
     #clf1 is the first classifier while clf2 is the second
     if dset==2:
-        clf1 = svm.SVC(C=2.5,gamma=0.000225,probability=True)
+        clf1 = svm.SVC(C=2.5,gamma=0.000225,probability=True,max_iter=max_itera)
     else:
-        clf1 = svm.SVC(gamma='scale',probability=True)
+        clf1 = svm.SVC(gamma='scale',probability=True,max_iter=max_itera)
     if run==1:
         print("learn initial probability dset:",dset)    
     clf1.fit(X_train,y_train)   
@@ -217,9 +218,9 @@ def relabelling(run):
 #        print("The best parameters are %s with a score of %0.2f"
 #              % (grid.best_params_, grid.best_score_))    
     if dset==2:
-        clf2 = svm.SVC(gamma=0.000225)
+        clf2 = svm.SVC(gamma=0.000225,max_iter=max_itera)
     else:
-        clf2 = svm.SVC(gamma=0.00865)
+        clf2 = svm.SVC(gamma=0.00865,max_iter=max_itera)
     clf2.fit(X_train[ind5,:],y_train[ind5])
     return clf2.score(Xts,Yts)
     #23:08 23:12 23:28 4.2577 
@@ -238,7 +239,7 @@ def run_algorithm(alg_type, dset, num_run):   #alg_type: type of the algorithm, 
         print('start of relabelling algorithm')
         it = pool.map(relabelling, range(num_run))  #using the number of runs
     if alg_type=='expectationMaximisation':
-        print('start of relabelling algorithm')
+        print('start of expectation Maximisation algorithm')
         it = pool.map(expectationMaximisation, range(num_run))  #using the number of runs
         #test_score=np.zeros(num_run)
         #for i in range(num_run):
@@ -250,9 +251,9 @@ def run_algorithm(alg_type, dset, num_run):   #alg_type: type of the algorithm, 
     std_score=np.std(test_score)
     print('average score: ',average_score,'\nstandard deviation: ',std_score) # help to format here!
     end=time.time()
-    with open('result'+'_data'+str(dset)+'_'+alg_type+str(round(end-start,4))+'sec.txt', 'w') as f: #better way to output result? I would like they can be read into python easily
-        for item in test_score:
-            f.write("%s\n" % item)
+    with open('result'+'_data'+str(dset)+'_'+alg_type+str(round(end-start,4))+'sec.csv', 'w') as f: #better way to output result? I would like they can be read into python easily
+        wr = csv.writer(f, dialect='excel')
+        wr.writerows([test_score])
     
     print('total process time is',round(end-start,4),'sec')
     
@@ -261,7 +262,7 @@ def run_algorithm(alg_type, dset, num_run):   #alg_type: type of the algorithm, 
 average_score = {}
 std_score={}
 #TODO!please change it to for loop! for dset,algo in range(2),algos ...
-for dset, algo in product([1,2],['reweighting','relabelling','expectationMaximisation']):
+for dset, algo in product([1,2],['expectationMaximisation']):
     ind='dataset '+str(dset)+' '+algo
     average_score[ind],std_score[ind]=run_algorithm(algo,dset,16)
 #dset=1
