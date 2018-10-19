@@ -32,7 +32,7 @@ from itertools import product
 import csv
 #
 plot=0
-max_itera=100
+max_itera=-1
 
 dataset1 = np.load('../input_data/mnist_dataset.npz')
 size_image1 = 28
@@ -262,7 +262,7 @@ def run_algorithm(alg_type, dset, num_run):   #alg_type: type of the algorithm, 
 average_score = {}
 std_score={}
 #TODO!please change it to for loop! for dset,algo in range(2),algos ...
-for dset, algo in product([1,2],['expectationMaximisation']):
+for dset, algo in product([1,2],['expectationMaximisation','relabelling','reweighting']):
     ind='dataset '+str(dset)+' '+algo
     average_score[ind],std_score[ind]=run_algorithm(algo,dset,16)
 #dset=1
