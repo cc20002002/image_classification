@@ -34,10 +34,10 @@ for (nn in Datasets){
   
 }
 legend <- get_legend(g+theme(legend.position="top"))
-plot_grid(plotlist = plots, labels=Datasets,hjust =c(-1,-1),vjust=c(0.1,0.1)) +
+plot_grid(plotlist = plots, labels=Datasets,hjust =c(-1,-1),vjust=c(2,2)) +
   theme(plot.margin=unit(c(1,0,0,0),"cm"))+
   draw_grob(legend, .45, .53, .3/3.3, 1)
-ggsave(filename = 'histo.pdf',width = 7, height = 7, units = "in")
+ggsave(filename = 'histo.pdf',width = 7, height = 5, units = "in")
 
 #reweighting is better than em is better than relabelling
 ks.test(myfiles[5,1:16],t(myfiles[4,1:16]),alternative ='greater')# em vs relabeling
