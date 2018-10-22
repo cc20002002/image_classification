@@ -1,0 +1,7 @@
+Target data set	Null Hypothesis (H_0)	Distance $D$ in \textsc{cdf}	P-value	Reject $H_0$
+\textsc{mnist}	Relabelling algorithm is no more accurate than Expectation maximisation. 	0.625	0.0019	Reject
+\textsc{mnist}	Expectation maximisation algorithm is as accurate as Reweighting.	0.3125	0.4154	Fail to reject
+\textsc{mnist} 	Reweighting algorithm is as accurate as relabelling	0.3125	0.4154	Fail to reject
+\textsc{cifar} 	Expectation maximisation algorithm is as accurate as relabelling	0.5	0.0183	Reject
+\textsc{cifar} 	Reweighting algorithm is no more accurate than expectation maximisation	0.6875	0.0005	Reject
+\textsc{cifar} 	Reweighting algorithm is no more accurate than relabelling 	0.6875	0.0005	Reject
