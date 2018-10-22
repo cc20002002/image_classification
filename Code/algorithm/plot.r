@@ -37,7 +37,7 @@ legend <- get_legend(g+theme(legend.position="top"))
 plot_grid(plotlist = plots, labels=Datasets,hjust =c(-1,-1),vjust=c(2,2)) +
   theme(plot.margin=unit(c(1,0,0,0),"cm"))+
   draw_grob(legend, .45, .53, .3/3.3, 1)
-ggsave(filename = 'histo.pdf',width = 7, height = 5, units = "in")
+ggsave(filename = 'histo.pdf',width = 7, height = 4.6, units = "in")
 
 #reweighting is better than em is better than relabelling
 ks.test(myfiles[5,1:16],t(myfiles[4,1:16]),alternative ='greater')# em vs relabeling
@@ -50,8 +50,12 @@ ks.test(myfiles[1,1:16],t(myfiles[2,1:16]),alternative ='greater')# em vs reweig
 ks.test(myfiles[1,1:16],t(myfiles[3,1:16]))# em vs relabeling
 
 ks.test(myfiles[3,1:16],t(myfiles[2,1:16]))# labeling vs reweighting
-
-
-  df11[Noise==nn], aes(x=`Relative residual error`, fill=Algorithm)) +
-  geom_histogram(alpha=0.2, position="identity",bins=60)+
-  ylab("Count")
+require('boot')
+df3=myfiles
+df3$Mean=rowMeans((df3[,1:16]))
+df3$Sd=apply(df3[,1:16],1,sd)
+mean.fun <- function(dat, idx) mean(dat[idx], na.rm = TRUE)
+for (i in 1:6){
+bootobject <- boot(data=df1,R=1000,statistic=mean.fun)
+boot.ci(bootobject, conf=, type= )
+}
