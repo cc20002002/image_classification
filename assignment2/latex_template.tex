@@ -8,6 +8,9 @@
 \usepackage{prettyref}
 \usepackage[]{hyperref}
 \usepackage{mathtools}
+\usepackage{csvsimple}
+\usepackage{booktabs}
+
 \DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
 % in dvi it only seems to use urlcolor !!!!
 \hypersetup{colorlinks,linkcolor=blue,citecolor=blue,pagecolor=blue,%
@@ -21,6 +24,7 @@
 \newcommand{\fix}{\marginpar{FIX}}
 \newcommand{\new}{\marginpar{NEW}}
 \newcommand{\svm}{\textsc{svm}}
+
 \nipsfinalcopy % Uncomment for camera-ready version
 
 \begin{document}
@@ -28,7 +32,7 @@
 \author{%
  \begin{tabular}{rl}
   Tutors: & Zhuozhuo Tu, Liu Liu\\ \\
-Group members: & Chen Chen (che5002) 480458339, \\
+Group members: & Chen Chen (cche5002) 480458339, \\
 & Yutong Cao (ycao5602) 470347494,\\
 & Yixiong Fang ***
 \end{tabular}
@@ -46,14 +50,19 @@ line spaces precede the abstract. The abstract must be limited to one
 paragraph.
 \end{abstract}
 \section{Introduction}
-According to the law of large numbers in probability theory, with a larger number of trials, the average result should be closer to the expected value. So is the case with machine learning. Besides the choices of hypothesis class, objective function, optimisation method, and output hypothesis, the size and quality of the data used are also crucial in training a model. Most of the data labelling work are done by humans. Thus mistakes can hardly be avoided, especially when the data size and the number of classes are relatively large. Usually there is a trade-off between the data complexity and the data quality. Weakly supervised learning methods are introduced to handle this kind of problems. Positive and unlabelled (\textsc{pu}) learning and semi-supervised learning are designed to trade data complexity for data quality. They both make use of a small set of correct data to train a model. Also there is learning with noisy labels, on the contrary, trades data quality for data complexity. It learns a model with a large amount of noisy data. In this assignment, we only focused on the latter.
+This report documents our modification of support vector machine~(\svm) to improve its performance again label noise.
+
+Label noises are unavoidable in many data sets. In probability theory and machine learning, the law of large numbers states that the average of samples drawn converge to the expected value of a random variable with a larger number of trials \citep{hardle2007applied}. Besides the choices of hypothesis class, objective function, optimisation method, and output hypothesis, the size and quality of the data used are also crucial in training a model. 
+
+Most of the data labelling work are done by humans. Thus mistakes can hardly be avoided, especially when the data size and the number of classes are relatively large. Usually there is a trade-off between the data complexity and the data quality. Weakly supervised learning methods are introduced to handle this kind of problems. Positive and unlabelled (\textsc{pu}) learning and semi-supervised learning are designed to trade data complexity for data quality. They both make use of a small set of correct data to train a model. Also there is learning with noisy labels, on the contrary, trades data quality for data complexity. It learns a model with a large amount of noisy data. In this assignment, we only focused on the latter.
 
 We implemented three methods for learning with noisy labels and conducted experiments with them on two noisy data sets. For both data sets, the flip rates are given. Our first method is to learn with a modified support vector machine. The label noise information is added to the optimisation term of the SVM as a function of the observed label and an error term which follows a Bernoulli distribution. This method is first proposed by \citet{pmlr-v20-biggio11} to learn with random classification noise (\textsc{rcn}), and we extended it to learn with class-dependent noise (\textsc{ccn}). The second method is the heuristic approach based on the work of \citet{Wu03probabilityestimates}. This method follows the assumption that models trained with the noisy data still give an adequate performance. Thus the predicted probability of a noisy sample point belonging to one class should be around 0.5 as the model can neither accept nor reject the prediction with confidence. We exclude the potential noisy data points following this idea and train a model on the rest data which we believe are cleaner than the original data. The third method is the importance reweighting approach proposed by \citet{liu2016classification}. This method calculates a reweighting coefficient for each sample point using the result from training a model on the original noisy data to reweight the loss for each sample point. For all three methods, we choose use the same classification model so that we can compare the three learning with label noise methods with the rest conditions controlled. Although \textsc{svm} is not considered to be robust to label noise, its classification accuracy is relatively high compared with other models.
 
 We used the three methods to learn two sets of noisy data, both containing 10,000 instances belongs to two classes. The first data set is sampled from the fashion-mnist database and the second is sampled from the \textsc{cifer} database. We will compare our results from using the three learning with label noise methods on both data sets in accuracy and process time. For all three methods, the values of noise rates are required. We implemented a noise rate estimation using the method proposed in the work of \citet{liu2016classification}. We did not use the estimated values in our classification experiments as the true rates are provided. But we will compare our estimation with the true values.
 
 \section{Related work}
-In the literature, there are many works on learning with label noise. One popular approach is to use classificaion algorithms that are proved to be robust to label noise. \cite{frenay2014classification} summarized in their work that 0-1 loss and least-squares loss are robust loss functions to label noise. Also, bagging and ensemble decision tree are robust classification models to learn with label noise. This kind of approach does not deal with label noise directly. Instead, they treat the noisy sample points as outliers and assume they will not have too much effect on the trained model. We chose not to use the robust loss functions as the corresponding classification models may not produce satisfying classification accuracy as \textsc{svm}. But we used bagging to generate better and more stable predictions. \cite{frenay2014classification} also mentioned filtering methods for learning with label noise. This kind of methods try to remove mislabelled data before training a final model. Our second model follows this idea by excluding data points with vague predictions. \cite{yang2018adasampling} proposed a filter-like method that filters the data during training and calculates a mislabelled probability for each sample rather than removing them directly. 
+In the literature, there are many works on learning with label noise. One popular approach is to use classification algorithms that are proved to be robust to label noise. \cite{frenay2014classification} summarised in their work that 0-1 loss and least-squares loss are robust loss functions to label noise. Also, bagging and ensemble decision tree are robust classification models to learn with label noise. This kind of approach does not deal with label noise directly. Instead, they treat the noisy sample points as outliers and assume they will not have too much effect on the trained model. We chose not to use the robust loss functions as the corresponding classification models may not produce satisfying classification accuracy as \textsc{svm}. But we used a bagging-like technique by sampling multiple times and averaging the predicted probabilities to generate better and more stable predictions. \cite{frenay2014classification} also mentioned filtering methods for learning with label noise. This kind of methods try to remove mislabelled data before training a final model. Our second model follows this idea by excluding data points with vague predictions. \cite{yang2018adasampling} also proposed a filter-like method that filters the data during training and calculates a mislabelled probability for each sample rather than removing them directly. Many of the approaches mentioned above do not consider the noise rates as known. Although this makes the problem general, the methods may not be able to handle more complicated problems. \\ \\
+\citet{pmlr-v20-biggio11} proposed a method that rewrites the objective function and adds the noise rate information to it. They substitutes the given label values with expected values and optimises the new objective function. This is what our first learning with label noise method is based one. The idea behind this method is clear and intuitive, but it is only applicable for certain loss functions. \citet{liu2016classification} proposed an importance reweighting method that reweights the surrogate loss function using information from a pre-train process. This method does not have limitations on the type of surrogate functions chosen. And they also provided an efficient method for estimating the noise rate. 
 
 \section{Method}
 We use \textsc{svm} with Gaussian kernel as the base classification method for this task because of its generalisation ability.
@@ -66,7 +75,7 @@ Here, $w$ is the weighting factor, $b$ is a constant. We classify the $i$th imag
 
 In this image classification assignment, we do not observe the true labels~$y_i$. This section proposes three different approaches to modify ordinary \svm\ to attack label noise problem. However, we do not have access to a test data set with true labels~$(x_i,y_i)$ to verify the generalisation ability of our three different models, which are all trained by noisy data~$(x_i,S_i)$. Using \svm , the gap between hyperplane and the training data set provides a natural and `free' metric of its generalisation ability  \citep{hastie01statisticallearning}, and also provides an alternative to using a test data set. As of the strong generalisation ability of a well-trained \svm\ \citep{Cortes1995,NIPS2012_4500}, it was chosen as our classification method.
 \subsection{Preprocess}
-\texttt{StandardScaler} from \texttt{sklearn} was used. Someone please describe here.
+\texttt{StandardScaler} from \texttt{sklearn} was used. Each image is rescaled to have mean zero and standard deviation one. By doing this, we removed the brightness difference among different images. This process is called photometric normalisation. \citet{jonsson2002support} suggested that this may improve the performance of Gaussian kernel SVM as Gaussian kernel is a radius based kernel and hence it performs well when images are on the same scale. For the \textsc{cifer} dataset, we used principle component analysis (\textsc{pca}) for dimension reduction. We did not run \textsc{pca} on the fashion-mnist data because the dimension is reasonable.
 
 \subsection{The original data set is balanced} \label{sec:1}
 The assignment instruction states the probabilities~$P(S=1|Y=0)=0.2$ and $P(S=0|Y=1)=0.4$. From the data, we observed that $40\%$ of contaminated labels~$S$ (i.e. $P(S=1)$) is $1$. As a result
@@ -157,7 +166,47 @@ This method gives us an accuracy of $95.0\%$ on the testing data.
 Please copy some formulae to here from tut11.
 
 \section{Result}
-\label{gen_inst}
+\begin{table}
+	\begin{tabular}{lllll}
+\hline 
+Data & Null Hypothesis ($H_0$) & $D$ & P-value & Reject $H_0$\\
+\hline 
+\hline 
+ & Relabelling algorithm is no more accurate than expectation maximisation.  & 0.625 & 0.0019 & Reject\\
+ 
+ \textsc{mnist} & Expectation maximisation algorithm is as accurate as Reweighting. & 0.3125 & 0.4154 & Fail to reject\\
+ 
+  & Reweighting algorithm is as accurate as relabelling. & 0.3125 & 0.4154 & Fail to reject\\
+\hline 
+   & Expectation maximisation algorithm is no more accurate than relabelling. & 0.5 & 0.0183 & Reject\\
+
+ \textsc{cifar}  & Reweighting algorithm is no more accurate than expectation maximisation. & 0.6875 & 0.0005 & Reject\\
+
+  & Reweighting algorithm is no more accurate than relabelling.  & 0.6875 & 0.0005 & Reject\\
+\hline 
+\end{tabular}
+	\caption{Hypothesis test}
+	\label{tab:HypothesisTest}
+\end{table}
+\begin{table}
+	\caption{Mean sd}
+	\label{tab:Meansd}
+    \csvautobooktabular[late after head=]{meansd.csv}
+\end{table}
+
+
+\begin{figure}
+	\includegraphics{boxplot.pdf}
+	\caption{Boxplot}
+	\label{fig:Boxplot}
+\end{figure}
+
+\begin{figure}
+	 \includegraphics{histo.pdf}
+	\caption{Density function from kernel smoothing}
+	\label{fig:Density function from kernel smoothing}
+\end{figure}
+
 scatter plot of time vs. accuracy
 histogram of accuracy
 mean, sd table

@@ -1,0 +1,98 @@
+\begin{thebibliography}{12}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[H{\"a}rdle and Simar(2007)]{hardle2007applied}
+Wolfgang H{\"a}rdle and L{\'e}opold Simar.
+\newblock \emph{Applied multivariate statistical analysis}, volume 22007.
+\newblock Springer, 2007.
+
+\bibitem[Biggio et~al.(2011)Biggio, Nelson, and Laskov]{pmlr-v20-biggio11}
+Battista Biggio, Blaine Nelson, and Pavel Laskov.
+\newblock Support vector machines under adversarial label noise.
+\newblock In \emph{Proceedings of the Asian Conference on Machine Learning},
+  volume~20, pages 97--112. PMLR, 2011.
+
+\bibitem[Wu et~al.(2003)Wu, Lin, and Weng]{Wu03probabilityestimates}
+Tingfan Wu, ChihJen Lin, and Ruby~C. Weng.
+\newblock Probability estimates for multi-class classification by pairwise
+  coupling.
+\newblock \emph{Journal of Machine Learning Research}, 5:\penalty0 975--1005,
+  2003.
+
+\bibitem[Liu and Tao(2016)]{liu2016classification}
+Tongliang Liu and Dacheng Tao.
+\newblock Classification with noisy labels by importance reweighting.
+\newblock \emph{IEEE Transactions on pattern analysis and machine
+  intelligence}, 38\penalty0 (3):\penalty0 447--461, 2016.
+
+\bibitem[Fr{\'e}nay and Verleysen(2014)]{frenay2014classification}
+Beno{\^\i}t Fr{\'e}nay and Michel Verleysen.
+\newblock Classification in the presence of label noise: a survey.
+\newblock \emph{IEEE transactions on neural networks and learning systems},
+  25\penalty0 (5):\penalty0 845--869, 2014.
+
+\bibitem[Yang et~al.(2018)Yang, Ormerod, Liu, Ma, Zomaya, and
+  Yang]{yang2018adasampling}
+Pengyi Yang, John~T Ormerod, Wei Liu, Chendong Ma, Albert~Y Zomaya, and Jean~YH
+  Yang.
+\newblock Adasampling for positive-unlabeled and label noise learning with
+  bioinformatics applications.
+\newblock \emph{IEEE Transactions on Cybernetics}, \penalty0 (99):\penalty0
+  1--12, 2018.
+
+\bibitem[Boser et~al.(1992)Boser, Guyon, and
+  Vapnik]{Boser:1992:TAO:130385.130401}
+Bernhard~E. Boser, Isabelle~M. Guyon, and Vladimir~N. Vapnik.
+\newblock A training algorithm for optimal margin classifiers.
+\newblock In \emph{Proceedings of the Fifth Annual Workshop on Computational
+  Learning Theory}, COLT '92, pages 144--152, New York, NY, USA, 1992. ACM.
+\newblock ISBN 0-89791-497-X.
+\newblock \doi{10.1145/130385.130401}.
+\newblock URL \url{http://doi.acm.org/10.1145/130385.130401}.
+
+\bibitem[Cortes and Vapnik(1995)]{Cortes1995}
+Corinna Cortes and Vladimir Vapnik.
+\newblock Support-vector networks.
+\newblock \emph{Machine Learning}, 20\penalty0 (3):\penalty0 273--297, Sep
+  1995.
+\newblock ISSN 1573-0565.
+\newblock \doi{10.1007/BF00994018}.
+
+\bibitem[Fern\'{a}ndez-Delgado et~al.(2014)Fern\'{a}ndez-Delgado, Cernadas,
+  Barro, and Amorim]{Fernandez-Delgado:2014:WNH:2627435.2697065}
+Manuel Fern\'{a}ndez-Delgado, Eva Cernadas, Sen{\'e}n Barro, and Dinani Amorim.
+\newblock Do we need hundreds of classifiers to solve real world classification
+  problems?
+\newblock \emph{J. Mach. Learn. Res.}, 15\penalty0 (1):\penalty0 3133--3181,
+  January 2014.
+\newblock ISSN 1532-4435.
+\newblock URL \url{http://dl.acm.org/citation.cfm?id=2627435.2697065}.
+
+\bibitem[Hastie et~al.(2001)Hastie, Tibshirani, and
+  Friedman]{hastie01statisticallearning}
+Trevor Hastie, Robert Tibshirani, and Jerome Friedman.
+\newblock \emph{The Elements of Statistical Learning}.
+\newblock Springer Series in Statistics. Springer New York Inc., New York, NY,
+  USA, 2001.
+
+\bibitem[Jin and Wang(2012)]{NIPS2012_4500}
+Chi Jin and Liwei Wang.
+\newblock Dimensionality dependent pac-bayes margin bound.
+\newblock In F.~Pereira, C.~J.~C. Burges, L.~Bottou, and K.~Q. Weinberger,
+  editors, \emph{Advances in Neural Information Processing Systems 25}, pages
+  1034--1042. Curran Associates, Inc., 2012.
+\newblock URL
+  \url{http://papers.nips.cc/paper/4500-dimensionality-dependent-pac-bayes-margin-bound.pdf}.
+
+\bibitem[Jonsson et~al.(2002)Jonsson, Kittler, Li, and
+  Matas]{jonsson2002support}
+Kenneth Jonsson, Josef Kittler, YP~Li, and Jiri Matas.
+\newblock Support vector machines for face authentication.
+\newblock \emph{Image and Vision Computing}, 20\penalty0 (5-6):\penalty0
+  369--375, 2002.
+
+\end{thebibliography}

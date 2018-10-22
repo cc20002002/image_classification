@@ -1,0 +1,22 @@
+\BOOKMARK [1][]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][]{section.2}{Related work}{}% 2
+\BOOKMARK [1][]{section.3}{Method}{}% 3
+\BOOKMARK [2][]{subsection.3.1}{Preprocess}{section.3}% 4
+\BOOKMARK [2][]{subsection.3.2}{The original data set is balanced}{section.3}% 5
+\BOOKMARK [2][]{subsection.3.3}{Method 1: Modified support vector machine}{section.3}% 6
+\BOOKMARK [3][]{subsubsection.3.3.1}{Expectation maximisation}{subsection.3.3}% 7
+\BOOKMARK [3][]{subsubsection.3.3.2}{Tuning}{subsection.3.3}% 8
+\BOOKMARK [2][]{subsection.3.4}{Method 2: heuristic approach}{section.3}% 9
+\BOOKMARK [3][]{subsubsection.3.4.1}{Select samples}{subsection.3.4}% 10
+\BOOKMARK [3][]{subsubsection.3.4.2}{Label correction}{subsection.3.4}% 11
+\BOOKMARK [2][]{subsection.3.5}{Method 3: Reweighting}{section.3}% 12
+\BOOKMARK [1][]{section.4}{Result}{}% 13
+\BOOKMARK [1][]{section.5}{Headings: first level}{}% 14
+\BOOKMARK [2][]{subsection.5.1}{Headings: second level}{section.5}% 15
+\BOOKMARK [3][]{subsubsection.5.1.1}{Headings: third level}{subsection.5.1}% 16
+\BOOKMARK [1][]{section.6}{Citations, figures, tables, references}{}% 17
+\BOOKMARK [2][]{subsection.6.1}{Citations within the text}{section.6}% 18
+\BOOKMARK [2][]{subsection.6.2}{Footnotes}{section.6}% 19
+\BOOKMARK [2][]{subsection.6.3}{Figures}{section.6}% 20
+\BOOKMARK [2][]{subsection.6.4}{Tables}{section.6}% 21
+\BOOKMARK [2][]{subsection.6.5}{Margins in LaTeX}{section.6}% 22
