@@ -28,15 +28,15 @@ Datasets=unique(df2$Dataset)
 plots=list()
 for (nn in Datasets){
   g=ggplot(df2 %>% filter(Dataset==nn), aes(x=Accuracy, fill=Algorithm)) +
-    geom_density(alpha=0.5, position="identity")
+    geom_density(alpha=0.5, position="identity")+
+    ylab("Probability density")
   plots=c(plots,list(g+theme(legend.position="none")))
   
 }
 legend <- get_legend(g+theme(legend.position="top"))
-plot_grid(plotlist = plots, labels=Datasets,hjust =c(-1,-1)) +
+plot_grid(plotlist = plots, labels=Datasets,hjust =c(-1,-1),vjust=c(0.1,0.1)) +
   theme(plot.margin=unit(c(1,0,0,0),"cm"))+
-  draw_grob(legend, .45, .53, .3/3.3, 1)+
-  ylab("Probability density")
+  draw_grob(legend, .45, .53, .3/3.3, 1)
 ggsave(filename = 'histo.pdf',width = 7, height = 7, units = "in")
 
 #reweighting is better than em is better than relabelling
