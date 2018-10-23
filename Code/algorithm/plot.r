@@ -56,6 +56,10 @@ df3$Mean=rowMeans((df3[,1:16]))
 df3$Sd=apply(df3[,1:16],1,sd)
 mean.fun <- function(dat, idx) mean(dat[idx], na.rm = TRUE)
 for (i in 1:6){
-bootobject <- boot(data=df1,R=1000,statistic=mean.fun)
-boot.ci(bootobject, conf=, type= )
+bootobject <- boot(data=df1[seq(i,96,by=6),4],R=1000,statistic=mean.fun)
+a=boot.ci(bootobject, type='perc' )
+df3[i,]$CIl=a$percent[4]
+  df3[i,]$CIu=a$percent[5]
 }
+df4=round(df3,3)
+fwrite(df4,file = 'meansd.csv')

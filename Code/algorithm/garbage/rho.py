@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Oct 23 18:56:00 2018
+
+@author: chenc
+"""
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
@@ -27,7 +33,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import StratifiedShuffleSplit
 from sklearn.model_selection import GridSearchCV
 from sklearn import svm
-from sklearn.linear_model import Ridge
+from sklearn.linear_model import LogisticRegression
 from sklearn.decomposition import IncrementalPCA as PCA
 #from random import sample
 '''
@@ -73,63 +79,11 @@ if dset==2:
     if plot:
         xplot=scaler.fit_transform(pca.inverse_transform(Xts).T).T
 
-#Xts = scaler.fit_transform(Xts.T).T
-#Xtr = scaler.fit_transform(Xtr.T).T
+clf = LogisticRegression(penalty='l1',C=0.015)
+clf.fit(Xtr, Str) 
+print(clf.score(Xtr, Str) )
+print(clf.score(Xts, Yts) )
+bb=clf.predict_proba(Xtr)
+np.amin(bb, axis=0)
 
-##1plt.jet()
-
-if plot:
-    plt.figure()
-    for i in range(0,30):
-        image=xplot[i,].reshape(dim_image,size_image,size_image).transpose([1, 2, 0])
-        plt.subplot(5, 6, i+1)
-        plt.imshow(image[:,:,:],interpolation='bicubic')
-        plt.title(Yts[i])
-
-indices = np.random.choice(Xts.shape[0], 
-                           int(Xts.shape[0]*0.8), replace=False)
-
-if dset==2:
-    clf = svm.SVC(C=2.5,gamma=0.000225,probability=True)
-else:
-    clf = svm.SVC(gamma='scale',probability=True)
-    
-  
-
-clf.fit(Xtr,Str)
-print(clf.score(Xts,Yts))
-clf.score(Xtr,Str)
-
-def estimateBeta(S,prob,rho0,rho1):
-    S=S.astype(int)
-    rho=np.array([rho1,rho0])
-    #rho=np.tile(np.array([rho1, rho0]).reshape(-1,1),700).T
-    #print(rho[S])
-    
-    #print(S)
-    prob=prob[:,0]*(1-S[:])+prob[:,1]*(S[:])
-    print(sum(prob>.5)/700)
-    #print(S[0:11])
-    beta=(prob[:]-rho[S].ravel())/(1-rho0-rho1)/prob[:]
-    return beta
-
-probS = clf.predict_proba(Xtr)
-#print(Str[0:10])
-
-#print(rho.shape)
-#rho[:,Str.astype(int)]
-
-#print(probS.shape)
-weights = estimateBeta(Str, probS, 0.2, 0.4)
-print(weights.shape)
-# remove negative weights and normalize weights to 1
-for i in range(len(weights)):
-    if weights[i] < 0:
-        weights[i] = 0.0    
-if dset==2:
-    clf = svm.SVC(gamma=0.000225,C=.8)
-else:
-    clf = svm.SVC(gamma='scale',C=.4)
-clf.fit(Xtr,Str,sample_weight=weights)
-print(clf.score(Xts,Yts))
-clf.score(Xtr,Str)
+clf = RandomForestClassifier(n_estimators=100, max_depth=5)
