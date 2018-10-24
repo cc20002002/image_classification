@@ -100,7 +100,9 @@ we use \svm\ as our classification method as of its strong generalisation abilit
 We applied Photometric normalisation suggested by \citet{jonsson2002support} to re-scaled the image data sets to have mean of zero and standard deviation of one. This scaling visually removes the brightness difference among different images, and dramatically improves the performance of Gaussian kernel \svm . This preprocess procedure is mandatory because Gaussian kernel is a radius based kernel, which only performs well when data are on a similar scale \citep{jonsson2002support}. 
 
 \subsubsection{Principle component analysis reduces dimensionality}
-For the large \textsc{cifer} data set, we applied principle component analysis (\textsc{pca}) to decrease the dimensionality of the data set from $3072$ to $100$. No \textsc{pca} is applied to the \textsc{mnist} data set because the dimensionality ($784$) is already low comparing with the number of samples ($10,000$) in the data set.
+For the large \textsc{cifer} data set, we applied principle component analysis (\textsc{pca}) to decrease the dimensionality of the data set from $3072$ to $100$. Although the dimensionality is reduced by $97\%$, the remaining $3\%$ features explains more than $85\%$ of the variance in the data set. 
+
+No \textsc{pca} is applied to the \textsc{mnist} data set because the dimensionality ($784$) is already low comparing with the number of samples ($10,000$) in the data set.
 
 \subsection{The original data set is balanced} \label{sec:1}
 Define random variables~$Y$ and $S$ as the true and contaminated binary classification label of a random image vector~$X$, respectively. The assignment instruction states the probabilities~$\rho_0=P(S=1|Y=-1)=0.2$ and $\rho_1=P(S=-1|Y=1)=0.4$.
@@ -184,31 +186,27 @@ Comparing this loss function and the ordinary loss function of \svm \eqref{eq:du
 
 This method gives us an accuracy of $94.6\%$ on the testing data.
 
-\subsection{Method 2: heuristic approach}\label{2nd}
-Method 2 still implement \textsc{svm}. We chose \textsc{svm} because classification algorithms with Hinge loss, including \textsc{svm}, is robust against random classification label noise. Our label noise is class dependent. However, experiment shows that \textsc{svm} is still robust against it.
-%\subsubsection{Hinge loss is robust against label noise}
 
-\subsubsection{Select samples}
-Ordinary \textsc{svm} only gives a classification without revealing a probability that indicates the confidence of classification. \citet{Wu03probabilityestimates} proposed a five-fold cross-validation method to calculate the classification probabilities~$P(Y=1|X)$ for \textsc{svm}. 
-Using this method, we calculated the probability~$P(Y=1|X)$ with label noise by an \textsc{svm} with Gaussian kernel. We have $10,000$ samples. We only use those with largest and smallest $P(Y=1|X)$ (first $1/3$ and last $1/3$), because intuitively the contaminated samples are more likely to have a probability~$P(Y=1|X)$ close to $0.5$ and the error rate $P(\epsilon=1)=0.3\approx 1/3$. %A $3\%$ margin was left because classification errors must exist.
-\subsubsection{Label correction}
-We relabel the $1/3$ of the samples with highest fitted probability~$P(Y=1|X)$ as $1$ and the $1/3$ samples with the smallest fitted probability~$P(Y=1|X)$ as $-1$. This step is important because section~\ref{sec:1} shows that the original data set is balanced ($P(Y=1)=P(Y=-1)=0.5$). 
+\subsection{Method 2: Importance Reweighting} \label{3rd}
+This section applies theorems proved by \citet{liu2016classification} to construct a weighted loss that includes noise information~$\rho_0$ and $\rho_1$. 
 
-Training our \textsc{svm} with Gaussian Kernel again with this subset of relabeled data gives our second model.
+\subsection{Sigmoid function estimates conditional probability}\label{sigmoid}
+Define $D$ to be the probability density function of the clean data~$(X,Y)$ and $D_\rho$ to be that of contaminated data~$(X,S)$.
 
-This method gives us an accuracy of $95.0\%$ on the testing data.
-%\subsubsection{Hinge loss if robust against label noise}
-\subsection{Method 3: Importance Reweighting} \label{3rd}
-This section applies theorems proved by \citet{liu2016classification} to construct a weighted loss that includes noise information~$\rho_0$ and $\rho_1$. Define $D$ to be the probability density function of the clean data~$(X,Y)$ and $D_\rho$ to be that of contaminated data~$(X,S)$. \\{\color{red} ATTENDTION! I used $P$ in previous sections. Either use $P_D$ in all probability notations in this report or none of them. Also define $f$ which I have no clue what it is. Note that I have already occupied the letter $f$. Use something else if this is not the same $f$. Alternative change my previous letters $f$. Either way, Be consistent}.
-\citet{liu2016classification} construct a reweighting coefficient vector~
+This section estimates the conditional probability~$P_{D_\rho}(S=y|X)$.
+
+\citet{liu2016classification} provided three methods to estimate the conditional probability~$P_{D_\rho}(S=y|X)$. 
+The methods in Sections~5.2 and 5.3 implement kernel smoothing. The two methods are similar---the formal method requires to estimate two density functions whereas the later method estimates the ratio of these two. Our data sets are high dimensional ($784$ and $3072$), so methods~two and three suffers from the curse of dimensionality. As a result, we implement a probabilistic classification method proposed in Section~5.1 by \citet{liu2016classification}.
+
+To estimate the probability~$P_{D_\rho}(S=y|X)$, we first train an ordinary \svm . We then train the parameters of an additional sigmoid function to map the \svm\ outputs into probabilities \citet{Platt99probabilisticoutputs}. We apply this approach rather than traditional probabilistic models because Remark 1 given by \citet{liu2016classification} indicates the traditional probabilistic method `does not perform well'.
+
+\subsection{Reweighting coefficient improves robustness against label noise.}
+{\color{red} ATTENDTION! I used $P$ in previous sections. Either use $P_D$ in all probability notations in this report or none of them. Also define $f$ which I have no clue what it is. Note that I have already occupied the letter $f$. Use something else if this is not the same $f$. Alternative change my previous letters $f$. Either way, Be consistent}.
+
+To improve the robustness against label noise, \citet{liu2016classification} constructed a reweighting coefficient vector~
 \begin{equation}
 \beta(X,Y,S)=\frac{P_D(Y|X)}{P_{D_\rho}(S|X)}. \label{beta} 
 \end{equation}
-This reweighting coefficient~$\beta(X,Y,S)$ is then used to estimate the expected risk~$R_{\loss,D}(f)$ in the with the empirical risk $R_{\loss,D_\rho}(f)$
-\begin{equation*}
-R_{\loss,D}(f) = R_{\beta \loss,D_\rho}(f). 
-\end{equation*}
-This equation allows us to estimate the true loss function~$R_{\loss,D}(f)$ without knowing the true labels~$Y$. 
 %in  to represent the expected risk if we can find the value of $\beta$
 %where $D$ is the distribution of  and $D_\rho$ is the distribution of .
 %The transformation deducted as follows:  
@@ -239,23 +237,43 @@ With some reasonable assumptions ({\color{red} what are the assumptions}), \cite
 \begin{equation}
     P_D(Y=y|X)=\frac{P_{D_\rho}(S=y|X)-\rho_{1-y}}{1-\rho_{y}-\rho_{1-y}}\text{ where }y\in \left\{0,1\right\}.
 \end{equation}
-Substitute this estimation into the weighting coefficient~\eqref{beta}
+Substitute this estimation into the weighting coefficient~\eqref{beta}:
 \begin{equation}
-    \beta=\frac{P_{D_\rho}(S=y|X)-\rho_{1-y}}{(1-\rho_{y}-\rho_{1-y})P_{D_\rho}(S=y|X)}\text{ where }y\in \left\{0,1\right\}.
+    \beta(X,Y,S)=\frac{P_{D_\rho}(S=y|X)-\rho_{1-y}}{(1-\rho_{y}-\rho_{1-y})P_{D_\rho}(S=y|X)}\text{ where }y\in \left\{0,1\right\}.
 \end{equation}
-Then the problem is reduced to estimating the conditional probability~$P_{D_\rho}(S=y|X)$.
-\citet{liu2016classification} provided three methods. 
-We choose to use the density ratio method for estimating $P_{D_\rho}(S=y|X)$. Firstly, Remark 1 given by \citet{liu2016classification} indicates the probabilistic method `does not perform well'. Secondly, our data sets are high dimensional, so the kernel density estimation method would suffer from the curse of dimensionality. We use ***(refer to papers given on the github page of densratio package)
+Further substituting the conditional probability~$P_{D_\rho}(S=y|X)$ estimated in Section~\ref{sigmoid} gives reweighting coefficient~$\beta(X,Y,S)$. 
+This reweighting coefficient~$\beta(X,Y,S)$ is then used to estimate the expected risk~$R_{\loss,D}(f)$ in the with the empirical risk $R_{\loss,D_\rho}(f)$
+\begin{equation*}
+R_{\loss,D}(f) = R_{\beta \loss,D_\rho}(f). 
+\end{equation*}
+This equation allows us to estimate the true loss function~$R_{\loss,D}(f)$ without knowing the true labels~$Y$. 
+
+\subsection{Method 3: heuristic approach}\label{2nd}
+Method 3 still implements \textsc{svm}. We chose \textsc{svm} because classification algorithms with Hinge loss, including \textsc{svm}, is robust against random classification label noise. Our label noise is class dependent. However, experiment shows that \textsc{svm} is still robust against it.
+%\subsubsection{Hinge loss is robust against label noise}
+
+\subsubsection{Select samples}
+Ordinary \textsc{svm} only gives a classification without revealing a probability that indicates the confidence of classification. \citet{Wu03probabilityestimates} proposed a five-fold cross-validation method to calculate the classification probabilities~$P(Y=1|X)$ for \textsc{svm}. 
+Using this method, we calculated the probability~$P(Y=1|X)$ with label noise by an \textsc{svm} with Gaussian kernel. We have $10,000$ samples. We only use those with largest and smallest $P(Y=1|X)$ (first $1/3$ and last $1/3$), because intuitively the contaminated samples are more likely to have a probability~$P(Y=1|X)$ close to $0.5$ and the error rate $P(\epsilon=1)=0.3\approx 1/3$. %A $3\%$ margin was left because classification errors must exist.
+\subsubsection{Label correction}
+We relabel the $1/3$ of the samples with highest fitted probability~$P(Y=1|X)$ as $1$ and the $1/3$ samples with the smallest fitted probability~$P(Y=1|X)$ as $-1$. This step is important because section~\ref{sec:1} shows that the original data set is balanced ($P(Y=1)=P(Y=-1)=0.5$). 
+
+Training our \textsc{svm} with Gaussian Kernel again with this subset of relabeled data gives our second model.
+
+This method gives us an accuracy of $95.0\%$ on the testing data.
+%\subsubsection{Hinge loss if robust against label noise}
 
 \subsection{Flip rates estimation methods}\label{method2}
-We apply techniques proposed by \citet{liu2016classification} to estimate the flip rates~$\rho_0$ and $\rho_1$. The technique consists of two steps---firstly, we estimate probability~$P_{D_\rho}(S=y|X)$; secondly, we estimate the flip rates~$\rho_0$ and $\rho_1$ using the probability~$P_{D_\rho}(S=y|X)$.
+We apply techniques proposed by \citet{liu2016classification} to estimate the flip rates~$\rho_0$ and $\rho_1$. The technique consists of two steps---firstly, we estimate probability~$P_{D_\rho}(S=y|X)$; secondly, we estimate the flip rates~$\rho_0$ and $\rho_1$ using the probability~$P_{D_\rho}(S=y|X)$. We use the density ratio method for estimating $P_{D_\rho}(S=y|X)$.  ***(refer to papers given on the github page of densratio package)
 
 ****
 \subsection{Tuning hyperparameters}
 The Kernel parameter for Gaussian Kernel~$\gamma$ is chosen to maximise the variance of Kernel matrix~$K(x_i,x_j)$ over all $i,j$. The regularisation parameter is chosen by grid search. The model seems to be insensitive to the regularisation parameter.
 
 \subsection{Bootstrap constructs confidence intervals and hypothesis tests}\label{ci}
-The assignment instruction asks us to compare the accuracy, denoted as $A$, of the proposed label noise robust algorithms. To systematically compare the metrics, we construct an $95\%$ confidence interval for $A$ by bootstrapping percentile confidence interval. The idea of bootstrapping  is straightforward---we resample a subset of $8$ samples among the sample space of $16$ simulation results and calculate the mean. We repeat this process $1000$ times. The $2.5\%$ and $97.5\%$ percentiles of the $1000$ re-sampled means are then the bootstrapping percentile confidence interval
+The assignment instruction asks us to compare the accuracy, denoted as $A$, of the proposed label noise robust algorithms. 
+\subsubsection{Bootstrapping percentile confidence intervals}\label{ci}
+To systematically compare the metrics, we construct an $95\%$ confidence interval for $A$ by bootstrapping percentile confidence interval. The idea of bootstrapping  is straightforward---we resample a subset of $8$ samples among the sample space of $16$ simulation results and calculate the mean. We repeat this process $1000$ times. The $2.5\%$ and $97.5\%$ percentiles of the $1000$ re-sampled means are then the bootstrapping percentile confidence interval
 \begin{equation}
 ({A}^*_{2.5}, {A}^*_{97.5}), \label{eq:boot}
 \end{equation}
@@ -263,8 +281,8 @@ where $A^*_{\alpha}$ is the $\alpha$ percentile of the bootstrapped distribution
 
 Bootstrapping does not require the sample space follows specific distributions. We apply this nonparametric method to construct confidence interval here because we do not know about the exact distributions of accuracy~$A$.
 
-\section{Statistical method compares the robustness of algorithms}
-We implement the Kolmogorov-Smirnov test to test the hypothesis that the algorithms proposed in Section~\ref{method} have different robustness.  Again, Kolmogorov-Smirnov test is distribution free, so we do not need to know the distributions of the evaluation metrics.
+\subsubsection{Kolmogorov-Smirnov test compares the accuracy of algorithms}
+We implement the Kolmogorov-Smirnov test to test the hypothesis that the algorithms proposed in Section~\ref{method} have different accuracy.  Again, Kolmogorov-Smirnov test is distribution free, so we do not need to know the distributions of the evaluation metrics.
 
 Let $A_{ij}$ denote the accuracy generated from our {$i$}th algorithm from the $j$th Monte-Carlo simulation. Define the empirical distribution of accuracy results generated by algorithm~$i$ as
 \begin{equation}\label{epdf}
@@ -274,7 +292,7 @@ The test statistic is the supremum among the differences of the empirical distri
 \begin{equation}\label{teststatistic}
 D=\sup _{x}\left|F_{i_1}(x)-F_{i_2}(x)\right|.
 \end{equation}
-We compare the test statistics~$D$ with the critical value of $0.433$, which corresponds to $16$ samples and a $95\%$ of confidence level. We reject the null hypotheses that the two algorithms produce similar Accuracy~$A$ with $95\%$ confidence level if the test statistics~$D>0.43$. The technique is also applied to perform one tail test to test whether one algorithm is more accurate than the other.
+We compare the test statistics~$D$ with the critical value of $0.433$, which corresponds to $16$ samples and a $95\%$ of confidence level. We reject the null hypotheses that the two algorithms produce similar Accuracy~$A$ with $95\%$ confidence level if the test statistics~$D>0.433$. The technique is also applied to perform one tail test to test whether one algorithm is more accurate than an other.
 \section{Experiments and discussions}\label{result}
 
 \begin{table}
@@ -334,9 +352,7 @@ Mean  & Standard deviation & Confidence interval \\ \midrule
 	\label{fig:Density function from kernel smoothing}
 \end{figure}
 
-scatter plot of time vs. accuracy
-histogram of accuracy
-mean, sd table
+{\color{red} please plot the cifar with and without PCA, put them into one graph and compare. codes are already available. just run them and save and insert.}
 
 Please pay special attention to the instructions in section \ref{others}
 regarding figures, tables, acknowledgments, and references.
