@@ -2,9 +2,10 @@
 \usepackage{latex_template,times}
 \usepackage{hyperref}
 \usepackage{url}
-\usepackage{euler}
+%\usepackage{euler}
 \usepackage{natbib}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{prettyref}
 \usepackage[]{hyperref}
 \usepackage{mathtools}
@@ -31,9 +32,9 @@
 \author{%
  \begin{tabular}{rl}
   Tutors: & Zhuozhuo Tu, Liu Liu\\ \\
-Group members: & Chen Chen (cche5002) 480458339, \\
+Group members: & Chen Chen (cche5002) 480458339,\\
 & Yutong Cao (ycao5602) 470347494,\\
-& Yixiong Fang ***
+& Yixiong Fang (yfan5798) 480133344
 \end{tabular}
 }
 
@@ -42,7 +43,7 @@ Group members: & Chen Chen (cche5002) 480458339, \\
 
 
 \begin{abstract}
-This report documents our modifications to the soft-margin support vector machine to improve its performance against class-dependent classification noise where the flip rates are $0.2$ and $0.4$.
+This report documents our modifications to the soft-margin support vector machine to improve its performance against class-dependent classification noise where the noise rates are $0.2$ and $0.4$.
 \end{abstract}
 \section{Introduction}
 This report documents our modifications to the soft-margin support vector machine~(\svm) to improve its performance against class-dependent classification noise (\textsc{ccn}).
@@ -55,14 +56,14 @@ The capability of learning with label noise is crucial for training machine lear
  %For both data sets, the flip rates are given. 
 Section~\ref{1st} proposed a learning method by deriving a new loss function using expectation maximisation \citep[p.423]{Bishop:2006:PRM:1162264}. This method models the label noise using a Bernoulli distribution, and includes the label noise information into the loss function of \svm. This method is first studied by \citet{pmlr-v20-biggio11} for random classification noise (\textsc{rcn}), and we extended it to \textsc{ccn}. 
 
-Section~\ref{2nd} introduces a heuristic approach based on the work of \citet{Wu03probabilityestimates}. This method follows the heuristic observation that the predicted probability of a sample point with wrong label is usually close to 0.5. In this case, our model is not capable of suggesting a prediction with confidence. We then exclude the potential noisy data points and train the model again with the remaining data which seems to be cleaner. 
+Section~\ref{2nd} introduces a heuristic approach based on the work of \citet{brodley1996identifying}. This method follows the heuristic observation that the predicted probability of a sample point with wrong label is usually close to 0.5. In this case, our model is not capable of suggesting a prediction with confidence. We then exclude the potential noisy data points and train the model again with the remaining data which seems to be cleaner. 
 
 Section~\ref{3rd} implements importance reweighting proposed by \citet{liu2016classification}. This method uses a reweighting coefficient to reweight the loss function for each sample point. We fit \svm s with the given noisy data. We then implement cross-validation of \svm\ models to predict the probabilities of classifying each sample, and then use these probabilities to calculate the weightings.
 
-To fairly compare these three approaches of attacking noisy data, all of the three methods implement the same base classification algorithm---\svm. We use \svm\ because it is proved to has a strong generalisation ability \citep{NIPS2012_4500,Seeger:2003:PGE:944919.944929,Cortes1995}, and usually gives high classification accuracy when turned properly \citep{Fernandez-Delgado:2014:WNH:2627435.2697065}. 
+To fairly compare these three approaches of attacking noisy data, all of the three methods implement the same base classification algorithm---\svm. We use \svm\ because it is proved to has a strong generalisation ability \citep{NIPS2012_4500,Seeger:2003:PGE:944919.944929,Cortes1995}, and usually gives high classification accuracy when turned properly \citep{Fernandez-Delgado:2014:WNH:2627435.2697065}. In addition, \svm\ is more susceptible to label noise than many other algorithms \citep{frenay2014classification}, so we can better assess our modification to the original classification algorithm.
 %As a result,  it is not considered to be robust to label noise ({\color{red} gives reference})
 
-Section~\ref{result} applies the three methods proposed in Section~\ref{method} to two sets of noisy data with binary labels, both containing $10,000$ images. The first data set is a subset of the fashion-\textsc{mnist} database and the second data set is from the \textsc{cifer} database. For each data set, Section~\ref{result} also compares the simulation results, including accuracy and running times, from the three methods. In addition, we estimate the flip rate using the method proposed by \citet{liu2016classification}. 
+Section~\ref{result} applies the three methods proposed in Section~\ref{method} to two sets of noisy data with binary labels, both containing $10,000$ images. The first data set is a subset of the fashion-\textsc{mnist} database and the second data set is from the \textsc{cifer} database. For each data set, Section~\ref{result} also compares the simulation results, including accuracy and running times, from the three methods. In addition, we estimate the noise rate using the method proposed by \citet{liu2016classification}. 
 %We did not use the estimated values in our classification experiments as the true rates are provided. 
 Section~\ref{result} also compares our estimation with the true values.
 
@@ -74,7 +75,7 @@ They also found the method of bagging is robust against label noise. Bagging det
 
 These approaches mentioned above do not require noise rates. Although this makes the approaches general, the methods may not be able to handle highly contaminated data set, especially when the noise rates are given. \citet{pmlr-v20-biggio11} applies expectation maximisation method to fit data with \textsc{rcn}. This method reformulates the loss function to include noise rate information. The label noise is not usually observed. They use the expected value as an estimation of unobserved labels contaminated by noise. Section~\ref{1st} extends his method to solve problems with \textsc{ccn}. The idea behind this method is straightforward and intuitive, but  simulation results in Section~\ref{result} finds it is less accurate than the method of importance reweighting proposed by \citet{liu2016classification}. \citet{liu2016classification} assigned a weight to each sample according to its probability of being contaminated. These probabilities are estimated from a pre-train model. They also provided an efficient method for estimating the noise rate. However, the need of fitting the model twice makes the method of reweighting slow.
 
-\section{Method}\label{method}
+\section{Label Noise Methods}\label{method}
 We use \textsc{svm} with Gaussian kernel as the base classification method for this task because of its generalisation ability.
 
 \textsc{svm} with Gaussian kernel was first published by \citet{Boser:1992:TAO:130385.130401}. \citet{Cortes1995} proposed an improvement on the original \textsc{svm} with soft-margin  to  avoid over-fitting problem. The \textsc{svm} is to minimise the Hinge loss function
@@ -89,7 +90,8 @@ we use \svm\ as our classification method as of its strong generalisation abilit
 \texttt{StandardScaler} from \texttt{sklearn} was used. Each image is rescaled to have mean zero and standard deviation one. By doing this, we removed the brightness difference among different images. This process is called photometric normalisation. \citet{jonsson2002support} suggested that this may improve the performance of Gaussian kernel SVM as Gaussian kernel is a radius based kernel and hence it performs well when images are on the same scale. For the \textsc{cifer} dataset, we used principle component analysis (\textsc{pca}) for dimension reduction. We did not run \textsc{pca} on the fashion-mnist data because the dimension is reasonable.
 
 \subsection{The original data set is balanced} \label{sec:1}
-The assignment instruction states the probabilities~$P(S=1|Y=0)=0.2$ and $P(S=0|Y=1)=0.4$. From the data, we observed that $40\%$ of contaminated labels~$S$ (i.e. $P(S=1)$) is $1$. As a result
+The assignment instruction states the probabilities~$P(S=1|Y=0)=0.2$ and $P(S=0|Y=1)=0.4$, where $S$ is the observed label and $Y$ is the true label. 
+From the data, we observed that $40\%$ of contaminated labels~$S$ (i.e. $P(S=1)$) is $1$. As a result
 \begin{eqnarray*}
 P(S=1)&=&P(S=1|Y=1)P(Y=1)+P(S=1|Y=0)P(Y=0)\\
      &=&\left[1-P(S=0|Y=1)\right]P(Y=1)+P(S=1|Y=0)P(Y=0)\\
@@ -99,11 +101,12 @@ which implies $P(Y=1)=P(Y=0)=0.5$ and the original classification problem is bal
 \begin{equation}
     E\epsilon(S)=P(Y=0|S=1)P(S=1)+P(Y=1|S=0)P(S=0)=0.25\times 0.4+1/3\times0.6=0.3.\label{eq:exp}
 \end{equation}
+Also, we use $\rho_{+1}$ and $\rho_{-1}$ to represent to noise rates.
 \subsection{Method 1: Modified support vector machine}\label{1st}
 This section extends the expectation maximisation algorithm proposed by \citet{pmlr-v20-biggio11} to modify \svm for labels noises. This section describes the mathematical justification for our modification.
 %---the given label noise where flip rates~$P(S=1|Y=0)=0.2$ and~$P(S=0|Y=1)=0.4$ seems to be marginally different to a random label noise with flip rate~$P(S=1|Y=0)=P(S=0|Y=1)=0.3$ for \textsc{svm}.
 \subsubsection{Expectation maximisation}
-The original algorithm proposed by \citet{pmlr-v20-biggio11} was proposed to study classification problems with label noise where the flip rate $\rho_+=\rho_-$ and we extend it to manage the case dependent label noise where the flip rates $\rho_+\neq\rho_-$.
+The original algorithm proposed by \citet{pmlr-v20-biggio11} was proposed to study classification problems with label noise where the noise rate $\rho_+=\rho_-$ and we extend it to manage the case dependent label noise where the noise rates $\rho_+\neq\rho_-$.
 
 Recall the dual problem of an \textsc{svm} is to maximise
 \begin{equation}
@@ -173,10 +176,49 @@ Training our \textsc{svm} with Gaussian Kernel again with this subset of relabel
 
 This method gives us an accuracy of $95.0\%$ on the testing data.
 %\subsubsection{Hinge loss if robust against label noise}
-\subsection{Method 3: Reweighting} \label{3rd}
-Please copy some formulae to here from tut11.
+\subsection{Method 3: Importance Reweighting} \label{3rd}
+This method is proposed by \citet{liu2016classification}. 
+The main idea of this method is to find a reweighting coefficient that helps to represent the expected risk $R_{l,D}(f)$ with the empirical risk $R_{l,D_\rho}(f)$, 
+where $D$ is the distribution of $(X,Y)$ and $D_\rho$ is the distribution of $(X,S)$.
+The transformation deducted as follows:
+\begin{equation}
+    \begin{aligned}
+    R_{l,D}(f) &= \mathbb{E}_{(X,Y)\sim D}[l(f(X),Y)]\\
+               &= \sum_{y}\int{P_D(X,Y=y)l(f(X),Y=y)}dX \\
+               &= \sum_{y}\int{P_{D_\rho}(X,S=y)\frac{P_D(X,Y=y)}{P_{D_\rho}(X,S=y)}l(f(X),Y=y)}dX\\
+               &= \mathbb{E}_{(X,S)\sim D_\rho}[\frac{P_D(X,Y=y)}{P_{D_\rho}(X,S=y)}l(f(X),S)]\\
+               &= \mathbb{E}_{(X,S)\sim D_\rho}
+                  [\beta l(f(X),S)] \\
+               &= R_{\beta l,D_\rho}(f)
+    \end{aligned}
+\end{equation}
+Where $\beta=\frac{P_D(X,Y)}{P_{D_\rho}(X,S)}=\frac{P_D(Y|X)}{P_{D_\rho}(S|X)}$ as the distribution of $X$ does not change between $D_\rho$ and $D$.
+Now we can use the empirical risk to represent the expected risk if we can find the value of $\beta$. Although we can make an approximation for $D_\rho$ using the given data, we can not approximate the distribution $D$ directly. We need to represent $P_D(Y|X)$ using $P_{D_\rho}(S|X)$ and the noise rates.
+\begin{equation}
+    \begin{aligned}
+    P(S=y|X) &= P(Y=y,S=y|X)+P(Y=-y,S=y|X)\\
+               &= P(S=y|X,Y=y)P(Y=y|X)
+                  +P(S=y|X,Y=-y)P(Y=-y|X)\\
+               &= (1-\rho_{y})P(Y=y|X)+\rho_{-y}[1-P(Y=y|X)]\\
+               &= (1-\rho_{y}-\rho{-y})P(Y=y|X)+\rho_{-y}
+    \end{aligned}
+\end{equation}
+Therefore we have:
+\begin{equation}
+    P_D(Y=y|X)=\frac{P_{D_\rho}(S=y|X)-\rho_{-y}}{1-\rho_{y}-\rho{-y}}
+\end{equation}
+Plug this into the $\beta$ expression:
+\begin{equation}
+    \beta=\frac{P_{D_\rho}(S=y|X)-\rho_{-y}}{(1-\rho_{y}-\rho_{-y})P_{D_\rho}(S=y|X)}
+\end{equation}
+Then the problem is reduced to estimating $P_{D_\rho}(S=y|X)$.
+\citet{liu2016classification} provided three methods for this estimation. 
+We choose to use the density ratio method for estimating $P_{D_\rho}(S=y|X)$ as the probabilistic method does not perform well and the kernel density estimation method requires the data to have low dimensionality.
 
-\section{Result}\label{result}
+\section{Noise rate estimation methods}\label{method2}
+
+\section{Experiments and discussions}\label{result}
+
 \begin{table}
 \centering
     \scalebox{0.9}{
