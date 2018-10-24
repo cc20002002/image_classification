@@ -1,0 +1,22 @@
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}
+\contentsline {section}{\numberline {2}Related work}{2}{section.2}
+\contentsline {section}{\numberline {3}Methods}{3}{section.3}
+\contentsline {subsection}{\numberline {3.1}Preprocess}{3}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}Photometric normalisation improves classification performance}{3}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}Principle component analysis reduces dimensionality}{4}{subsubsection.3.1.2}
+\contentsline {subsection}{\numberline {3.2}The original data set is balanced}{4}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Method 1: Expectation Maximisation}{4}{subsection.3.3}
+\contentsline {subsubsection}{\numberline {3.3.1}Expectation Maximisation derives loss function}{4}{subsubsection.3.3.1}
+\contentsline {subsection}{\numberline {3.4}Method 2: Importance Reweighting}{5}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Sigmoid function estimates conditional probability}{5}{subsection.3.5}
+\contentsline {subsection}{\numberline {3.6}Reweighting coefficient improves robustness against label noise.}{5}{subsection.3.6}
+\contentsline {subsection}{\numberline {3.7}Method 3: heuristic approach}{6}{subsection.3.7}
+\contentsline {subsubsection}{\numberline {3.7.1}Select samples}{6}{subsubsection.3.7.1}
+\contentsline {subsubsection}{\numberline {3.7.2}Label correction}{6}{subsubsection.3.7.2}
+\contentsline {subsection}{\numberline {3.8}Flip rates estimation methods}{6}{subsection.3.8}
+\contentsline {subsection}{\numberline {3.9}Tuning hyperparameters}{6}{subsection.3.9}
+\contentsline {subsection}{\numberline {3.10}Bootstrap constructs confidence intervals and hypothesis tests}{6}{subsection.3.10}
+\contentsline {subsubsection}{\numberline {3.10.1}Bootstrapping percentile confidence intervals}{6}{subsubsection.3.10.1}
+\contentsline {subsubsection}{\numberline {3.10.2}Kolmogorov-Smirnov test compares the accuracy of algorithms}{7}{subsubsection.3.10.2}
+\contentsline {section}{\numberline {4}Experiments and discussions}{7}{section.4}
+\contentsline {section}{\numberline {5}Conclusion}{9}{section.5}
