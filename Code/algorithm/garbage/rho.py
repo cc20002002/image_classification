@@ -34,6 +34,7 @@ from sklearn.model_selection import StratifiedShuffleSplit
 from sklearn.model_selection import GridSearchCV
 from sklearn import svm
 from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.decomposition import IncrementalPCA as PCA
 #from random import sample
 '''
@@ -85,5 +86,23 @@ print(clf.score(Xtr, Str) )
 print(clf.score(Xts, Yts) )
 bb=clf.predict_proba(Xtr)
 np.amin(bb, axis=0)
+nf=28
+clf2 = RandomForestClassifier(n_estimators=500, max_depth=10,n_jobs=-1)
+clf2.fit(Xtr, Str) 
+print(clf2.score(Xtr, Str) )
+print(clf2.score(Xts, Yts) )
+bb2=clf2.predict_proba(Xtr)
+np.amin(bb2, axis=0)
 
-clf = RandomForestClassifier(n_estimators=100, max_depth=5)
+from densratio import densratio
+PY1=sum(Str)/Str.shape
+PY0=1-PY1
+XY1=Xtr[Str==1,:]
+XY0=Xtr[Str==0,:]
+XY1oX=densratio(XY1,Xtr)
+XY10XV=min(XY1oX.compute_density_ratio(Xtr))
+Y1X=XY10XV*PY1 #array([0.20543082])
+
+XY0oX=densratio(XY0,Xtr)
+XY00XV=min(XY0oX.compute_density_ratio(Xtr))
+Y0X=XY00XV*PY0 #array([0.28450032])
