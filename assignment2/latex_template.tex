@@ -32,7 +32,7 @@
 
 \author{%
  \begin{tabular}{rl}
-  Tutors: & Zhuozhuo Tu, Liu Liu\\ \\
+  Tutors:& Nicholas James, Zhuozhuo Tu, Liu Liu\\ \\
 Group members: & Chen Chen (cche5002) 480458339,\\
 & Yutong Cao (ycao5602) 470347494,\\
 & Yixiong Fang (yfan5798) 480133344
@@ -116,9 +116,9 @@ An observe label can either be $1$ or $-1$, $P(S=1|Y=1)=1-P(S=-1|Y=1)$,
 P(S=1)=\left[1-P(S=-1|Y=1)\right]P(Y=1)+P(S=1|Y=-1)P(Y=-1)
 \end{equation*}
 Knowing the flip rates~$P(S=-1|Y=1)=0.4$ and $P(S=1|Y=-1)=0.2$
-\begin{equation*}
-P(S=1)=0.6P(Y=1)+0.2\left[1-P(Y=1)\right]=0.4, \nonumber
-\end{equation*}
+\begin{equation}
+P(S=1)=0.6P(Y=1)+0.2\left[1-P(Y=1)\right]=0.4, \label{eq:ps}
+\end{equation}
 which implies $P(Y=1)=P(Y=-1)=0.5$. Thus, the original classification problem is balanced. 
 In addition, define the Bernoulli random variable~$\epsilon(S)$ with the means $E(\mu(\epsilon)(S=-1))=P(Y=1|S=-1)=0.5\times0.4/0.6=1/3$ and $E(\epsilon(S=1))=P(Y=-1|S=1)=0.5\times0.2/0.4=0.25$. This random variable~$\epsilon$ describe the unobserved random label noise. Hence the expectation
 \begin{equation}
@@ -126,6 +126,43 @@ In addition, define the Bernoulli random variable~$\epsilon(S)$ with the means $
     %=0.25\times 0.4+1/3\times0.6
     =0.3.\label{eq:exp}
 \end{equation}
+
+\subsection{Flip rates estimation methods}\label{method2}
+We apply techniques proposed by \citet{liu2016classification} to estimate the flip rates~$\rho_0$ and $\rho_1$. The technique consists of two steps---firstly, we estimate probability~$P_{D_\rho}(S|X)$; secondly, we estimate the flip rates~$\rho_0$ and $\rho_1$ using the probability~$P_{D_\rho}(S|X)$. 
+
+
+
+\subsubsection{Bayesian formula estimates conditional probability}\label{method22}
+Bayesian formula expands the conditional probability~$P_{D_\rho}(S=s|X)$ to
+\begin{equation}
+   P_{D_\rho}(S=s|X)=\frac{P_{D_\rho}(X|S=s)P_{D_\rho}(S=s)}{P_{D_\rho}(X)}.\label{eq:baye}
+\end{equation}
+Here the probability~$P_{D_\rho}(S=s)$ is given by equation~\eqref{eq:ps}. We use the density ratio method proposed by \citet{DBLP:journals/jmlr/KanamoriHS09} to estimate the ratio~${P_{D_\rho}(X|S=s)}/{P_{D_\rho}(X)}$.
+
+Define a Gaussian Kernel 
+\begin{equation}\label{eq:gauss}
+k(x_i,x_j)=\exp(-\gamma\norm{x_i-x_j}).
+\end{equation} 
+Then the set~$\{k(X,x_j) \}_j$ forms the basis function for the probability space of ${P_{D_\rho}(X|S=s)}/{P_{D_\rho}(X)}$. Hence we can model the probability by a linear combination of the basis functions
+\begin{equation*}
+   \frac{P_{D_\rho}(X|S=s)}{P_{D_\rho}(X)}=\sum_j \alpha_{sj} k(X,x_j) \text{ where }\alpha_{sj}>0.%\label{eq:baye2}
+\end{equation*}
+To compute coefficients~$\alpha_{sj}$, we treat the centres~$x_j$ and the number of basis functions as hyperparameters and minimises the objective function
+\begin{equation*}
+  \min_\alpha \left(\frac{P_{D_\rho}(X|S=s)}{P_{D_\rho}(X)}-\sum_j \alpha_{sj} k(X,x_j)\right)^2 \text{ where }\alpha_{sj}>0.
+\end{equation*}
+This objective function further simplifies to a constrained quadratic programming problem about coefficients~$\alpha_{sj}$. Solving this quadratic programming problem gives coefficients~$\alpha_{sj}$, and hence an approximation of the ratio~${P_{D_\rho}(X|S=s)}/{P_{D_\rho}(X)}$. Substituting this ratio into Bayesian formula~\eqref{eq:baye} gives required conditional probability~$P_{D_\rho}(S=s|X)$.
+
+The advantage of the density ratio method is to avoid estimating probabilities~${P_{D_\rho}(X|S=s)}$ and~${P_{D_\rho}(X)}$. Estimating these are usually difficult for high dimensional data~$X$, due to curse of dimensionality.
+\subsubsection{Estimate flip rates}\label{method23}
+Theorem~4 proposed by \citet{liu2016classification} estimates the flips rates using the global minimum of conditional probability~~$P_{D_\rho}(S=s|X)$ computed in Section~\ref{method22}
+\begin{equation*}\label{eq:fliprate}
+\rho_s=\min _X P_{D_\rho}(S=s|X).
+\end{equation*}
+
+As the true flips rates~$\rho_0$ and $\rho_1$ are given, here and after, we use the true flip rates~$\rho_0=0.2$ and $\rho_1=0.4$ in Sections~\ref{1st}, \ref{3rd} and~\ref{2nd}.
+
+
 \subsection{Method 1: Expectation Maximisation}\label{1st}
 This section extends the Expectation Maximisation algorithm proposed by \citet{pmlr-v20-biggio11} to improve ordinary \svm\ against labels noises, with mathematical justifications.
 %---the given label noise where flip rates~$P(S=1|Y=-1)=0.2$ and~$P(S=-1|Y=1)=0.4$ seems to be marginally different to a random label noise with flip rate~$P(S=1|Y=-1)=P(S=-1|Y=1)=0.3$ for \textsc{svm}.
@@ -139,10 +176,8 @@ Recall the dual problem of an \textsc{svm} is to maximise
 \begin{math}
 {\text{subject to }}\sum _{i=1}^{n}c_{i}y_{i}=0,\,{\text{and }}0\leq c_{i}\leq {\frac {1}{2n\lambda }}\;{\text{for all }}i. 
 \end{math} 
-Here $y_i$ and $x_i$ are the labels and features of the $i$th image, $c_i$ is the $i$th Lagrangian multiplier, $k(x_i,x_j)$ is the Gaussian kernel product of $x_i$ and $x_j$ whose corresponding kernel is
-\begin{math}
-\exp(-\gamma\norm{x_i-x_j}).
-\end{math} 
+Here $y_i$ and $x_i$ are the labels and features of the $i$th image, $c_i$ is the $i$th Lagrangian multiplier, $k(x_i,x_j)$ is the Gaussian Kernel product~\eqref{eq:gauss} of vectors~$x_i$ and~$x_j$.
+
 Substituting label noise~\eqref{eq:noise} into loss function~\eqref{eq:dual} gives
 \begin{equation}
    f(c_{1}\ldots c_{n})=\sum _{i=1}^{n}c_{i}-{\frac {1}{2}}\sum _{i=1}^{n}\sum _{j=1}^{n}S_{i}c_{i}k(x_{i},x_{j})S_{j}c_{j}(1-2\epsilon(S_i))(1-2\epsilon(S_j)). \label{eq:dual2}
@@ -190,17 +225,22 @@ This method gives us an accuracy of $94.6\%$ on the testing data.
 \subsection{Method 2: Importance Reweighting} \label{3rd}
 This section applies theorems proved by \citet{liu2016classification} to construct a weighted loss that includes noise information~$\rho_0$ and $\rho_1$. 
 
-\subsection{Sigmoid function estimates conditional probability}\label{sigmoid}
+\subsubsection{Sigmoid function estimates conditional probability}\label{sigmoid}
 Define $D$ to be the probability density function of the clean data~$(X,Y)$ and $D_\rho$ to be that of contaminated data~$(X,S)$.
 
 This section estimates the conditional probability~$P_{D_\rho}(S=y|X)$.
 
 \citet{liu2016classification} provided three methods to estimate the conditional probability~$P_{D_\rho}(S=y|X)$. 
-The methods in Sections~5.2 and 5.3 implement kernel smoothing. The two methods are similar---the formal method requires to estimate two density functions whereas the later method estimates the ratio of these two. Our data sets are high dimensional ($784$ and $3072$), so methods~two and three suffers from the curse of dimensionality. As a result, we implement a probabilistic classification method proposed in Section~5.1 by \citet{liu2016classification}.
+The first method implements a probabilistic regresion model. 
+The second and third method both implement Bayesian formula~\eqref{eq:baye}.
+\begin{equation*}
+   P_{D_\rho}(S=y|X)=\frac{P_{D_\rho}(x|S=y)P_{D_\rho}(S=y)}{P(X)}.
+\end{equation*}
+However, the two methods are computationally different. The formal method requires to estimate two density functions~$P_{D_\rho}(X|S=y)$ and~$P(X)$ by kernel smoothing. Our data sets are high dimensional ($784$ and $3072$), so kernel smoothing suffers from the curse of dimensionality. The later method avoids kernel smoothing by estimating the ratio~$P_{D_\rho}(x|S=y)/P(X)$ directly through density ratio method \citep{liu2016classification}. For example, Section~\ref{method2} applies this method to estimate the flip rates~$\rho_0$ and $\rho_1$. Despite of the need of additional hyperparameters,  \citet{Sugiyama10densityratio} claims that the density ratio method is ``equivalent to the regression problem''. To keep our model simple and more interpretable, we implement a probabilistic regression model proposed in by \citet[Section~5.1]{liu2016classification}. 
 
-To estimate the probability~$P_{D_\rho}(S=y|X)$, we first train an ordinary \svm . We then train the parameters of an additional sigmoid function to map the \svm\ outputs into probabilities \citet{Platt99probabilisticoutputs}. We apply this approach rather than traditional probabilistic models because Remark 1 given by \citet{liu2016classification} indicates the traditional probabilistic method `does not perform well'.
+We apply probability estimation method proposed by \citet{Platt99probabilisticoutputs}. We first train an ordinary \svm . We then train the parameters of an additional logistic regression model to map the \svm\ outputs into probabilities. We apply this approach rather than traditional logistic regression because Remark 1 given by \citet{liu2016classification} indicates the logistic regression ``does not perform well''.
 
-\subsection{Reweighting coefficient improves robustness against label noise.}
+\subsubsection{Reweighting coefficient improves robustness against label noise.}
 {\color{red} ATTENDTION! I used $P$ in previous sections. Either use $P_D$ in all probability notations in this report or none of them. Also define $f$ which I have no clue what it is. Note that I have already occupied the letter $f$. Use something else if this is not the same $f$. Alternative change my previous letters $f$. Either way, Be consistent}.
 
 To improve the robustness against label noise, \citet{liu2016classification} constructed a reweighting coefficient vector~
@@ -243,37 +283,58 @@ Substitute this estimation into the weighting coefficient~\eqref{beta}:
 \end{equation}
 Further substituting the conditional probability~$P_{D_\rho}(S=y|X)$ estimated in Section~\ref{sigmoid} gives reweighting coefficient~$\beta(X,Y,S)$. 
 This reweighting coefficient~$\beta(X,Y,S)$ is then used to estimate the expected risk~$R_{\loss,D}(f)$ in the with the empirical risk $R_{\loss,D_\rho}(f)$
-\begin{equation*}
-R_{\loss,D}(f) = R_{\beta \loss,D_\rho}(f). 
-\end{equation*}
-This equation allows us to estimate the true loss function~$R_{\loss,D}(f)$ without knowing the true labels~$Y$. 
+\begin{equation}
+R_{\loss,D}(f) = R_{\beta \loss,D_\rho}(f). \label{eq:loss}
+\end{equation}
+This loss function allows us to estimate the true loss function~$R_{\loss,D}(f)$ without knowing the true labels~$Y$. 
 
 \subsection{Method 3: heuristic approach}\label{2nd}
 Method 3 still implements \textsc{svm}. We chose \textsc{svm} because classification algorithms with Hinge loss, including \textsc{svm}, is robust against random classification label noise. Our label noise is class dependent. However, experiment shows that \textsc{svm} is still robust against it.
 %\subsubsection{Hinge loss is robust against label noise}
 
-\subsubsection{Select samples}
-Ordinary \textsc{svm} only gives a classification without revealing a probability that indicates the confidence of classification. \citet{Wu03probabilityestimates} proposed a five-fold cross-validation method to calculate the classification probabilities~$P(Y=1|X)$ for \textsc{svm}. 
-Using this method, we calculated the probability~$P(Y=1|X)$ with label noise by an \textsc{svm} with Gaussian kernel. We have $10,000$ samples. We only use those with largest and smallest $P(Y=1|X)$ (first $1/3$ and last $1/3$), because intuitively the contaminated samples are more likely to have a probability~$P(Y=1|X)$ close to $0.5$ and the error rate $P(\epsilon=1)=0.3\approx 1/3$. %A $3\%$ margin was left because classification errors must exist.
+\subsubsection{Conditional probability filters samples}\label{2nd2}
+Ordinary \textsc{svm} only gives a classification without revealing a probability that indicates the confidence of classification. 
+\citet{Wu03probabilityestimates} proposed a five-fold cross-validation method to calculate the classification probabilities~$P(Y=1|X)$ for \textsc{svm}. 
+Using this method, we calculated the probability~$P(Y=1|X)$ with label noise by an \textsc{svm} with Gaussian kernel. 
+We have $10,000$ samples.
+We rank the sample space of conditional probability~$P(Y=1|X)$, and denote the $3333$rd smallest and greatest probability sample as $P(Y=1|X_{(3333)})$ and $P(Y=1|X_{(6667)})$, respectively. 
+We only use those with $1/3$ largest and smallest probabilities~$P(Y=1|X)$ where 
+\begin{equation*}
+P(Y=1|X)\geq P(Y=1|X_{(3333)}) \text{ or } P(Y=1|X)\leq P(Y=1|X_{(6667)}),  
+\end{equation*}
+because intuitively the contaminated samples are more likely to have a probability~$P(Y=1|X)$ close to $0.5$ and the error rate $P(\epsilon=1)=0.3\approx 1/3$. %A $3\%$ margin was left because classification errors must exist.
 \subsubsection{Label correction}
-We relabel the $1/3$ of the samples with highest fitted probability~$P(Y=1|X)$ as $1$ and the $1/3$ samples with the smallest fitted probability~$P(Y=1|X)$ as $-1$. This step is important because section~\ref{sec:1} shows that the original data set is balanced ($P(Y=1)=P(Y=-1)=0.5$). 
+Define $\tilde Y$ as the classification result predicted by \svm\ in Section~\ref{2nd2}. We fit our model using the labels~$\tilde Y$ rather than $S$, because exactly half of $\tilde Y$ in the remaining samples are ones 
+\begin{equation*}
+P(\tilde Y=1)=P(\tilde Y=-1)=0.5.
+\end{equation*}
+This step is important because section~\ref{sec:1} shows that the original data set is also balanced 
+\begin{equation*}
+P(Y=1)=P(Y=-1)=0.5.
+\end{equation*} 
+Training our \textsc{svm} with Gaussian Kernel again with this subset of relabeled data gives the result.
 
-Training our \textsc{svm} with Gaussian Kernel again with this subset of relabeled data gives our second model.
+This model is equivalent to minimise the loss function~\eqref{eq:loss} with the weighting coefficient
+\begin{equation*}
+\beta\begin{cases}
+1 & \text{when }\left[P(\tilde{Y}|X)\leq P(Y=1|X_{(3333)})\text{ or }P(\tilde{Y}|X)\geq P(Y=1|X_{(6667)})\right]\text{ and }\tilde{Y}=S,\\
+0 & \text{when }P(Y=1|X_{(3333)})<P(\tilde{Y}|X)<P(Y=1|X_{(6667)}),\\
+-1 & \text{when }\left[P(\tilde{Y}|X)\leq P(Y=1|X_{(3333)})\text{ or }P(\tilde{Y}|X)\geq P(Y=1|X_{(6667)})\right]\text{ and }\tilde{Y}\neq S.
+\end{cases}
+\end{equation*}
+
 
 This method gives us an accuracy of $95.0\%$ on the testing data.
 %\subsubsection{Hinge loss if robust against label noise}
 
-\subsection{Flip rates estimation methods}\label{method2}
-We apply techniques proposed by \citet{liu2016classification} to estimate the flip rates~$\rho_0$ and $\rho_1$. The technique consists of two steps---firstly, we estimate probability~$P_{D_\rho}(S=y|X)$; secondly, we estimate the flip rates~$\rho_0$ and $\rho_1$ using the probability~$P_{D_\rho}(S=y|X)$. We use the density ratio method for estimating $P_{D_\rho}(S=y|X)$.  ***(refer to papers given on the github page of densratio package)
 
-****
 \subsection{Tuning hyperparameters}
 The Kernel parameter for Gaussian Kernel~$\gamma$ is chosen to maximise the variance of Kernel matrix~$K(x_i,x_j)$ over all $i,j$. The regularisation parameter is chosen by grid search. The model seems to be insensitive to the regularisation parameter.
 
 \subsection{Bootstrap constructs confidence intervals and hypothesis tests}\label{ci}
 The assignment instruction asks us to compare the accuracy, denoted as $A$, of the proposed label noise robust algorithms. 
 \subsubsection{Bootstrapping percentile confidence intervals}\label{ci}
-To systematically compare the metrics, we construct an $95\%$ confidence interval for $A$ by bootstrapping percentile confidence interval. The idea of bootstrapping  is straightforward---we resample a subset of $8$ samples among the sample space of $16$ simulation results and calculate the mean. We repeat this process $1000$ times. The $2.5\%$ and $97.5\%$ percentiles of the $1000$ re-sampled means are then the bootstrapping percentile confidence interval
+To systematically compare the accuracy of the three methods introduced in Sections~\ref{1st}, \ref{3rd} and~\ref{2nd}, we construct the $95\%$ bootstrapping percentile confidence intervals for accuracy~$A$. The idea of bootstrapping  is straightforward---we resample a subset of $8$ samples among the sample space of the $16$ accuracy results and calculate their mean. We repeat this process $1000$ times. The $2.5\%$ and $97.5\%$ percentiles of the $1000$ re-sampled means are then the bootstrapping percentile confidence interval
 \begin{equation}
 ({A}^*_{2.5}, {A}^*_{97.5}), \label{eq:boot}
 \end{equation}
