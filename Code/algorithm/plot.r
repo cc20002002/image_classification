@@ -5,7 +5,7 @@ myfiles = lapply(temp, read.csv,header=FALSE)
 myfiles=do.call(rbind,myfiles)
 #myfiles=t(myfiles)
 require('data.table')
-myfiles$algorithm=c('Expectation Maximisation','Sample filtering','Importance Reweighting','Expectation Maximisation','Importance Reweighting','Reweighting')
+myfiles$algorithm=c('Expectation Maximisation','Sample filtering','Importance Reweighting','Expectation Maximisation','Importance Reweighting','Importance Reweighting')
 myfiles$dataset=c('MNIST','MNIST','MNIST','CIFAR','CIFAR','CIFAR')
 df1=melt(myfiles, id=17:18)
 
