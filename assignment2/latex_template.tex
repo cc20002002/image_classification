@@ -2,7 +2,7 @@
 \usepackage{latex_template,times}
 \usepackage{hyperref}
 \usepackage{url}
-
+\usepackage{bigints}
 \usepackage{natbib}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -26,6 +26,8 @@
 \newcommand{\new}{\marginpar{NEW}}
 \newcommand{\svm}{\textsc{svm}}
 \newcommand{\loss}{\ell}
+\newcommand{\rhoo}{\rho_{+1}}
+\newcommand{\rhoz}{\rho_{-1}}
 \nipsfinalcopy % Uncomment for camera-ready version
 
 \begin{document}
@@ -94,8 +96,9 @@ Here, $w$ is the weighting factor, $b$ is a constant. We classify the $i$th imag
 we use \svm\ as our classification method as of its strong generalisation ability. In this image classification assignment, we do not observe the true  labels~$y_i$. This section proposes three different approaches to modify ordinary \svm\ to attack label noise problem. However, we do not have access to a test data set with true labels~$(x_i,y_i)$ to verify the generalisation ability of our three different models, which are all trained by noisy data~$(x_i,S_i)$. In \svm , the gap between hyperplane and the training data set provides a natural and `free' metric of its generalisation ability  \citep{hastie01statisticallearning}, and hence use of test data set is not mandatory. Using this geometry factor as well as probably approximately correct learning framework,  \citet{NIPS2012_4500} proved that the  \svm\ models have strong generalisation ability. Further,  \citep{Cortes1995,Seeger:2003:PGE:944919.944929} also shows the strong generalisation ability from different perspectives.
 
 {\color{red}Also comment on the poor robustness and why this is good for the purpose of assignment.}
+The hinge loss \svm is using is not robust as suggested by \citet{Fernandez-Delgado:2014:WNH:2627435.2697065}. As we are not focusing on the effect of robust classification methods on learning with label noise. Using hinge loss should remove this effect and let us focus on the label noise methods we use instead of the natural robust property of certain loss functions.
 
-\subsection{Preprocess}
+\subsection{Preprocess}\label{preproc}
 \subsubsection{Photometric normalisation improves classification performance}
 We applied Photometric normalisation suggested by \citet{jonsson2002support} to re-scaled the image data sets to have mean of zero and standard deviation of one. This scaling visually removes the brightness difference among different images, and dramatically improves the performance of Gaussian kernel \svm . This preprocess procedure is mandatory because Gaussian kernel is a radius based kernel, which only performs well when data are on a similar scale \citep{jonsson2002support}. 
 
@@ -127,12 +130,12 @@ In addition, define the Bernoulli random variable~$\epsilon(S)$ with the means $
     =0.3.\label{eq:exp}
 \end{equation}
 
-\subsection{Flip rates estimation methods}\label{method2}
+\subsection{Flip rates estimation}\label{method2}
 We apply techniques proposed by \citet{liu2016classification} to estimate the flip rates~$\rho_0$ and $\rho_1$. The technique consists of two steps---firstly, we estimate probability~$P_{D_\rho}(S|X)$; secondly, we estimate the flip rates~$\rho_0$ and $\rho_1$ using the probability~$P_{D_\rho}(S|X)$. 
 
 
 
-\subsubsection{Bayesian formula estimates conditional probability}\label{method22}
+\subsubsection{Density ratio method estimates conditional probability}\label{method22}
 Bayesian formula expands the conditional probability~$P_{D_\rho}(S=s|X)$ to
 \begin{equation}
    P_{D_\rho}(S=s|X)=\frac{P_{D_\rho}(X|S=s)P_{D_\rho}(S=s)}{P_{D_\rho}(X)}.\label{eq:baye}
@@ -149,9 +152,9 @@ Then the set~$\{k(X,x_j) \}_j$ forms the basis function for the probability spac
 \end{equation*}
 To compute coefficients~$\alpha_{sj}$, we treat the centres~$x_j$ and the number of basis functions as hyperparameters and minimises the objective function
 \begin{equation*}
-  \min_\alpha \left(\frac{P_{D_\rho}(X|S=s)}{P_{D_\rho}(X)}-\sum_j \alpha_{sj} k(X,x_j)\right)^2 \text{ where }\alpha_{sj}>0.
+  \min_\alpha \bigintss \left(\frac{P_{D_\rho}(X|S=s)}{P_{D_\rho}(X)}-\sum_j \alpha_{sj} k(X,x_j)\right)^2P_{D_\rho}(X)dx \text{ where }\alpha_{sj}>0.
 \end{equation*}
-This objective function further simplifies to a constrained quadratic programming problem about coefficients~$\alpha_{sj}$. Solving this quadratic programming problem gives coefficients~$\alpha_{sj}$, and hence an approximation of the ratio~${P_{D_\rho}(X|S=s)}/{P_{D_\rho}(X)}$. Substituting this ratio into Bayesian formula~\eqref{eq:baye} gives required conditional probability~$P_{D_\rho}(S=s|X)$.
+Treating terms without coefficients~$\alpha_{sj}$ as constants and applying Monte Carlo to transform the integration into a summation, this objective function further simplifies to a constrained quadratic programming problem about coefficients~$\alpha_{sj}$. Solving this quadratic programming problem gives coefficients~$\alpha_{sj}$, and hence an approximation of the ratio~${P_{D_\rho}(X|S=s)}/{P_{D_\rho}(X)}$. Substituting this ratio into Bayesian formula~\eqref{eq:baye} gives required conditional probability~$P_{D_\rho}(S=s|X)$.
 
 The advantage of the density ratio method is to avoid estimating probabilities~${P_{D_\rho}(X|S=s)}$ and~${P_{D_\rho}(X)}$. Estimating these are usually difficult for high dimensional data~$X$, due to curse of dimensionality. 
 
@@ -161,6 +164,8 @@ Theorem~4 proposed by \citet{liu2016classification} estimates the flips rates us
 \begin{equation*}\label{eq:fliprate}
 \rho_s=\min _X P_{D_\rho}(S=s|X).
 \end{equation*}
+
+As our sample size is large ($10,000$), the minimal probability of the samples approximates the global minimum well. 
 
 The method proposed here requires tuning a few hyperparameters by grid search. Thus, later sections do not use this density ratio method for the speed of our algorithms.  
 In addition, when numerically computing these flip rates, we only use the data set \textsc{mnist}. This data set is much smaller comparing with \textsc{cifar}, and hence allows us to grid search the best hyperparameter faster. To further avoid over fitting, we applied \textsc{pca} to decreases the number of features to $50$ when estimating flip rates.
@@ -192,10 +197,12 @@ This loss function involves random variables. For a similar  but simpler problem
 Here, when $i=j$, the expectation~$E(1-2\epsilon(S_i))(1-2\epsilon(S_j))=1-4E\epsilon(S_j)+4E\epsilon(S_j^2)=1$. 
 When $i\neq j$, by substituting these expectations~\eqref{eq:exp} from Section~\ref{sec:1}, the expectation~$E(1-2\epsilon(S_i))(1-2\epsilon(S_j))=(1-2E\epsilon(S_i))(1-2E\epsilon(S_j))=0.16$. 
 
-Define kernel correction matrix~$M$ with the $(i,j)$-th entry being $m_{ij}$.The diagonal entries~$m_{ii}=1 $, and the off diagonal entries~$m_{ij}=0.16$ when indexes~$i\neq j$. Using the technique of Expectation Maximisation, the loss function~\eqref{eq:dual2} simplifies to
+Define kernel correction matrix~$M$ with the $(i,j)$-th entry being $m_{ij}$.The diagonal entries~$m_{ii}=1 $, and the off diagonal entries~$m_{ij}=0.16$ when indexes~$i\neq j$. Taking the expected values of the loss function~\eqref{eq:dual2}
 \begin{equation}
-   Ef(c_{1}\ldots c_{n})=\sum _{i=1}^{n}c_{i}-{\frac {1}{2}}\sum _{i=1}^{n}\sum _{j=1}^{n}S_{i}c_{i}k(x_{i},x_{j})S_{j}c_{j}m_{ij}, \label{eq:dual3}
+   Ef(c_{1}\ldots c_{n})=\sum _{i=1}^{n}c_{i}-{\frac {1}{2}}\sum _{i=1}^{n}\sum _{j=1}^{n}S_{i}c_{i}k(x_{i},x_{j})S_{j}c_{j}m_{ij}. \label{eq:dual3}
 \end{equation}
+
+\subsubsection{Modifying kernel improves robustness against label noise}
 Comparing this loss function and the ordinary loss function of \svm \eqref{eq:dual}, the only difference is to replace the kernel matrix~$K$ with our new proposed matrix~$Q:=K\circ M$, where $\circ$ denote the Hadamard product \citep{hastie01statisticallearning}.
 
 %\subsubsection{Additional regularisation}
@@ -246,7 +253,9 @@ However, the two methods are computationally different. The formal method requir
 We apply probability estimation method proposed by \citet{Platt99probabilisticoutputs}. We first train an ordinary \svm . We then train the parameters of an additional logistic regression model to map the \svm\ outputs into probabilities. We apply this approach rather than traditional logistic regression because Remark 1 given by \citet{liu2016classification} indicates the logistic regression ``does not perform well''.
 
 \subsubsection{Reweighting coefficient improves robustness against label noise.}
-{\color{red} ATTENDTION! I used $P$ in previous sections. Either use $P_D$ in all probability notations in this report or none of them. Also define $f$ which I have no clue what it is. Note that I have already occupied the letter $f$. Use something else if this is not the same $f$. Alternative change my previous letters $f$. Either way, Be consistent}.
+{\color{red} ATTENDTION! I used $P$ in previous sections. Either use $P_D$ in all probability notations in this report or none of them. Also define $f$ which I have no clue what it is. Note that I have already occupied the letter $f$. Use something else if this is not the same $f$. Alternative change my previous letters $f$. Either way, Be consistent
+
+After our discussion, I think the simplest way is just to delete all your $f$}.
 
 To improve the robustness against label noise, \citet{liu2016classification} constructed a reweighting coefficient vector~
 \begin{equation}
@@ -358,8 +367,32 @@ The test statistic is the supremum among the differences of the empirical distri
 \begin{equation}\label{teststatistic}
 D=\sup _{x}\left|F_{i_1}(x)-F_{i_2}(x)\right|.
 \end{equation}
-We compare the test statistics~$D$ with the critical value of $0.433$, which corresponds to $16$ samples and a $95\%$ of confidence level. We reject the null hypotheses that the two algorithms produce similar Accuracy~$A$ with $95\%$ confidence level if the test statistics~$D>0.433$. The technique is also applied to perform one tail test to test whether one algorithm is more accurate than an other.
-\section{Experiments and discussions}\label{result}
+We compare the test statistics~$D$ with the critical value of $0.433$, which corresponds to $16$ samples and a $95\%$ of confidence level. We reject the null hypotheses that the two algorithms produce similar Accuracy~$A$ with $95\%$ confidence level if the test statistics~$D>0.433$. The technique is also applied to perform one tail test to test whether $i_1$th algorithm is more accurate than $i_2$th algorithm. In this case, the test statistic is the supremum
+\begin{equation}\label{teststatistic}
+D^+=\sup _{x}F_{i_1}(x)-F_{i_2}(x).
+\end{equation}
+\section{Experiments}\label{result}
+
+\subsection{Experiment Setting}
+\subsection{Compare Images}
+\subsection{Discuss flip rate}
+
+\subsection{Hayperparameter Tuning}
+Just identify the haperparameter number.
+
+\subsection{Compare Results}
+\subsubsection{Accuracy}
+\subsubsection{Running time}
+compare photos
+discuss pca
+heruistic no need to know rho.
+
+
+\begin{figure}    
+	\includegraphics[scale=1]{hpc}
+	\caption{HPC...}
+	\label{fig:HPC}
+\end{figure}
 
 \begin{table}
 \centering
@@ -407,21 +440,45 @@ Mean  & Standard deviation & Confidence interval \\ \midrule
 
 
 \begin{figure}    
-	\includegraphics[scale=0.9]{boxplot.pdf}
+	\includegraphics[scale=0.9]{boxplot}
 	\caption{Boxplot}
 	\label{fig:Boxplot}
 \end{figure}
 
 \begin{figure}    
-	\includegraphics[scale=0.9]{histo.pdf}
+	\includegraphics[scale=0.9]{histo}
 	\caption{Density function from kernel smoothing}
 	\label{fig:Density function from kernel smoothing}
 \end{figure}
 
-{\color{red} please plot the cifar with and without PCA, put them into one graph and compare. codes are already available. just run them and save and insert.}
-
-Please pay special attention to the instructions in section \ref{others}
-regarding figures, tables, acknowledgments, and references.
+{\color{red} please plot the cifar with and without PCA, put them into one graph and compare. codes are already available. just run them and save and insert.}\\
+We use the methods,\ref{1st}, \ref{2nd} and \ref{3rd}, to conduct experiments on two datasets, fashion-mnist and \textsc{cifar}.
+Both datasets are re-organized to have two classes 0 and 1. 
+For clearer notation, we refer to class 0 as -1 and class 1 as +1. 
+Both datasets have flip rates $\rhoz=0.2$ and $\rhoo=0.4$.
+The fashion-mnist has dimension $d=784$, while \textsc{cifar} has $d=3072$. 
+{\color{red} original image}
+As mentioned in section \ref{preproc}, we need to run \textsc{pca} on \textsc{cifar} to reduce the dimensionality.
+{\color{red} pca image. decribe the difference}
+Then we scale the image
+{\color{red} standardised image. decribe the difference} \\ \\
+To provide a more rigorous evaluation on performance, we train the model $16$ times using each method on each dataset and calculate the mean and standard deviation of the results.
+We randomly sample $80\%$ of the training data for training each model.
+To reduce the running time, we use multi-threading programming and train the $16$ models simultaneously. \\ \\
+Table \ref{tab:Meansd} shows the mean, standard deviation and $95\%$ confidence interval of the accuracy result from testing the $16$ models on clean testing set for each experiment. 
+Overall, the accuracy of the fashion-mnist experiments is higher than that of the \textsc{cifar} experiments possibly due to the complexity difference.
+The relabelling method outperforms the other two on fashion-mnist data and the importance reweighting method outperforms the other two on \textsc{cifar} dataset.
+Table \ref{tab:HypothesisTest} shows the hypothesis test results on the accuracy statistics. 
+It shows that relabelling algorithm classifies the noisy fashion-mnist data more accurately than the expectation maximisation method with high probability.
+Also, reweighting method classifies the noisy \textsc{cifar} data more accurately than the expectation maximisation method and relabelling classifies the data least accurately with high probability. 
+Figure \ref{fig:Boxplot} is the boxplot of all experiment results. 
+Beyond what we see from the tables, we find from the boxplot that for the relabelling method, the results of \textsc{cifar} experiments have larger interquartile range \textsc{iqr} than that of fashion-mnist experiments. 
+\textsc{iqr}'s are not so different across datasets for the other two methods. 
+This means the relabelling method may not perform as stable as the other two methods when classifying the \textsc{cifar} dataset. 
+Further experiments may be conducted in future work to verify this. 
+Then we estimate the density function using kernel smoothing and plot figure \ref{fig:Density function from kernel smoothing}.
+For fashion-mnist dataset, all three methods have similar accuracy distribution with relabelling having a slightly better performance.
+For \textsc{cifar} dataset, the accuracy distribution of reweighting method dominates the other two.
 
 \section{Conclusion}
 \label{headings}
