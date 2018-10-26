@@ -109,7 +109,7 @@ print(sum(YYtr2==0))
 
 
 if dset==2:
-    clf3 = svm.SVC(gamma=0.0007)
+    clf3 = svm.SVC(gamma=0.0007) #0.867
     clf3.fit(Xtr2,YYtr2)
     print(clf3.score(Xts,Yts))
 else:
@@ -142,7 +142,7 @@ clf3.fit(Xtr2,YYtr2)
 print(clf3.score(Xts,Yts))
 
 Str2=np.copy(Str)
-temp=1-Str[ind]
+temp=np.copy(1-Str[ind])
 Str2[ind[0]]=temp
 
 
