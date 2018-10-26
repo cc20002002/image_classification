@@ -1,9 +1,11 @@
 temp = list.files(pattern="*.csv")
+temp=temp[-1]
 myfiles = lapply(temp, read.csv,header=FALSE)
+
 myfiles=do.call(rbind,myfiles)
 #myfiles=t(myfiles)
 require('data.table')
-myfiles$algorithm=c('Expectation Maximisation','Relabelling','Reweighting','Expectation Maximisation','Relabelling','Reweighting')
+myfiles$algorithm=c('Expectation Maximisation','Sample filtering','Importance Reweighting','Expectation Maximisation','Importance Reweighting','Reweighting')
 myfiles$dataset=c('MNIST','MNIST','MNIST','CIFAR','CIFAR','CIFAR')
 df1=melt(myfiles, id=17:18)
 
@@ -18,11 +20,11 @@ names(df1)=c("Algorithm" ,"Dataset",   "Average running time (seconds)",  "Accur
 df2=df1[,c(1,2,4,5)]
 require('ggplot2')
 library(ggthemes)
-library(brms)
+
 theme_set(theme_bw())  # from ggthemes
 ggplot(df2,aes(x=`Average running time (seconds)`,y=Accuracy,color=Algorithm,fill=Dataset))+
                  geom_boxplot(size = 1) + scale_fill_hue(l=100, c=100)
-ggsave(filename = 'boxplot.pdf',width = 7, height = 7, units = "in")
+ggsave(filename = 'boxplot.pdf',width = 7, height = 5, units = "in")
   
 Datasets=unique(df2$Dataset)
 plots=list()
@@ -40,13 +42,13 @@ plot_grid(plotlist = plots, labels=Datasets,hjust =c(-1,-1),vjust=c(2,2)) +
 ggsave(filename = 'histo.pdf',width = 7, height = 4.6, units = "in")
 
 #reweighting is better than em is better than relabelling
-ks.test(myfiles[5,1:16],t(myfiles[4,1:16]),alternative ='greater')# em vs relabeling
-ks.test(myfiles[4,1:16],t(myfiles[6,1:16]),alternative ='greater')# em vs reweighting
-ks.test(myfiles[5,1:16],t(myfiles[6,1:16]),alternative ='greater')# labeling vs reweighting
+ks.test(myfiles[5,1:16],t(myfiles[4,1:16]))# em vs relabeling
+ks.test(myfiles[4,1:16],t(myfiles[6,1:16]))# em vs reweighting
+ks.test(myfiles[5,1:16],t(myfiles[6,1:16]))# labeling vs reweighting
 
 
 #relabelling is more accuracy than em
-ks.test(myfiles[1,1:16],t(myfiles[2,1:16]),alternative ='greater')# em vs reweighting 
+ks.test(myfiles[1,1:16],t(myfiles[2,1:16]))# em vs reweighting 
 ks.test(myfiles[1,1:16],t(myfiles[3,1:16]))# em vs relabeling
 
 ks.test(myfiles[3,1:16],t(myfiles[2,1:16]))# labeling vs reweighting
