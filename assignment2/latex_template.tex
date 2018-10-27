@@ -145,6 +145,7 @@ In addition, define the Bernoulli random variable~$\epsilon(S)$ with the means $
 
 \subsection{Flip rates estimation}\label{method2}
 We apply techniques proposed by \citet{liu2016classification} to estimate the flip rates~$\rhoz$ and $\rhoo$. The technique consists of two steps---firstly, we estimate probability~$P_{D_\rho}(S|X)$; secondly, we estimate the flip rates~$\rhoz$ and $\rhoo$ using the probability~$P_{D_\rho}(S|X)$. 
+{\color{red} Note that the assumption that there exist some $x_{+1}$, $x_{-1}$ $\in X$ such that $P_{D}(Y=1|x_{-1})=0$ and $P_{D}(Y=-1|x_{+1})=0$ must hold to use this flip rates estimation method.}
 
 
 
@@ -294,7 +295,7 @@ To improve the robustness against label noise, \citet{liu2016classification} con
 %               &= (1-\rho_{y}-\rho{-y})P(Y=y|X)+\rho_{-y}
 %    \end{aligned}
 %\end{equation}
-With some reasonable assumptions ({\color{red} what are the assumptions}), \citet{liu2016classification} also derived the distribution of the unobserved  true label using the observed label~$S$, the flip rates~$\rho_{0}$ and $\rho_{1}$
+{\color{red} $\beta(X,Y,S)$ is set to be 0 if $P_{D_\rho}(S|X)=0$}. With some reasonable assumptions ({\color{red} what are the assumptions. Tina: i think there are no assumption here. but there is an assumption in label noise estimation part, please check what i wrote there. Or maybe the assumption here is just that the noise rates are known.}), \citet{liu2016classification} also derived the distribution of the unobserved  true label using the observed label~$S$, the flip rates~$\rho_{0}$ and $\rho_{1}$
 \begin{equation}
     P_D(Y=y|X)=\frac{P_{D_\rho}(S=y|X)-\rho_{-y}}{1-\rho_{y}-\rho_{-y}}.
 \end{equation}
