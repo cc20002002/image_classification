@@ -29,7 +29,11 @@ ggplot(df2,aes(x=`Average running time (seconds)`,y=Accuracy,color=Algorithm,fil
   scale_x_continuous(breaks = pretty(df2$`Average running time (seconds)`, n = 10)) +
   scale_y_continuous(breaks = pretty(df2$Accuracy, n = 10))
 ggsave(filename = 'boxplot.pdf',width = 7, height = 7, units = "in")
-  
+ggplot(df2,aes(x=`Average running time (seconds)`,y=Accuracy,color=Algorithm,fill=Dataset))+
+  geom_boxplot(size = 1) + scale_fill_hue(l=100, c=100,h.start=330)+
+  scale_x_continuous(breaks = pretty(df2$`Average running time (seconds)`, n = 10)) +
+  scale_y_continuous(breaks = pretty(df2$Accuracy, n = 10))
+ggsave(filename = 'boxplotv.pdf',width = 7, height = 7, units = "in")
 Datasets=unique(df2$Dataset)
 plots=list()
 require('dplyr')
@@ -54,8 +58,8 @@ ks.test(myfiles[5,1:16],t(myfiles[6,1:16]))# labeling vs reweighting
 
 
 #relabelling is more accuracy than em
-ks.test(myfiles[1,1:16],t(myfiles[2,1:16]))# em vs reweighting 
-ks.test(myfiles[1,1:16],t(myfiles[3,1:16]))# em vs relabeling
+ks.test(myfiles[1,1:16],t(myfiles[2,1:16]))# em vs relabeling 
+ks.test(myfiles[1,1:16],t(myfiles[3,1:16]))# em vs reweighting
 
 ks.test(myfiles[3,1:16],t(myfiles[2,1:16]))# labeling vs reweighting
 require('boot')
