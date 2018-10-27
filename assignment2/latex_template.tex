@@ -12,6 +12,10 @@
 \usepackage{mathtools}
 \usepackage{csvsimple}
 \usepackage{booktabs}
+\usepackage[author={Chen}]{pdfcomment}
+\newcommand{\chenc}[1]{\pdfcomment[author=Chen,color={1 0.5 0.5},subject={#1}]{#1}}
+\newcommand{\hayden}[1]{\pdfcomment[author=Dania,color={1 1 1},subject={#1}]{#1}}
+\newcommand{\tina}[1]{\pdfcomment[author=Joyce,color={1 0 1},subject={#1}]{#1}}
 \DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
 % in dvi it only seems to use urlcolor !!!!
 \hypersetup{colorlinks,linkcolor=blue,citecolor=blue,pagecolor=blue,%
@@ -46,7 +50,7 @@ Group members: & Chen Chen (cche5002) 480458339,\\
 
 
 \begin{abstract}
-This report documents our modifications to the soft-margin support vector machine to improve its performance against class-dependent classification noise where the flip rates are $\rho_0=0.2$ and $\rho_1=0.4$.
+This report documents our modifications to the soft-margin support vector machine to improve its performance against class-dependent classification noise where the flip rates are $\rhoz=0.2$ and $\rhoo=0.4$.
 \end{abstract}
 \tableofcontents
 \section{Introduction}
@@ -67,7 +71,7 @@ Section~\ref{2nd} introduces a filtering approach based on the work of \citet{br
 To fairly compare these three approaches of attacking noisy data, all of the three methods implement the same base classification algorithm---\svm. We use \svm\ because it is proved to has a strong generalisation ability \citep{NIPS2012_4500,Seeger:2003:PGE:944919.944929,Cortes1995}, and usually gives high classification accuracy when turned properly \citep{Fernandez-Delgado:2014:WNH:2627435.2697065}. In addition, \svm\ is more susceptible to label noise than many other algorithms \citep{frenay2014classification}, so we can better assess our modification to the original classification algorithm.
 %As a result,  it is not considered to be robust to label noise ({\color{red} gives reference})
 
-Section~\ref{result} applies the three methods proposed in Section~\ref{method} to two sets of noisy data with binary labels, both containing $10,000$ images. The first data set is a subset of the fashion-\textsc{mnist} database and the second data set is from the \textsc{cifer} database. For each data set, Section~\ref{result} also compares the simulation results, including accuracy and running times, from the three methods. In addition, we estimate the flip rate~$\rho_0$, $\rho_1$ using the method proposed by \citet{liu2016classification}. 
+Section~\ref{result} applies the three methods proposed in Section~\ref{method} to two sets of noisy data with binary labels, both containing $10,000$ images. The first data set is a subset of the fashion-\textsc{mnist} database and the second data set is from the \textsc{cifer} database. For each data set, Section~\ref{result} also compares the simulation results, including accuracy and running times, from the three methods. In addition, we estimate the flip rate~$\rhoz$, $\rhoo$ using the method proposed by \citet{liu2016classification}. 
 %We did not use the estimated values in our classification experiments as the true rates are provided. 
 Section~\ref{result} also compares our estimation with the true values.
 
@@ -82,7 +86,7 @@ These approaches mentioned above do not require noise rates. Although this makes
 \section{Methods}\label{method}
 We use \textsc{svm} with Gaussian kernel as the base classification method for this task because of its generalisation ability.
 
-Let vector~$x_i$ to represent the $i$th image in the dataset. The corresponding true classification labels~$y_i$ of images are corrupted by \textsc{ccn} and the we only observe the contaminated labels~$s_i$.The clean and observed label~$y_i$ and $s_i$ are both binary variables drawn from set~$\left\{-1,1\right\}$.  The nature of \textsc{ccn} implies that class dependent noises~$\epsilon(s_i)$ follows Bernoulli distributions with the mean parameters as either $\rho_0$ or $\rho_1$, depending on the value of label~$s_i$. The observed label~$s_i$ is correct if and only if the noise~$\epsilon(s_i)=0$. For the $i$th image, it is straightforward to verify that
+Let vector~$x_i$ to represent the $i$th image in the dataset. The corresponding true classification labels~$y_i$ of images are corrupted by \textsc{ccn} and the we only observe the contaminated labels~$s_i$.The clean and observed label~$y_i$ and $s_i$ are both binary variables drawn from set~$\left\{-1,1\right\}$.  The nature of \textsc{ccn} implies that class dependent noises~$\epsilon(s_i)$ follows Bernoulli distributions with the mean parameters as either $\rhoz$ or $\rhoo$, depending on the value of label~$s_i$. The observed label~$s_i$ is correct if and only if the noise~$\epsilon(s_i)=0$. For the $i$th image, it is straightforward to verify that
 \begin{equation} \label{eq:noise}
 y_i=s_i(1-2\epsilon(s_i)).
 \end{equation}
@@ -97,7 +101,7 @@ Here, $w$ is the weighting factor, $b$ is a constant. We classify the $i$th imag
  g(x_{i})=\text{sign}(w\cdot x_{i}-b).
 \end{equation}
 
-\citet{Fernandez-Delgado:2014:WNH:2627435.2697065} suggested \svm\ is very likely to be one of the most powerful classifiers, by comparing 179 classification algorithms over 121 large data sets. The distances between data points and the dividing hyperplane gives an intuitive estimate of the generalisation ability of the trained \svm\ model \citep{hastie01statisticallearning}. 
+\citet{Fernandez-Delgado:2014:WNH:2627435.2697065} asserted that \svm\ was very likely to be one of the most powerful classifiers, by comparing 179 classification algorithms over 121 large data sets. The distances between data points and the dividing hyperplane give an intuitive estimate of the generalisation ability of the trained \svm\ model \citep{hastie01statisticallearning}. 
 
 we use \svm\ as our classification method as of its strong generalisation ability. In this image classification assignment, we do not observe the true  labels~$y_i$. This section proposes three different approaches to modify ordinary \svm\ to attack label noise problem. However, we do not have access to a test data set with true labels~$(x_i,y_i)$ to verify the generalisation ability of our three different models, which are all trained by noisy data~$(x_i,S_i)$. In \svm , the gap between hyperplane and the training data set provides a natural and `free' metric of its generalisation ability  \citep{hastie01statisticallearning}, and hence use of test data set is not mandatory. Using this geometry factor as well as probably approximately correct learning framework,  \citet{NIPS2012_4500} proved that the  \svm\ models have strong generalisation ability. Further,  \citep{Cortes1995,Seeger:2003:PGE:944919.944929} also shows the strong generalisation ability from different perspectives.
 
@@ -114,10 +118,10 @@ We applied Photometric normalisation suggested by \citet{jonsson2002support} to 
 \subsubsection{Principle component analysis reduces dimensionality}
 For the large \textsc{cifer} data set, we applied principle component analysis (\textsc{pca}) to decrease the dimensionality of the data set from $3072$ to $100$. Although the dimensionality is reduced by $97\%$, the remaining $3\%$ features explains more than $85\%$ of the variance in the data set. 
 
-When fitting our models in Sections~\ref{1st}, \ref{3rd} and~\ref{2nd}, no \textsc{pca} is applied to the \textsc{mnist} data set because the dimensionality ($784$) is already low comparing with the number of samples ($10,000$) in the data set. Nevertheless, when estimating the flip rates~$\rho_0$ and~$\rho_1$ in Section~\ref{method2}, we applied \textsc{pca} to decrease the number of features of \textsc{mnist} data set to $50$.
+When fitting our models in Sections~\ref{1st}, \ref{3rd} and~\ref{2nd}, no \textsc{pca} is applied to the \textsc{mnist} data set because the dimensionality ($784$) is already low comparing with the number of samples ($10,000$) in the data set. Nevertheless, when estimating the flip rates~$\rhoz$ and~$\rhoo$ in Section~\ref{method2}, we applied \textsc{pca} to decrease the number of features of \textsc{mnist} data set to $50$.
 
 \subsection{The original data set is balanced} \label{sec:1}
-Define random variables~$Y$ and $S$ as the true and contaminated binary classification label of a random image vector~$X$, respectively. The assignment instruction states the probabilities~$\rho_0=P(S=1|Y=-1)=0.2$ and $\rho_1=P(S=-1|Y=1)=0.4$.
+Define random variables~$Y$ and $S$ as the true and contaminated binary classification label of a random image vector~$X$, respectively. The assignment instruction states the probabilities~$\rhoz=P(S=1|Y=-1)=0.2$ and $\rhoo=P(S=-1|Y=1)=0.4$.
 %, where $S$ are the contaminated classification labels and $Y$ are the true classification labels. 
 The contaminated data has $40.0\%$ labels~$S$ as one (i.e. $P(S=1)$). Using this factor and the law of total probability
 \begin{equation*}
@@ -140,7 +144,7 @@ In addition, define the Bernoulli random variable~$\epsilon(S)$ with the means $
 \end{equation}
 
 \subsection{Flip rates estimation}\label{method2}
-We apply techniques proposed by \citet{liu2016classification} to estimate the flip rates~$\rho_0$ and $\rho_1$. The technique consists of two steps---firstly, we estimate probability~$P_{D_\rho}(S|X)$; secondly, we estimate the flip rates~$\rho_0$ and $\rho_1$ using the probability~$P_{D_\rho}(S|X)$. 
+We apply techniques proposed by \citet{liu2016classification} to estimate the flip rates~$\rhoz$ and $\rhoo$. The technique consists of two steps---firstly, we estimate probability~$P_{D_\rho}(S|X)$; secondly, we estimate the flip rates~$\rhoz$ and $\rhoo$ using the probability~$P_{D_\rho}(S|X)$. 
 
 
 
@@ -179,14 +183,14 @@ As our sample size is large ($10,000$), the minimal probability of the samples a
 The method proposed here requires tuning a few hyperparameters by grid search. Thus, later sections do not use this density ratio method for the speed of our algorithms.  
 In addition, when numerically computing these flip rates, we only use the data set \textsc{mnist}. This data set is much smaller comparing with \textsc{cifar}, and hence allows us to grid search the best hyperparameter faster. To further avoid over fitting, we applied \textsc{pca} to decreases the number of features to $50$ when estimating flip rates.
 
-As the true flips rates~$\rho_0$ and $\rho_1$ are given, here and after, we use the true flip rates~$\rho_0=0.2$ and $\rho_1=0.4$ in Sections~\ref{1st}, \ref{3rd} and~\ref{2nd}.
+As the true flips rates~$\rhoz$ and $\rhoo$ are given, here and after, we use the true flip rates~$\rhoz=0.2$ and $\rhoo=0.4$ in Sections~\ref{1st}, \ref{3rd} and~\ref{2nd}.
 
 
 \subsection{Method 1: Expectation Maximisation}\label{1st}
 This section extends the Expectation Maximisation algorithm proposed by \citet{pmlr-v20-biggio11} to improve ordinary \svm\ against labels noises, with mathematical justifications.
 %---the given label noise where flip rates~$P(S=1|Y=-1)=0.2$ and~$P(S=-1|Y=1)=0.4$ seems to be marginally different to a random label noise with flip rate~$P(S=1|Y=-1)=P(S=-1|Y=1)=0.3$ for \textsc{svm}.
 \subsubsection{Expectation Maximisation derives loss function}
-The original algorithm proposed by \citet{pmlr-v20-biggio11} was proposed to study classification problems with label noise where the flip rate $\rho_0=\rho_1$ and we extend it to manage the case dependent label noise where the flip rates can be different.
+The original algorithm proposed by \citet{pmlr-v20-biggio11} was proposed to study classification problems with label noise where the flip rate $\rhoz=\rhoo$ and we extend it to manage the case dependent label noise where the flip rates can be different.
 
 Recall the dual problem of an \textsc{svm} is to maximise
 \begin{equation}
@@ -195,7 +199,7 @@ Recall the dual problem of an \textsc{svm} is to maximise
 \begin{math}
 {\text{subject to }}\sum _{i=1}^{n}c_{i}y_{i}=0,\,{\text{and }}0\leq c_{i}\leq {\frac {1}{2n\lambda }}\;{\text{for all }}i. 
 \end{math} 
-Here $y_i$ and $x_i$ are the labels and features of the $i$th image, $c_i$ is the $i$th Lagrangian multiplier, $k(x_i,x_j)$ is the Gaussian Kernel product~\eqref{eq:gauss} of vectors~$x_i$ and~$x_j$.
+Here $y_i$ and $x_i$ are the labels and features of the $i$th image, $c_i$ is the $i$th Lagrangian multiplier, $\lambda$ is a regularisation parameter,and $k(x_i,x_j)$ is the Gaussian Kernel product~\eqref{eq:gauss} of vectors~$x_i$ and~$x_j$.
 
 Substituting label noise~\eqref{eq:noise} into loss function~\eqref{eq:dual} gives
 \begin{equation}
@@ -244,7 +248,7 @@ This method gives us an accuracy of $94.6\%$ on the testing data.
 
 
 \subsection{Method 2: Importance Reweighting} \label{3rd}
-This section applies theorems proved by \citet{liu2016classification} to construct a weighted loss that includes noise information~$\rho_0$ and $\rho_1$. 
+This section applies theorems proved by \citet{liu2016classification} to construct a weighted loss that includes noise information~$\rhoz$ and $\rhoo$. 
 
 \subsubsection{Sigmoid function estimates conditional probability}\label{sigmoid}
 Define $D$ to be the probability density function of the clean data~$(X,Y)$ and $D_\rho$ to be that of contaminated data~$(X,S)$.
@@ -257,23 +261,17 @@ The second and third method both implement Bayesian formula~\eqref{eq:baye}.
 \begin{equation*}
    P_{D_\rho}(S=y|X)=\frac{P_{D_\rho}(x|S=y)P_{D_\rho}(S=y)}{P(X)}.
 \end{equation*}
-However, the two methods are computationally different. The formal method requires to estimate two density functions~$P_{D_\rho}(X|S=y)$ and~$P(X)$ by kernel smoothing. Our data sets are high dimensional ($784$ and $3072$), so kernel smoothing suffers from the curse of dimensionality. The later method avoids kernel smoothing by estimating the ratio~$P_{D_\rho}(x|S=y)/P(X)$ directly through density ratio method \citep{liu2016classification}. For example, Section~\ref{method2} applies this method to estimate the flip rates~$\rho_0$ and $\rho_1$. Despite of the need of additional hyperparameters,  \citet{Sugiyama10densityratio} claims that the density ratio method is ``equivalent to the regression problem''. To keep our model simple and more interpretable, we implement a probabilistic regression model proposed in by \citet[Section~5.1]{liu2016classification}. 
+However, the two methods are computationally different. The formal method requires to estimate two density functions~$P_{D_\rho}(X|S=y)$ and~$P(X)$ by kernel smoothing. Our data sets are high dimensional ($784$ and $3072$), so kernel smoothing suffers from the curse of dimensionality. The later method avoids kernel smoothing by estimating the ratio~$P_{D_\rho}(x|S=y)/P(X)$ directly through density ratio method \citep{liu2016classification}. For example, Section~\ref{method2} applies this method to estimate the flip rates~$\rhoz$ and $\rhoo$. Despite of the need of additional hyperparameters,  \citet{Sugiyama10densityratio} claims that the density ratio method is ``equivalent to the regression problem''. To keep our model simple and more interpretable, we implement a probabilistic regression model proposed in by \citet[Section~5.1]{liu2016classification}. 
 
-We apply probability estimation method proposed by \citet{Platt99probabilisticoutputs}. We first train an ordinary \svm . We then train the parameters of an additional logistic regression model to map the \svm\ outputs into probabilities. We apply this approach rather than traditional logistic regression because Remark 1 given by \citet{liu2016classification} indicates the logistic regression ``does not perform well''.
+We apply probability estimation method proposed by \citet{Platt99probabilisticoutputs}. We first fit a pre-training model using an ordinary \svm . We then estimate the parameters of an additional logistic regression model to map the pre-training \svm\ outputs into probabilities. We apply this approach rather than traditional logistic regression because Remark 1 given by \citet{liu2016classification} indicates the logistic regression ``does not perform well''.
 
 \subsubsection{Reweighting coefficient improves robustness against label noise.}
-{\color{red} ATTENDTION! I used $P$ in previous sections. Either use $P_D$ in all probability notations in this report or none of them. Also define $f$ which I have no clue what it is. Note that I have already occupied the letter $f$. Use something else if this is not the same $f$. Alternative change my previous letters $f$. Either way, Be consistent
-
-After our discussion, I think the simplest way is just to delete all your $f$}.
-
 To improve the robustness against label noise, \citet{liu2016classification} constructed a reweighting coefficient vector~
 \begin{equation}
 \beta(X,Y,S)=\frac{P_D(Y|X)}{P_{D_\rho}(S|X)}. \label{beta} 
 \end{equation}
 %in  to represent the expected risk if we can find the value of $\beta$
 %where $D$ is the distribution of  and $D_\rho$ is the distribution of .
-%The transformation deducted as follows:  
-\\{\color{red} either use $\mathbb E$ for all expectation all none of them please fix}\\%
 %\begin{eqnarray*}
 %R_{l,D}(f) &=& \mathbb{E}_{(X,Y)\sim D}[l(f(X),Y)]\\
 %           &=& \sum_{y}\int{P_D(X,Y=y)l(f(X),Y=y)}dX \\
@@ -298,11 +296,11 @@ To improve the robustness against label noise, \citet{liu2016classification} con
 %\end{equation}
 With some reasonable assumptions ({\color{red} what are the assumptions}), \citet{liu2016classification} also derived the distribution of the unobserved  true label using the observed label~$S$, the flip rates~$\rho_{0}$ and $\rho_{1}$
 \begin{equation}
-    P_D(Y=y|X)=\frac{P_{D_\rho}(S=y|X)-\rho_{1-y}}{1-\rho_{y}-\rho_{1-y}}\text{ where }y\in \left\{0,1\right\}.
+    P_D(Y=y|X)=\frac{P_{D_\rho}(S=y|X)-\rho_{-y}}{1-\rho_{y}-\rho_{-y}}.
 \end{equation}
 Substitute this estimation into the weighting coefficient~\eqref{beta}:
-\begin{equation}
-    \beta(X,Y,S)=\frac{P_{D_\rho}(S=y|X)-\rho_{1-y}}{(1-\rho_{y}-\rho_{1-y})P_{D_\rho}(S=y|X)}\text{ where }y\in \left\{0,1\right\}.
+\begin{equation} \label{eq:weighting}
+    \beta(X,Y,S)=\frac{P_{D_\rho}(S=y|X)-\rho_{-y}}{(1-\rho_{y}-\rho_{-y})P_{D_\rho}(S=y|X)}.
 \end{equation}
 Further substituting the conditional probability~$P_{D_\rho}(S=y|X)$ estimated in Section~\ref{sigmoid} gives reweighting coefficient~$\beta(X,Y,S)$. 
 Recall from equation~\eqref{eq:decision} that  $g$ is the decision function. 
@@ -312,37 +310,33 @@ R_{\loss,D}(g) = R_{\beta \loss,D_\rho}(g). \label{eq:loss}
 \end{equation}
 This loss function allows us to estimate the true loss function~$R_{\loss,D}(g)$ without knowing the true labels~$Y$. 
 
-\subsection{Method 3: samples filtering}\label{2nd}
-Method 3 implements \textsc{svm} to select samples that are less likely contaminated by noises. 
+\subsection{Method 3: heuristic approach by relabelling}\label{2nd}
+Method 3 implements \textsc{svm} to select samples that we can more confidently make predictions. 
 %\subsubsection{Hinge loss is robust against label noise}
 
 \subsubsection{Conditional probability filters samples}\label{2nd2}
 Ordinary \textsc{svm} only gives a classification without revealing a probability that indicates the confidence of classification. 
 \citet{Wu03probabilityestimates} proposed a five-fold cross-validation method to calculate the classification probabilities~$P(Y=1|X)$ for \textsc{svm}. 
-Using this method, we calculated the probability~$P(Y=1|X)$ with label noise by an \textsc{svm} with Gaussian kernel. 
+Using this method, we calculated the probability~$P(Y=1|X)$ with label noise by a pre-training \textsc{svm} with Gaussian kernel. Recall from equation~\eqref{eq:decision} that we use $g(X)$ to denote the decision made by this \svm .
 
-We have $10,000$ samples.
-We rank the sample space of conditional probability~$P(Y=1|X)$, and denote the $3333$rd smallest and the $3333$rd greatest probability sample as $P(Y=1|X_{(3333)})$ and $P(Y=1|X_{(6667)})$, respectively. 
+Each data set has $10,000$ samples.
+For each data set, we find the $1/3$ and $2/3$ percentiles of the sample conditional probability~$P(Y=1|X)$, and denote the $3333$rd smallest and the $3333$rd greatest probability sample as $P(Y=1|X_{(3333)})$ and $P(Y=1|X_{(6667)})$, respectively. 
 We only use a subset of samples where the predicted probability is very high or very low 
-\begin{equation*}
+\begin{equation}\label{eq:filter}
 \left\{X|P(Y=1|X)\geq P(Y=1|X_{(3333)}) \cup P(Y=1|X)\leq P(Y=1|X_{(6667)}) \right\}.
-\end{equation*}
-This method is inspired by the fact that the contaminated samples are more likely to have a probability~$P(Y=1|X)$ close to $0.5$. One third of sample are truncated because of the error rate~$P(\epsilon=1)=0.3\approx 1/3$. Note that this subset of sample is balanced.
+\end{equation}
+This method is inspired by the fact that the contaminated samples are more likely to have a probability~$P(Y=1|X)$ close to $0.5$. One third of sample are truncated because of the error rate~$P(\epsilon=1)=0.3\approx 1/3$. Note that this subset of sample is imbalanced.
 
-\subsubsection{Matching predicted labels filters samples}
-The predictions~$g(X)\neq S$ also suggests label noise might exist. Hence, we only use the subset where predicted classification match the observed label
-\begin{equation*}
-\left\{X|\left[P(Y=1|X)\geq P(Y=1|X_{(3333)}) \cup P(Y=1|X)\leq P(Y=1|X_{(6667)})\right] \cap g(X)=Y(X) \right\}.
-\end{equation*}
-We then further truncate this subset of samples so that the subset is balanced. This step is important because section~\ref{sec:1} shows that the original data set is also balanced.
+\subsubsection{Label correction}
+We fit our model using the predictions~$g(X)$ rather than contaminated labels~$S$, because the way we filtered samples  assure us exactly half of predictions~$g(X)$ in the filtered samples~\eqref{eq:filter}  are ones. 
+Using a balanced data is important because section~\ref{sec:1} shows that the original data set is also balanced. In addition, filtered samples~\eqref{eq:filter} have  predicted probabilities far from $0.5$. Hence, the pre-training \svm\ are confident with its predictions~$g(X)$.
+Training our \textsc{svm} with Gaussian Kernel again with this balanced subset of relabeled data gives the result.
 
-Training our \textsc{svm} with Gaussian Kernel again with this subset of cleaned data gives the result.
-
-This model is equivalent to minimise the loss function~\eqref{eq:loss} with the weighting coefficient
+Denote the indicator function~$I_{g(X)=S} \in \left\{0,1\right\}$ as the binary result indicating whether decision made~$g(X)$ is the same as the observed labels~$S$.With this definition, the expression~$2I_{g(X)=S}-1$ is $-1$ when $g(X)\neq S$ and is one when $g(X)=S$.  This model is equivalent to minimise the loss function~\eqref{eq:loss} with the weighting coefficient
 \begin{equation*}
 \beta\begin{cases}
-1 & \text{when }\left[P({Y}|X)\leq P(Y=1|X_{(3333)}) \cup P({Y}|X)\geq P(Y=1|X_{(6667)})\right] \cap g(X)=S,\\
-0 & \text{when }P(Y=1|X_{(3333)})<P({Y}|X)<P(Y=1|X_{(6667)})\cup g(X)\neq S.
+2I_{g(X)=S}-1 & \text{when }P({Y}|X)\leq P(Y=1|X_{(3333)}) \cup P({Y}|X)\geq P(Y=1|X_{(6667)}),\\
+0 & \text{when }P(Y=1|X_{(3333)})<P({Y}|X)<P(Y=1|X_{(6667)}).
 \end{cases}
 \end{equation*}
 
@@ -352,9 +346,14 @@ This method gives us an accuracy of $95.0\%$ on the testing data.
 
 
 \subsection{Tuning hyperparameters}
-The Kernel parameter for Gaussian Kernel~$\gamma$ is chosen to maximise the variance of Kernel matrix~$K(x_i,x_j)$ over all $i,j$. The regularisation parameter is chosen by grid search. The model seems to be insensitive to the regularisation parameter.
+The hyperparameters are tuned by Newton's iteration and coordinate descent. Knowing the total error rate~\eqref{eq:exp}, the objective is to achieve an accuracy of $70\%$ training the given data set with \textsc{ccn}. 
 
-\subsection{Bootstrap constructs confidence intervals and hypothesis tests}\label{ci}
+The Kernel parameter for Gaussian Kernel~$\gamma$ is initially chosen to maximise the variance of Kernel matrix~$K(x_i,x_j)$ over all $i,j$. 
+The initial value of regularisation parameter~$\lambda$ is chosen as $1$. 
+The gradient is estimated by finite difference method. 
+The model seems to be insensitive to the regularisation parameter~$\lambda$.
+
+\subsection{Bootstrap constructs confidence intervals and hypothesis tests}
 The assignment instruction asks us to compare the accuracy, denoted as $A$, of the proposed label noise robust algorithms. 
 \subsubsection{Bootstrapping percentile confidence intervals}\label{ci}
 To systematically compare the accuracy of the three methods introduced in Sections~\ref{1st}, \ref{3rd} and~\ref{2nd}, we construct the $95\%$ bootstrapping percentile confidence intervals for accuracy~$A$. The idea of bootstrapping  is straightforward---we resample a subset of $8$ samples among the sample space of the $16$ accuracy results and calculate their mean. We repeat this process $1000$ times. The $2.5\%$ and $97.5\%$ percentiles of the $1000$ re-sampled means are then the bootstrapping percentile confidence interval
@@ -365,12 +364,12 @@ where $A^*_{\alpha}$ is the $\alpha$ percentile of the bootstrapped distribution
 
 Bootstrapping does not require the sample space follows specific distributions. We apply this nonparametric method to construct confidence interval here because we do not know about the exact distributions of accuracy~$A$.
 
-\subsubsection{Kolmogorov-Smirnov test compares the accuracy of algorithms}
+\subsubsection{Kolmogorov-Smirnov test compares the accuracy of algorithms}\label{sec:ks}
 We implement the Kolmogorov-Smirnov test to test the hypothesis that the algorithms proposed in Section~\ref{method} have different accuracy.  Again, Kolmogorov-Smirnov test is distribution free, so we do not need to know the distributions of the evaluation metrics.
 
-Let $A_{ij}$ be the accuracy generated from our {$i$}th algorithm from the $j$th Monte-Carlo simulation. Denote the indicator function~$1_{A_{ij} \leq x}$ as the binary result indicating whether $A_{ij} \leq x$ is true. We define the empirical distribution of accuracy results generated by algorithm~$i$ as
+Let $A_{ij}$ be the accuracy generated from our {$i$}th algorithm from the $j$th Monte-Carlo simulation. We define the empirical distribution of accuracy results generated by algorithm~$i$ as
 \begin{equation}\label{epdf}
-  \hat{F}_{i}(x)=\frac{1}{n}\sum_{j=1}^{16}1_{A_{ij} \leq x}.
+  \hat{F}_{i}(x)=\frac{1}{n}\sum_{j=1}^{16}I_{A_{ij} \leq x}.
 \end{equation}
 The test statistic is the supremum among the differences of the empirical distribution generated using empirical distribution~\eqref{epdf} of $i_1$th and $i_2$th algorithm \citep{Walck:1996cca}
 \begin{equation}\label{teststatistic}
@@ -384,7 +383,14 @@ We compare the test statistics~$D$ with the critical value of $0.433$, which cor
 \section{Experiments}\label{result}
 
 \subsection{Experiment Setting}
-As machine learning algorithm often involve a lot of hyper-parameter tuning, thus time and computational consuming. To better carry out the experiments, we employ a Linux server with high standard configuration to run our code. Here's the configuration detail.
+To provide a more rigorous evaluation on performance, we train the model $16$ times using each method on each dataset and calculate the mean and standard deviation of the results.
+We randomly sample $80\%$ of the training data for training each model.
+
+To reduce the running time, we use multi-threading programming and train the $16$ models simultaneously. \\
+
+As machine learning algorithm often involve a lot of hyper-parameter tuning, thus time and computational consuming. To better carry out the experiments, we employ a Linux server with high standard configuration to run our code. Here's the configuration detail. \chenc{what do you mean by here? please cross reference}
+
+talk about bootstrap resamples of 8000 sample from 10000
 
 \begin{figure}[tbh]
     \centering
@@ -394,55 +400,80 @@ As machine learning algorithm often involve a lot of hyper-parameter tuning, thu
 \end{figure}
 
 \subsection{Compare Images}
-As mentioned previously, we preprocess the image dataset by using scaler and PCA. Here are some examples from the $CIFER$ dataset to compare the effects intuitively.
+As mentioned previously \chenc{cross reference}, we preprocess the image dataset by using scaler and PCA. Here are some examples from the \textsc{cifar} dataset to compare the effects intuitively.
 
-\begin{figure}[tbh] 
+\begin{figure} \chenc{let the figure float. this is the way too small. Perhaps make it $2\times 2$ figures. Also, turn off the axis. You could use the code in my assignment 1 directory. } 
     \centering
-	\includegraphics[scale=.35]{assignment2/image_compare.png}
+	\includegraphics[scale=1]{assignment2/image_compare.png}
 	\caption{Comparison between original images and processed ones}
 	\label{fig:Compare_Image}
 \end{figure}
 
 We can tell from the figure above that the scale process somehow "enlighten" the original picture to some extent so that the differences in "lightness" are diminished. 
-{\color{red} However, the reconstructed images from PCA are less meaningful? }
+{\color{red} However, the reconstructed images from PCA are less meaningful? of course, it discarded 15\% of the information}
 
 
 \subsection{Discuss flip rate}
 
 Both datasets have flip rates $\rhoz=0.2$ and $\rhoo=0.4$.
-
 {\color{red} TODO }
 
 \subsection{Hayperparameter Tuning}
-Just identify the haperparameter number.
+Please copy the hyperparameters from script to here.
 
 \subsection{Compare Results}
-\subsubsection{Accuracy}
 
-\begin{table}[tbh]
+Table~\ref{tab:Meansd} records the descriptive statistics of $16$ Monte Carlo simulations for the three algorithms detailed in Sections~\ref{1st}, \ref{3rd} and~\ref{2nd}.  We test each of the algorithms with data sets \textsc{mnist} and \textsc{cifar}.
+
+
+\subsubsection{Expectation Maximisation is the fastest}
+The last column of Table~\ref{tab:Meansd} illustrates the running time of the three algorithms on the two data sets. 
+The method of Expectation Maximisation is more than four times faster than the other two methods. 
+\begin{table}
 	\caption{Mean sd}
 	\label{tab:Meansd}
-% Please add the following required packages to your document preamble:
-% \usepackage{booktabs}
+% please fill the tables, and the caption
 \centering
-\begin{tabular}{@{}lll@{}}
+\begin{tabular}{@{}llllll@{}}
 \toprule
-Mean  & Standard deviation & Confidence interval \\ \midrule
-0.938 & 0.003              & (0.936,0.939)       \\
-0.942 & 0.003              & (0.941,0.944)       \\
-0.94  & 0.003              & (0.939,0.942)       \\
-0.835 & 0.004              & (0.833.0.837)       \\
-0.832 & 0.008              & (0.829,0.836)       \\
-0.844 & 0.005              & (0.841,0.846)       \\ \bottomrule
+Data set& Algorithm&Mean  & Standard deviation & Confidence interval & Average running time \\ \midrule
+&&0.938 & 0.003              & (0.936,0.939)     &  \\
+&&0.942 & 0.003              & (0.941,0.944)     &  \\
+&&0.94  & 0.003              & (0.939,0.942)     &  \\
+&&0.835 & 0.004              & (0.833.0.837)     &  \\
+&&0.832 & 0.008              & (0.829,0.836)     &  \\
+&&0.844 & 0.005              & (0.841,0.846)     &  \\ \bottomrule
 \end{tabular}
-
 \end{table}
+There are two  causes for the difference in speed. 
+Firstly, the method of Expectation Maximisation only requires to train the base \svm\ model once.  
+In contrast to Expectation Maximisation, the other two methods all require a pre-training step that predicts the conditional probabilities~$P(S|X)$. 
+Secondly and most importantly, the loss function~\eqref{eq:dual3} knows the structure of the label noises. Hence, it converges much faster than the other two methods.  
+In this pre-training step, the method of relabelling and the method of Importance Reweighting have no adequate information about the \textsc{ccn}. 
+The lack of \textsc{ccn} information slows down the convergence of the algorithms.
 
-Table \ref{tab:Meansd} shows the mean, standard deviation and $95\%$ confidence interval of the accuracy result from testing the $16$ models on clean testing set for each experiment. 
-Overall, the accuracy of the fashion-mnist experiments is higher than that of the \textsc{cifar} experiments possibly due to the complexity difference.
-The relabelling method outperforms the other two on fashion-mnist data and the importance reweighting method outperforms the other two on \textsc{cifar} dataset.
+\subsubsection{\textsc{cifar} is more difficult to classify}
+In terms of accuracy, all algorithms perform significantly better classifying the images in \textsc{mnist} in comparison with classifying images in \textsc{cifar}. 
+A possible explanation for this might be that \textsc{cifar} is much more complex in nature---it requires $100$ principal components to reconstruct $85\%$ of the image information, where as \textsc{mnist} data set only needs $40$ such principal components. 
+This observation are also visualised box plot in Figure~\ref{fig:Boxplot}. This figure plots the accuracy of the three algorithms against running time using box plot. For the \textsc{mnist}  data set, it seems that the relabelling method are marginally more accurate than the other two algorithms. However, for the  more complex \textsc{cifar} data set, the Importance reweighting seems to be significantly more accurate. 
 
-\begin{table}[tbh]
+\subsubsection{Heuristic approach is inconsistent}
+For the \textsc{cifar} data set, both the high inter quarter range (\textsc{iqr}) in Figure~\ref{fig:Boxplot} and high standard deviation in Table~\ref{tab:Meansd} suggest that the method of relabelling gives inconsistent classification results. This inconsistency may be due to the heuristic nature of the method as described in  Section~\ref{2nd}. No asymptotic properties were prove for the process of relabelling. In contrast, Expectation Maximisation method and Importance Reweighting method are theoretically justified. For example, Section~\ref{1st} mathematically derives the choice of the loss function~\eqref{eq:dual3} by Expectation Maximisation. 
+Similarly, \citet{liu2016classification} give rigorous proofs justifying the properties of the Importance Reweighting formula~\eqref{eq:weighting}. As a result of solid theoretical support, these two methods produce more consistent results.
+
+The inconsistency is not observed in dataset~\textsc{mnist}. This may partly be explained by the complexity of the data set. For the \textsc{mnist} data ($784$ dimensional), a sample of $8,000$ images is large. However, for the \textsc{cifar} data, the sample size of $8,000$ is on a similar scale with the dimensionality ($3072$).
+\begin{figure}    
+	%\includegraphics[scale=0.9]{boxplot}
+	\centering
+    \includegraphics[scale=0.7]{boxplot}%maybe use the large one
+	\caption{Box plots of the accuracy results against running time. {\color{red}Describe various lines and the dots as well as colours here. }
+}
+	\label{fig:Boxplot}
+\end{figure}
+
+\subsubsection{Hypothesis test justifies observations}
+Kolmogorov-Smirnov test statistic~\eqref{teststatistic} confirms the visualisations observed from the box plot~\ref{fig:Boxplot}.
+\begin{table}%please exchange row 2 3. 
 \centering
  	\caption{Hypothesis test}   
 	\begin{tabular}{lllll}
@@ -465,34 +496,31 @@ Data & $H_0$ & $D$ & P-value & Test result\\
 
 	\label{tab:HypothesisTest}
 \end{table}
+As illustrated in  Table~\ref{tab:HypothesisTest}, the test statistic ($D=0.625>0.433$) suggests that the relabelling method ($A_3$) more accurately classifies the \textsc{mnist} data set with label noise, comparing with the Expectation Maximisation method ($A_1$). 
+However, the hypothesis test are not able to conclude whether Importance Reweighting ($A_2$) outperforms Expectation Maximisation ($A_3$) with these $16$ simulations of accuracy results, for \textsc{mnist} data set.
 
-Table \ref{tab:HypothesisTest} shows the hypothesis test results on the accuracy statistics. 
-It shows that relabelling algorithm classifies the noisy fashion-mnist data more accurately than the expectation maximisation method with high probability.
-Also, reweighting method classifies the noisy \textsc{cifar} data more accurately than the expectation maximisation method and relabelling classifies the data least accurately with high probability. 
+In terms of \textsc{cifar} data set, there are strong statistical evidences suggesting Importance Reweighting method classifies the images in the noisy \textsc{cifar} data set more accurately than the expectation maximisation method. Similarly, and we are also $95\%$ confident to accept the hypothesis that the Expectation Maximisation method is more accurate than the importance relabelling method. 
 
-\begin{figure}[tbh]
-    
-	%\includegraphics[scale=0.9]{boxplot}
-	\centering
-    \includegraphics[scale=0.7]{boxplotll}%maybe use the large one
-	\caption{Boxplot}
-	\label{fig:Boxplot}
+Density plot~\eqref{fig:Density} of the accuracy results visualise these results concluded by Kolmogorov-Smirnov hypothesis tests.
+\begin{figure}   
+    \centering
+	\includegraphics[scale=0.9]{histo}
+	\caption{Density function from kernel smoothing}
+	\label{fig:Density}
+	%Then we estimate the density function using kernel smoothing and plot figure \ref{fig:Density function from kernel smoothing}.
 \end{figure}
 
-Figure \ref{fig:Boxplot} is the boxplot of all experiment results. 
-Beyond what we see from the tables, we find from the boxplot that for the relabelling method, the results of \textsc{cifar} experiments have larger interquartile range \textsc{iqr} than that of fashion-mnist experiments. 
-\textsc{iqr}'s are not so different across datasets for the other two methods. 
-This means the relabelling method may not perform as stable as the other two methods when classifying the \textsc{cifar} dataset. 
-Further experiments may be conducted in future work to verify this. 
-Then we estimate the density function using kernel smoothing and plot figure \ref{fig:Density function from kernel smoothing}.
-For fashion-mnist dataset, all three methods have similar accuracy distribution with relabelling having a slightly better performance.
-For \textsc{cifar} dataset, the accuracy distribution of reweighting method dominates the other two.
-\subsubsection{Running time}
 
-To provide a more rigorous evaluation on performance, we train the model $16$ times using each method on each dataset and calculate the mean and standard deviation of the results.
-We randomly sample $80\%$ of the training data for training each model.
 
-To reduce the running time, we use multi-threading programming and train the $16$ models simultaneously. \\
+
+\subsection{Discussion}
+Please write these in full good English sentences.
+
+EM is fast, require good estimate of $\rho$. Need mathematical derivation of objective function. Derivation depends on base method and error distribution, needs mathematical skills. Low accuracy.
+
+Relabelling no need to know $\rho$. Select a region where $P(S=g(x))$ is high where $g(x)$ is the decision function~\eqref{eq:decision}. However, in consistent result. Only useful with large data.
+
+Reweighting is the best overall, more accurate and consistent.
 
 \subsection{Backup Statements}
 compare photos
@@ -503,14 +531,10 @@ heruistic no need to know rho.
 
 
 
-\begin{figure}   
-    \centering
-	\includegraphics[scale=0.9]{histo}
-	\caption{Density function from kernel smoothing}
-	\label{fig:Density function from kernel smoothing}
-\end{figure}
 
-{\color{red} please plot the cifar with and without PCA, put them into one graph and compare. codes are already available. just run them and save and insert.}\\
+
+{\color{red} please plot the cifar with and without PCA, put them into one graph and compare. codes are already available. just run them and save and insert.}
+
 We use the methods,\ref{1st}, \ref{2nd} and \ref{3rd}, to conduct experiments on two datasets, fashion-mnist and \textsc{cifar}.
 Both datasets are re-organized to have two classes 0 and 1. 
 For clearer notation, we refer to class 0 as -1 and class 1 as +1. 
