@@ -39,9 +39,9 @@
 \author{%
  \begin{tabular}{rl}
   Tutors:& Nicholas James, Zhuozhuo Tu, Liu Liu\\ \\
-Group members: & Chen Chen (cche5002) 480458339,\\
-& Yutong Cao (ycao5602) 470347494,\\
-& Yixiong Fang (yfan5798) 480133344
+Group members: & Yutong Cao (ycao5602) 470347494,\\
+& Chen Chen (cche5002) 480458339,\\
+& Yixiong Fang (yfan5798) 480133344.
 \end{tabular}
 }
 
@@ -202,7 +202,7 @@ As the true flips rates~$\rhoz$ and $\rhoo$ are given, here and after, we use th
 This section extends the Expectation Maximisation algorithm proposed by \citet{pmlr-v20-biggio11} to improve ordinary \svm\ against labels noises, with mathematical justifications.
 %---the given label noise where flip rates~$P(S=1|Y=-1)=0.2$ and~$P(S=-1|Y=1)=0.4$ seems to be marginally different to a random label noise with flip rate~$P(S=1|Y=-1)=P(S=-1|Y=1)=0.3$ for \textsc{svm}.
 \subsubsection{Expectation Maximisation derives loss function}
-The original algorithm proposed by \citet{pmlr-v20-biggio11} was proposed to study classification problems with label noise where the flip rate $\rhoz=\rhoo$ and we extend it to manage the case dependent label noise where the flip rates can be different.
+The original algorithm proposed by \citet{pmlr-v20-biggio11} was proposed to study classification problems with label noise where the flip rate $\rhoz=\rhoo$ and we extend it to manage the case dependent label noise where the flip rates are different.
 
 Recall the dual problem of an \textsc{svm} is to maximise
 \begin{equation}
@@ -213,29 +213,29 @@ Recall the dual problem of an \textsc{svm} is to maximise
 \end{math}
 Here $y_i$ and $x_i$ are the labels and features of the $i$th image, $c_i$ is the $i$th Lagrangian multiplier, $\lambda$ is a regularisation parameter,and $k(x_i,x_j)$ is the Gaussian Kernel product~\eqref{eq:gauss} of vectors~$x_i$ and~$x_j$.
 
-\subsubsection{Bernoulli random variable models the label noise}
-The nature of \textsc{ccn} implies that class dependent noises~$\epsilon(s_i)$ follows Bernoulli distributions with the parameters given as mean~\eqref{eq:e1} and~\eqref{eq:em1}, depending on the value of label~$s_i$. The observed label~$s_i$ is correct if and only if the noise~$\epsilon(s_i)=0$. For the $i$th image, it is straightforward to verify that
+\subsubsection{Bernoulli random variable models th latent label noise}
+The nature of \textsc{ccn} implies that the latent class-dependent noises~$\epsilon(s_i)$ follows Bernoulli distributions with the parameters given as mean~\eqref{eq:e1} and~\eqref{eq:em1}, depending on the value of label~$s_i$. The observed label~$s_i$ is correct if and only if the noise~$\epsilon(s_i)=0$. For the $i$th image, it is straightforward to verify that
 \begin{equation*}
 y_i=s_i(1-2\epsilon(s_i)).
 \end{equation*}
 
 Substituting this expression of label noise into loss function~\eqref{eq:dual} gives
 \begin{equation}
-   f(c_{1}\ldots c_{n})=\sum _{i=1}^{n}c_{i}-{\frac {1}{2}}\sum _{i=1}^{n}\sum _{j=1}^{n}S_{i}c_{i}k(x_{i},x_{j})S_{j}c_{j}(1-2\epsilon(S_i))(1-2\epsilon(S_j)). \label{eq:dual2}
+   f(c_{1}\ldots c_{n})=\sum _{i=1}^{n}c_{i}-{\frac {1}{2}}\sum _{i=1}^{n}\sum _{j=1}^{n}S_{i}c_{i}k(x_{i},x_{j})S_{j}c_{j}(1-2\epsilon(s_i))(1-2\epsilon(s_j)). \label{eq:dual2}
 \end{equation}
-This loss function involves random variables. For a similar  but simpler problem with \textsc{rcn}, \citet{pmlr-v20-biggio11} applied the technique of Expectation Maximisation, which uses the expected value of the loss function as the objective function for optimisation algorithms.
+This loss function involves latent random variables. For a similar  but simpler problem with \textsc{rcn}, \citet{pmlr-v20-biggio11} applied the technique of Expectation Maximisation, which uses the expected value of the loss function as the objective function for optimisation algorithms.
 
-Here, when $i=j$, the expectation~$E(1-2\epsilon(S_i))(1-2\epsilon(S_j))=1-4E\epsilon(S_j)+4E\epsilon(S_j^2)=1$.
-When $i\neq j$, by substituting these expectations~\eqref{eq:exp} from Section~\ref{sec:1}, the expectation~$E(1-2\epsilon(S_i))(1-2\epsilon(S_j))=(1-2E\epsilon(S_i))(1-2E\epsilon(S_j))=0.16$.
+Here, when $i=j$, the expectation~$E(1-2\epsilon(s_i))(1-2\epsilon(s_j))=1-4E\epsilon(s_j)+4E\epsilon(s_j^2)=1$.
+When $i\neq j$, by substituting these expectations~\eqref{eq:exp} from Section~\ref{sec:1}, the expectation~$E(1-2\epsilon(s_i))(1-2\epsilon(s_j))=(1-2E\epsilon(s_i))(1-2E\epsilon(s_j))=0.16$.
 
-Define the correction term~$m_{ij}:=E(1-2\epsilon(S_i))(1-2\epsilon(S_j))$. The diagonal entries~$m_{ii}=1$, and the off diagonal entries~$m_{ij}=0.16$ when indexes~$i\neq j$. Taking the expected values of the loss function~\eqref{eq:dual2}
+Define the correction term~$m_{ij}:=E(1-2\epsilon(s_i))(1-2\epsilon(s_j))$. The diagonal entries~$m_{ii}=1$, and the off diagonal entries~$m_{ij}=0.16$ when indexes~$i\neq j$. Taking the expected values of the loss function~\eqref{eq:dual2}
 \begin{equation}
    Ef(c_{1}\ldots c_{n})=\sum _{i=1}^{n}c_{i}-{\frac {1}{2}}\sum _{i=1}^{n}\sum _{j=1}^{n}S_{i}c_{i}k(x_{i},x_{j})S_{j}c_{j}m_{ij}. \label{eq:dual3}
 \end{equation}
 
 \subsubsection{Modifying kernel improves robustness against label noise}
 
-Comparing this loss function and the ordinary loss function of \svm \eqref{eq:dual}, the only difference is to replace the kernel products~$k(x_i,x_j)$ with our new proposed kernel~$k^*_{ij}:=k(x_i,x_j)m_{ij}$.
+Comparing this loss function and the ordinary loss function of \svm\ \eqref{eq:dual}, the only difference is to replace the kernel products~$k(x_i,x_j)$ with our new proposed kernel~$k^*_{ij}:=k(x_i,x_j)m_{ij}$.
 %, where $\circ$ denote the Hadamard product \citep{hastie01statisticallearning}.
 
 %\subsubsection{Additional regularisation}
@@ -260,7 +260,7 @@ Comparing this loss function and the ordinary loss function of \svm \eqref{eq:du
 %\begin{equation*}
 %   Ef(c_{1}\ldots c_{n})=10\sum _{i=1}^{n}c_{i}-{\frac {1}{2}}\sum _{i=1}^{n}\sum %_{j=1}^{n}S_{i}c_{i}k(x_{i},x_{j})S_{j}c_{j}m_{ij}. \label{eq:dual3}
 %\end{equation*}
-%From the dual prospective, we are weakening the contributions of the contaminated labels~$S_i$, hence making the algorithm more robust.
+%From the dual prospective, we are weakening the contributions of the contaminated labels~$s_i$, hence making the algorithm more robust.
 
 
 
@@ -331,7 +331,7 @@ R_{\loss,D}(g) = R_{\beta \loss,D_\rho}(g). \label{eq:loss}
 This loss function allows us to estimate the true loss function~$R_{\loss,D}(g)$ without knowing the true labels~$Y$.
 
 \subsection{Method 3: heuristic approach by relabelling}\label{2nd}
-Method 3 implements \textsc{svm} to select samples that we can more confidently make predictions.
+Method 3 implements a pre-training \textsc{svm} to select a subset of samples that are `cleaner'.
 %\subsubsection{Hinge loss is robust against label noise}
 
 \subsubsection{Conditional probability filters samples}\label{2nd2}
@@ -375,7 +375,7 @@ The initial value of regularisation parameter~$\lambda$ is chosen as $1$.
 The gradient is estimated by finite difference method.
 The model seems to be insensitive to the regularisation parameter~$\lambda$.
 
-Our model resists over-fitting for three reasons. Most importantly, as discussed in Section~\ref{sec:over}, soft-margin \svm\ is known to have a strong generalisation ability \citep{NIPS2012_4500,Cortes1995,Seeger:2003:PGE:944919.944929}. Also, we select the hyperparameter of our model so that it predicts the contaminated label~$S$ with a accuracy~$70\%$, not $100\%$. Thirdly, the number of features ($784$ for \textsc{mnist} and $100$ for \textsc{cifar}) of model input is small comparing with the sample size ($8,000$).
+Our model tends to be resist to over-fitting for three reasons. Most importantly, as discussed in Section~\ref{sec:over}, soft-margin \svm\ is known to have a strong generalisation ability \citep{NIPS2012_4500,Cortes1995,Seeger:2003:PGE:944919.944929}. Also, we select the hyperparameter of our model so that it predicts the contaminated label~$S$ with a accuracy~$70\%$, not $100\%$. Thirdly, the number of features ($784$ for \textsc{mnist} and $100$ for \textsc{cifar}) of model input is small comparing with the sample size ($8,000$).
 
 \subsection{Bootstrap constructs confidence intervals and hypothesis tests}
 Let $A_{ij}$ be the accuracy generated from our {$i$}th algorithm from the $j$th Monte-Carlo simulation. This section provides us a tool to compare the accuracy~$A_{ij}$ for the three proposed algorithms.
@@ -546,10 +546,10 @@ Density plot~\eqref{fig:Density} of the accuracy results visualise these results
 
 
 
-\subsection{Discussion}
+\subsection{Discussion and personal reflection}
 Please write these in full good English sentences.
 
-EM is fast, require good estimate of $\rho$. Need mathematical derivation of objective function. Derivation depends on base method and error distribution, needs mathematical skills. Low accuracy.
+EM is fast, require good estimate of $\rho$. Need mathematical derivation of objective function. Derivation depends on base method and error distribution, needs mathematical skills. Low accuracy due to it only minimise a upper bound of the true loss function. From optimisation point of view, this is equivalent to a local minimum \citep{NIPS1999_1672}.
 
 Relabelling no need to know $\rho$. Select a region where $P(S=g(x))$ is high where $g(x)$ is the decision function~\eqref{eq:decision}. However, in consistent result. Only useful with large data.
 
