@@ -359,7 +359,7 @@ Define the indicator function~$I_{g(X)=S} \in \left\{0,1\right\}$ as the binary 
 0 & \text{when }P(Y=1|X_{(3333)})<P({Y}|X)<P(Y=1|X_{(6667)}).
 \end{cases}
 \end{equation*}
-This approach is purely empirical. Thus, the prediction made by this model is neither guaranteed to be unbiased nor with minimal variance, even asymptotically.
+This approach is purely empirical. Thus, the prediction made by this model is neither guaranteed to be unbiased nor with bounded variance asymptotically.
 
 This method gives us an accuracy of $95.0\%$ on the testing data.
 %\subsubsection{Hinge loss if robust against label noise}
@@ -490,12 +490,20 @@ The inconsistency is not observed in dataset~\textsc{mnist}. This may partly be 
 \begin{figure}
 	%\includegraphics[scale=0.9]{boxplot}
 	\centering
+    \includegraphics[scale=0.8]{boxplotv}%maybe use the large one
+	\caption{Box plots of the accuracy results against running time. {\color{red}Describe various lines and the dots as well as colours here. }
+}
+	\label{fig:Boxplot}
+\end{figure}
+choose one
+\begin{figure}
+	%\includegraphics[scale=0.9]{boxplot}
+	\centering
     \includegraphics[scale=0.8]{boxplot}%maybe use the large one
 	\caption{Box plots of the accuracy results against running time. {\color{red}Describe various lines and the dots as well as colours here. }
 }
 	\label{fig:Boxplot}
 \end{figure}
-
 \subsubsection{Hypothesis tests justify visualisations}
 Kolmogorov-Smirnov test results using the statistic~\eqref{teststatistic} support the visualisations observed from the box plot~\ref{fig:Boxplot}.
 \begin{table}%please exchange row 2 3.
