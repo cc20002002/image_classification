@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9) (preloaded format=pdflatex 2015.3.22)  25 OCT 2018 01:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9) (preloaded format=pdflatex 2015.3.22)  27 OCT 2018 21:41
 entering extended mode
 **latex_template.tex
 (latex_template.tex
@@ -191,16 +191,13 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip43
 )
-(d:\CTEX\MiKTeX\tex\latex\natbib\natbib.sty
-Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip44
-\bibsep=\skip45
-LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count103
-)
+(d:\CTEX\MiKTeX\tex\latex\bigints\bigints.sty
+Package: bigints 2010/02/15 Writing big integrals
+Package bigints Info: This is Bigints by Merciadri Luca. on input line 5.
+
 (d:\CTEX\MiKTeX\tex\latex\amsmath\amsmath.sty
 Package: amsmath 2013/01/14 v2.14 AMS math features
-\@mathmargin=\skip46
+\@mathmargin=\skip44
 
 For additional information on amsmath, use the `?' option.
 (d:\CTEX\MiKTeX\tex\latex\amsmath\amstext.sty
@@ -218,13 +215,13 @@ Package: amsbsy 1999/11/29 v1.2d
 (d:\CTEX\MiKTeX\tex\latex\amsmath\amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
-\inf@bad=\count104
+\inf@bad=\count103
 LaTeX Info: Redefining \frac on input line 210.
-\uproot@=\count105
-\leftroot@=\count106
+\uproot@=\count104
+\leftroot@=\count105
 LaTeX Info: Redefining \overline on input line 306.
-\classnum@=\count107
-\DOTSCASE@=\count108
+\classnum@=\count106
+\DOTSCASE@=\count107
 LaTeX Info: Redefining \ldots on input line 378.
 LaTeX Info: Redefining \dots on input line 381.
 LaTeX Info: Redefining \cdots on input line 466.
@@ -233,15 +230,15 @@ LaTeX Info: Redefining \cdots on input line 466.
 \big@size=\dimen112
 LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
-\macc@depth=\count109
-\c@MaxMatrixCols=\count110
+\macc@depth=\count108
+\c@MaxMatrixCols=\count109
 \dotsspace@=\muskip11
-\c@parentequation=\count111
-\dspbrk@lvl=\count112
+\c@parentequation=\count110
+\dspbrk@lvl=\count111
 \tag@help=\toks16
-\row@=\count113
-\column@=\count114
-\maxfields@=\count115
+\row@=\count112
+\column@=\count113
+\maxfields@=\count114
 \andhelp@=\toks17
 \eqnshift@=\dimen113
 \alignsep@=\dimen114
@@ -250,11 +247,18 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
 \totwidth@=\dimen117
 \lineht@=\dimen118
 \@envbody=\toks18
-\multlinegap=\skip47
-\multlinetaggap=\skip48
+\multlinegap=\skip45
+\multlinetaggap=\skip46
 \mathdisplay@stack=\toks19
 LaTeX Info: Redefining \[ on input line 2665.
 LaTeX Info: Redefining \] on input line 2666.
+))
+(d:\CTEX\MiKTeX\tex\latex\natbib\natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip47
+\bibsep=\skip48
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count115
 )
 (d:\CTEX\MiKTeX\tex\latex\amsfonts\amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
@@ -437,106 +441,226 @@ Package: booktabs 2005/04/14 v1.61803 publication quality tables
 \@lastruleclass=\count126
 \@thisrulewidth=\dimen140
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 19.
+(d:\CTEX\MiKTeX\tex\latex\pdfcomment\pdfcomment.sty
+Package: pdfcomment 2012/09/28 pdfcomment.sty v2.3a - Josef Kleber (C) 2008-201
+2
+
+(d:\CTEX\MiKTeX\tex\latex\xkeyval\xkeyval.sty
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+
+(d:\CTEX\MiKTeX\tex\generic\xkeyval\xkeyval.tex
+(d:\CTEX\MiKTeX\tex\generic\xkeyval\xkvutils.tex
+\XKV@toks=\toks23
+\XKV@tempa@toks=\toks24
+)
+\XKV@depth=\count127
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+\c@pc@count@i=\count128
+\c@pc@count@ii=\count129
+\c@pc@count@iii=\count130
+\c@pc@count@iv=\count131
+\pc@mathannot@box=\box30
+\pc@dima=\skip53
+\pc@dimb=\skip54
+\pc@Sposx=\skip55
+\pc@Sposy=\skip56
+\pc@Eposx=\skip57
+\pc@Eposy=\skip58
+\pc@column=\skip59
+\pc@box@width=\skip60
+\pc@box@height=\skip61
+\pc@box@depth=\skip62
+
+(d:\CTEX\MiKTeX\tex\latex\oberdiek\zref-savepos.sty
+Package: zref-savepos 2012/04/04 v2.24 Module savepos for zref (HO)
+
+(d:\CTEX\MiKTeX\tex\latex\oberdiek\zref-base.sty
+Package: zref-base 2012/04/04 v2.24 Module base for zref (HO)
+Package zref Info: New property list: main on input line 759.
+Package zref Info: New property: default on input line 760.
+Package zref Info: New property: page on input line 761.
+)
+Package zref Info: New property list: savepos on input line 75.
+Package zref Info: New property: posx on input line 76.
+Package zref Info: New property: posy on input line 77.
+)
+\c@zref@unique=\count132
+
+(d:\CTEX\MiKTeX\tex\latex\marginnote\marginnote.sty
+Package: marginnote 2012/03/29 v1.1i non floating margin notes for LaTeX
+\c@mn@abspage=\count133
+)
+(d:\CTEX\MiKTeX\tex\latex\datetime\datetime.sty
+Package: datetime 2013/09/10 v2.59 Date Time Package
+
+(d:\CTEX\MiKTeX\tex\latex\etoolbox\etoolbox.sty
+Package: etoolbox 2015/03/19 v2.1d e-TeX tools for LaTeX (JAW)
+
+(d:\CTEX\MiKTeX\tex\latex\misc\etex.sty
+Package: etex 2015/03/02 v2.1 eTeX basic definition package (PEB,DPC)
+\et@xins=\count134
+)
+\etb@tempcnta=\count135
+)
+(d:\CTEX\MiKTeX\tex\latex\fmtcount\fmtcount.sty
+Package: fmtcount 2014/07/18 v3.00
+
+(d:\CTEX\MiKTeX\tex\latex\fmtcount\fcprefix.sty
+Package: fcprefix 2012/09/28
+
+(d:\CTEX\MiKTeX\tex\latex\fmtcount\fcnumparser.sty
+Package: fcnumparser 2012/09/28
+\fc@digit@counter=\count136
+))
+\c@padzeroesN=\count137
+\fc@tmpcatcode=\count138
+\@DT@modctr=\count139
+\@ordinalctr=\count140
+\@orgargctr=\count141
+\@strctr=\count142
+\@tmpstrctr=\count143
+\@DT@loopN=\count144
+\@DT@X=\count145
+
+(d:\CTEX\MiKTeX\tex\latex\fmtcount\fc-english.def
+File: fc-english.def 2013/08/17
+))
+(d:\CTEX\MiKTeX\tex\latex\datetime\datetime-defaults.sty
+Package: datetime-defaults 2013/09/10
+)
+\@day=\count146
+\@month=\count147
+\@year=\count148
+\c@HOUR=\count149
+\c@HOURXII=\count150
+\c@MINUTE=\count151
+\c@TOHOUR=\count152
+\c@TOMINUTE=\count153
+\c@SECOND=\count154
+\currenthour=\count155
+\currentminute=\count156
+\currentsecond=\count157
+Package datetime Info: No datetime.cfg file found, using default settings on in
+put line 308.
+\@dtctr=\count158
+\dayofyear=\count159
+\dayofweek=\count160
+LaTeX Info: Redefining \today on input line 736.
+\dt@a=\toks25
+\dt@b=\toks26
+)
+(d:\CTEX\MiKTeX\tex\latex\bezos\soulpos.sty
+Package: soulpos 2012/02/25 v1.0 Fancy underlining
+\ulp@subcnt=\count161
+\ulp@cnt=\count162
+\ulp@out=\write4
+\ulp@in=\read2
+\ulwidth=\dimen141
+)
+
+Package hyperref Warning: Option `pdftex' has already been used,
+(hyperref)                setting the option has no effect on input line 1348.
+
+Package zref Info: New property list: pdfcomment on input line 2714.
+Package zref Info: New property: PCPDFOBJID on input line 2715.
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 23.
 
 
 Package hyperref Warning: Option `pagecolor' is not available anymore.
 
-Package hyperref Info: Option `breaklinks' set `true' on input line 19.
+Package hyperref Info: Option `breaklinks' set `true' on input line 23.
 
 Package hyperref Warning: Option `dvips' has already been used,
-(hyperref)                setting the option has no effect on input line 19.
+(hyperref)                setting the option has no effect on input line 23.
 
 
 Package hyperref Warning: Option `bookmarks' has already been used,
-(hyperref)                setting the option has no effect on input line 19.
+(hyperref)                setting the option has no effect on input line 23.
 
-Package hyperref Info: Option `bookmarksopen' set `true' on input line 19.
-(latex_template.aux
-
-LaTeX Warning: Label `ci' multiply defined.
-
-)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 31.
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 23.
+(latex_template.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 37.
  (d:\CTEX\MiKTeX\tex\latex\psnfss\ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
-\AtBeginShipoutBox=\box30
+\AtBeginShipoutBox=\box31
 
 (d:\CTEX\MiKTeX\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count127
-\scratchdimen=\dimen141
-\scratchbox=\box31
-\nofMPsegments=\count128
-\nofMParguments=\count129
-\everyMPshowfont=\toks23
-\MPscratchCnt=\count130
-\MPscratchDim=\dimen142
-\MPnumerator=\count131
-\makeMPintoPDFobject=\count132
-\everyMPtoPDFconversion=\toks24
+\scratchcounter=\count163
+\scratchdimen=\dimen142
+\scratchbox=\box32
+\nofMPsegments=\count164
+\nofMParguments=\count165
+\everyMPshowfont=\toks27
+\MPscratchCnt=\count166
+\MPscratchDim=\dimen143
+\MPnumerator=\count167
+\makeMPintoPDFobject=\count168
+\everyMPtoPDFconversion=\toks28
 )
-Package hyperref Info: Link coloring ON on input line 31.
+Package hyperref Info: Link coloring ON on input line 37.
  (d:\CTEX\MiKTeX\tex\latex\hyperref\nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
 (d:\CTEX\MiKTeX\tex\generic\oberdiek\gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count133
+\c@section@level=\count169
 )
-LaTeX Info: Redefining \ref on input line 31.
-LaTeX Info: Redefining \pageref on input line 31.
-LaTeX Info: Redefining \nameref on input line 31.
+LaTeX Info: Redefining \ref on input line 37.
+LaTeX Info: Redefining \pageref on input line 37.
+LaTeX Info: Redefining \nameref on input line 37.
  (latex_template.out)
 (latex_template.out)
-\@outlinefile=\write4
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 31.
+\@outlinefile=\write5
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 37.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/ptm/m/n on input line 31.
+(Font)                  OT1/cmr/m/n --> OT1/ptm/m/n on input line 37.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/ptm/m/n on input line 31.
+(Font)                  OT1/cmr/bx/n --> OT1/ptm/m/n on input line 37.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/ptm/m/n --> OT1/ptm/bx/n on input line 31.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 31.
+(Font)                  OT1/ptm/m/n --> OT1/ptm/bx/n on input line 37.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 37.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> OT1/ptm/bx/n on input line 31.
+(Font)                  OT1/cmr/bx/n --> OT1/ptm/bx/n on input line 37.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/ptm/bx/n on input line 31.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 31.
+(Font)                  OT1/cmr/bx/n --> OT1/ptm/bx/n on input line 37.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 37.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/phv/m/n on input line 31.
+(Font)                  OT1/cmss/m/n --> OT1/phv/m/n on input line 37.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/phv/m/n on input line 31.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 31.
+(Font)                  OT1/cmss/bx/n --> OT1/phv/m/n on input line 37.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 37.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> OT1/ptm/m/it on input line 31.
+(Font)                  OT1/cmr/m/it --> OT1/ptm/m/it on input line 37.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> OT1/ptm/m/it on input line 31.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 31.
+(Font)                  OT1/cmr/bx/it --> OT1/ptm/m/it on input line 37.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 37.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> OT1/pcr/m/n on input line 31.
+(Font)                  OT1/cmtt/m/n --> OT1/pcr/m/n on input line 37.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/pcr/m/n on input line 31.
+(Font)                  OT1/cmtt/m/n --> OT1/pcr/m/n on input line 37.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/phv/m/n --> OT1/phv/bx/n on input line 31.
+(Font)                  OT1/phv/m/n --> OT1/phv/bx/n on input line 37.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/ptm/m/it --> OT1/ptm/bx/it on input line 31.
+(Font)                  OT1/ptm/m/it --> OT1/ptm/bx/it on input line 37.
  (d:\CTEX\MiKTeX\tex\latex\graphics\graphicx.sty
 Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
 
@@ -551,78 +675,398 @@ File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
 )
 Package graphics Info: Driver file: pdftex.def on input line 91.
 )
-\Gin@req@height=\dimen143
-\Gin@req@width=\dimen144
+\Gin@req@height=\dimen144
+\Gin@req@width=\dimen145
 )
+Package marginnote Info: \pdfoutput not 0 and \pdflastxpos available.
+(marginnote)             Extended position detection mode activated.
+Package soulpos Info: Loading soulutf8 on input line 37.
+
+(d:\CTEX\MiKTeX\tex\generic\oberdiek\soulutf8.sty
+Package: soulutf8 2007/09/09 v1.0 Permit use of UTF-8 characters in soul (HO)
+
+(d:\CTEX\MiKTeX\tex\latex\soul\soul.sty
+Package: soul 2003/11/17 v2.4 letterspacing/underlining (mf)
+\SOUL@word=\toks29
+\SOUL@lasttoken=\toks30
+\SOUL@cmds=\toks31
+\SOUL@buffer=\toks32
+\SOUL@token=\toks33
+\SOUL@spaceskip=\skip63
+\SOUL@ttwidth=\dimen146
+\SOUL@uldp=\dimen147
+\SOUL@ulht=\dimen148
+))
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 43.
-LaTeX Font Info:    Try loading font information for U+eur on input line 43.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 49.
+LaTeX Font Info:    Try loading font information for U+eur on input line 49.
 
 (d:\CTEX\MiKTeX\tex\latex\amsfonts\ueur.fd
 File: ueur.fd 2013/01/14 v3.01 Euler Roman
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 43.
+LaTeX Font Info:    Try loading font information for U+msa on input line 49.
 
 (d:\CTEX\MiKTeX\tex\latex\amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 43.
+LaTeX Font Info:    Try loading font information for U+msb on input line 49.
 
 (d:\CTEX\MiKTeX\tex\latex\amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+euf on input line 43.
+LaTeX Font Info:    Try loading font information for U+euf on input line 49.
 
 (d:\CTEX\MiKTeX\tex\latex\amsfonts\ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 )
-LaTeX Font Info:    Try loading font information for U+eus on input line 43.
+LaTeX Font Info:    Try loading font information for U+eus on input line 49.
 
 (d:\CTEX\MiKTeX\tex\latex\amsfonts\ueus.fd
 File: ueus.fd 2013/01/14 v3.01 Euler Script
 )
-LaTeX Font Info:    Try loading font information for U+euex on input line 43.
+LaTeX Font Info:    Try loading font information for U+euex on input line 49.
 
 (d:\CTEX\MiKTeX\tex\latex\amsfonts\ueuex.fd
 File: ueuex.fd 2013/01/14 v3.01 Euler extra symbols
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 43.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 49.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 46.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 52.
  (latex_template.toc)
-\tf@toc=\write5
- [1
+\tf@toc=\write6
 
-{d:/CTEX/UserData/pdftex/config/pdftex.map}] [2] [3] [4] [5] [6]
-Overfull \hbox (56.00847pt too wide) in paragraph at lines 317--318
+
+Package natbib Warning: Citation `hardle2007applied' on page 1 undefined on inp
+ut line 59.
+
+
+Package natbib Warning: Citation `Bishop:2006:PRM:1162264' on page 1 undefined 
+on input line 65.
+
+
+Package natbib Warning: Citation `pmlr-v20-biggio11' on page 1 undefined on inp
+ut line 65.
+
+
+Package natbib Warning: Citation `liu2016classification' on page 1 undefined on
+ input line 67.
+
+
+Package natbib Warning: Citation `brodley1996identifying' on page 1 undefined o
+n input line 69.
+
+
+Package natbib Warning: Citation `NIPS2012_4500' on page 1 undefined on input l
+ine 71.
+
+
+Package natbib Warning: Citation `Seeger:2003:PGE:944919.944929' on page 1 unde
+fined on input line 71.
+
+
+Package natbib Warning: Citation `Cortes1995' on page 1 undefined on input line
+ 71.
+
+
+Package natbib Warning: Citation `Fernandez-Delgado:2014:WNH:2627435.2697065' o
+n page 1 undefined on input line 71.
+
+
+Package natbib Warning: Citation `frenay2014classification' on page 1 undefined
+ on input line 71.
+
+
+LaTeX Warning: Reference `result' on page 1 undefined on input line 74.
+
+
+LaTeX Warning: Reference `result' on page 1 undefined on input line 74.
+
+
+Package natbib Warning: Citation `liu2016classification' on page 1 undefined on
+ input line 74.
+
+
+LaTeX Warning: Reference `result' on page 1 undefined on input line 76.
+
+[1
+
+{d:/CTEX/UserData/pdftex/config/pdftex.map}]
+
+Package natbib Warning: Citation `frenay2014classification' on page 2 undefined
+ on input line 79.
+
+
+Package natbib Warning: Citation `frenay2014classification' on page 2 undefined
+ on input line 82.
+
+
+Package natbib Warning: Citation `yang2018adasampling' on page 2 undefined on i
+nput line 82.
+
+
+Package natbib Warning: Citation `pmlr-v20-biggio11' on page 2 undefined on inp
+ut line 84.
+
+
+LaTeX Warning: Reference `result' on page 2 undefined on input line 84.
+
+
+Package natbib Warning: Citation `liu2016classification' on page 2 undefined on
+ input line 84.
+
+
+Package natbib Warning: Citation `liu2016classification' on page 2 undefined on
+ input line 84.
+
+
+Package natbib Warning: Citation `Boser:1992:TAO:130385.130401' on page 2 undef
+ined on input line 94.
+
+
+Package natbib Warning: Citation `Cortes1995' on page 2 undefined on input line
+ 95.
+
+
+Package natbib Warning: Citation `Fernandez-Delgado:2014:WNH:2627435.2697065' o
+n page 2 undefined on input line 104.
+
+
+Package natbib Warning: Citation `hastie01statisticallearning' on page 2 undefi
+ned on input line 104.
+
+
+Package natbib Warning: Citation `hastie01statisticallearning' on page 2 undefi
+ned on input line 106.
+
+
+Package natbib Warning: Citation `NIPS2012_4500' on page 2 undefined on input l
+ine 106.
+
+
+Package natbib Warning: Citation `Cortes1995' on page 2 undefined on input line
+ 106.
+
+
+Package natbib Warning: Citation `Seeger:2003:PGE:944919.944929' on page 2 unde
+fined on input line 106.
+
+[2]
+
+Package natbib Warning: Citation `Fernandez-Delgado:2014:WNH:2627435.2697065' o
+n page 3 undefined on input line 108.
+
+
+Package natbib Warning: Citation `frenay2014classification' on page 3 undefined
+ on input line 108.
+
+
+Package natbib Warning: Citation `frenay2014classification' on page 3 undefined
+ on input line 110.
+
+
+LaTeX Warning: Reference `result' on page 3 undefined on input line 110.
+
+
+Package natbib Warning: Citation `jonsson2002support' on page 3 undefined on in
+put line 116.
+
+
+Package natbib Warning: Citation `jonsson2002support' on page 3 undefined on in
+put line 116.
+
+
+Package natbib Warning: Citation `liu2016classification' on page 3 undefined on
+ input line 147.
+
+[3]
+
+Package natbib Warning: Citation `DBLP:journals/jmlr/KanamoriHS09' on page 4 un
+defined on input line 156.
+
+
+Package natbib Warning: Citation `liu2016classification' on page 4 undefined on
+ input line 176.
+
+
+Package natbib Warning: Citation `pmlr-v20-biggio11' on page 4 undefined on inp
+ut line 190.
+
+
+Package natbib Warning: Citation `pmlr-v20-biggio11' on page 4 undefined on inp
+ut line 193.
+
+[4]
+
+Package natbib Warning: Citation `pmlr-v20-biggio11' on page 5 undefined on inp
+ut line 208.
+
+
+Package natbib Warning: Citation `hastie01statisticallearning' on page 5 undefi
+ned on input line 219.
+
+
+Package natbib Warning: Citation `liu2016classification' on page 5 undefined on
+ input line 251.
+
+
+Package natbib Warning: Citation `liu2016classification' on page 5 undefined on
+ input line 258.
+
+
+Package natbib Warning: Citation `liu2016classification' on page 5 undefined on
+ input line 264.
+
+
+Package natbib Warning: Citation `Sugiyama10densityratio' on page 5 undefined o
+n input line 264.
+
+
+Package natbib Warning: Citation `liu2016classification' on page 5 undefined on
+ input line 264.
+
+[5]
+
+Package natbib Warning: Citation `Platt99probabilisticoutputs' on page 6 undefi
+ned on input line 266.
+
+
+Package natbib Warning: Citation `liu2016classification' on page 6 undefined on
+ input line 266.
+
+
+Package natbib Warning: Citation `liu2016classification' on page 6 undefined on
+ input line 269.
+
+
+Package natbib Warning: Citation `liu2016classification' on page 6 undefined on
+ input line 297.
+
+
+Package natbib Warning: Citation `Wu03probabilityestimates' on page 6 undefined
+ on input line 319.
+
+[6]
+
+Package natbib Warning: Citation `Walck:1996cca' on page 7 undefined on input l
+ine 374.
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 389--390
+
+ []
+
+Package hyperref Info: bookmark level for unknown lpcsec defaults to 0 on input
+ line 391.
+<hpc.jpg, id=128, 423.83344pt x 396.7322pt>
+File: hpc.jpg Graphic file (type jpg)
+ <use hpc.jpg>
+Package pdftex.def Info: hpc.jpg used on input line 397.
+(pdftex.def)             Requested size: 296.68137pt x 277.71063pt.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 405.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\times' on input line 405.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 405.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 405.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\times' on input line 405.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 405.
+
+<image_compare.png, id=131, 722.7pt x 234.8775pt>
+File: image_compare.png Graphic file (type png)
+ <use image_compare.png>
+Package pdftex.def Info: image_compare.png used on input line 407.
+(pdftex.def)             Requested size: 433.62334pt x 140.92758pt.
+
+Overfull \hbox (36.13835pt too wide) in paragraph at lines 405--408
+ [] 
+ []
+
+[8 <./hpc.jpg>]
+
+LaTeX Warning: Reference `tab:Meansd' on page 9 undefined on input line 426.
+
+
+LaTeX Warning: Reference `tab:Meansd' on page 9 undefined on input line 430.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/sc' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/sc' tried instead on input line 455.
+
+LaTeX Warning: Reference `fig:Boxplot' on page 9 undefined on input line 458.
+
+[9 <./image_compare.png>]
+
+LaTeX Warning: Reference `fig:Boxplot' on page 10 undefined on input line 461.
+
+
+LaTeX Warning: Reference `tab:Meansd' on page 10 undefined on input line 461.
+
+
+Package natbib Warning: Citation `liu2016classification' on page 10 undefined o
+n input line 462.
+
+<boxplot.pdf, id=164, 505.89pt x 505.89pt>
+File: boxplot.pdf Graphic file (type pdf)
+ <use boxplot.pdf>
+Package pdftex.def Info: boxplot.pdf used on input line 468.
+(pdftex.def)             Requested size: 354.12057pt x 354.12057pt.
+
+
+LaTeX Warning: Reference `teststatistic' on page 10 undefined on input line 475
+.
+
+
+LaTeX Warning: Reference `fig:Boxplot' on page 10 undefined on input line 475.
+
+
+LaTeX Warning: Reference `tab:HypothesisTest' on page 10 undefined on input lin
+e 499.
+
+
+LaTeX Warning: Reference `fig:Density' on page 10 undefined on input line 504.
+
+<histo.pdf, id=165, 505.89pt x 332.24126pt>
+File: histo.pdf Graphic file (type pdf)
+ <use histo.pdf>
+Package pdftex.def Info: histo.pdf used on input line 507.
+(pdftex.def)             Requested size: 455.29678pt x 299.01436pt.
+
+Overfull \hbox (57.8118pt too wide) in paragraph at lines 507--508
  [][] 
  []
 
-<boxplot.pdf, id=281, 505.89pt x 505.89pt>
-File: boxplot.pdf Graphic file (type pdf)
- <use boxplot.pdf>
-Package pdftex.def Info: boxplot.pdf used on input line 344.
-(pdftex.def)             Requested size: 455.29678pt x 455.29678pt.
+[10] [11 <./boxplot.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 538--548
 
-Overfull \hbox (57.8118pt too wide) in paragraph at lines 344--345
-[][] 
- []
-
-<histo.pdf, id=282, 505.89pt x 332.24126pt>
-File: histo.pdf Graphic file (type pdf)
- <use histo.pdf>
-Package pdftex.def Info: histo.pdf used on input line 350.
-(pdftex.def)             Requested size: 455.29678pt x 299.01436pt.
-
-Overfull \hbox (57.8118pt too wide) in paragraph at lines 350--351
-[][] 
  []
 
 
-LaTeX Warning: Reference `others' on page 7 undefined on input line 357.
+Underfull \hbox (badness 10000) in paragraph at lines 538--548
 
-(latex_template.bbl [7] [8 <./boxplot.pdf>]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 551--552
+
+ []
+
+(latex_template.bbl [12 <./histo.pdf>]
 LaTeX Font Info:    Try loading font information for OT1+pcr on input line 45.
 
 (d:\CTEX\MiKTeX\tex\latex\psnfss\ot1pcr.fd
@@ -639,32 +1083,47 @@ Underfull \hbox (badness 1048) in paragraph at lines 48--55
 nds for gaus-sian pro-cess clas-si-fi-ca-
  []
 
-[9 <./histo.pdf>])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 368.
- [10]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 368.
- (latex_template.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 368.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 368.
-Package rerunfilecheck Info: File `latex_template.out' has not changed.
-(rerunfilecheck)             Checksum: A07278ABDA4EFD94BD383172756993BE;1820.
+)
 
+Package natbib Warning: There were undefined citations.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 560.
+[13]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 560.
+ (latex_template.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+* soulpos - computing points - it may take a few seconds * (latex_template.upa)
+)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 560.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 560.
+
+
+Package rerunfilecheck Warning: File `latex_template.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `latex_template.out':
+(rerunfilecheck)             Before: D41D8CD98F00B204E9800998ECF8427E;0
+(rerunfilecheck)             After:  0EF6F74EFD4306FC4D296764DBE897F3;3009.
 
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: There were multiply-defined labels.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 368.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 560.
  ) 
 Here is how much of TeX's memory you used:
- 8574 strings out of 493698
- 132109 string characters out of 3149752
- 226341 words of memory out of 3000000
- 11687 multiletter control sequences out of 15000+200000
- 21293 words of font info for 54 fonts, out of 3000000 for 9000
+ 11565 strings out of 493698
+ 187042 string characters out of 3149752
+ 294205 words of memory out of 3000000
+ 14571 multiletter control sequences out of 15000+200000
+ 27660 words of font info for 75 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 40i,13n,46p,1186b,454s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,13n,46p,1186b,442s stack positions out of 5000i,500n,10000p,200000b,50000s
 {d:/CTEX/MiKTeX/fonts/enc/dvips/fontname/8r.enc}<d:/CTEX/MiKTeX/fonts/type1/p
 ublic/amsfonts/cm/cmex10.pfb><d:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cms
 y10.pfb><d:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><d:/CTEX/MiKTe
@@ -673,13 +1132,12 @@ ic/amsfonts/euler/eufm10.pfb><d:/CTEX/MiKTeX/fonts/type1/public/amsfonts/euler/
 eufm7.pfb><d:/CTEX/MiKTeX/fonts/type1/public/amsfonts/euler/eurm10.pfb><d:/CTEX
 /MiKTeX/fonts/type1/public/amsfonts/euler/eurm5.pfb><d:/CTEX/MiKTeX/fonts/type1
 /public/amsfonts/euler/eurm7.pfb><d:/CTEX/MiKTeX/fonts/type1/public/amsfonts/eu
-ler/eusm10.pfb><d:/CTEX/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><
-d:/CTEX/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><d:/CTEX/MiKTeX/fonts/type1/u
-rw/times/utmb8a.pfb><d:/CTEX/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><d:/CTEX/M
-iKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on latex_template.pdf (10 pages, 234669 bytes).
+ler/eusm10.pfb><d:/CTEX/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><d:/CTEX/MiKT
+eX/fonts/type1/urw/times/utmb8a.pfb><d:/CTEX/MiKTeX/fonts/type1/urw/times/utmr8
+a.pfb><d:/CTEX/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
+Output written on latex_template.pdf (13 pages, 771599 bytes).
 PDF statistics:
- 400 PDF objects out of 1000 (max. 8388607)
- 67 named destinations out of 1000 (max. 500000)
- 187 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 306 PDF objects out of 1000 (max. 8388607)
+ 95 named destinations out of 1000 (max. 500000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

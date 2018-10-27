@@ -5,7 +5,7 @@ myfiles = lapply(temp, read.csv,header=FALSE)
 myfiles=do.call(rbind,myfiles)
 #myfiles=t(myfiles)
 require('data.table')
-myfiles$algorithm=c('Expectation Maximisation','Sample filtering','Importance Reweighting','Expectation Maximisation','Importance Reweighting','Reweighting')
+myfiles$algorithm=c('Expectation Maximisation','Relabelling','Importance Reweighting','Expectation Maximisation','Relabelling','Importance Reweighting')
 myfiles$dataset=c('MNIST','MNIST','MNIST','CIFAR','CIFAR','CIFAR')
 df1=melt(myfiles, id=17:18)
 
@@ -20,14 +20,19 @@ names(df1)=c("Algorithm" ,"Dataset",   "Average running time (seconds)",  "Accur
 df2=df1[,c(1,2,4,5)]
 require('ggplot2')
 library(ggthemes)
-
+df2$`Average running time (seconds)`=as.numeric(as.character(df2$`Average running time (seconds)`))
 theme_set(theme_bw())  # from ggthemes
 ggplot(df2,aes(x=`Average running time (seconds)`,y=Accuracy,color=Algorithm,fill=Dataset))+
-                 geom_boxplot(size = 1) + scale_fill_hue(l=100, c=100)
-ggsave(filename = 'boxplot.pdf',width = 7, height = 5, units = "in")
+                 geom_boxplot(size = 1) + scale_fill_hue(l=100, c=100,h.start=330)+
+  coord_flip()+ theme(legend.position="top")+
+  guides(fill=guide_legend(ncol=1,nrow=3,byrow=TRUE),color=guide_legend(ncol=1,nrow=3,byrow=TRUE))+
+  scale_x_continuous(breaks = pretty(df2$`Average running time (seconds)`, n = 10)) +
+  scale_y_continuous(breaks = pretty(df2$Accuracy, n = 10))
+ggsave(filename = 'boxplot.pdf',width = 7, height = 7, units = "in")
   
 Datasets=unique(df2$Dataset)
 plots=list()
+require('dplyr')
 for (nn in Datasets){
   g=ggplot(df2 %>% filter(Dataset==nn), aes(x=Accuracy, fill=Algorithm)) +
     geom_density(alpha=0.5, position="identity")+
@@ -35,6 +40,7 @@ for (nn in Datasets){
   plots=c(plots,list(g+theme(legend.position="none")))
   
 }
+require('cowplot')
 legend <- get_legend(g+theme(legend.position="top"))
 plot_grid(plotlist = plots, labels=Datasets,hjust =c(-1,-1),vjust=c(2,2)) +
   theme(plot.margin=unit(c(1,0,0,0),"cm"))+
