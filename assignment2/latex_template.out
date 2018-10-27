@@ -5,18 +5,32 @@
 \BOOKMARK [3][]{subsubsection.3.1.1}{Photometric normalisation improves classification performance}{subsection.3.1}% 5
 \BOOKMARK [3][]{subsubsection.3.1.2}{Principle component analysis reduces dimensionality}{subsection.3.1}% 6
 \BOOKMARK [2][]{subsection.3.2}{The original data set is balanced}{section.3}% 7
-\BOOKMARK [2][]{subsection.3.3}{Method 1: Expectation Maximisation}{section.3}% 8
-\BOOKMARK [3][]{subsubsection.3.3.1}{Expectation Maximisation derives loss function}{subsection.3.3}% 9
-\BOOKMARK [2][]{subsection.3.4}{Method 2: Importance Reweighting}{section.3}% 10
-\BOOKMARK [2][]{subsection.3.5}{Sigmoid function estimates conditional probability}{section.3}% 11
-\BOOKMARK [2][]{subsection.3.6}{Reweighting coefficient improves robustness against label noise.}{section.3}% 12
-\BOOKMARK [2][]{subsection.3.7}{Method 3: heuristic approach}{section.3}% 13
-\BOOKMARK [3][]{subsubsection.3.7.1}{Select samples}{subsection.3.7}% 14
-\BOOKMARK [3][]{subsubsection.3.7.2}{Label correction}{subsection.3.7}% 15
-\BOOKMARK [2][]{subsection.3.8}{Flip rates estimation methods}{section.3}% 16
-\BOOKMARK [2][]{subsection.3.9}{Tuning hyperparameters}{section.3}% 17
-\BOOKMARK [2][]{subsection.3.10}{Bootstrap constructs confidence intervals and hypothesis tests}{section.3}% 18
-\BOOKMARK [3][]{subsubsection.3.10.1}{Bootstrapping percentile confidence intervals}{subsection.3.10}% 19
-\BOOKMARK [3][]{subsubsection.3.10.2}{Kolmogorov-Smirnov test compares the accuracy of algorithms}{subsection.3.10}% 20
-\BOOKMARK [1][]{section.4}{Experiments and discussions}{}% 21
-\BOOKMARK [1][]{section.5}{Conclusion}{}% 22
+\BOOKMARK [2][]{subsection.3.3}{Flip rates estimation}{section.3}% 8
+\BOOKMARK [3][]{subsubsection.3.3.1}{Density ratio method estimates conditional probability}{subsection.3.3}% 9
+\BOOKMARK [3][]{subsubsection.3.3.2}{Estimate flip rates}{subsection.3.3}% 10
+\BOOKMARK [2][]{subsection.3.4}{Method 1: Expectation Maximisation}{section.3}% 11
+\BOOKMARK [3][]{subsubsection.3.4.1}{Expectation Maximisation derives loss function}{subsection.3.4}% 12
+\BOOKMARK [3][]{subsubsection.3.4.2}{Modifying kernel improves robustness against label noise}{subsection.3.4}% 13
+\BOOKMARK [2][]{subsection.3.5}{Method 2: Importance Reweighting}{section.3}% 14
+\BOOKMARK [3][]{subsubsection.3.5.1}{Sigmoid function estimates conditional probability}{subsection.3.5}% 15
+\BOOKMARK [3][]{subsubsection.3.5.2}{Reweighting coefficient improves robustness against label noise.}{subsection.3.5}% 16
+\BOOKMARK [2][]{subsection.3.6}{Method 3: heuristic approach by relabelling}{section.3}% 17
+\BOOKMARK [3][]{subsubsection.3.6.1}{Conditional probability filters samples}{subsection.3.6}% 18
+\BOOKMARK [3][]{subsubsection.3.6.2}{Label correction}{subsection.3.6}% 19
+\BOOKMARK [2][]{subsection.3.7}{Tuning hyperparameters}{section.3}% 20
+\BOOKMARK [2][]{subsection.3.8}{Bootstrap constructs confidence intervals and hypothesis tests}{section.3}% 21
+\BOOKMARK [3][]{subsubsection.3.8.1}{Bootstrapping percentile confidence intervals}{subsection.3.8}% 22
+\BOOKMARK [3][]{subsubsection.3.8.2}{Kolmogorov-Smirnov test compares the accuracy of algorithms}{subsection.3.8}% 23
+\BOOKMARK [1][]{section.4}{Experiments}{}% 24
+\BOOKMARK [2][]{subsection.4.1}{Experiment Setting}{section.4}% 25
+\BOOKMARK [2][]{subsection.4.2}{Compare Images}{section.4}% 26
+\BOOKMARK [2][]{subsection.4.3}{Discuss flip rate}{section.4}% 27
+\BOOKMARK [2][]{subsection.4.4}{Hayperparameter Tuning}{section.4}% 28
+\BOOKMARK [2][]{subsection.4.5}{Compare Results}{section.4}% 29
+\BOOKMARK [3][]{subsubsection.4.5.1}{Expectation Maximisation is the fastest}{subsection.4.5}% 30
+\BOOKMARK [3][]{subsubsection.4.5.2}{cifar is more difficult to classify}{subsection.4.5}% 31
+\BOOKMARK [3][]{subsubsection.4.5.3}{Heuristic approach is inconsistent}{subsection.4.5}% 32
+\BOOKMARK [3][]{subsubsection.4.5.4}{Hypothesis test justifies observations}{subsection.4.5}% 33
+\BOOKMARK [2][]{subsection.4.6}{Discussion}{section.4}% 34
+\BOOKMARK [2][]{subsection.4.7}{Backup Statements}{section.4}% 35
+\BOOKMARK [1][]{section.5}{Conclusion}{}% 36
