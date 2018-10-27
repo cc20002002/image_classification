@@ -384,28 +384,65 @@ We compare the test statistics~$D$ with the critical value of $0.433$, which cor
 \section{Experiments}\label{result}
 
 \subsection{Experiment Setting}
+As machine learning algorithm often involve a lot of hyper-parameter tuning, thus time and computational consuming. To better carry out the experiments, we employ a Linux server with high standard configuration to run our code. Here's the configuration detail.
+
+\begin{figure}[tbh]
+    \centering
+	\includegraphics[scale=.7]{hpc}
+	\caption{HPC}
+	\label{fig:HPC}
+\end{figure}
+
 \subsection{Compare Images}
+As mentioned previously, we preprocess the image dataset by using scaler and PCA. Here are some examples from the $CIFER$ dataset to compare the effects intuitively.
+
+\begin{figure}[tbh] 
+    \centering
+	\includegraphics[scale=.35]{assignment2/image_compare.png}
+	\caption{Comparison between original images and processed ones}
+	\label{fig:Compare_Image}
+\end{figure}
+
+We can tell from the figure above that the scale process somehow "enlighten" the original picture to some extent so that the differences in "lightness" are diminished. 
+{\color{red} However, the reconstructed images from PCA are less meaningful? }
+
+
 \subsection{Discuss flip rate}
+
+Both datasets have flip rates $\rhoz=0.2$ and $\rhoo=0.4$.
+
+{\color{red} TODO }
 
 \subsection{Hayperparameter Tuning}
 Just identify the haperparameter number.
 
 \subsection{Compare Results}
 \subsubsection{Accuracy}
-\subsubsection{Running time}
-compare photos
-discuss pca
-heruistic no need to know rho.
 
+\begin{table}[tbh]
+	\caption{Mean sd}
+	\label{tab:Meansd}
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+Mean  & Standard deviation & Confidence interval \\ \midrule
+0.938 & 0.003              & (0.936,0.939)       \\
+0.942 & 0.003              & (0.941,0.944)       \\
+0.94  & 0.003              & (0.939,0.942)       \\
+0.835 & 0.004              & (0.833.0.837)       \\
+0.832 & 0.008              & (0.829,0.836)       \\
+0.844 & 0.005              & (0.841,0.846)       \\ \bottomrule
+\end{tabular}
 
-\begin{figure} 
-    \centering
-	\includegraphics[scale=.8]{hpc}
-	\caption{HPC...}
-	\label{fig:HPC}
-\end{figure}
+\end{table}
 
-\begin{table}
+Table \ref{tab:Meansd} shows the mean, standard deviation and $95\%$ confidence interval of the accuracy result from testing the $16$ models on clean testing set for each experiment. 
+Overall, the accuracy of the fashion-mnist experiments is higher than that of the \textsc{cifar} experiments possibly due to the complexity difference.
+The relabelling method outperforms the other two on fashion-mnist data and the importance reweighting method outperforms the other two on \textsc{cifar} dataset.
+
+\begin{table}[tbh]
 \centering
  	\caption{Hypothesis test}   
 	\begin{tabular}{lllll}
@@ -429,35 +466,42 @@ Data & $H_0$ & $D$ & P-value & Test result\\
 	\label{tab:HypothesisTest}
 \end{table}
 
-\begin{table}
-	\caption{Mean sd}
-	\label{tab:Meansd}
-% Please add the following required packages to your document preamble:
-% \usepackage{booktabs}
-\centering
-\begin{tabular}{@{}lll@{}}
-\toprule
-Mean  & Standard deviation & Confidence interval \\ \midrule
-0.938 & 0.003              & (0.936,0.939)       \\
-0.942 & 0.003              & (0.941,0.944)       \\
-0.94  & 0.003              & (0.939,0.942)       \\
-0.835 & 0.004              & (0.833.0.837)       \\
-0.832 & 0.008              & (0.829,0.836)       \\
-0.844 & 0.005              & (0.841,0.846)       \\ \bottomrule
-\end{tabular}
+Table \ref{tab:HypothesisTest} shows the hypothesis test results on the accuracy statistics. 
+It shows that relabelling algorithm classifies the noisy fashion-mnist data more accurately than the expectation maximisation method with high probability.
+Also, reweighting method classifies the noisy \textsc{cifar} data more accurately than the expectation maximisation method and relabelling classifies the data least accurately with high probability. 
 
-\end{table}
-
-
-
-\begin{figure}
+\begin{figure}[tbh]
     
 	%\includegraphics[scale=0.9]{boxplot}
 	\centering
-    \includegraphics[scale=0.8]{boxplotll}%maybe use the large one
+    \includegraphics[scale=0.7]{boxplotll}%maybe use the large one
 	\caption{Boxplot}
 	\label{fig:Boxplot}
 \end{figure}
+
+Figure \ref{fig:Boxplot} is the boxplot of all experiment results. 
+Beyond what we see from the tables, we find from the boxplot that for the relabelling method, the results of \textsc{cifar} experiments have larger interquartile range \textsc{iqr} than that of fashion-mnist experiments. 
+\textsc{iqr}'s are not so different across datasets for the other two methods. 
+This means the relabelling method may not perform as stable as the other two methods when classifying the \textsc{cifar} dataset. 
+Further experiments may be conducted in future work to verify this. 
+Then we estimate the density function using kernel smoothing and plot figure \ref{fig:Density function from kernel smoothing}.
+For fashion-mnist dataset, all three methods have similar accuracy distribution with relabelling having a slightly better performance.
+For \textsc{cifar} dataset, the accuracy distribution of reweighting method dominates the other two.
+\subsubsection{Running time}
+
+To provide a more rigorous evaluation on performance, we train the model $16$ times using each method on each dataset and calculate the mean and standard deviation of the results.
+We randomly sample $80\%$ of the training data for training each model.
+
+To reduce the running time, we use multi-threading programming and train the $16$ models simultaneously. \\
+
+\subsection{Backup Statements}
+compare photos
+discuss pca
+heruistic no need to know rho.
+
+
+
+
 
 \begin{figure}   
     \centering
@@ -477,25 +521,11 @@ As mentioned in section \ref{preproc}, we need to run \textsc{pca} on \textsc{ci
 {\color{red} pca image. decribe the difference}
 Then we scale the image
 {\color{red} standardised image. decribe the difference} \\ \\
-To provide a more rigorous evaluation on performance, we train the model $16$ times using each method on each dataset and calculate the mean and standard deviation of the results.
-We randomly sample $80\%$ of the training data for training each model.
-To reduce the running time, we use multi-threading programming and train the $16$ models simultaneously. \\ \\
-Table \ref{tab:Meansd} shows the mean, standard deviation and $95\%$ confidence interval of the accuracy result from testing the $16$ models on clean testing set for each experiment. 
-Overall, the accuracy of the fashion-mnist experiments is higher than that of the \textsc{cifar} experiments possibly due to the complexity difference.
-The relabelling method outperforms the other two on fashion-mnist data and the importance reweighting method outperforms the other two on \textsc{cifar} dataset.
-Table \ref{tab:HypothesisTest} shows the hypothesis test results on the accuracy statistics. 
-It shows that relabelling algorithm classifies the noisy fashion-mnist data more accurately than the expectation maximisation method with high probability.
-Also, reweighting method classifies the noisy \textsc{cifar} data more accurately than the expectation maximisation method and relabelling classifies the data least accurately with high probability. 
-Figure \ref{fig:Boxplot} is the boxplot of all experiment results. 
-Beyond what we see from the tables, we find from the boxplot that for the relabelling method, the results of \textsc{cifar} experiments have larger interquartile range \textsc{iqr} than that of fashion-mnist experiments. 
-\textsc{iqr}'s are not so different across datasets for the other two methods. 
-This means the relabelling method may not perform as stable as the other two methods when classifying the \textsc{cifar} dataset. 
-Further experiments may be conducted in future work to verify this. 
-Then we estimate the density function using kernel smoothing and plot figure \ref{fig:Density function from kernel smoothing}.
-For fashion-mnist dataset, all three methods have similar accuracy distribution with relabelling having a slightly better performance.
-For \textsc{cifar} dataset, the accuracy distribution of reweighting method dominates the other two.
+
 
 \section{Conclusion}
+{\color{red} TODO.}\\
+
 \label{headings}
 
 
