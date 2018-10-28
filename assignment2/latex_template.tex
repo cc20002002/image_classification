@@ -426,10 +426,10 @@ talk about bootstrap resamples of 8000 sample from 10000
 \subsection{Compare Images}
 As mentioned previously \chenc{cross reference}, we preprocess the image dataset by using scaler and PCA. Here are some examples from the \textsc{cifar} dataset to compare the effects intuitively.
 
-\begin{figure} \chenc{let the figure float. this is the way too small. Perhaps make it $2\times 2$ figures. Also, turn off the axis. You could use the code in my assignment 1 directory. }
+\begin{figure} 
     \centering
-	\includegraphics[clip=true,trim={3.9cm 0 0 0}]{image_compare.png}
-	\caption{Comparison between original images and processed ones}
+	\includegraphics[scale=0.6]{img}
+	\caption{Comparison between original images and processed ones. First row origin.  Photometric normalisation. third pca}
 	\label{fig:Compare_Image}
 \end{figure}
 
@@ -483,14 +483,14 @@ A possible explanation for this might be that \textsc{cifar} is much more comple
 This observation are also visualised box plot in Figure~\ref{fig:Boxplot}. This figure plots the accuracy of the three algorithms against running time using box plot. For the \textsc{mnist}  data set, it seems that the relabelling method are marginally more accurate than the other two algorithms. However, for the  more complex \textsc{cifar} data set, the Importance reweighting seems to be significantly more accurate.
 
 \subsubsection{Heuristic approach is inconsistent}
-For the \textsc{cifar} data set, both the high inter quarter range (\textsc{iqr}) in Figure~\ref{fig:Boxplot} and high standard deviation in Table~\ref{tab:Meansd} suggest that the method of relabelling gives inconsistent classification results. This inconsistency may be due to the heuristic nature of the method as described in  Section~\ref{2nd}. No asymptotic properties were prove for the process of relabelling. In contrast, Expectation Maximisation method and Importance Reweighting method are theoretically justified. For example, Section~\ref{1st} mathematically derives the choice of the loss function~\eqref{eq:dual3} by Expectation Maximisation.
+For the \textsc{cifar} data set, both the high inter quarter range in Figure~\ref{fig:Boxplot} and high standard deviation in Table~\ref{tab:Meansd} suggest that the method of relabelling gives inconsistent classification results. This inconsistency may be due to the heuristic nature of the method as described in  Section~\ref{2nd}. No asymptotic properties were prove for the process of relabelling. In contrast, Expectation Maximisation method and Importance Reweighting method are theoretically justified. For example, Section~\ref{1st} mathematically derives the choice of the loss function~\eqref{eq:dual3} by Expectation Maximisation.
 Similarly, \citet{liu2016classification} give rigorous proofs justifying the properties of the Importance Reweighting formula~\eqref{eq:weighting}. As a result of solid theoretical support, these two methods produce more consistent results.
 
 The inconsistency is not observed in dataset~\textsc{mnist}. This may partly be explained by the complexity of the data set. For the \textsc{mnist} data ($784$ dimensional), a sample of $8,000$ images is large. However, for the \textsc{cifar} data, the sample size of $8,000$ is on a similar scale with the dimensionality ($3072$).
 \begin{figure}
 	%\includegraphics[scale=0.9]{boxplot}
 	\centering
-    \includegraphics[scale=0.8]{boxplotv}%maybe use the large one
+    \includegraphics[scale=0.7]{boxplotv}%maybe use the large one
 	\caption{Box plots of the accuracy results against running time. {\color{red}Describe various lines and the dots as well as colours here. }
 }
 	\label{fig:Boxplot}
@@ -499,7 +499,7 @@ choose one
 \begin{figure}
 	%\includegraphics[scale=0.9]{boxplot}
 	\centering
-    \includegraphics[scale=0.8]{boxplot}%maybe use the large one
+    \includegraphics[scale=0.7]{boxplot}%maybe use the large one
 	\caption{Box plots of the accuracy results against running time. {\color{red}Describe various lines and the dots as well as colours here. }
 }
 	\label{fig:Boxplot}
