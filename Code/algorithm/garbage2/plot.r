@@ -27,17 +27,17 @@ library(ggthemes)
 df2$`Average running time (seconds)`=as.numeric(as.character(df2$`Average running time (seconds)`))
 theme_set(theme_bw())  # from ggthemes
 ggplot(df2,aes(x=`Average running time (seconds)`,y=Accuracy,color=Algorithm,fill=Dataset))+
-  geom_boxplot(size = .1,width=10) + scale_fill_hue(l=100, c=100,h.start=330)+
+  geom_boxplot(size = 1,width=20) + scale_fill_hue(l=100, c=100,h.start=330)+
   coord_flip()+ theme(legend.position="top")+
   guides(fill=guide_legend(ncol=1,nrow=3,byrow=TRUE),color=guide_legend(ncol=1,nrow=3,byrow=TRUE))+
   scale_x_continuous(breaks = pretty(df2$`Average running time (seconds)`, n = 10)) +
   scale_y_continuous(breaks = pretty(df2$Accuracy, n = 10))
-ggsave(filename = 'boxplot.pdf',width = 7, height = 7, units = "in")
+ggsave(filename = 'boxplot.pdf',width = 8, height = 5, units = "in")
 ggplot(df2,aes(x=`Average running time (seconds)`,y=Accuracy,color=Algorithm,fill=Dataset))+
-  geom_boxplot(size = .1,width=10) + scale_fill_hue(l=100, c=100,h.start=330)+
+  geom_boxplot(size = 1,width=20) + scale_fill_hue(l=100, c=100,h.start=330)+
   scale_x_continuous(breaks = pretty(df2$`Average running time (seconds)`, n = 10)) +
   scale_y_continuous(breaks = pretty(df2$Accuracy, n = 10))
-ggsave(filename = 'boxplotv.pdf',width = 7, height = 7, units = "in")
+ggsave(filename = 'boxplotv.pdf',width = 8, height = 5, units = "in")
 Datasets=unique(df2$Dataset)
 plots=list()
 require('dplyr')
@@ -50,7 +50,7 @@ for (nn in Datasets){
 }
 require('cowplot')
 legend <- get_legend(g+theme(legend.position="top"))
-plot_grid(plotlist = plots, labels=Datasets,hjust =c(-1,-1),vjust=c(2,2)) +
+plot_grid(nrow=1,ncol=3,plotlist = plots, labels=Datasets,hjust =c(-1,-1,-.45),vjust=c(2,2)) +
   theme(plot.margin=unit(c(1,0,0,0),"cm"))+
   draw_grob(legend, .45, .53, .3/3.3, 1)
 ggsave(filename = 'histo.pdf',width = 7, height = 4.6, units = "in")
