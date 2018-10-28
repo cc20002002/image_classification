@@ -412,7 +412,7 @@ We randomly select $80\%$ of the training samples in each simulation.
 
 To reduce the running time, we use multi-threading programming and train the $16$ models simultaneously. \\
 
-As machine learning algorithm often involve a lot of hyper-parameter tuning, thus time and computational consuming. To better carry out the experiments, we employ a Linux server with high standard configuration to run our code. Here's the configuration detail. \chenc{what do you mean by here? please cross reference}
+As machine learning algorithm often involve a lot of hyper-parameter tuning, thus time and computational consuming. To better carry out the experiments, we employ a Linux server with high standard configuration to run our code. Here's the configuration detail. {\color{red} please cross reference. no `here'}
 
 talk about bootstrap resamples of 8000 sample from 10000
 
@@ -428,7 +428,7 @@ As mentioned previously \chenc{cross reference}, we preprocess the image dataset
 
 \begin{figure} \chenc{let the figure float. this is the way too small. Perhaps make it $2\times 2$ figures. Also, turn off the axis. You could use the code in my assignment 1 directory. }
     \centering
-	\includegraphics[scale=0.6]{image_compare.png}
+	\includegraphics[clip=true,trim={3.9cm 0 0 0}]{image_compare.png}
 	\caption{Comparison between original images and processed ones}
 	\label{fig:Compare_Image}
 \end{figure}
