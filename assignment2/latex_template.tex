@@ -461,13 +461,13 @@ The method of Expectation Maximisation is more than four times faster than the o
 \begin{tabular}{@{}llllll@{}}
 \toprule
 Data set& Algorithm&Mean  & Standard deviation & Confidence interval & Average running time \\ \midrule
-&&0.938 & 0.003              & (0.936,0.939)     &  \\
-\textsc{mnist} &&0.94  & 0.003              & (0.939,0.942)     &   \\
-&&0.942 & 0.003              & (0.941,0.944)     &\\
+&EM&0.938 & 0.003              & (0.936,0.939)     &  \\
+\textsc{mnist} &IR&0.94  & 0.003              & (0.939,0.942)     &   \\
+&R&0.942 & 0.003              & (0.941,0.944)     &\\
 \midrule
-&&0.835 & 0.004              & (0.833,0.837)     &  \\
-\textsc{cifar}&&0.844 & 0.005              & (0.841,0.846)     &  \\
-  &&0.832 & 0.008              & (0.829,0.836)     & \\ 
+&EM&0.835 & 0.004              & (0.833,0.837)     &  \\
+\textsc{cifar}&IR&0.844 & 0.005              & (0.841,0.846)     &  \\
+  &R&0.832 & 0.008              & (0.829,0.836)     & \\ 
 \midrule
 &Expectation Maximisation&0.852 & 0.004              & (0.850,0.853)     &  \\
 \textsc{cifar} &Importance Reweighting& 0.849 & 0.006              & (0.847,0.853)     &  \\
@@ -545,10 +545,10 @@ However, the hypothesis test are not able to conclude whether Importance Reweigh
 
 In terms of \textsc{cifar} data set, there are strong statistical evidences suggesting Importance Reweighting method classifies the images in the noisy \textsc{cifar} data set more accurately than the expectation maximisation method. Similarly, and we are also $95\%$ confident to accept the hypothesis that the Expectation Maximisation method is more accurate than the importance relabelling method.
 
-Density plot~\eqref{fig:Density} of the accuracy results visualise these results concluded by Kolmogorov-Smirnov hypothesis tests.
+Density plot~\ref{fig:Density} of the accuracy results visualise these results concluded by Kolmogorov-Smirnov hypothesis tests.
 \begin{figure}
     \centering
-	\includegraphics[scale=0.8]{histo}
+	\includegraphics[scale=0.8]{{../Code/algorithm/garbage2/histo}}
 	\caption{Density function from kernel smoothing}
 	\label{fig:Density}
 	%Then we estimate the density function using kernel smoothing and plot figure \ref{fig:Density function from kernel smoothing}.
