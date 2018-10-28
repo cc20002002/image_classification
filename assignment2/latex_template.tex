@@ -462,12 +462,17 @@ The method of Expectation Maximisation is more than four times faster than the o
 \toprule
 Data set& Algorithm&Mean  & Standard deviation & Confidence interval & Average running time \\ \midrule
 &&0.938 & 0.003              & (0.936,0.939)     &  \\
-\textsc{mnist}&&0.942 & 0.003              & (0.941,0.944)     &  \\
-&&0.94  & 0.003              & (0.939,0.942)     &  \\
+\textsc{mnist} &&0.94  & 0.003              & (0.939,0.942)     &   \\
+&&0.942 & 0.003              & (0.941,0.944)     &\\
 \midrule
 &&0.835 & 0.004              & (0.833,0.837)     &  \\
-\textsc{cifar}&&0.832 & 0.008              & (0.829,0.836)     &  \\
-&&0.844 & 0.005              & (0.841,0.846)     &  \\ \bottomrule
+\textsc{cifar}&&0.844 & 0.005              & (0.841,0.846)     &  \\
+  &&0.832 & 0.008              & (0.829,0.836)     & \\ 
+\midrule
+&Expectation Maximisation&0.852 & 0.004              & (0.850,0.853)     &  \\
+\textsc{cifar} &Importance Reweighting& 0.849 & 0.006              & (0.847,0.853)     &  \\
+with \textsc{pca}  &Relabelling& 0.802 & 0.013              & (0.797,0.809)     & \\ 
+\bottomrule
 \end{tabular}
 \end{table}
 There are two  causes for the difference in speed.
@@ -524,6 +529,12 @@ Data & $H_0$ & $D$ & P-value & Test result\\
  \textsc{cifar}  & $A_1= A_3$ & 0.5 & 0.0366 & Reject\\
 
   &  $A_2=A_3$  & 0.6875 & 0.0010 & Reject\\
+ \midrule
+   & $A_1= A_2$ & 0.375 & 0.2106 & Fail to reject\\
+
+ \textsc{cifar}  & $A_1= A_3$ & 1 & 0 & Reject\\
+
+ with \textsc{pca} &  $A_2=A_3$  & 1 & 0 & Reject\\
 \bottomrule
 \end{tabular}
 
