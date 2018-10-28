@@ -50,7 +50,7 @@ for (nn in Datasets){
 }
 require('cowplot')
 legend <- get_legend(g+theme(legend.position="top"))
-plot_grid(plotlist = plots, labels=Datasets,hjust =c(-1,-1),vjust=c(2,2)) +
+plot_grid(nrow=1,ncol=3,plotlist = plots, labels=Datasets,hjust =c(-1,-1,-.45),vjust=c(2,2)) +
   theme(plot.margin=unit(c(1,0,0,0),"cm"))+
   draw_grob(legend, .45, .53, .3/3.3, 1)
 ggsave(filename = 'histo.pdf',width = 7, height = 4.6, units = "in")
