@@ -490,7 +490,20 @@ The lack of \textsc{ccn} information slows down the convergence of the algorithm
 In terms of accuracy, all algorithms perform significantly better classifying the images in \textsc{mnist} in comparison with classifying images in \textsc{cifar}.
 A possible explanation for this might be that \textsc{cifar} is much more complex in nature---it requires $100$ principal components to reconstruct $85\%$ of the image information, where as \textsc{mnist} data set only needs $40$ such principal components.
 This observation are also visualised box plot in Figure~\ref{fig:Boxplot}. This figure plots the accuracy of the three algorithms against running time using box plot. For the \textsc{mnist}  data set, it seems that the relabelling method are marginally more accurate than the other two algorithms. However, for the  more complex \textsc{cifar} data set, the Importance reweighting seems to be significantly more accurate.
-
+\begin{figure}
+	\centering
+    \includegraphics[scale=1]{accuracy}%maybe use the large one
+	\caption{ {\color{red}Describe various lines and the dots as well as colours here. }
+}
+	\label{fig:acc}
+\end{figure}
+\begin{figure}
+	\centering
+    \includegraphics[scale=1]{speed}%maybe use the large one
+	\caption{ {\color{red}Describe various lines and the dots as well as colours here. }
+}
+	\label{fig:speed}
+\end{figure}
 \subsubsection{Heuristic approach is inconsistent}
 For the \textsc{cifar} data set, both the high inter quarter range in Figure~\ref{fig:Boxplot} and high standard deviation in Table~\ref{tab:Meansd} suggest that the method of relabelling gives inconsistent classification results. This inconsistency may be due to the heuristic nature of the method as described in  Section~\ref{2nd}. No asymptotic properties were prove for the process of relabelling. In contrast, Expectation Maximisation method and Importance Reweighting method are theoretically justified. For example, Section~\ref{1st} mathematically derives the choice of the loss function~\eqref{eq:dual3} by Expectation Maximisation.
 Similarly, \citet{liu2016classification} give rigorous proofs justifying the properties of the Importance Reweighting formula~\eqref{eq:weighting}. As a result of solid theoretical support, these two methods produce more consistent results.
@@ -499,16 +512,16 @@ The inconsistency is not observed in dataset~\textsc{mnist}. This may partly be 
 \begin{figure}
 	%\includegraphics[scale=0.9]{boxplot}
 	\centering
-    \includegraphics{boxplotv}%maybe use the large one
+    \includegraphics[scale=0.8]{boxplotv}%maybe use the large one
 	\caption{Box plots of the accuracy results against running time. {\color{red}Describe various lines and the dots as well as colours here. }
-}
+Top three cifar no pca. bottom left three pca. right bottom three mnist}
 	\label{fig:Boxplot}
 \end{figure}
 choose one
 \begin{figure}
 	%\includegraphics[scale=0.9]{boxplot}
 	\centering
-    \includegraphics{boxplot}%maybe use the large one
+    \includegraphics[scale=0.8]{boxplot}%maybe use the large one
 	\caption{Box plots of the accuracy results against running time. {\color{red}Describe various lines and the dots as well as colours here. }
 }
 	\label{fig:Boxplot}
