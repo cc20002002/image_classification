@@ -1,21 +1,13 @@
 """
-Created on Sat Oct 13 00:24:24 2018
+Sat Oct 13 00:24:24 2018
+@author: chenc TinyC
 Please install sklearn 0.20.0
 Plase install latest version of multiprocessing,numpy and matplotlib
-@author: chenc TinyC
-reweighting method from tut 2
-dataset1 improves the accuracy  to 0.946
-dataset1 improves the accuracy  to 0.855
+
 """
 
-# -*- coding: utf-8 -*-
-"""
-Spyder Editor
 
-This is a temporary script file.
-"""
 import numpy as np
-import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 from sklearn import svm
 from os import cpu_count
@@ -30,22 +22,39 @@ import csv
 
 
 def estimateBeta(S, prob, rho0, rho1):
+    """
+    This function was estimated use method proposed by (???)
+  
+    Parameters
+    ----------
+    S is the training labels with noise
+    prob is the conditional probability predicted by a pretraining model. 
+    described in equation ?? in our report.
+    rho0, rho1 are the flip rates.
+
+    Returns
+    ----------
+    beta:  the Importance weighting for the second training model.
+    Parameters.
+    """
+    
     S = S.astype(int)
     rho = np.array([rho1, rho0])
-    # rho=np.tile(np.array([rho1, rho0]).reshape(-1,1),700).T
-    # print(rho[S])
-
-    # print(S)
     prob = prob[:, 0] * (1 - S[:]) + prob[:, 1] * (S[:])
-    # print(sum(prob>.5)/700)
-    # print(S[0:11])
     beta = (prob[:] - rho[S].ravel()) / (1 - rho0 - rho1) / prob[:]
     return beta
 
 def my_kernel(X, Y):
     """
-    We create a custom kernel:
-        should give 87% if it matches the original RBF kernel
+    We create a custom kernel. This custom kernel is used by the function expectationMaximisation.
+    Please see Section *** for the mathematical derivation.
+    Parameters
+    ----------
+    X,Y: two vectors or two matrix.
+
+    Returns
+    ----------
+    clf.score(Xts, Yts): the kernel product of vectors X and Y.
     """
     S = 0.84  # parameter from rhos
 
@@ -65,10 +74,25 @@ def my_kernel(X, Y):
 
 # dset chooses dataset. num_run determines the number of iterations.
 def expectationMaximisation(run):
-    np.random.seed((run ** 5 + 1323002) % 123123)  # np.random.seed() alternatively
+    """
+    This function implements the expectation Maximisation model classifying 
+    image with label noise described in Section 3.5.
+   
+    Parameters
+    ----------
+    Run: a seed number.
+
+    Returns
+    ----------
+
+    clf.score(Xts, Yts): the accuracy of the algorithm on test data
+    """
+    # np.random.seed() alternatively
+    # customise the seed number the way you want
+    np.random.seed((run ** 5 + 1323002) % 123123)  
     print("dset:", dset, 'run', run)
     Xtr, Str, Xts, Yts = data_cache[dset]
-    X_train, X_val, y_train, y_val = train_test_split(Xtr, Str, test_size=0.2)
+    X_train, X_val, y_train, y_val = train_test_split(Xtr, Str, test_size=prop)
     # clf1 is the first classifier while clf2 is the second
     clf = svm.SVC(C=2.5, kernel=my_kernel, max_iter=max_itera)
     if run == 1:
@@ -79,10 +103,23 @@ def expectationMaximisation(run):
     # 23:08 23:12 23:28 4.2577
 
 def cv_reweighting(run):
+    """
+    This function implements the Importance reweighting model classifying image 
+    with label noise described in Section 3.6.
+   
+    Parameters
+    ----------
+    Run: a seed number.
+
+    Returns
+    ----------
+
+    clf.score(Xts, Yts): the accuracy of the algorithm on test data
+    """
     np.random.seed((run ** 5 + 1323002) % 123123)  # np.random.seed() alternatively
     print("dset:", dset, 'run', run)
     Xtr, Str, Xts, Yts = data_cache[dset]
-    X_train, X_val, y_train, y_val = train_test_split(Xtr, Str, test_size=0.2)
+    X_train, X_val, y_train, y_val = train_test_split(Xtr, Str, test_size=prop)
     # clf1 is the first classifier while clf2 is the second
     if dset == 2:
         clf1 = svm.SVC(C=2.5, gamma=0.000225, probability=True, max_iter=max_itera)
@@ -111,18 +148,28 @@ def cv_reweighting(run):
         clf2 = svm.SVC(gamma=0.00865, C=.4, max_iter=max_itera)
 
     clf2.fit(X_train, y_train, sample_weight=weights)
-    # test_score=clf.score(Xts,Yts)
-    # clf.score(Xtr,Str)
-    # to accuracy 94.6 for dataset 1
-    # 85.5 for dataset 2.
+
     return clf2.score(Xts, Yts)
-    # 23:08 23:12 23:28 4.2577
+
 
 def relabelling(run):
+    """
+    This function implements the heuristic approach of classifying image with 
+    label noise described in Section 3.7.
+   
+    Parameters
+    ----------
+    Run: a seed number.
+
+    Returns
+    ----------
+
+    clf.score(Xts, Yts): the accuracy of the algorithm on test data
+    """
     np.random.seed((run ** 5 + 1323002) % 123123)  # np.random.seed() alternatively
     print("dset:", dset, 'run', run)
     Xtr, Str, Xts, Yts = data_cache[dset]
-    X_train, X_val, y_train, y_val = train_test_split(Xtr, Str, test_size=0.2)
+    X_train, X_val, y_train, y_val = train_test_split(Xtr, Str, test_size=prop)
     # clf1 is the first classifier while clf2 is the second
     if dset == 2:
         clf1 = svm.SVC(C=2.5, gamma=0.000225, probability=True, max_iter=max_itera)
@@ -134,31 +181,30 @@ def relabelling(run):
     if run == 1:
         print("calculating weighting dset:", dset)
     bb = clf1.predict_proba(X_train)
-    print("estimate of [rho0 rho1]=", np.amin(bb, axis=0))  # rho0 rho1
     nn = len(y_train)
     ind = np.where(abs(bb[:, 1] - y_train) >= 0.5)
     y_train[ind] = 1 - y_train[ind]
     ind_p = int(nn / 3)
     ind5 = np.hstack((np.argsort(-bb[:, 1])[0:ind_p], np.argsort(-bb[:, 0])[0:ind_p]))
 
-    # The best parameters are {'C': 2.1544346900318834, 'gamma': 0.01} with a score of 1.00
-    #    search=0 #search for parameters
-    #    if search:
-    #        C_range = 1
-    #        gamma_range = np.logspace(10**-4,10**1, 4)
-    #        param_grid = dict(gamma=gamma_range, C=C_range)
-    #        cv = StratifiedShuffleSplit(n_splits=5, test_size=0.2)
-    #        grid = GridSearchCV(svm.SVC(), param_grid=param_grid, cv=cv,n_jobs=-1)
-    #        grid.fit(Xtr[ind5,:],Str[ind5])
-    #        print("The best parameters are %s with a score of %0.2f"
-    #              % (grid.best_params_, grid.best_score_))
+
+
     if dset == 2:
         clf2 = svm.SVC(gamma=0.000225, max_iter=max_itera)
     else:
         clf2 = svm.SVC(gamma=0.00865, max_iter=max_itera)
     clf2.fit(X_train[ind5, :], y_train[ind5])
     return clf2.score(Xts, Yts)
-    # 23:08 23:12 23:28 4.2577
+
+#    if search:
+#        C_range = 1
+#        gamma_range = np.logspace(10**-4,10**1, 4)
+#        param_grid = dict(gamma=gamma_range, C=C_range)
+#        cv = StratifiedShuffleSplit(n_splits=5, test_size=0.2)
+#        grid = GridSearchCV(svm.SVC(), param_grid=param_grid, cv=cv,n_jobs=-1)
+#        grid.fit(Xtr[ind5,:],Str[ind5])
+#        print("The best parameters are %s with a score of %0.2f"
+#              % (grid.best_params_, grid.best_score_))
 
 def run_algorithm(alg_type, dset, num_run):  # alg_type: type of the algorithm, choose from 'reweighting',...tbc
     start = time.time()
@@ -167,18 +213,14 @@ def run_algorithm(alg_type, dset, num_run):  # alg_type: type of the algorithm, 
     if alg_type == 'reweighting':
         print('start of reweighting algorithm')
         it = pool.map(cv_reweighting, range(num_run))  # using the number of runs
-        # test_score=np.zeros(num_run)
-        # for i in range(num_run):
-        # test_score[i]=cv_reweighting(1)
+
     if alg_type == 'relabelling':
         print('start of relabelling algorithm')
         it = pool.map(relabelling, range(num_run))  # using the number of runs
     if alg_type == 'expectationMaximisation':
         print('start of expectation Maximisation algorithm')
         it = pool.map(expectationMaximisation, range(num_run))  # using the number of runs
-        # test_score=np.zeros(num_run)
-        # for i in range(num_run):
-        # test_score[i]=cv_reweighting(1)
+
     pool.close()
     pool.join()
     test_score = it
@@ -186,7 +228,7 @@ def run_algorithm(alg_type, dset, num_run):  # alg_type: type of the algorithm, 
     std_score = np.std(test_score)
     print('average score: ', average_score, '\nstandard deviation: ', std_score)  # help to format here!
     end = time.time()
-    with open('result' + '_data' + str(dset) + '_' + alg_type + str(round(end - start, 4)) + 'sec.csv',
+    with open('result'+str(prop) + '_data' + str(dset) + '_' + alg_type + str(round(end - start, 4)) + 'sec.csv',
               'w') as f:  # better way to output result? I would like they can be read into python easily
         wr = csv.writer(f, dialect='excel')
         wr.writerows([test_score])
@@ -196,50 +238,54 @@ def run_algorithm(alg_type, dset, num_run):  # alg_type: type of the algorithm, 
     return average_score, std_score
 
 
-plot = 0
+#Maximum of iteration. When testing the algorithm, set it to be small like 100
 max_itera = -1
-dset = 1
+
+
+#Load the image dataset and input image parameters
+dataset1 = np.load('../input_data/mnist_dataset.npz')
+dataset2 = np.load('../input_data/cifar_dataset.npz')
 size_image1 = 28
 dim_image1 = 1
 size_image2 = 32
 dim_image2 = 3
 
-dataset1 = np.load('../input_data/mnist_dataset.npz')
-dataset2 = np.load('../input_data/cifar_dataset.npz')
-
-# to store the data splits
+# data_cache stores the data splits
 data_cache = {}
 
-# transform dataset1
+# transform dataset to appropriate size
 Xtr1 = dataset1['Xtr'].astype(float)
 Str1 = dataset1['Str'].ravel()
 Xts1 = dataset1['Xts'].astype(float)
 Yts1 = dataset1['Yts'].ravel()
 
-scaler = StandardScaler()
-Xts1 = scaler.fit_transform(Xts1.T).T
-Xtr1 = scaler.fit_transform(Xtr1.T).T
-data_cache[1] = (Xtr1, Str1, Xts1, Yts1)
-
-# transform dataset2
 Xtr2 = dataset2['Xtr'].astype(float)
 Str2 = dataset2['Str'].ravel()
 Xts2 = dataset2['Xts'].astype(float)
 Yts2 = dataset2['Yts'].ravel()
 
+# Standardise images 
+scaler = StandardScaler()
+Xts1 = scaler.fit_transform(Xts1.T).T
+Xtr1 = scaler.fit_transform(Xtr1.T).T
+data_cache[1] = (Xtr1, Str1, Xts1, Yts1)
+
 Xts2 = scaler.fit_transform(Xts2.T).T
 Xtr2 = scaler.fit_transform(Xtr2.T).T
-data_cache[2] = (Xtr2, Str2, Xts2, Yts2)
 
+#principal component analysis for dataset 2
 pca = PCA(n_components=100)
 pca.fit(Xtr2)
 Xtr2 = pca.transform(Xtr2)
 Xts2 = pca.transform(Xts2)
-print('pca explained variance:', sum(pca.explained_variance_ratio_))
+data_cache[2] = (Xtr2, Str2, Xts2, Yts2)
+#print('pca explained variance:', sum(pca.explained_variance_ratio_))
 
+#initialise result dictionaries
 average_score = {}
 std_score = {}
-# TODO!please change it to for loop! for dset,algo in range(2),algos ...
-for dset, algo in product([1, 2], ['expectationMaximisation', 'relabelling', 'reweighting']):
-    ind = 'dataset ' + str(dset) + ' ' + algo
-    average_score[ind], std_score[ind] = run_algorithm(algo, dset, 16)
+prop=0.2
+for prop in np.linspace(0.8,0.2,7):
+    for dset, algo in product([1, 2], ['expectationMaximisation', 'relabelling', 'reweighting']):
+        ind = 'dataset ' + str(dset) + ' ' + algo
+        average_score[ind], std_score[ind] = run_algorithm(algo, dset, 16)
