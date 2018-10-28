@@ -228,7 +228,7 @@ def run_algorithm(alg_type, dset, num_run):  # alg_type: type of the algorithm, 
     std_score = np.std(test_score)
     print('average score: ', average_score, '\nstandard deviation: ', std_score)  # help to format here!
     end = time.time()
-    with open('result'+str(prop) + '_data' + str(dset) + '_' + alg_type + str(round(end - start, 4)) + 'sec.csv',
+    with open(str(prop) + '_data' + str(dset) + '_' + alg_type + str(round(end - start, 4)) + 'sec.csv',
               'w') as f:  # better way to output result? I would like they can be read into python easily
         wr = csv.writer(f, dialect='excel')
         wr.writerows([test_score])
@@ -288,4 +288,4 @@ prop=0.2
 for prop in np.linspace(0.8,0.2,7):
     for dset, algo in product([1, 2], ['expectationMaximisation', 'relabelling', 'reweighting']):
         ind = 'dataset ' + str(dset) + ' ' + algo
-        average_score[ind], std_score[ind] = run_algorithm(algo, dset, 16)
+        average_score[ind], std_score[ind] = run_algorithm(algo, dset, cpu_count())
