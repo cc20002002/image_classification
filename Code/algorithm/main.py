@@ -21,15 +21,73 @@ from itertools import product
 import csv
 
 
+def load_data():
+    # result stores the data splits
+    result = {}
+
+    # Load the image dataset and input image parameters
+    dataset1 = np.load('../input_data/mnist_dataset.npz')
+    dataset2 = np.load('../input_data/cifar_dataset.npz')
+
+    # transform dataset to appropriate size
+    Xtr1 = dataset1['Xtr'].astype(float)
+    Str1 = dataset1['Str'].ravel()
+    Xts1 = dataset1['Xts'].astype(float)
+    Yts1 = dataset1['Yts'].ravel()
+
+    Xtr2 = dataset2['Xtr'].astype(float)
+    Str2 = dataset2['Str'].ravel()
+    Xts2 = dataset2['Xts'].astype(float)
+    Yts2 = dataset2['Yts'].ravel()
+
+    # Standardise images
+    scaler = StandardScaler()
+    Xts1 = scaler.fit_transform(Xts1.T).T
+    Xtr1 = scaler.fit_transform(Xtr1.T).T
+    result[1] = (Xtr1, Str1, Xts1, Yts1)
+
+    Xts2 = scaler.fit_transform(Xts2.T).T
+    Xtr2 = scaler.fit_transform(Xtr2.T).T
+
+    # principal component analysis for dataset 2
+    pca = PCA(n_components=100)
+    pca.fit(Xtr2)
+    Xtr2 = pca.transform(Xtr2)
+    Xts2 = pca.transform(Xts2)
+    result[2] = (Xtr2, Str2, Xts2, Yts2)
+
+    return result
+
+
+# Global settings
+
+# 1 = MINIST, 2=CIFAR
+dset = 1
+
+# test dataset split rate
+prop = 0.2
+
+# Maximum of iteration. When testing the algorithm, set it to be small like 100
+max_itera = -1
+
+print('---')
+
+# load the data into data_cache.
+# -- data_cache[1] for MINIST
+# -- data_cache[2] for CIFAR.
+# Use `dset` to change the dataset.
+data_cache = load_data()
+
+
 def estimateBeta(S, prob, rho0, rho1):
     """
-    This function was estimated use method proposed by (???)
+    This function was estimated use method proposed by Liu and Tao.
   
     Parameters
     ----------
     S is the training labels with noise
     prob is the conditional probability predicted by a pretraining model. 
-    described in equation ?? in our report.
+    described in Section 3.4 in our report.
     rho0, rho1 are the flip rates.
 
     Returns
@@ -44,10 +102,11 @@ def estimateBeta(S, prob, rho0, rho1):
     beta = (prob[:] - rho[S].ravel()) / (1 - rho0 - rho1) / prob[:]
     return beta
 
+
 def my_kernel(X, Y):
     """
     We create a custom kernel. This custom kernel is used by the function expectationMaximisation.
-    Please see Section *** for the mathematical derivation.
+    Please see Section 3.5.3 for the mathematical derivation.
     Parameters
     ----------
     X,Y: two vectors or two matrix.
@@ -72,7 +131,9 @@ def my_kernel(X, Y):
     K = exp(-gamma * pairwise_sq_dists) * M
     return K
 
-# dset chooses dataset. num_run determines the number of iterations.
+
+# dset chooses dataset.
+# num_run determines the number of iterations.
 def expectationMaximisation(run):
     """
     This function implements the expectation Maximisation model classifying 
@@ -87,8 +148,10 @@ def expectationMaximisation(run):
 
     clf.score(Xts, Yts): the accuracy of the algorithm on test data
     """
+    print('run = ', run)
+    print('ss', ss)
     # np.random.seed() alternatively
-    # customise the seed number the way you want
+    # customise the seed number tahe way you want
     np.random.seed((run ** 5 + 1323002) % 123123)  
     print("dset:", dset, 'run', run)
     Xtr, Str, Xts, Yts = data_cache[dset]
@@ -101,6 +164,7 @@ def expectationMaximisation(run):
 
     return clf.score(Xts, Yts)
     # 23:08 23:12 23:28 4.2577
+
 
 def cv_reweighting(run):
     """
@@ -118,24 +182,26 @@ def cv_reweighting(run):
     """
     np.random.seed((run ** 5 + 1323002) % 123123)  # np.random.seed() alternatively
     print("dset:", dset, 'run', run)
+
     Xtr, Str, Xts, Yts = data_cache[dset]
     X_train, X_val, y_train, y_val = train_test_split(Xtr, Str, test_size=prop)
+
     # clf1 is the first classifier while clf2 is the second
     if dset == 2:
         clf1 = svm.SVC(C=2.5, gamma=0.000225, probability=True, max_iter=max_itera)
     else:
         # removed 'gamma=scale'. should be the default.
         clf1 = svm.SVC(probability=True, gamma='scale', max_iter=max_itera)
+
     if run == 1:
         print("learn initial probability dset:", dset)
     clf1.fit(X_train, y_train)
-    # print(clf.score(Xts,Yts))
-    # clf.score(Xtr,Str)
+
     if run == 1:
         print("calculating weighting dset:", dset)
+
     probS = clf1.predict_proba(X_train)
     weights = estimateBeta(y_train, probS, 0.2, 0.4)
-    # print(weights.shape)
 
     for i in range(len(weights)):
         if weights[i] < 0:
@@ -187,38 +253,32 @@ def relabelling(run):
     ind_p = int(nn / 3)
     ind5 = np.hstack((np.argsort(-bb[:, 1])[0:ind_p], np.argsort(-bb[:, 0])[0:ind_p]))
 
-
-
     if dset == 2:
         clf2 = svm.SVC(gamma=0.000225, max_iter=max_itera)
     else:
         clf2 = svm.SVC(gamma=0.00865, max_iter=max_itera)
+
     clf2.fit(X_train[ind5, :], y_train[ind5])
     return clf2.score(Xts, Yts)
 
-#    if search:
-#        C_range = 1
-#        gamma_range = np.logspace(10**-4,10**1, 4)
-#        param_grid = dict(gamma=gamma_range, C=C_range)
-#        cv = StratifiedShuffleSplit(n_splits=5, test_size=0.2)
-#        grid = GridSearchCV(svm.SVC(), param_grid=param_grid, cv=cv,n_jobs=-1)
-#        grid.fit(Xtr[ind5,:],Str[ind5])
-#        print("The best parameters are %s with a score of %0.2f"
-#              % (grid.best_params_, grid.best_score_))
 
-def run_algorithm(alg_type, dset, num_run):  # alg_type: type of the algorithm, choose from 'reweighting',...tbc
+def run_algorithm(alg_type, dset, num_run):
+    # alg_type: type of the algorithm, choose from 'reweighting',...tbc
     start = time.time()
     print('start of the whole algorithm with dataset', dset)
     pool = Pool(processes=cpu_count())
+
     if alg_type == 'reweighting':
         print('start of reweighting algorithm')
-        it = pool.map(cv_reweighting, range(num_run))  # using the number of runs
+        it = pool.map(cv_reweighting, range(num_run), )  # using the number of runs
 
     if alg_type == 'relabelling':
         print('start of relabelling algorithm')
         it = pool.map(relabelling, range(num_run))  # using the number of runs
+
     if alg_type == 'expectationMaximisation':
         print('start of expectation Maximisation algorithm')
+        print('num_run', num_run)
         it = pool.map(expectationMaximisation, range(num_run))  # using the number of runs
 
     pool.close()
@@ -238,54 +298,19 @@ def run_algorithm(alg_type, dset, num_run):  # alg_type: type of the algorithm, 
     return average_score, std_score
 
 
-#Maximum of iteration. When testing the algorithm, set it to be small like 100
-max_itera = -1
+def main():
+    """Run Three different Algorithm on dataset MINIST or CIFAR"""
 
-
-#Load the image dataset and input image parameters
-dataset1 = np.load('../input_data/mnist_dataset.npz')
-dataset2 = np.load('../input_data/cifar_dataset.npz')
-size_image1 = 28
-dim_image1 = 1
-size_image2 = 32
-dim_image2 = 3
-
-# data_cache stores the data splits
-data_cache = {}
-
-# transform dataset to appropriate size
-Xtr1 = dataset1['Xtr'].astype(float)
-Str1 = dataset1['Str'].ravel()
-Xts1 = dataset1['Xts'].astype(float)
-Yts1 = dataset1['Yts'].ravel()
-
-Xtr2 = dataset2['Xtr'].astype(float)
-Str2 = dataset2['Str'].ravel()
-Xts2 = dataset2['Xts'].astype(float)
-Yts2 = dataset2['Yts'].ravel()
-
-# Standardise images 
-scaler = StandardScaler()
-Xts1 = scaler.fit_transform(Xts1.T).T
-Xtr1 = scaler.fit_transform(Xtr1.T).T
-data_cache[1] = (Xtr1, Str1, Xts1, Yts1)
-
-Xts2 = scaler.fit_transform(Xts2.T).T
-Xtr2 = scaler.fit_transform(Xtr2.T).T
-
-#principal component analysis for dataset 2
-pca = PCA(n_components=100)
-pca.fit(Xtr2)
-Xtr2 = pca.transform(Xtr2)
-Xts2 = pca.transform(Xts2)
-data_cache[2] = (Xtr2, Str2, Xts2, Yts2)
-#print('pca explained variance:', sum(pca.explained_variance_ratio_))
-
-#initialise result dictionaries
-average_score = {}
-std_score = {}
-prop=0.2
-for prop in np.linspace(0.8,0.2,7):
+    # initialise result dictionaries
+    average_score = {}
+    std_score = {}
     for dset, algo in product([1, 2], ['expectationMaximisation', 'relabelling', 'reweighting']):
         ind = 'dataset ' + str(dset) + ' ' + algo
-        average_score[ind], std_score[ind] = run_algorithm(algo, dset, cpu_count())
+
+        print(ind)
+        average_score[ind], std_score[ind] = run_algorithm(algo, dset, 16)
+
+
+if __name__ == '__main__':
+    main()
+
