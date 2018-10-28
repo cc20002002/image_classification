@@ -1,34 +1,28 @@
 temp = list.files(pattern="*.csv")
-temp=temp[-1]
+
 myfiles = lapply(temp, read.csv,header=FALSE)
 
 myfiles=do.call(rbind,myfiles)
+myfiles=myfiles[-1,]
+myfiles2=myfiles[4:6,]
 #myfiles=t(myfiles)
 require('data.table')
-myfiles$algorithm=c('Expectation Maximisation','Relabelling','Importance Reweighting','Expectation Maximisation','Relabelling','Importance Reweighting')
-myfiles$dataset=c('MNIST','MNIST','MNIST','CIFAR','CIFAR','CIFAR')
-df1=melt(myfiles, id=17:18)
+myfiles2$algorithm=c('Expectation Maximisation with PCA','Relabelling with PCA','Importance Reweighting with PCA')
+myfiles2$dataset=c('CIFAR','CIFAR','CIFAR')
+df1=melt(myfiles2, id=17:18)
 
-df1[seq(1,96,by=6),5]=round(209.2031/16)
-df1[seq(2,96,by=6),5]=round(942.7264/16)
-df1[seq(3,96,by=6),5]=round(1059.5852/16)
-df1[seq(4,96,by=6),5]=round(812.642/16)
-df1[seq(5,96,by=6),5]=round(3742.079/16)
-df1[seq(6,96,by=6),5]=round(4208.5504/16)
+df1[seq(1,48,by=3),5]=round(35.5/16)
+df1[seq(2,48,by=3),5]=round(195.5/16)
+df1[seq(3,48,by=3),5]=round(222.2/16)
+
 df1[,5]=as.factor(df1[,5])
 names(df1)=c("Algorithm" ,"Dataset",   "Average running time (seconds)",  "Accuracy", "Average running time (seconds)" )
 df2=df1[,c(1,2,4,5)]
-
-load('pca')
-df22[seq(1,96,by=6),5]=round(209.2031/16)
-df22[seq(2,96,by=6),5]=round(942.7264/16)
-df22[seq(3,96,by=6),5]=round(1059.5852/16)
-df22[seq(4,96,by=6),5]=round(812.642/16)
-df22[seq(5,96,by=6),5]=round(3742.079/16)
-df22[seq(6,96,by=6),5]=round(4208.5504/16)
 require('ggplot2')
 library(ggthemes)
 df2$`Average running time (seconds)`=as.numeric(as.character(df2$`Average running time (seconds)`))
+df22=df2
+save(list='df22',file = 'pca')
 theme_set(theme_bw())  # from ggthemes
 ggplot(df2,aes(x=`Average running time (seconds)`,y=Accuracy,color=Algorithm,fill=Dataset))+
                  geom_boxplot(size = 1) + scale_fill_hue(l=100, c=100,h.start=330)+
