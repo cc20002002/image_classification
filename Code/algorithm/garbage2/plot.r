@@ -18,27 +18,23 @@ df1[seq(6,96,by=6),5]=round(4208.5504/16)
 df1[,5]=as.factor(df1[,5])
 names(df1)=c("Algorithm" ,"Dataset",   "Average running time (seconds)",  "Accuracy", "Average running time (seconds)" )
 df2=df1[,c(1,2,4,5)]
-
 load('pca')
-df22[seq(1,96,by=6),5]=round(209.2031/16)
-df22[seq(2,96,by=6),5]=round(942.7264/16)
-df22[seq(3,96,by=6),5]=round(1059.5852/16)
-df22[seq(4,96,by=6),5]=round(812.642/16)
-df22[seq(5,96,by=6),5]=round(3742.079/16)
-df22[seq(6,96,by=6),5]=round(4208.5504/16)
+df22[,4]=as.factor(df22[,4])
+df2=rbind(df2,df22)
+
 require('ggplot2')
 library(ggthemes)
 df2$`Average running time (seconds)`=as.numeric(as.character(df2$`Average running time (seconds)`))
 theme_set(theme_bw())  # from ggthemes
 ggplot(df2,aes(x=`Average running time (seconds)`,y=Accuracy,color=Algorithm,fill=Dataset))+
-                 geom_boxplot(size = 1) + scale_fill_hue(l=100, c=100,h.start=330)+
+  geom_boxplot(size = .1,width=10) + scale_fill_hue(l=100, c=100,h.start=330)+
   coord_flip()+ theme(legend.position="top")+
   guides(fill=guide_legend(ncol=1,nrow=3,byrow=TRUE),color=guide_legend(ncol=1,nrow=3,byrow=TRUE))+
   scale_x_continuous(breaks = pretty(df2$`Average running time (seconds)`, n = 10)) +
   scale_y_continuous(breaks = pretty(df2$Accuracy, n = 10))
 ggsave(filename = 'boxplot.pdf',width = 7, height = 7, units = "in")
 ggplot(df2,aes(x=`Average running time (seconds)`,y=Accuracy,color=Algorithm,fill=Dataset))+
-  geom_boxplot(size = 1) + scale_fill_hue(l=100, c=100,h.start=330)+
+  geom_boxplot(size = .1,width=10) + scale_fill_hue(l=100, c=100,h.start=330)+
   scale_x_continuous(breaks = pretty(df2$`Average running time (seconds)`, n = 10)) +
   scale_y_continuous(breaks = pretty(df2$Accuracy, n = 10))
 ggsave(filename = 'boxplotv.pdf',width = 7, height = 7, units = "in")
@@ -76,9 +72,9 @@ df3$Mean=rowMeans((df3[,1:16]))
 df3$Sd=apply(df3[,1:16],1,sd)
 mean.fun <- function(dat, idx) mean(dat[idx], na.rm = TRUE)
 for (i in 1:6){
-bootobject <- boot(data=df1[seq(i,96,by=6),4],R=1000,statistic=mean.fun)
-a=boot.ci(bootobject, type='perc' )
-df3[i,]$CIl=a$percent[4]
+  bootobject <- boot(data=df1[seq(i,96,by=6),4],R=1000,statistic=mean.fun)
+  a=boot.ci(bootobject, type='perc' )
+  df3[i,]$CIl=a$percent[4]
   df3[i,]$CIu=a$percent[5]
 }
 df4=round(df3,3)
