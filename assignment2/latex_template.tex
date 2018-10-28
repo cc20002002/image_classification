@@ -340,10 +340,10 @@ Ordinary \textsc{svm} only gives a classification without revealing a probabilit
 Using this method, we calculated the probability~$P(Y=1|X)$ with label noise by a pre-training \textsc{svm} with Gaussian kernel. Recall from equation~\eqref{eq:decision} that we use $g(X)$ to denote the decision made by this \svm .
 
 Each data set has $10,000$ samples.
-For each data set, we find the $1/3$ and $2/3$ percentiles of the sample conditional probability~$P(Y=1|X)$, and denote the $3333$rd smallest and the $3333$rd greatest probability sample as $P(Y=1|X_{(3333)})$ and $P(Y=1|X_{(6667)})$, respectively.
+For each data set, we find the $1/3$ and $2/3$ percentiles of the sample conditional probability~$P(Y=1|X)$, denoted as as $P(Y=1|X_{(1/3)})$ and $P(Y=1|X_{(2/3)})$, respectively.
 We only use a subset of samples where the predicted probability is very high or very low
 \begin{equation}\label{eq:filter}
-\left\{X|P(Y=1|X)\geq P(Y=1|X_{(3333)}) \cup P(Y=1|X)\leq P(Y=1|X_{(6667)}) \right\}.
+\left\{X|P(Y=1|X)\geq P(Y=1|X_{(1/3)}) \cup P(Y=1|X)\leq P(Y=1|X_{(2/3)}) \right\}.
 \end{equation}
 This method is inspired by the fact that the contaminated samples are more likely to have a probability~$P(Y=1|X)$ close to $0.5$. One third of sample are truncated because of the error rate~$P(\epsilon=1)=0.3\approx 1/3$. Note that this subset of sample is imbalanced.
 
@@ -355,8 +355,8 @@ Training our \textsc{svm} with Gaussian Kernel again with this balanced subset o
 Define the indicator function~$I_{g(X)=S} \in \left\{0,1\right\}$ as the binary scalar indicating whether decision made~$g(X)$ is the same as the observed labels~$S$. With this definition, the expression~$2I_{g(X)=S}-1$ is $-1$ when $g(X)\neq S$ and is $1$ when $g(X)=S$.  The model proposed in this section is equivalent to minimise the loss function~\eqref{eq:loss} with the weighting coefficient
 \begin{equation*}
 \beta\begin{cases}
-2I_{g(X)=S}-1 & \text{when }P({Y}|X)\leq P(Y=1|X_{(3333)}) \cup P({Y}|X)\geq P(Y=1|X_{(6667)}),\\
-0 & \text{when }P(Y=1|X_{(3333)})<P({Y}|X)<P(Y=1|X_{(6667)}).
+2I_{g(X)=S}-1 & \text{when }P({Y}|X)\leq P(Y=1|X_{(1/3)}) \cup P({Y}|X)\geq P(Y=1|X_{(2/3)}),\\
+0 & \text{when }P(Y=1|X_{(1/3)})<P({Y}|X)<P(Y=1|X_{(2/3)}).
 \end{cases}
 \end{equation*}
 This approach is purely empirical. Thus, the prediction made by this model is neither guaranteed to be unbiased nor with bounded variance asymptotically.
@@ -423,8 +423,12 @@ talk about bootstrap resamples of 8000 sample from 10000
 	\label{fig:HPC}
 \end{figure}
 
-\subsection{Compare Images}
+\subsection{Photometric normalisation standardises illumination}
 As mentioned previously \chenc{cross reference}, we preprocess the image dataset by using scaler and PCA. Here are some examples from the \textsc{cifar} dataset to compare the effects intuitively.
+\subsection{Principal component analysis improves the speed by 20 times}
+Figure~\ref{fig:Boxplot} shows that the principal component analysis improved the algorithms fitting the \textsc{cifar} data by 20 times.
+
+The acc of some data sets has been improved.
 
 \begin{figure} 
     \centering
@@ -495,7 +499,7 @@ The inconsistency is not observed in dataset~\textsc{mnist}. This may partly be 
 \begin{figure}
 	%\includegraphics[scale=0.9]{boxplot}
 	\centering
-    \includegraphics[scale=0.7]{boxplotv}%maybe use the large one
+    \includegraphics{boxplotv}%maybe use the large one
 	\caption{Box plots of the accuracy results against running time. {\color{red}Describe various lines and the dots as well as colours here. }
 }
 	\label{fig:Boxplot}
@@ -504,7 +508,7 @@ choose one
 \begin{figure}
 	%\includegraphics[scale=0.9]{boxplot}
 	\centering
-    \includegraphics[scale=0.7]{boxplot}%maybe use the large one
+    \includegraphics{boxplot}%maybe use the large one
 	\caption{Box plots of the accuracy results against running time. {\color{red}Describe various lines and the dots as well as colours here. }
 }
 	\label{fig:Boxplot}
@@ -548,8 +552,8 @@ In terms of \textsc{cifar} data set, there are strong statistical evidences sugg
 Density plot~\ref{fig:Density} of the accuracy results visualise these results concluded by Kolmogorov-Smirnov hypothesis tests.
 \begin{figure}
     \centering
-	\includegraphics[scale=0.8]{{../Code/algorithm/garbage2/histo}}
-	\caption{Density function from kernel smoothing}
+	\includegraphics[scale=0.8]{histo}
+	\caption{Density function from kernel smoothing. Left is mid is right is pink is green is blue is.}
 	\label{fig:Density}
 	%Then we estimate the density function using kernel smoothing and plot figure \ref{fig:Density function from kernel smoothing}.
 \end{figure}
