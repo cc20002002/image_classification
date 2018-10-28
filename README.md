@@ -2,16 +2,15 @@
 
 ## Assignment 2 - Learning with Noisy Data
 
-**Author** :Chen Chen, Yutong Cao, Yixiong Fang
+**Author** : Yutong Cao,  Chen Chen,  Yixiong Fang
 
 **Lecturer**: Tongliang Liu
 
-**Tutors** : Zhuozhuo Tu, Liu Liu
+**Tutors** : Nicholas James, Zhuozhuo Tu, Liu Liu
 
 **Objectives:**
 
-The goal of this assignment is to study how to learn with label noise. Specifically, you need to use at least two methods to classify real world images with noisy labels into a set of categories. Then, you need to compare the performance of these classifiers and analyze the robustness of label noise methods.
-The datasets are quite large, so you need to be smart on which methods you gonna use and perhaps perform a pre-processing step to reduce the amount of computation. Part of your marks will be a function of the performance of your classifier on the test set.
+Please write objective in two scentences. Do not copy.
 
 **Reuirements:**
 - sklearn >= 0.20.0
@@ -19,7 +18,38 @@ The datasets are quite large, so you need to be smart on which methods you gonna
 - numpy
 - matplotlib
 
+
 Running Environment Setup
 ------------
 
+
+1. Make a folder with name "data" in current directory. Then copy ?? and ?? dataset inside. Please make sure you have the following file tree structure:
+     |--- data \\
+     ?	|--- ??\\
+     ?	|--- ??\\
+     |--- nmf \\
+     	|--- ??.py \\
+      	|--- algorithm.py  \\
+      	|--- ??.py  \\
+      	|--- main.py \\
+      	|--- ??.py \\
+      	|--- ??.py \\
+      	|--- ??.py \\
+      	|--- ??.py \\
+      |--- setup.py \\
+      |--- README.md \\
+3. Run `main.py` in `??` with appropriate dataset name.
+
+   To run `???` on **??** dataset, please run:
+
+   ```
+   python nmf/main.py ??
+   ```
+
+   To run `???` on **???** dataset, please run:
+
+   ```
+   python nmf/main.py ??
+   ```
 TODO.
+All results will be auto-saved to ??? `results/{generated-time-dataname}`. Note that we set the epoch to be 1 in `main.py`. This is because we have 2 (dataset) x 3 (algorithm) = 6 combination in each epoch. This will cost around 4.5 minutes on a i7-6th gen laptop with ORL dataset. However, we increased the epochs to calculate average accuracy and confidence interval etc.
