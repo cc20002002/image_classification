@@ -302,6 +302,7 @@ def main():
     # initialise result dictionaries
     average_score = {}
     std_score = {}
+    
     for dset, algo in product([1, 2], ['expectationMaximisation', 'relabelling', 'reweighting']):
         
         print('dataset ' + str(dset) + ' ' + algo)
