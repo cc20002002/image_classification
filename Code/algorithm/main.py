@@ -236,6 +236,7 @@ def main():
     # initialise result dictionaries
     average_score = {}
     std_score = {}
+    
     for dset, algo in product([1, 2], ['expectationMaximisation', 'relabelling', 'reweighting']):
         ind = 'dataset ' + str(dset) + ' ' + algo
         print('dataset ' + str(dset) + ' ' + algo)
