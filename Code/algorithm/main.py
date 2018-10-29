@@ -8,55 +8,16 @@ Please install latest version of multiprocessing, numpy, scipy, time, csv, itert
 
 
 import numpy as np
-from sklearn.preprocessing import StandardScaler
 from sklearn import svm
 from os import cpu_count
-from sklearn.decomposition import IncrementalPCA as PCA
 from sklearn.model_selection import train_test_split
 from multiprocessing import Pool
 import time
 from scipy.spatial.distance import cdist
 from scipy import exp
 from itertools import product
+from util import estimateBeta, load_data
 import csv
-
-
-def load_data():
-    # result stores the data splits
-    result = {}
-
-    # Load the image dataset and input image parameters
-    dataset1 = np.load('../input_data/mnist_dataset.npz')
-    dataset2 = np.load('../input_data/cifar_dataset.npz')
-
-    # transform dataset to appropriate size
-    Xtr1 = dataset1['Xtr'].astype(float)
-    Str1 = dataset1['Str'].ravel()
-    Xts1 = dataset1['Xts'].astype(float)
-    Yts1 = dataset1['Yts'].ravel()
-
-    Xtr2 = dataset2['Xtr'].astype(float)
-    Str2 = dataset2['Str'].ravel()
-    Xts2 = dataset2['Xts'].astype(float)
-    Yts2 = dataset2['Yts'].ravel()
-
-    # Standardise images
-    scaler = StandardScaler()
-    Xts1 = scaler.fit_transform(Xts1.T).T
-    Xtr1 = scaler.fit_transform(Xtr1.T).T
-    result[1] = (Xtr1, Str1, Xts1, Yts1)
-
-    Xts2 = scaler.fit_transform(Xts2.T).T
-    Xtr2 = scaler.fit_transform(Xtr2.T).T
-
-    # principal component analysis for dataset 2
-    pca = PCA(n_components=100)
-    pca.fit(Xtr2)
-    Xtr2 = pca.transform(Xtr2)
-    Xts2 = pca.transform(Xts2)
-    result[2] = (Xtr2, Str2, Xts2, Yts2)
-
-    return result
 
 
 # Global settings
@@ -70,37 +31,10 @@ prop = 0.2
 # Maximum of iteration. When testing the algorithm, set it to be small like 100
 max_itera = -1
 
-print('---')
-
-# load the data into data_cache.
+# load the data into data_cache. Use `dset` on the top to change the dataset.
 # -- data_cache[1] for MINIST
 # -- data_cache[2] for CIFAR.
-# Use `dset` to change the dataset.
 data_cache = load_data()
-
-
-def estimateBeta(S, prob, rho0, rho1):
-    """
-    This function was estimated use method proposed by Liu and Tao.
-  
-    Parameters
-    ----------
-    S is the training labels with noise
-    prob is the conditional probability predicted by a pretraining model. 
-    described in Section 3.4 in our report.
-    rho0, rho1 are the flip rates.
-
-    Returns
-    ----------
-    beta:  the Importance weighting for the second training model.
-    Parameters.
-    """
-    
-    S = S.astype(int)
-    rho = np.array([rho1, rho0])
-    prob = prob[:, 0] * (1 - S[:]) + prob[:, 1] * (S[:])
-    beta = (prob[:] - rho[S].ravel()) / (1 - rho0 - rho1) / prob[:]
-    return beta
 
 
 def my_kernel(X, Y):
@@ -304,11 +238,10 @@ def main():
     std_score = {}
     
     for dset, algo in product([1, 2], ['expectationMaximisation', 'relabelling', 'reweighting']):
-        
+        ind = 'dataset ' + str(dset) + ' ' + algo
         print('dataset ' + str(dset) + ' ' + algo)
         average_score[ind], std_score[ind] = run_algorithm(algo, dset, cpu_count())
 
 
 if __name__ == '__main__':
     main()
-
