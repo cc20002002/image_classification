@@ -18,9 +18,17 @@ from scipy import exp
 from itertools import product
 from util import estimateBeta, load_data
 import csv
+import argparse
 
 
 # Global settings
+
+# Algorithm mapping dictionary
+method = {
+    '1': 'expectationMaximisation',
+    '2': 'reweighting',
+    '3': 'relabelling',
+}
 
 # 1 = MINIST, 2=CIFAR
 dset = 1
@@ -230,18 +238,30 @@ def run_algorithm(alg_type, dset, num_run):
     return average_score, std_score
 
 
-def main():
+def main(dset, algo):
     """Run Three different Algorithm on dataset MINIST or CIFAR"""
 
     # initialise result dictionaries
     average_score = {}
     std_score = {}
-    
-    for dset, algo in product([1, 2], ['expectationMaximisation', 'relabelling', 'reweighting']):
-        ind = 'dataset ' + str(dset) + ' ' + algo
-        print('dataset ' + str(dset) + ' ' + algo)
-        average_score[ind], std_score[ind] = run_algorithm(algo, dset, cpu_count())
+
+    run_algorithm(algo, dset, cpu_count())
+    #
+    #
+    # for dset, algo in product([1, 2], ['expectationMaximisation', 'relabelling', 'reweighting']):
+    #     ind = 'dataset ' + str(dset) + ' ' + algo
+    #     print('dataset ' + str(dset) + ' ' + algo)
+    #     average_score[ind], std_score[ind] = run_algorithm(algo, dset, cpu_count())
 
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--dset', help='Set the dataset to use, 1 = MINIST, 2 = CIFAR. Default is CIFAR.', default=2)
+    parser.add_argument('--method', help='Set the algorithm to run, '
+                                         '1 = Expectation Maximisation, 2 = Importance Reweig'
+                                         'hting, 3 = Heuristic Approach. Default is \'Importance Reweighting\'.',
+                        default=2)
+    args = vars(parser.parse_args())
+    dset = int(args['dset'])
+    algo = method[str(args['method'])]
+    main(dset, algo)
