@@ -134,7 +134,7 @@ def expectationMaximisation(run):
     np.random.seed((run**5+1323002)%123123)#np.random.seed() alternatively
     print("dset:",dset,'run',run)
     Xtr,Str,Xts,Yts = data_cache[dset]
-    X_train, X_val, y_train, y_val = train_test_split(Xtr, Str, test_size=0.2)
+    X_train, X_val, y_train, y_val = train_test_split(Xtr, Str, test_size=prop)
     #clf1 is the first classifier while clf2 is the second
     clf = svm.SVC(C=2.5,kernel=my_kernel,max_iter=max_itera)
     if run==1:
@@ -147,7 +147,7 @@ def cv_reweighting(run):
     np.random.seed((run**5+1323002)%123123)#np.random.seed() alternatively
     print("dset:",dset,'run',run)
     Xtr,Str,Xts,Yts = data_cache[dset]
-    X_train, X_val, y_train, y_val = train_test_split(Xtr, Str, test_size=0.2)
+    X_train, X_val, y_train, y_val = train_test_split(Xtr, Str, test_size=prop)
     #clf1 is the first classifier while clf2 is the second
     if dset==2:
         clf1 = svm.SVC(C=2.5,gamma=0.000225,probability=True,max_iter=max_itera)
@@ -187,7 +187,7 @@ def relabelling(run):
     np.random.seed((run**5+1323002)%123123)#np.random.seed() alternatively
     print("dset:",dset,'run',run)
     Xtr,Str,Xts,Yts = data_cache[dset]
-    X_train, X_val, y_train, y_val = train_test_split(Xtr, Str, test_size=0.2)
+    X_train, X_val, y_train, y_val = train_test_split(Xtr, Str, test_size=prop)
     #clf1 is the first classifier while clf2 is the second
     if dset==2:
         clf1 = svm.SVC(C=2.5,gamma=0.000225,probability=True,max_iter=max_itera)
@@ -262,9 +262,10 @@ def run_algorithm(alg_type, dset, num_run):   #alg_type: type of the algorithm, 
 average_score = {}
 std_score={}
 #TODO!please change it to for loop! for dset,algo in range(2),algos ...
-for dset, algo in product([1,2],['expectationMaximisation','relabelling','reweighting']):
-    ind='dataset '+str(dset)+' '+algo
-    average_score[ind],std_score[ind]=run_algorithm(algo,dset,16)
+for prop in np.linspace(0.8,0.,9):
+    for dset, algo in product([2],['expectationMaximisation','relabelling','reweighting']):
+        ind='dataset '+str(dset)+' '+algo
+        average_score[ind],std_score[ind]=run_algorithm(algo,dset,16)
 #dset=1
 #average_score11, std_score11 = run_algorithm('reweighting',dset,16)
 #average_score12, std_score12 = run_algorithm('relabelling',dset,16)
