@@ -2,7 +2,7 @@
 Sat Oct 13 00:24:24 2018
 @author: chenc TinyC
 Please install sklearn 0.20.0
-Plase install latest version of multiprocessing,numpy and matplotlib
+Please install latest version of multiprocessing, numpy, scipy, time, csv, itertools, os
 
 """
 
@@ -82,11 +82,10 @@ def expectationMaximisation(run):
 
     clf.score(Xts, Yts): the accuracy of the algorithm on test data
     """
-    print('run = ', run)
     # np.random.seed() alternatively
     # customise the seed number tahe way you want
     np.random.seed((run ** 5 + 1323002) % 123123)  
-    print("dset:", dset, 'run', run)
+
     Xtr, Str, Xts, Yts = data_cache[dset]
     X_train, X_val, y_train, y_val = train_test_split(Xtr, Str, test_size=prop)
     # clf1 is the first classifier while clf2 is the second
@@ -114,7 +113,7 @@ def cv_reweighting(run):
     clf.score(Xts, Yts): the accuracy of the algorithm on test data
     """
     np.random.seed((run ** 5 + 1323002) % 123123)  # np.random.seed() alternatively
-    print("dset:", dset, 'run', run)
+    
 
     Xtr, Str, Xts, Yts = data_cache[dset]
     X_train, X_val, y_train, y_val = train_test_split(Xtr, Str, test_size=prop)
@@ -166,7 +165,7 @@ def relabelling(run):
     clf.score(Xts, Yts): the accuracy of the algorithm on test data
     """
     np.random.seed((run ** 5 + 1323002) % 123123)  # np.random.seed() alternatively
-    print("dset:", dset, 'run', run)
+    
     Xtr, Str, Xts, Yts = data_cache[dset]
     X_train, X_val, y_train, y_val = train_test_split(Xtr, Str, test_size=prop)
     # clf1 is the first classifier while clf2 is the second
@@ -198,7 +197,7 @@ def relabelling(run):
 def run_algorithm(alg_type, dset, num_run):
     # alg_type: type of the algorithm, choose from 'reweighting',...tbc
     start = time.time()
-    print('start of the whole algorithm with dataset', dset)
+    #print('start of the whole algorithm with dataset', dset)
     pool = Pool(processes=cpu_count())
 
     if alg_type == 'reweighting':
@@ -221,7 +220,7 @@ def run_algorithm(alg_type, dset, num_run):
     std_score = np.std(test_score)
     print('average score: ', average_score, '\nstandard deviation: ', std_score)  # help to format here!
     end = time.time()
-    with open('result'+str(prop) + '_data' + str(dset) + '_' + alg_type + str(round(end - start, 4)) + 'sec.csv',
+    with open(str(prop) + '_data' + str(dset) + '_' + alg_type + str(round(end - start, 4)) + 'sec.csv',
               'w') as f:  # better way to output result? I would like they can be read into python easily
         wr = csv.writer(f, dialect='excel')
         wr.writerows([test_score])
@@ -239,8 +238,8 @@ def main():
     std_score = {}
     for dset, algo in product([1, 2], ['expectationMaximisation', 'relabelling', 'reweighting']):
         ind = 'dataset ' + str(dset) + ' ' + algo
-        print(ind)
-        average_score[ind], std_score[ind] = run_algorithm(algo, dset, 16)
+        print('dataset ' + str(dset) + ' ' + algo)
+        average_score[ind], std_score[ind] = run_algorithm(algo, dset, cpu_count())
 
 
 if __name__ == '__main__':
