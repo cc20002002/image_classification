@@ -2,6 +2,7 @@
 temp = list.files(pattern="*.csv")
 temps = list.files(pattern="sec_nopca.csv")
 temp=setdiff(temp,temps)
+temp=temp[1:54]
 temp2=gsub(pattern = 'sec.csv',replacement = '',x=temp)
 temp22=gsub(pattern = 'sec_nopca.csv',replacement = '',x=temps)
 
@@ -31,18 +32,36 @@ data=seq(10000,2000,by=-1000)
 for (i in 1:3){
   myfiless$data_size[seq(i,27,by=3)]=data
 }
-
-
+require('data.table')
+library(scales) 
 #################
 require(ggplot2)
+require(dplyr)
 df1=melt(myfiles, id=17:20)
 df1=df1[,c(1,2,3,4,6)]
 names(df1)=c( "Sample size", "Algorithm", "Data set",  'Average running time (seconds)', "Accuracy"   )
-ggplot(df1, aes(x=`Sample size`, y=`Average running time (seconds)`,colour=Algorithm,fill=`Data set`)) +
-geom_point(aes(shape=`Data set`),size=3)
-#+geom_smooth()+ ylim(0, 39)
+ggplot(df1, aes(x=`Sample size`, y=`Average running time (seconds)`,linetype=`Data set`,colour=Algorithm,fill=`Data set`)) +
+geom_point(aes(shape=`Data set`),size=3)+
+  scale_x_log10(
+  ) +
+  scale_y_log10(
+    breaks = scales::trans_breaks("log10", function(x) 10^x),
+    labels = scales::trans_format("log10", scales::math_format(10^.x))
+  ) +geom_smooth(method='lm',se=F)
 ggsave(filename = 'speed.pdf',width = 7, height = 4, units = "in")
-ggplot(df1, aes(x=`Sample size`, y=`Accuracy`,colour=Algorithm,fill=`Data set`)) +
+ggplot(df1, aes(x=`Sample size`, y=`Accuracy`,colour=Algorithm,fill=`Data set`,linetype=`Data set`)) +
 geom_point(aes(shape=`Data set`),size=3) +
 geom_smooth(alpha=0.5)
 ggsave(filename = 'accuracy.pdf',width = 7, height = 4.5, units = "in")
+
+
+tempd=df1%>%filter(`Sample size`==4000)
+tempd=tempd[1:6,]
+tempn=df1%>%filter(`Sample size`==10000)
+tempn=tempn[1:6,]
+log(tempn[4]/tempd[4])/log(2.5)#2
+tempd=df1%>%filter(`Data set`=='CIFAR with PCA')
+tempd=tempd[1:27,]
+tempn=df1%>%filter(`Data set`=='MNIST')
+tempn=tempn[1:27,]
+log(tempn[4]/tempd[4])/log(784/100)
