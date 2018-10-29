@@ -10,15 +10,19 @@
 
 **Objectives:**
 
-The objective is to reproduce two or three existing state-of-the-art algorithms which are robust to label noise. For this purpose, we choose
+The objective is to reproduce two or three existing state-of-the-art algorithms which are robust to label noise. For this purpose, we choose to reproduce the algorithms on these two paper:
 1. Expectation Maximisation by [Biggio et al. [2011]](http://proceedings.mlr.press/v20/biggio11/biggio11.pdf)
 2. Importance Reweighing by [Liu and Tao [2016]](https://arxiv.org/pdf/1411.7718.pdf)
-Based on the work of these pioneers. We also propose our own approach, which we called
+
+Based on the work of these pioneers, we also propose our heuristic approach, which we called:
+
 3. Heuristic Approach by Relabelling
+
 This code will compare the performance of these three algorithms on two well-known dataset:
  1. MINIST
  2. CIFAR
- Both datasets are injected with label noise.
+
+Both datasets are injected with label noise.
 
 
 **Reuirements:**
