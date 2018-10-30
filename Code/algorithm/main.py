@@ -203,9 +203,9 @@ def relabelling(run):
 
 
 def run_algorithm(alg_type, dset, num_run):
-    # alg_type: type of the algorithm, choose from 'reweighting',...tbc
+    #  alg_type: type of the algorithm, choose from
+    # 'expectationMaximisation', 'reweighting' and 'relabelling'.
     start = time.time()
-    #print('start of the whole algorithm with dataset', dset)
     pool = Pool(processes=cpu_count())
 
     if alg_type == 'reweighting':
@@ -238,22 +238,6 @@ def run_algorithm(alg_type, dset, num_run):
     return average_score, std_score
 
 
-def main(dset, algo):
-    """Run Three different Algorithm on dataset MINIST or CIFAR"""
-
-    # initialise result dictionaries
-    average_score = {}
-    std_score = {}
-
-    run_algorithm(algo, dset, cpu_count())
-    #
-    #
-    # for dset, algo in product([1, 2], ['expectationMaximisation', 'relabelling', 'reweighting']):
-    #     ind = 'dataset ' + str(dset) + ' ' + algo
-    #     print('dataset ' + str(dset) + ' ' + algo)
-    #     average_score[ind], std_score[ind] = run_algorithm(algo, dset, cpu_count())
-
-
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--dset', help='Set the dataset to use, 1 = MINIST, 2 = CIFAR. Default is CIFAR.', default=2)
@@ -264,4 +248,4 @@ if __name__ == '__main__':
     args = vars(parser.parse_args())
     dset = int(args['dset'])
     algo = method[str(args['method'])]
-    main(dset, algo)
+    run_algorithm(algo, dset, cpu_count())
