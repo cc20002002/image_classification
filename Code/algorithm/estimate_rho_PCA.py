@@ -17,27 +17,32 @@ from densratio import densratio
 dataset = np.load('../input_data/mnist_dataset.npz')
 
 
-Xtr = dataset ['Xtr']
-Str = dataset ['Str'].ravel()
+Xtr = dataset['Xtr']
+Str = dataset['Str'].ravel()
 
 pca = PCA(n_components=40)
 pca.fit(Xtr)
-Xtr=pca.transform(Xtr)
-print(sum(pca.explained_variance_ratio_))
+Xtr = pca.transform(Xtr)
 
-#There is a bug in the function compute_density_ratio that not allows us to search bandwidth more than 10.
-#So scale the data so that the maximum bandwidth 10 will definitely oversmooth the principal components ranging in (-2000,3000).
-Xtr=Xtr/100
-PY1=sum(Str)/Str.shape
-PY0=1-PY1
-XY1=Xtr[Str==1,:]
-XY0=Xtr[Str==0,:]
-XY1oX=densratio(XY1,Xtr)
-XY1oXV=min(XY1oX.compute_density_ratio(Xtr))
-Y1X=XY1oXV*PY1
-print(Y1X)
+print('PCA explained variance ratio is', sum(pca.explained_variance_ratio_))
 
-XY0oX=densratio(XY0,Xtr)
-XY0oXV=min(XY1oX.compute_density_ratio(Xtr))
-Y0X=XY0oXV*PY0
-print(Y0X)
+# There is a bug in the function compute_density_ratio that not allows us to search bandwidth more than 10.
+# So scale the data so that the maximum bandwidth 10 will definitely oversmooth the principal components
+# ranging in (-2000,3000).
+Xtr = Xtr/100
+
+PY1 = sum(Str) / Str.shape
+PY0 = 1 - PY1
+
+XY1 = Xtr[Str == 1, :]
+XY0 = Xtr[Str == 0, :]
+
+XY1oX = densratio(XY1, Xtr)
+XY1oXV = min(XY1oX.compute_density_ratio(Xtr))
+Y1X = XY1oXV * PY1
+print('Y1|X is ', Y1X)
+
+XY0oX = densratio(XY0, Xtr)
+XY0oXV = min(XY1oX.compute_density_ratio(Xtr))
+Y0X = XY0oXV * PY0
+print('Y0|X is', Y0X)
