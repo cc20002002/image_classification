@@ -37,7 +37,7 @@ dset = 1
 prop = 0.2
 
 # Maximum of iteration. When testing the algorithm, set it to be small like 100
-max_itera = -1
+max_itera = 10
 
 # load the data into data_cache. Use `dset` on the top to change the dataset.
 # -- data_cache[1] for MINIST
@@ -228,7 +228,7 @@ def run_algorithm(alg_type, dset, num_run):
     std_score = np.std(test_score)
     print('average score: ', average_score, '\nstandard deviation: ', std_score)  # help to format here!
     end = time.time()
-    with open(str(prop) + '_data' + str(dset) + '_' + alg_type + str(round(end - start, 4)) + 'sec.csv',
+    with open('../result/' + str(prop) + '_data' + str(dset) + '_' + alg_type + str(round(end - start, 4)) + 'sec.csv',
               'w') as f:  # better way to output result? I would like they can be read into python easily
         wr = csv.writer(f, dialect='excel')
         wr.writerows([test_score])

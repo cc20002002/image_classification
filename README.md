@@ -78,7 +78,7 @@ project
    python estimate_rho_PCA.py
    ```
 
-All results will be auto-saved to ??? `results/{generated-time-dataname}`. 
-Note that we set the epoch to be 1 in `main.py`. This is because we have 2 (dataset) x 3 (algorithm)
- = 6 combination in each epoch. This will cost around 4.5 minutes on a i7-6th gen laptop with CIFAR 
- dataset. However, we increased the epochs to calculate average accuracy and confidence interval etc.
+All results will be auto-saved to `result/{generated-time-dataname}`. 
+Note that we set the `max_itera` to be 100 in `main.py`. This is because the training process may take a lot of time.
+It normally takes 4.5 minutes on a i7-6th gen laptop with CIFAR dataset. However, 
+fell free to increase this parameter to get a more accurate result.
