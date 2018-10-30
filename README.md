@@ -55,18 +55,30 @@ project
     │   ...
 ```
 
-2. Run `main.py` in `Code/algorithm` with appropriate dataset name.
+2. Run `main.py` in `Code/algorithm` with the choose dataset and algorithm.
+   ```
+    --dset DSET      Set the dataset to use, 1 = MINIST, 2 = CIFAR. Default is
+                   CIFAR.
+    --method METHOD  Set the algorithm to run, 1 = Expectation Maximisation, 2 =
+                   Importance Reweighting, 3 = Heuristic Approach. Default is
+                   'Importance Reweighting'.
+   ```            
 
-   To run `???` on **??** dataset, please run:
+   For example, to run `Expectation Maximisation` on **MINIST** dataset, please run:
 
    ```
-   python Code/algorithm/main.py ??
+   python main.py --dset=1 --method=1
+   ```
+   
+   If you do not set the parameter, the default would be running `Importance Reweighting` on **CIFAR**.  
+
+3. To run the rho estimate algorithm, please run in `Code/algorithm`:
+
+   ```
+   python estimate_rho_PCA.py
    ```
 
-   To run `???` on **???** dataset, please run:
-
-   ```
-   python Code/algorithm/main.py ??
-   ```
-TODO.
-All results will be auto-saved to ??? `results/{generated-time-dataname}`. Note that we set the epoch to be 1 in `main.py`. This is because we have 2 (dataset) x 3 (algorithm) = 6 combination in each epoch. This will cost around 4.5 minutes on a i7-6th gen laptop with ORL dataset. However, we increased the epochs to calculate average accuracy and confidence interval etc.
+All results will be auto-saved to ??? `results/{generated-time-dataname}`. 
+Note that we set the epoch to be 1 in `main.py`. This is because we have 2 (dataset) x 3 (algorithm)
+ = 6 combination in each epoch. This will cost around 4.5 minutes on a i7-6th gen laptop with CIFAR 
+ dataset. However, we increased the epochs to calculate average accuracy and confidence interval etc.
