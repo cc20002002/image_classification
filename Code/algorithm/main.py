@@ -18,9 +18,17 @@ from scipy import exp
 from itertools import product
 from util import estimateBeta, load_data
 import csv
+import argparse
 
 
 # Global settings
+
+# Algorithm mapping dictionary
+method = {
+    '1': 'expectationMaximisation',
+    '2': 'reweighting',
+    '3': 'relabelling',
+}
 
 # 1 = MINIST, 2=CIFAR
 dset = 1
@@ -29,7 +37,7 @@ dset = 1
 prop = 0.2
 
 # Maximum of iteration. When testing the algorithm, set it to be small like 100
-max_itera = -1
+max_itera = 10
 
 # load the data into data_cache. Use `dset` on the top to change the dataset.
 # -- data_cache[1] for MINIST
@@ -195,9 +203,9 @@ def relabelling(run):
 
 
 def run_algorithm(alg_type, dset, num_run):
-    # alg_type: type of the algorithm, choose from 'reweighting',...tbc
+    #  alg_type: type of the algorithm, choose from
+    # 'expectationMaximisation', 'reweighting' and 'relabelling'.
     start = time.time()
-    #print('start of the whole algorithm with dataset', dset)
     pool = Pool(processes=cpu_count())
 
     if alg_type == 'reweighting':
@@ -220,7 +228,7 @@ def run_algorithm(alg_type, dset, num_run):
     std_score = np.std(test_score)
     print('average score: ', average_score, '\nstandard deviation: ', std_score)  # help to format here!
     end = time.time()
-    with open(str(prop) + '_data' + str(dset) + '_' + alg_type + str(round(end - start, 4)) + 'sec.csv',
+    with open('../result/' + str(prop) + '_data' + str(dset) + '_' + alg_type + str(round(end - start, 4)) + 'sec.csv',
               'w') as f:  # better way to output result? I would like they can be read into python easily
         wr = csv.writer(f, dialect='excel')
         wr.writerows([test_score])
@@ -230,18 +238,14 @@ def run_algorithm(alg_type, dset, num_run):
     return average_score, std_score
 
 
-def main():
-    """Run Three different Algorithm on dataset MINIST or CIFAR"""
-
-    # initialise result dictionaries
-    average_score = {}
-    std_score = {}
-    
-    for dset, algo in product([1, 2], ['expectationMaximisation', 'relabelling', 'reweighting']):
-        ind = 'dataset ' + str(dset) + ' ' + algo
-        print('dataset ' + str(dset) + ' ' + algo)
-        average_score[ind], std_score[ind] = run_algorithm(algo, dset, cpu_count())
-
-
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--dset', help='Set the dataset to use, 1 = MINIST, 2 = CIFAR. Default is CIFAR.', default=2)
+    parser.add_argument('--method', help='Set the algorithm to run, '
+                                         '1 = Expectation Maximisation, 2 = Importance Reweig'
+                                         'hting, 3 = Heuristic Approach. Default is \'Importance Reweighting\'.',
+                        default=2)
+    args = vars(parser.parse_args())
+    dset = int(args['dset'])
+    algo = method[str(args['method'])]
+    run_algorithm(algo, dset, cpu_count())
