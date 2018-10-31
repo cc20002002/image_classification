@@ -1,14 +1,14 @@
 
 temp = list.files(pattern="*.csv")
-temps = list.files(pattern="sec_nopca.csv")
+temps = list.files(pattern="result_data")
 temp=setdiff(temp,temps)
 temp=temp[1:54]
 temp2=gsub(pattern = 'sec.csv',replacement = '',x=temp)
-temp22=gsub(pattern = 'sec_nopca.csv',replacement = '',x=temps)
+temp22=gsub(pattern = 'sec.csv',replacement = '',x=temps)
 
 require('stringr')
 temp2=str_sub(temp2, start = 20, end = -1L)
-temp22=str_sub(temp22, start = 20, end = -1L)
+#temp22=str_sub(temp22, start = 20, end = -1L)
 temp3=as.numeric(gsub("[^0-9.]", "", temp2) )/16
 temp32=as.numeric(gsub("[^0-9.]", "", temp22) )/16
 myfiles = lapply(temp, read.csv,header=FALSE)
@@ -25,7 +25,7 @@ myfiles$data_size[seq(i,54,by=6)]=data
 myfiless = lapply(temps, read.csv,header=FALSE)
 myfiless=do.call(rbind,myfiless)
 myfiless$data_size=1
-myfiless$algorithm=c('Expectation Maximisation','Relabelling','Importance Reweighting')
+myfiless$algorithm=c(rep('Expectation Maximisation',9),'Relabelling','Importance Reweighting')
 myfiless$dataset=c('CIFAR without PCA','CIFAR without PCA','CIFAR without PCA')
 myfiless$`Running time`=temp32
 data=seq(10000,2000,by=-1000)
