@@ -577,7 +577,7 @@ just states the result hyperparameter from the python file.}
 Figure~\ref{fig:speed} shows that overall, training with \textsc{pca}-processed \textsc{cifar} dataset of dimension $100$ is faster than training with \mnist\ dataset of dimension $784$. 
 For either dataset, Expectation Maximisation is the fastest algorithm. Importance Reweighting and Relabelling have similar running time with Relabelling slightly faster.
 
-However, asymptotically, these three algorithms seem to have the same complexity~$\mathcal{O}(n^2p)$. Comparing the same method across different dataset gives the complexity in feature~$p$. For example, when sample size~$n=10,000$, the two rightmost red data points of Figure~\ref{fig:speed} illustrates that the running time of the Expectation  algorithm for \mnist\ ($p=784$) and \textsc{pca} preprocessed \textsc{cifar} ($p=100$) are $23$ seconds and $3.3$ seconds. Hence the complexity in sample size~$n$ is 
+However, asymptotically, these three algorithms seem to have the same complexity~$\mathcal{O}(n^2p)$. Comparing the same method across different dataset gives the complexity in feature~$p$. For example, when sample size~$n=10,000$, the two rightmost red data points with shapes square and dot in Figure~\ref{fig:speed} illustrate that the running time of the Expectation  algorithm for \mnist\ ($p=784$) and \textsc{pca} preprocessed \textsc{cifar} ($p=100$) are $23$ seconds and $3.3$ seconds. Hence the complexity in sample size~$n$ is 
 \begin{math}
     \log(23/3.3)/\log(784/100)=0.94 \approx 1.
 \end{math}
@@ -589,7 +589,7 @@ Moreover, the slope of the log-log regression in Figure~\ref{fig:speed} are all 
 }
 	\label{fig:speed}
 \end{figure}
-\subsection{Compare algorithms}
+\subsection{Compare algorithms and datasets}
 
 Table~\ref{tab:Meansd} records the descriptive statistics of $16$ Monte Carlo simulations for the three algorithms detailed in Sections~\ref{1st}, \ref{3rd} and~\ref{2nd}.  We test each of the algorithms with datsets \mnist\ and \textsc{cifar}.
 
@@ -610,9 +610,18 @@ In terms of accuracy, all algorithms perform significantly better classifying th
 A possible explanation for this might be that \textsc{cifar} is much more complex in nature---it requires $100$ principal components to reconstruct $85\%$ of the image information, where as \mnist\ datset only needs $40$ such principal components.
 This observation are also visualised box plot in Figure~\ref{fig:Boxplot}. This figure plots the accuracy of the three algorithms against running time using box plot. For the \mnist\  datset, it seems that the relabelling method are marginally more accurate than the other two algorithms. However, for the  more complex \textsc{cifar} datset, the Importance reweighting seems to be significantly more accurate.
 \begin{figure}
+	%\includegraphics[scale=0.9]{boxplot}
+	\centering
+    \includegraphics[scale=0.7]{boxplotv}%maybe use the large one
+	\caption{Box plots of the accuracy results against running time. Different colours of borders represent different learning algorithms. Different colours filling the boxes represent the two original datasets and \textsc{pca} preprocessed \textsc{cifar}. The vertical edges of boxes represent the $1$st and $3$rd quantiles of accuracy for each setting, and the end of vertical lines represent $1.5$ inter quantile range from these two quantiles. The dots are outliers. 
+The right two boxes and the third bottom middle pink box are accuracy classifying original \textsc{cifar} dataset. The bottom left three boxes are accuracy of classifying the \textsc{cifar} dataset with \textsc{pca}. The top left three boxes are accuracy classifying \mnist\ dataset.}
+	\label{fig:Boxplot}
+\end{figure}
+
+\begin{figure}
 	\centering
     \includegraphics[scale=.8]{accuracy}%maybe use the large one
-	\caption{The accuracy of algorithms versus sample size for all three methods on both datasets. The lines are connecting the means of accuracy for each sample size. The coloured regions near the lines indicate the standard deviation of accuracy. Different colours of the lines represent different label noise methods. Various Node shapes and various colours of standard deviation regions represent different datasets. {\color{red}Describe various lines and the dots as well as colours here. }
+	\caption{The accuracy of algorithms versus sample size for all three methods on both datasets. The sample size increases from $2,000$ to $10,000$. The coloured regions near the lines indicate a $95\%$ confidence interval. Three colours of the lines represent different algorithms. The three node shapes and the colours filling the confidence intervals correspond to different datasets. 
 }
 	\label{fig:acc}
 \end{figure}
@@ -628,14 +637,7 @@ Similarly, \citet{liu2016classification} give rigorous proofs justifying the pro
 
 
 The inconsistency is not observed in dataset~\mnist. This may partly be explained by the complexity of the datset. For the \mnist\ data ($784$ dimensional), a sample of $8,000$ images is large. However, for the \textsc{cifar} data, the sample size of $8,000$ is on a similar scale with the dimensionality ($3072$).
-\begin{figure}
-	%\includegraphics[scale=0.9]{boxplot}
-	\centering
-    \includegraphics[scale=0.8]{boxplotv}%maybe use the large one
-	\caption{Box plots of the accuracy results against running time. Different colours of borders represent different learning algorithms. Different filled colours of the boxes represent the two original datasets and \textsc{cifar} with \textsc{pca}. The horizontal edges of boxes indicate the range of running time for each setting, while the vertical edges shows the quartiles of accuracy for each setting. The dots are outliers. {\color{red}Describe various lines and the dots as well as colours here. }
-The right two boxes and the third bottom right small box are results from using original \textsc{cifar} dataset. The bottom left three are results from using \textsc{cifar} with \textsc{pca}. The top left three are result from using \mnist\ dataset.}
-	\label{fig:Boxplot}
-\end{figure}
+
 
 %\begin{figure}
 	%\includegraphics[scale=0.9]{boxplot}
