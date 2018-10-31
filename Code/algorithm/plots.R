@@ -58,7 +58,7 @@ geom_point(aes(shape=`Data set`),size=3)+
     breaks = scales::trans_breaks("log10", function(x) 10^x),
     labels = scales::trans_format("log10", scales::math_format(10^.x))
   ) +geom_smooth(method='lm',se=F)
-ggsave(filename = 'speed.pdf',width = 7, height = 4, units = "in")
+ggsave(filename = 'speed.pdf',width = 7, height = 5, units = "in")
 
 ggplot(df1, aes(x=`Sample size`, y=`Accuracy`,colour=Algorithm,fill=`Data set`,linetype=`Data set`)) +
 geom_point(aes(shape=`Data set`),size=3) +
