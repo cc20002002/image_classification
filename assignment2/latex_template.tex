@@ -52,7 +52,7 @@
   basicstyle=\normalsize\ttfamily,   % size of the fonts for the code
   % Color settings to match IDLE style
   keywordstyle=\color{orange},       % core keywords
-  keywordstyle={[2]\color{purple2}}, % built-ins
+  keywordstyle={[2]\color{purple}}, % built-ins
   stringstyle=\color{green2},
   commentstyle=\color{red},
   upquote=true,                      % requires textcomp
@@ -528,7 +528,7 @@ The images preprocessed by \textsc{pca}  (Row~3 in Figure~\ref{fig:Compare_Image
 
 Preprocessing the \textsc{cifar} data with \textsc{pca} speeds up the algorithms by more than 20 times (Table~\ref{tab:Meansd}). While  \textsc{pca} decreases the accuracy of the relabelling algorithm by $3\%$, it increases the accuracy of Expectation Maximisation and Importance Reweighting  by $1.7\%$ and $0.5\%$, respectively. 
 \begin{table}
-	\caption{Mean, standard deviation and confidence interval of accuracy and average running time for combinations of algorithm and datasets. In the algorithm column, \textsc{em} represents the Expectation Maximisation, \textsc{ir} represents Importance Reweighting and \textsc{r} represents Relabelling.}
+	\caption{Mean, standard deviation and confidence interval of accuracy and average running time for combinations of algorithm and datasets. In the algorithm column, \textsc{em} represents the Expectation Maximisation, \textsc{ir} represents Importance Reweighting and \textsc{r} represents Relabelling. }
 	\label{tab:Meansd}
 \centering
 \begin{tabular}{@{}llllll@{}}
@@ -537,7 +537,7 @@ dataset& Algorithm&Mean  & Standard deviation & Confidence interval & Average ru
 &\textsc{em}&0.938 & 0.003              & (0.936,0.939)     & 19.625\\
 \mnist\ &\textsc{ir}&0.940  & 0.003              & (0.939,0.942)     & 73.079\\
 &\textsc{r}&0.942 & 0.003              & (0.941,0.944)     & 65.290\\
-&None &0.917 &0.004 & (0.914,0.918) & 
+&None &0.917 &0.004 & (0.914,0.918) & 55.359 \\
 \midrule
 &\textsc{em}&0.835 & 0.004              & (0.833,0.837)     & 55.142\\
 \textsc{cifar}&\textsc{ir}&0.844 & 0.005              & (0.841,0.846)     & 283.132\\
@@ -545,7 +545,8 @@ dataset& Algorithm&Mean  & Standard deviation & Confidence interval & Average ru
 \midrule
 \textsc{cifar}&\textsc{em}&0.852 & 0.004              & (0.850,0.853)     & 2.217\\
  preprocessed&\textsc{ir}& 0.849 & 0.006              & (0.847,0.853)     & 13.888\\
- by \textsc{pca}  &\textsc{r}& 0.802 & 0.013              & (0.797,0.809)     & 12.220\\ 
+ by  &\textsc{r}& 0.802 & 0.013              & (0.797,0.809)     & 12.220\\ 
+ \textsc{pca} &None &0.757 &0.009 &(0.753,0.762) &10.886 \\
 \bottomrule
 \end{tabular}
 \end{table}
