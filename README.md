@@ -1,4 +1,4 @@
-# COMP5328 - Advanced Machine Learning
+﻿# COMP5328 - Advanced Machine Learning
 
 ## Assignment 2 - Learning with Noisy Data
 
@@ -9,13 +9,15 @@
 **Tutors** : Nicholas James, Zhuozhuo Tu, Liu Liu
 
 **Objectives:**
+This project implements three algorithms based on support vector machine against class-dependent classification noise.
 
-The objective is to reproduce two or three existing state-of-the-art algorithms which are robust to label noise. For this purpose, we choose to reproduce the algorithms on these two paper:
+The first algorithm extends an existing Expectation Maximisation method to class-dependent classification noise. The method was based on:
 1. Expectation Maximisation by [Biggio et al. [2011]](http://proceedings.mlr.press/v20/biggio11/biggio11.pdf)
+
+The second algorithm reproduces existing state-of-the-art algorithms which are robust to label noise. The algorithm is based on:
 2. Importance Reweighing by [Liu and Tao [2016]](https://arxiv.org/pdf/1411.7718.pdf)
 
-Based on the work of these pioneers, we also propose our heuristic approach, which we called:
-
+We also heuristically  propose a `quick and dirty' approach, which we called:
 3. Heuristic Approach by Relabelling
 
 This code will compare the performance of these three algorithms on two well-known dataset:
@@ -24,9 +26,8 @@ This code will compare the performance of these three algorithms on two well-kno
 
 Both datasets are injected with label noise.
 
-
 **Reuirements:**
-- sklearn >= 0.20.0
+- sklearn == 0.20.0
 - multiprocessing
 - numpy
 - matplotlib
