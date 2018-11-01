@@ -73,7 +73,7 @@ project
    
    If you do not set the parameter, the default would be running `Importance Reweighting` on **CIFAR**.  
 
-3. To run the rho estimate algorithm, please run in `Code/algorithm`:
+3. To run algorithm estimating flip rates rho, please run in `Code/algorithm`:
 
    ```
    python estimate_rho_PCA.py
