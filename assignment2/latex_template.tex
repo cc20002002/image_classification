@@ -36,6 +36,7 @@
 \newcommand{\new}{\marginpar{NEW}}
 \newcommand{\svm}{\textsc{svm}}
 \newcommand{\loss}{\ell}
+\let\harvardurl\url
 \newcommand{\rhoo}{\rho_{+1}}
 \newcommand{\rhoz}{\rho_{-1}}
 \newcommand{\mnist}{fashion-\textsc{mnist}}
@@ -151,7 +152,7 @@ Here, $w$ is the weighting factor, $b$ is a constant. We classify the $i$th imag
 
 
 we use \svm\ as our classification method as of its strong generalisation ability. %In this image classification assignment, we do not observe the true  labels~$y_i$. 
-This section proposes three different approaches to modify ordinary \svm\ to attack label noise problem. However, we do not have access to a test datset with true labels~$(x_i,y_i)$ to verify the generalisation ability of our three different models, which are all trained by noisy data~$(x_i,s_i)$. In \svm , the gap between hyperplane and the training datset provides a natural and `free' metric of its generalisation ability  \citep{hastie01statisticallearning}, and hence use of test datset is not mandatory. Using this geometry factor as well as probably approximately correct learning framework,  \citet{NIPS2012_4500} proved that the  \svm\ models have strong generalisation ability. Further,  \citep{Cortes1995,Seeger:2003:PGE:944919.944929} also shows the strong generalisation ability from different perspectives.
+This section proposes three different approaches to modify ordinary \svm\ to attack label noise problem. However, we do not have access to a test datset with true labels~$(x_i,y_i)$ to verify the generalisation ability of our three different models, which are all trained by noisy data~$(x_i,s_i)$. In \svm , the number of support vectors provides a natural and `free' metric of its generalisation ability  \citep{hastie01statisticallearning}, and hence use of test datset is not mandatory. Using this geometry factor as well as probably approximately correct learning framework,  \citet{NIPS2012_4500} proved that the  \svm\ models have strong generalisation ability. Further,  \citep{Cortes1995,Seeger:2003:PGE:944919.944929} also shows the strong generalisation ability from different perspectives.
 
 \subsubsection{Support vector machine is not robust to label noise}
 
@@ -237,7 +238,7 @@ Theorem~4 proposed by \citet{liu2016classification} estimates the flips rates us
 
 As our sample size is large ($10,000$), the minimal probability of the samples approximates the global minimum well.
 
-The method proposed here requires tuning a few hyperparameters by grid search. Thus, later sections do not use this density ratio method for the speed of our algorithms.
+The method proposed here requires tuning two hyperparameters (bandwidth~$\gamma$ and upper bound of~$\alpha_{sj}$) by grid search the optimised cross validation score. For the speed of our algorithms, later sections do not use this density ratio method.
 In addition, when numerically computing these flip rates, we only use the datset \mnist. This datset is less complex in features comparing with \textsc{cifar}, and hence allows us to grid search the best hyperparameter faster. To further avoid overfitting, we applied \textsc{pca} to decreases the number of features to $50$ when estimating flip rates.
 
 As the true flips rates~$\rhoz$ and $\rhoo$ are given, here and after, we use the true flip rates~$\rhoz=0.2$ and $\rhoo=0.4$ in Sections~\ref{1st}, \ref{3rd} and~\ref{2nd}.
@@ -449,7 +450,7 @@ This method gives us an accuracy of $95.0\%$ on the testing data.
 %\subsubsection{Hinge loss if robust against label noise}
 
 
-\subsection{Tuning hyperparameters}
+\subsection{Tuning hyperparameters}\label{tune}
 The hyperparameters are tuned using coordinate descent \citep{hastie01statisticallearning}. Recall from equation~\eqref{eq:exp} that the total noise rate is 0.3. Hence,  the objective is to achieve an accuracy of $70\%$ when training the contaminated datsets~$(X,S)$. Intuitively, this is a necessary but not sufficient condition of tuning a `perfect' model---if the selected model with tuned hyperparameters perfect fits the clean data $(X,Y)$, then this model would predict the contaminated label~$S$ with a accuracy~$70\%$.
 
 We choose the initial Kernel parameter for Gaussian Kernel~$\gamma$  to maximise the variance of the all kernel products~$k(x_i,x_j)$ over all $i,j$. 
@@ -459,7 +460,7 @@ The initial value of regularisation parameter~$\lambda$ is chosen as $1$.
 The gradient is estimated by finite difference method.
 The model seems to be insensitive to the regularisation parameter~$\lambda$.
 
-Our model tends to be resist to over-fitting for three reasons. Most importantly, as discussed in Section~\ref{sec:over}, soft-margin \svm\ is known to have a strong generalisation ability \citep{NIPS2012_4500,Cortes1995,Seeger:2003:PGE:944919.944929}. Also, we select the hyperparameter of our model so that it predicts the contaminated label~$S$ with a accuracy~$70\%$, not $100\%$. Thirdly, the number of features~$p$ ($784$ for \mnist\ and $100$ for \textsc{pca} proprocessed \textsc{cifar}) is small comparing with the sample size ($8,000$).
+Our model tends to be resist to over-fitting for four reasons. Firstly, we empirically chose parameters so that the number of support vectors is less than $0.2n$. This seems help avoiding overfitting. Most importantly, as discussed in Section~\ref{sec:over}, soft-margin \svm\ is known to have a strong generalisation ability \citep{NIPS2012_4500,Cortes1995,Seeger:2003:PGE:944919.944929}. Also, we select the hyperparameter of our model so that it predicts the contaminated label~$S$ with a accuracy~$70\%$, not $100\%$. Thirdly, the number of features~$p$ ($784$ for \mnist\ and $100$ for \textsc{pca} proprocessed \textsc{cifar}) is small comparing with the sample size ($8,000$).
 
 \subsection{Bootstrap constructs confidence intervals and hypothesis tests}
 Let $A_{ij}$ be the accuracy generated from our {$i$}th algorithm from the $j$th Monte-Carlo simulation. This section provides us a tool to compare the accuracy~$A_{ij}$ for the three proposed algorithms.
@@ -537,17 +538,17 @@ Preprocessing the \textsc{cifar} data with \textsc{pca} speeds up the algorithms
 \begin{tabular}{@{}llllll@{}}
 \toprule
 datset& Algorithm&Mean  & Standard deviation & Confidence interval & Average running time \\ \midrule
-&\textsc{em}&0.938 & 0.003              & (0.936,0.939)     & 19.6250\\
-\mnist\ &\textsc{ir}&0.94  & 0.003              & (0.939,0.942)     & 73.0786\\
-&\textsc{r}&0.942 & 0.003              & (0.941,0.944)     & 65.2899\\
+&\textsc{em}&0.938 & 0.003              & (0.936,0.939)     & 19.625\\
+\mnist\ &\textsc{ir}&0.94  & 0.003              & (0.939,0.942)     & 73.079\\
+&\textsc{r}&0.942 & 0.003              & (0.941,0.944)     & 65.290\\
 \midrule
-&\textsc{em}&0.835 & 0.004              & (0.833,0.837)     & 55.1419\\
-\textsc{cifar}&\textsc{ir}&0.844 & 0.005              & (0.841,0.846)     & 283.1319\\
-  &\textsc{r}&0.832 & 0.008              & (0.829,0.836)     & 250.8700\\ 
+&\textsc{em}&0.835 & 0.004              & (0.833,0.837)     & 55.142\\
+\textsc{cifar}&\textsc{ir}&0.844 & 0.005              & (0.841,0.846)     & 283.132\\
+  &\textsc{r}&0.832 & 0.008              & (0.829,0.836)     & 250.870\\ 
 \midrule
-\textsc{cifar}&\textsc{em}&0.852 & 0.004              & (0.850,0.853)     & 2.2168\\
- preprocessed&\textsc{ir}& 0.849 & 0.006              & (0.847,0.853)     & 13.8876\\
- by \textsc{pca}  &\textsc{r}& 0.802 & 0.013              & (0.797,0.809)     & 12.2195\\ 
+\textsc{cifar}&\textsc{em}&0.852 & 0.004              & (0.850,0.853)     & 2.217\\
+ preprocessed&\textsc{ir}& 0.849 & 0.006              & (0.847,0.853)     & 13.888\\
+ by \textsc{pca}  &\textsc{r}& 0.802 & 0.013              & (0.797,0.809)     & 12.220\\ 
 \bottomrule
 \end{tabular}
 \end{table}
@@ -565,93 +566,55 @@ Secondly, the minimum of conditional probabilities of $P_{D_\rho}(S|X)$ is only 
 
 
 \subsection{Hyperparameter Tuning}
-{\color{red} \\
-just states the result hyperparameter from the python file.}
-\textsc{em} once
-\textsc{ir} twice
-\textsc{r} twice
+{\color{red} cannot think of anything else to write in the paragraph.}\\
+As mentioned in Section~\ref{tune}, we have several hyperparameters involved in our experiments. Table~\ref{tab:hyperparameter} shows the results from the tuning process. $\gamma_1$ and $\frac{1}{2n\lambda_1}$ are hyperparameters used to train the first model for each method on either dataset. $\gamma_2$ and $\frac{1}{2n\lambda_2}$ are hyperparameters used to train the second model. We mentioned in \ref{1st}, Expectation Maximisation do not need a second training, thus the N/A's. 
+
+\begin{table}[h]
+	\caption{Hyperparameters in training. The variables with subscript $1$ give the values of hyperparameters from the first training process and those with subscript $2$ give the values of parameters from the second training process. Note that Expectation Maximisation do not have a second training process. In the algorithm column, \textsc{em} represents the Expectation Maximisation, \textsc{ir} represents Importance Reweighting and \textsc{r} represents Relabelling.}
+	\label{tab:hyperparameter}
+\centering
+\begin{tabular}{@{}llllll@{}}
+\toprule
+datset& Algorithm&$\gamma_{1}$  &$\frac{1}{2n\lambda_{1}}$ &$\gamma_{2}$  & $\frac{1}{2n\lambda_{2}}$ \\ \midrule
+&$\textsc{em}$&0.0005 &2.5              & N/A     & N/A \\
+\mnist\ &\textsc{ir}& 0.00128  & 1              & 0.00865    & 0.4\\
+ & \textsc{r}& 0.00128 & 1             & 0.00865     & 1\\
+\midrule
+\textsc{cifar}&\textsc{em}&0.00087 & 2.5              & N/A     & N/A\\
+ preprocessed&\textsc{ir}&0.000225 & 2.5              & 0.000225    & 0.8\\
+ by \textsc{pca}  &\textsc{r}&0.000225 & 2.5           & 0.000225     & 1\\ 
+\bottomrule
+\end{tabular}
+\end{table}
+The flip rate estimation described in Section~\ref{method2} requires tuning two hyerparameters, bandwith~$\gamma$ and upper bound of~$\alpha_{s_j}$ which is $\lambda$. In the estimation of $\rhoo$, the hyperparameters are found to be $\gamma=0.316$, $\lambda=0.316$ and the value of objective function is $-0.517$. In the estimation of $\rhoz$, the hyperparameters are found to be $\gamma=0.316$, $\lambda=0.100$ and the value of objective function is $-0.511$
+%The Gaussian Kernel parameter~$\gamma$ we use for training in Expectation Maximisation on \mnist\ dataset is $0.0005$. The soft-margin~$\frac{1}{2n\lambda}$ for this model is $2.5$. The $\gamma$ we use for training in Expectation Maximisation on \textsc{cifar} dataset is $0.00087$. The soft-margin $\frac{1}{2n\lambda}$ for this model is also $2.5$. More hyperparameters are involved with the other two methods as they both need an extra pretraining process. The $\gamma$ we use for pretraining in Importance Reweighting on \mnist\ dataset is $\frac{1}{p\cdot{sd}}$ where $p$ is the dimension of the dataset and $sd$ is the standard deviation of the dataset. The soft-margin $\frac{1}{2n\lambda}$ for this model is $1$. The $\gamma$ we use for the second training process in Importance Reweighting on \mnist\ dataset is $0.00865$. The soft-margin $\frac{1}{2n\lambda}$ for this model is $0.4$. 
+
 
 
 \subsection{Regression estimates running time}
-{\color{red} something added}
 Figure~\ref{fig:speed} shows that overall, training with \textsc{pca}-processed \textsc{cifar} dataset of dimension $100$ is faster than training with \mnist\ dataset of dimension $784$. 
 For either dataset, Expectation Maximisation is the fastest algorithm. Importance Reweighting and Relabelling have similar running time with Relabelling slightly faster.
-
-However, asymptotically, these three algorithms seem to have the same complexity~$\mathcal{O}(n^2p)$. Comparing the same method across different dataset gives the complexity in feature~$p$. For example, when sample size~$n=10,000$, the two rightmost red data points with shapes square and dot in Figure~\ref{fig:speed} illustrate that the running time of the Expectation  algorithm for \mnist\ ($p=784$) and \textsc{pca} preprocessed \textsc{cifar} ($p=100$) are $23$ seconds and $3.3$ seconds. Hence the complexity in sample size~$n$ is 
-\begin{math}
-    \log(23/3.3)/\log(784/100)=0.94 \approx 1.
-\end{math}
-Moreover, the slope of the log-log regression in Figure~\ref{fig:speed} are all closed to two, so the complexities of the three algorithms are approximately $\mathcal{O}(n^2p)$ \citep{Roberts:2014:MED:2746455}. 
 \begin{figure}
 	\centering
     \includegraphics[scale=.8]{speed}%maybe use the large one
 	\caption{ Number of samples versus average running time on a log-log scale. The slope of the straight lines on this scale approximates the computational complexity in sample size~$n$. The ratio for a pair of points from the same algorithm and sample size approximates complexity in number of features~$p$.
 }
 	\label{fig:speed}
-\end{figure}
+\end{figure} 
+However, asymptotically, these three algorithms seem to have the same complexity~$\mathcal{O}(n^2p)$. Comparing the same method across different dataset gives the complexity in feature~$p$. For example, when sample size~$n=10,000$, the two rightmost red data points with shapes square and dot in Figure~\ref{fig:speed} illustrate that the running time of the Expectation  algorithm for \mnist\ ($p=784$) and \textsc{pca} preprocessed \textsc{cifar} ($p=100$) are $23$ seconds and $3.3$ seconds. Hence the complexity in sample size~$n$ is 
+\begin{math}
+    \log(23/3.3)/\log(784/100)=0.94 \approx 1.
+\end{math}
+Moreover, the slope of the log-log regression in Figure~\ref{fig:speed} are all closed to two, so the complexities of the three algorithms are approximately $\mathcal{O}(n^2p)$ \citep{Roberts:2014:MED:2746455}. 
+
 \subsection{Compare algorithms and datasets}
 
-Table~\ref{tab:Meansd} records the descriptive statistics of $16$ Monte Carlo simulations for the three algorithms detailed in Sections~\ref{1st}, \ref{3rd} and~\ref{2nd}.  We test each of the algorithms with datsets \mnist\ and \textsc{cifar}.
-
-
-\subsubsection{Expectation Maximisation is the fastest}
-The rightmost column of Table~\ref{tab:Meansd} illustrates the running time of the three algorithms on the two datsets.
-The method of Expectation Maximisation is more than four times faster than the other two methods.
-
-There are two  causes for the difference in speed.
-Firstly, the method of Expectation Maximisation only requires to train the base \svm\ model once.
-In contrast to Expectation Maximisation, the other two methods all require a pre-training step that predicts the conditional probabilities~$P(S|X)$.
-Secondly and most importantly, the loss function~\eqref{eq:dual3} knows the structure of the label noises. Hence, it converges much faster than the other two methods.
-In this pre-training step, the method of relabelling and the method of Importance Reweighting have no adequate information about the \textsc{ccn}.
-The lack of \textsc{ccn} information slows down the convergence of the algorithms.
-
-\subsubsection{\textsc{cifar} is more difficult to classify}
-In terms of accuracy, all algorithms perform significantly better classifying the images in \mnist\ in comparison with classifying images in \textsc{cifar}.
-A possible explanation for this might be that \textsc{cifar} is much more complex in nature---it requires $100$ principal components to reconstruct $85\%$ of the image information, where as \mnist\ datset only needs $40$ such principal components.
-This observation are also visualised box plot in Figure~\ref{fig:Boxplot}. This figure plots the accuracy of the three algorithms against running time using box plot. For the \mnist\  datset, it seems that the relabelling method are marginally more accurate than the other two algorithms. However, for the  more complex \textsc{cifar} datset, the Importance reweighting seems to be significantly more accurate.
-\begin{figure}
-	%\includegraphics[scale=0.9]{boxplot}
-	\centering
-    \includegraphics[scale=0.7]{boxplotv}%maybe use the large one
-	\caption{Box plots of the accuracy results against running time. Different colours of borders represent different learning algorithms. Different colours filling the boxes represent the two original datasets and \textsc{pca} preprocessed \textsc{cifar}. The vertical edges of boxes represent the $1$st and $3$rd quantiles of accuracy for each setting, and the end of vertical lines represent $1.5$ inter quantile range from these two quantiles. The dots are outliers. 
-The right two boxes and the third bottom middle pink box are accuracy classifying original \textsc{cifar} dataset. The bottom left three boxes are accuracy of classifying the \textsc{cifar} dataset with \textsc{pca}. The top left three boxes are accuracy classifying \mnist\ dataset.}
-	\label{fig:Boxplot}
-\end{figure}
-
-\begin{figure}
-	\centering
-    \includegraphics[scale=.8]{accuracy}%maybe use the large one
-	\caption{The accuracy of algorithms versus sample size for all three methods on both datasets. The sample size increases from $2,000$ to $10,000$. The coloured regions near the lines indicate a $95\%$ confidence interval. Three colours of the lines represent different algorithms. The three node shapes and the colours filling the confidence intervals correspond to different datasets. 
-}
-	\label{fig:acc}
-\end{figure}
-
-\subsubsection{Relabelling approach is inconsistent and less robust}
-When classifying the \textsc{cifar} datset, the wide $95\%$ confidence intervals in accuracy (Table~\ref{tab:Meansd} and Figure~\ref{fig:acc}) suggest that the method of relabelling gives inconsistent classification results against \textsc{ccn}. 
-This method only uses $2/3$ of the sample that are believed to be less contaminated. Smaller effective sample size implies greater generalisation errors, and makes this algorithm less consistent. 
-Figure~\ref{fig:acc} support this intuition---this method becomes more consistent when the sample size is increased to $n=10,000$.
-
-The inconsistency may also be a consequence of the heuristic nature of the method as described in Section~\ref{2nd}. No asymptotic properties were prove for the process of relabelling. In contrast, Expectation Maximisation method and Importance Reweighting method are mathematically justified. For example, Section~\ref{1st} mathematically derives the choice of the loss function~\eqref{eq:dual3} by Expectation Maximisation.
-Similarly, \citet{liu2016classification} give rigorous proofs justifying the properties of the Importance Reweighting formula~\eqref{eq:weighting}. As a result of solid theoretical support, these two methods produce more consistent results.
-
-
-
-The inconsistency is not observed in dataset~\mnist. This may partly be explained by the complexity of the datset. For the \mnist\ data ($784$ dimensional), a sample of $8,000$ images is large. However, for the \textsc{cifar} data, the sample size of $8,000$ is on a similar scale with the dimensionality ($3072$).
-
-
-%\begin{figure}
-	%\includegraphics[scale=0.9]{boxplot}
-%	\centering
-%    \includegraphics[scale=0.8]{boxplot}%maybe use the large one
-%	\caption{Box plots of the accuracy results against running time. {\color{red}Describe various lines and the dots as well as colours here. }
-%}
-%	\label{fig:Boxplot}
-%\end{figure}
+Table~\ref{tab:Meansd} records the descriptive statistics of $16$ Monte Carlo simulations for the three algorithms detailed in Sections~\ref{1st}, \ref{3rd} and~\ref{2nd}.  We test each of the algorithms with datsets \mnist\ and \textsc{cifar}. Unless otherwise specified, we randomly select $8,000$ training samples.
 \subsubsection{Hypothesis tests justify visualisations}
-Kolmogorov-Smirnov test results using the statistic~\eqref{teststatistic} support the visualisations observed from the box plot~\ref{fig:Boxplot}.
+Kolmogorov-Smirnov test results (Tabel~\ref{tab:HypothesisTest}) calculated by the test statistic~\eqref{teststatistic} support the visualisations observed from the box plot (Figure~\ref{fig:Boxplot}).
 \begin{table}%please exchange row 2 3.
 \centering
- 	\caption{The result of hypothesis test. The result is `reject' indicates we have  statistical evidence at $95\%$ confidence level to conclude one algorithm is more accurate than the other.}
+ 	\caption{The result of hypothesis test with training sample size of $8,000$. The result is `reject' indicates we have  statistical evidence at $95\%$ confidence level to conclude one algorithm is more accurate than the other.}
 	\begin{tabular}{lllll}
 \toprule
 Data & $H_0$ & $D$ & P-value & Test result\\
@@ -678,12 +641,12 @@ Data & $H_0$ & $D$ & P-value & Test result\\
 
 	\label{tab:HypothesisTest}
 \end{table}
-As illustrated in  Table~\ref{tab:HypothesisTest}, the test statistic ($D=0.625>0.433$) suggests that the relabelling method ($A_3$) more accurately classifies the \mnist\ datset with label noise, comparing with the Expectation Maximisation method ($A_1$).
+Recall from Section~\ref{sec:ks} that test statistic~$D=0.433$ is the boundary of whether we reject the null hypothesis. Table~\ref{tab:HypothesisTest} suggests that the relabelling method ($A_3$) more accurately classifies the \mnist\ datset with label noise, comparing with the Expectation Maximisation method ($A_1$), as of $D=0.625>0.433$.
 However, the hypothesis test are not able to conclude whether Importance Reweighting ($A_2$) outperforms or is outperformed by the other two algorithm with these $16$ simulations of accuracy results, for \mnist\ datset.
 
-In terms of \textsc{cifar} datset, there are strong statistical evidences suggesting Importance Reweighting method classifies the images in the noisy \textsc{cifar} datset more accurately than the expectation maximisation method. Similarly, and we are also $95\%$ confident to accept the hypothesis that the Expectation Maximisation method is more accurate than the importance relabelling method.
+When classifying the \textsc{cifar} datset without \textsc{pca} preprocessing, there are strong statistical evidences suggesting Importance Reweighting method classifies the images in the noisy \textsc{cifar} datset more accurately than the expectation maximisation method. Similarly, and we are also $95\%$ confident to accept the hypothesis that the Expectation Maximisation method is more accurate than the importance relabelling method. Preprocessing  the \textsc{cifar} datset with \textsc{pca} improves the accuracy of Expectation Maximisation and Importance reweighting by $1.7\%$ and $0.5\%$, respectively (Tabel~\ref{tab:Meansd}). Test results cannot distinguish the accuracy of these two methods. However, test results~$D=1$ suggest they are both undoubtedly more accurate than the relabelling method.
 
-Density plot~\ref{fig:Density} of the accuracy results visualise these results concluded by Kolmogorov-Smirnov hypothesis tests.
+The probability density function of the accuracy results shown in Figure~\ref{fig:Density} agrees with the conclusions drawn by the Kolmogorov-Smirnov hypothesis tests.
 \begin{figure}
     \centering
 	\includegraphics[scale=0.8]{histo}
@@ -691,6 +654,61 @@ Density plot~\ref{fig:Density} of the accuracy results visualise these results c
 	\label{fig:Density}
 	%Then we estimate the density function using kernel smoothing and plot figure \ref{fig:Density function from kernel smoothing}.
 \end{figure}
+
+
+\subsubsection{Expectation Maximisation is the fastest}
+The rightmost column of Table~\ref{tab:Meansd} illustrates the running time of the three algorithms on the two datsets.
+The method of Expectation Maximisation is more than four times faster than the other two methods.
+
+There are two  causes for the difference in speed.
+Firstly, the method of Expectation Maximisation only requires to train the base \svm\ model once.
+In contrast to Expectation Maximisation, the other two methods all require a pre-training step that predicts the conditional probabilities~$P_{D_\rho}(S|X)$.
+Secondly and most importantly, the loss function~\eqref{eq:dual3} knows the structure of the label noises. Hence, it converges much faster than the other two methods.
+In this pre-training step, the method of relabelling and the method of Importance Reweighting have no adequate information about the \textsc{ccn}.
+The lack of \textsc{ccn} information slows down the convergence of the algorithms.
+
+\subsubsection{\textsc{cifar} is more difficult to classify}
+In terms of accuracy, all algorithms perform significantly better classifying the images in \mnist\ in comparison with classifying images in \textsc{cifar}.
+A possible explanation for this might be that \textsc{cifar} is much more complex in nature---it requires $100$ principal components to reconstruct $85\%$ of the image information, where as \mnist\ datset only needs $40$ such principal components.
+This observation are also visualised box plot in Figure~\ref{fig:Boxplot}. This figure plots the accuracy of the three algorithms against running time using box plot. For the \mnist\  datset, it seems that the relabelling method are marginally more accurate than the other two algorithms. However, for the  more complex \textsc{cifar} datset, the Importance reweighting seems to be significantly more accurate.
+\begin{figure}
+	%\includegraphics[scale=0.9]{boxplot}
+	\centering
+    \includegraphics[scale=0.7]{boxplotv}%maybe use the large one
+	\caption{Box plots of the accuracy results against running time. Different colours of borders represent different learning algorithms. Different colours filling the boxes represent the two original datasets and \textsc{pca} preprocessed \textsc{cifar}. The vertical edges of boxes represent the $1$st and $3$rd quantiles of accuracy for each setting, and the end of vertical lines represent $1.5$ inter quantile range from these two quantiles. The dots are outliers. 
+The right two boxes and the third bottom middle pink box are accuracy classifying original \textsc{cifar} dataset. The bottom left three boxes are accuracy of classifying the \textsc{cifar} dataset with \textsc{pca}. The top left three boxes are accuracy classifying \mnist\ dataset.}
+	\label{fig:Boxplot}
+\end{figure}
+
+
+\subsubsection{Relabelling approach is inconsistent and less robust}
+When classifying the \textsc{cifar} datset, the wide $95\%$ confidence intervals in accuracy (Table~\ref{tab:Meansd} and Figure~\ref{fig:acc}) suggest that the method of relabelling gives inconsistent classification results against \textsc{ccn}. 
+\begin{figure}
+	\centering
+    \includegraphics[scale=.8]{accuracy}%maybe use the large one
+	\caption{The accuracy of algorithms versus sample size for all three methods on both datasets. The sample size increases from $2,000$ to $10,000$. The coloured regions near the lines indicate a $95\%$ confidence interval. Three colours of the lines represent different algorithms. The three node shapes and the colours filling the confidence intervals correspond to different datasets. 
+}
+	\label{fig:acc}
+\end{figure}
+This method only uses $2/3$ of the sample that are believed to be less contaminated. Smaller effective sample size implies greater generalisation errors, and makes this algorithm less consistent. 
+Figure~\ref{fig:acc} support this intuition---this method becomes more consistent when the sample size is increased to $n=10,000$.
+
+The inconsistency may also be a consequence of the heuristic nature of the method as described in Section~\ref{2nd}. No asymptotic properties were prove for the process of relabelling. In contrast, Expectation Maximisation method and Importance Reweighting method are mathematically justified. For example, Section~\ref{1st} mathematically derives the choice of the loss function~\eqref{eq:dual3} by Expectation Maximisation, and proves the kernel is positive definite. 
+Similarly, \citet{liu2016classification} give rigorous proofs justifying the properties of the Importance Reweighting formula~\eqref{eq:weighting}. With solid theoretical supports, these two methods produce more consistent results.
+
+
+
+The inconsistency is not observed in dataset~\mnist. This may partly be explained by the complexity of the datset. For the \mnist\ data ($784$ dimensional), a sample of $8,000$ images is large. However, for the \textsc{cifar} data, the sample size of $8,000$ is on a similar scale with the dimensionality ($3072$).
+
+
+%\begin{figure}
+	%\includegraphics[scale=0.9]{boxplot}
+%	\centering
+%    \includegraphics[scale=0.8]{boxplot}%maybe use the large one
+%	\caption{Box plots of the accuracy results against running time. {\color{red}Describe various lines and the dots as well as colours here. }
+%}
+%	\label{fig:Boxplot}
+%\end{figure}
 
 
 
@@ -705,7 +723,7 @@ Density plot~\ref{fig:Density} of the accuracy results visualise these results c
 
 %Reweighting is the best overall, more accurate and consistent.
 
-The three methods introduced in Sections~\ref{1st}, \ref{3rd} and \ref{2nd}  all perform well against \textsc{ccn} when testing with the datsets~\mnist\ ($A\approx 94\%$) and~\textsc{cifar} ($A\approx 85\%$). However, the relabelling method proposed in Section~\ref{2nd} does not classify the \textsc{cifar} datset well ($A\approx 80\%$) when preprocessed with \textsc{pca}. Nevertheless, preprocessing with \textsc{pca} improves the speed of each algorithm by approximately 20 times. Surprisingly, \textsc{pca} also marginally improves the accuracy of the Expectation Maximisation method ($3\%$) and the Importance Reweighting method ($1\%$), perhaps by decreasing the generalisation error.
+The three methods introduced in Sections~\ref{1st}, \ref{3rd} and \ref{2nd}  all perform well against \textsc{ccn} when testing with the datsets~\mnist\ ($A\approx 94\%$) and~\textsc{cifar} ($A\approx 85\%$). However, the relabelling method proposed in Section~\ref{2nd} gives sub-optimal  results classifying \textsc{cifar} datset ($A\approx 80\%$) when preprocessed with \textsc{pca}. Nevertheless, preprocessing with \textsc{pca} improves the speed of each algorithm by approximately 20 times. Surprisingly, \textsc{pca} also marginally improves the accuracy of the Expectation Maximisation method ($1.7\%$) and the Importance Reweighting method ($0.5\%$), perhaps by decreasing the generalisation error.
 
 
 Our work finds that Expectation Maximisation is significantly faster than the other two algorithms. This might be a consequence of carefully designed loss function. In addition, the requirement of a pre-training model to predict the conditional probabilities dramatically increases the computational complexity of Important Reweighting and relabelling algorithms. Although Expectation Maximisation is computational efficient, it requires mathematical derivations of several moments of the noise distribution and involved modifications of the base algorithm. This procedure can be error-prone and might be challenging for data scientists with minimal mathematical background. For \svm , this modification ends up being a straightforward Hadamard matrix multiplication correction on the Kernel matrix, as detailed in Section~\ref{sec:mod}. Further, Expectation Maximisation is theoretically less sound in comparison to Importance Reweighting rigorous proposed by \citet{liu2016classification}. The former method only minimises an upper bound of the true loss function \citep{NIPS1999_1672}. Thus, Expectation Maximisation only assures us the selected parameters are a local optimum.
@@ -738,12 +756,12 @@ The heuristically proposed relabelling algorithm does not requires flip rates as
 
 \section{Conclusion}
 This main goal of this report is to implement and compare the three algorithms classifying images with \textsc{ccn} as described in Sections~\ref{1st}, \ref{3rd} and~\ref{2nd}. 
-Multiple nonparametric regression analysis and hypothesis tests revealed that the relabelling algorithm is less robust to label noise than Expectation Maximisation and Importance Reweighting methods, especially for complex datsets. Meanwhile, Importance Reweighting method is more sound theoretically \citep{liu2016classification} and is easier to implement than Expectation Maximisation. 
+Multiple regression analysis and hypothesis tests on classification results revealed that the relabelling algorithm is less robust to \textsc{ccn} than Expectation Maximisation and Importance Reweighting methods, especially for complex datsets. Meanwhile, Importance Reweighting method is more sound theoretically \citep{liu2016classification} and is easier to implement than Expectation Maximisation. 
 Despite of its longer training time, we numerically justified that its computational complexity is the same as Expectation Maximisation.
 In general, therefore, it seems that the Importance Reweighing method is the best algorithm among these three. 
 Our results provided extra numerical complements to the theoretical work done by \citet{liu2016classification}. 
 
-The major limitation of this study is the number of datset tested. Our finding are only based on the performance classifying the datsets~\mnist\ and~\textsc{cifar}. A natural progression of this work is to analyse these three methods on more datsets with \textsc{ccn} and draw a reasonable hypothesis on the asymptotic behaviours of the algorithms. Ideally, these asymptotic properties need to be rigorous proved. Also, our hyperparameters are tuned such that the training accuracy matches the given flip rates (i.e. $0.7$). Dr. Liu invited us to explore the possibility to give a theoretical justification of this tuning method under his supervision.
+The major limitation of this study is the number of datset tested. Our finding are only based on the performance classifying the datsets~\mnist\ and~\textsc{cifar}. A natural progression of this work is to analyse these three methods on more datsets with \textsc{ccn}. Ideally, properties of the relabelling method need to be rigorous proved. Also, our hyperparameters are tuned such that the training accuracy matches the given flip rates (i.e. $0.7$). Dr. Liu invited us to explore the possibility to give a theoretical justification of this tuning method as a research project.
 \label{headings}
 
 \bibliographystyle{unsrtnat}
