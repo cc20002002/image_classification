@@ -30,14 +30,13 @@ method = {
     '3': 'relabelling',
 }
 
-# 1 = MINIST, 2=CIFAR
-dset = 1
-
 # test dataset split rate
 prop = 0.2
 
-# Maximum of iteration. When testing the algorithm, set it to be small like 100
-max_itera = 10
+# Maximum of iteration.
+# When set to -1, it's unlimited.
+# DO NOT set this < 1000, cause some algorithm will not work if not converge.
+max_itera = -1
 
 # load the data into data_cache. Use `dset` on the top to change the dataset.
 # -- data_cache[1] for MINIST
@@ -130,9 +129,10 @@ def cv_reweighting(run):
     if dset == 2:
         clf1 = svm.SVC(C=2.5, gamma=0.000225, probability=True, max_iter=max_itera)
     else:
-        # removed 'gamma=scale'. should be the default.
-        clf1 = svm.SVC(probability=True, gamma='scale', max_iter=max_itera)
-
+        # remove gamma.
+        # ref: https://stackoverflow.com/questions/52582796/support-vector-
+        # regression-typeerror-must-be-real-number-not-str
+        clf1 = svm.SVC(probability=True, max_iter=max_itera)
     if run == 1:
         print("learn initial probability dset:", dset)
     clf1.fit(X_train, y_train)
@@ -173,14 +173,17 @@ def relabelling(run):
     clf.score(Xts, Yts): the accuracy of the algorithm on test data
     """
     np.random.seed((run ** 5 + 1323002) % 123123)  # np.random.seed() alternatively
-    
+
     Xtr, Str, Xts, Yts = data_cache[dset]
     X_train, X_val, y_train, y_val = train_test_split(Xtr, Str, test_size=prop)
     # clf1 is the first classifier while clf2 is the second
     if dset == 2:
         clf1 = svm.SVC(C=2.5, gamma=0.000225, probability=True, max_iter=max_itera)
     else:
-        clf1 = svm.SVC(gamma='scale', probability=True, max_iter=max_itera)
+        # remove gamma. DO NOT use gammma = 'scale', reason:
+        # ref: https://stackoverflow.com/questions/52582796/support-vector-
+        # regression-typeerror-must-be-real-number-not-str
+        clf1 = svm.SVC(probability=True, max_iter=max_itera)
     if run == 1:
         print("learn initial probability dset:", dset)
     clf1.fit(X_train, y_train)
@@ -192,12 +195,10 @@ def relabelling(run):
     y_train[ind] = 1 - y_train[ind]
     ind_p = int(nn / 3)
     ind5 = np.hstack((np.argsort(-bb[:, 1])[0:ind_p], np.argsort(-bb[:, 0])[0:ind_p]))
-
     if dset == 2:
         clf2 = svm.SVC(gamma=0.000225, max_iter=max_itera)
     else:
         clf2 = svm.SVC(gamma=0.00865, max_iter=max_itera)
-
     clf2.fit(X_train[ind5, :], y_train[ind5])
     return clf2.score(Xts, Yts)
 
@@ -210,7 +211,7 @@ def run_algorithm(alg_type, dset, num_run):
 
     if alg_type == 'reweighting':
         print('start of reweighting algorithm')
-        it = pool.map(cv_reweighting, range(num_run), )  # using the number of runs
+        it = pool.map(cv_reweighting, range(num_run))  # using the number of runs
 
     if alg_type == 'relabelling':
         print('start of relabelling algorithm')
@@ -218,7 +219,6 @@ def run_algorithm(alg_type, dset, num_run):
 
     if alg_type == 'expectationMaximisation':
         print('start of expectation Maximisation algorithm')
-        print('num_run', num_run)
         it = pool.map(expectationMaximisation, range(num_run))  # using the number of runs
 
     pool.close()
@@ -226,10 +226,10 @@ def run_algorithm(alg_type, dset, num_run):
     test_score = it
     average_score = np.mean(test_score)
     std_score = np.std(test_score)
-    print('average score: ', average_score, '\nstandard deviation: ', std_score)  # help to format here!
+    print('average score: ', average_score, '\nstandard deviation: ', std_score)
     end = time.time()
     with open('../result/' + str(prop) + '_data' + str(dset) + '_' + alg_type + str(round(end - start, 4)) + 'sec.csv',
-              'w') as f:  # better way to output result? I would like they can be read into python easily
+              'w') as f:
         wr = csv.writer(f, dialect='excel')
         wr.writerows([test_score])
 
