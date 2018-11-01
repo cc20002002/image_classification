@@ -129,10 +129,7 @@ def cv_reweighting(run):
     if dset == 2:
         clf1 = svm.SVC(C=2.5, gamma=0.000225, probability=True, max_iter=max_itera)
     else:
-        # remove gamma.
-        # ref: https://stackoverflow.com/questions/52582796/support-vector-
-        # regression-typeerror-must-be-real-number-not-str
-        clf1 = svm.SVC(probability=True, max_iter=max_itera)
+        clf1 = svm.SVC(gammma = 'scale',probability=True, max_iter=max_itera)
     if run == 1:
         print("learn initial probability dset:", dset)
     clf1.fit(X_train, y_train)
@@ -180,10 +177,7 @@ def relabelling(run):
     if dset == 2:
         clf1 = svm.SVC(C=2.5, gamma=0.000225, probability=True, max_iter=max_itera)
     else:
-        # remove gamma. DO NOT use gammma = 'scale', reason:
-        # ref: https://stackoverflow.com/questions/52582796/support-vector-
-        # regression-typeerror-must-be-real-number-not-str
-        clf1 = svm.SVC(probability=True, max_iter=max_itera)
+        clf1 = svm.SVC(gammma = 'scale',probability=True, max_iter=max_itera)
     if run == 1:
         print("learn initial probability dset:", dset)
     clf1.fit(X_train, y_train)
