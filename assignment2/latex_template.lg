@@ -1,0 +1,557 @@
+htfcss: ptmri7t font-style: italic;
+htfcss: ts1-lmbx  font-weight: bold;
+htfcss: ts1-lmbxi  font-style:italic; font-weight: bold;
+htfcss: ts1-lmbxo  font-style: oblique; font-weight: bold;
+htfcss: ts1-lmcsco  font-style: oblique;
+htfcss: ts1-lmri  font-style:italic;
+htfcss: ts1-lmro  font-style: oblique;
+htfcss: ts1-lmss  font-family: sans-serif;
+htfcss: ts1-lmssbo  font-family: sans-serif; font-style: oblique; font-weight: bold;
+htfcss: ts1-lmssbx  font-family: sans-serif; font-weight: bold;
+htfcss: ts1-lmssdc  font-family: sans-serif;
+htfcss: ts1-lmssdo  font-family: sans-serif; font-style: oblique;
+htfcss: ts1-lmsso  font-family: sans-serif; font-style: oblique;
+htfcss: ts1-lmssq  font-family: sans-serif;
+htfcss: ts1-lmssqbo  font-family: sans-serif; font-style: oblique; font-weight: bold;
+htfcss: ts1-lmssqbx  font-family: sans-serif; font-weight: bold;
+htfcss: ts1-lmssqo  font-family: sans-serif; font-style: oblique;
+htfcss: ts1-lmtcsc  font-family: monospace;
+htfcss: ts1-lmtcso  font-style: oblique; font-family: monospace;
+htfcss: ts1-lmtk  font-family: monospace;
+htfcss: ts1-lmtko  font-style: oblique; font-family: monospace;
+htfcss: ts1-lmtl  font-weight: light; font-family: monospace;
+htfcss: ts1-lmtlc  font-weight: light; font-family: monospace;
+htfcss: ts1-lmtlco  font-weight: light; font-style: oblique; font-family: monospace;
+htfcss: ts1-lmtlo  font-weight: light; font-style: oblique; font-family: monospace;
+htfcss: ts1-lmtt  font-family: monospace;
+htfcss: ts1-lmtti  font-family: monospace; font-style:italic;
+htfcss: ts1-lmtto  font-style: oblique; font-family: monospace;
+htfcss: ts1-lmvtk  font-family: monospace;
+htfcss: ts1-lmvtko  font-style: oblique; font-family: monospace;
+htfcss: ts1-lmvtl  font-weight: light; font-family: monospace;
+htfcss: ts1-lmvtlo  font-weight: light; font-style: oblique; font-family: monospace;
+htfcss: ts1-lmvtt  font-family: monospace;
+htfcss: ts1-lmvtto  font-style: oblique; font-family: monospace;
+htfcss: ts1-lmbo  font-style: oblique;
+htfcss: ptmr7t font-family: monospace;
+htfcss: ptmb7t  font-weight: bold;
+htfcss: ptmb7t  font-weight: bold;
+htfcss: cmmi font-style: italic;
+htfcss: cmmib font-style: italic; font-weight: bold;
+htfcss: ptmb7t  font-weight: bold;
+htfcss: ptmr7t font-family: monospace;
+File: latex_template.html
+File: latex_template.tmp
+File: latex_template.css
+File: latex_template.tmp
+Font_Class(4,"4"): <span  class="small-caps"></span>
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+Font_Class(1,"1"): <img  src="Images/" alt="" class="%s-%dx-x-%x" />
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+File: latex_template.tmp
+--- needs --- latex_template.idv[1] ==> latex_template0x.png ---
+--- empty picture --- latex_template.idv[1] ---
+Css: p.noindent { text-indent: 0em }
+Css: td p.noindent { text-indent: 0em; margin-top:0em; }
+Css: p.nopar { text-indent: 0em; }
+Css: p.indent{ text-indent: 1.5em }
+Css: @media print {div.crosslinks {visibility:hidden;}}
+Css: a img { border-top: 0; border-left: 0; border-right: 0; }
+Font_Css("4"): .small-caps{font-variant: small-caps; }
+Font_Css("10"): .htf-cmbx {font-weight: bold; font-style:normal;}
+Font_Css("12"): .htf-calligraphy {font-family:cursive}
+Font_Css("14"): .htf-italic {font-style: italic;}
+Font_Css("16"): .htf-bold {font-weight: bold;}
+Font_Css("12"): .htf-calligraphy-bold {font-family:cursive ; font-weight: bold; }
+Css: center { margin-top:1em; margin-bottom:1em; }
+Css: td center { margin-top:0em; margin-bottom:0em; }
+Css: .Canvas { position:relative; }
+Css: img.math{vertical-align:middle;}
+Css: li p.indent { text-indent: 0em }
+Css: li p:first-child{ margin-top:0em; }
+Css: li p:last-child, li div:last-child { margin-bottom:0.5em; }
+Css: li p~ul:last-child, li p~ol:last-child{ margin-bottom:0.5em; }
+Css: .enumerate1 {list-style-type:decimal;}
+Css: .enumerate2 {list-style-type:lower-alpha;}
+Css: .enumerate3 {list-style-type:lower-roman;}
+Css: .enumerate4 {list-style-type:upper-alpha;}
+Css: div.newtheorem { margin-bottom: 2em; margin-top: 2em;}
+Css: .obeylines-h,.obeylines-v {white-space: nowrap; }
+Css: div.obeylines-v p { margin-top:0; margin-bottom:0; }
+Css: .overline{ text-decoration:overline; }
+Css: .overline img{ border-top: 1px solid black; }
+Css: td.displaylines {text-align:center; white-space:nowrap;}
+Css: .centerline {text-align:center;}
+Css: .rightline {text-align:right;}
+Css: div.verbatim {font-family: monospace; white-space: nowrap; text-align:left; clear:both; }
+Css: .fbox {padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
+Css: div.fbox {display:table}
+Css: div.center div.fbox {text-align:center; clear:both; padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
+Css: div.minipage{width:100%;}
+Css: div.center, div.center div.center {text-align: center; margin-left:1em; margin-right:1em;}
+Css: div.center div {text-align: left;}
+Css: div.flushright, div.flushright div.flushright {text-align: right;}
+Css: div.flushright div {text-align: left;}
+Css: div.flushleft {text-align: left;}
+Css: .underline{ text-decoration:underline; }
+Css: .underline img{ border-bottom: 1px solid black; margin-bottom:1pt; }
+Css: .framebox-c, .framebox-l, .framebox-r { padding-left:3.0pt; padding-right:3.0pt; text-indent:0pt; border:solid black 0.4pt; }
+Css: .framebox-c {text-align:center;}
+Css: .framebox-l {text-align:left;}
+Css: .framebox-r {text-align:right;}
+Css: span.thank-mark{ vertical-align: super }
+Css: span.footnote-mark sup.textsuperscript, span.footnote-mark a sup.textsuperscript{ font-size:80%; }
+Css: div.footnotes{border-top:solid 1px black; border-bottom:solid 1px black; padding-bottom:1ex; padding-top:0.5ex; margin-right:15%; margin-top:2ex; font-style:italic; font-size:85%;}
+Css: div.footnotes p{margin-top:0; margin-bottom:0; text-indent:0;}
+Css: div.tabular, div.center div.tabular {text-align: center; margin-top:0.5em; margin-bottom:0.5em; }
+Css: table.tabular td p{margin-top:0em;}
+Css: table.tabular {margin-left: auto; margin-right: auto;}
+Css: td p:first-child{ margin-top:0em; }
+Css: td p:last-child{ margin-bottom:0em; }
+Css: div.td00{ margin-left:0pt; margin-right:0pt; }
+Css: div.td01{ margin-left:0pt; margin-right:5pt; }
+Css: div.td10{ margin-left:5pt; margin-right:0pt; }
+Css: div.td11{ margin-left:5pt; margin-right:5pt; }
+Css: table[rules] {border-left:solid black 0.4pt; border-right:solid black 0.4pt; }
+Css: td.td00{ padding-left:0pt; padding-right:0pt; }
+Css: td.td01{ padding-left:0pt; padding-right:5pt; }
+Css: td.td10{ padding-left:5pt; padding-right:0pt; }
+Css: td.td11{ padding-left:5pt; padding-right:5pt; }
+Css: table[rules] {border-left:solid black 0.4pt; border-right:solid black 0.4pt; }
+Css: .hline hr, .cline hr{ height : 1px; margin:0px; }
+Css: .tabbing-right {text-align:right;}
+Css: span.TEX {letter-spacing: -0.125em; }
+Css: span.TEX span.E{ position:relative;top:0.5ex;left:-0.0417em;}
+Css: a span.TEX span.E {text-decoration: none; }
+Css: span.LATEX span.A{ position:relative; top:-0.5ex; left:-0.4em; font-size:85%;}
+Css: span.LATEX span.TEX{ position:relative; left: -0.4em; }
+Css: div.float, div.figure {margin-left: auto; margin-right: auto;}
+Css: div.float img {text-align:center;}
+Css: div.figure img {text-align:center;}
+Css: .marginpar {width:20%; float:right; text-align:left; margin-left:auto; margin-top:0.5em; font-size:85%; text-decoration:underline;}
+Css: .marginpar p{margin-top:0.4em; margin-bottom:0.4em;}
+Css: table.equation {width:100%;}
+Css: .equation td{text-align:center; }
+Css: td.equation { margin-top:1em; margin-bottom:1em; } 
+Css: td.equation-label { width:5%; text-align:center; }
+Css: td.eqnarray4 { width:5%; white-space: normal; }
+Css: td.eqnarray2 { width:5%; }
+Css: table.eqnarray-star, table.eqnarray {width:100%;}
+Css: div.eqnarray{text-align:center;}
+Css: div.array {text-align:center;}
+Css: div.pmatrix {text-align:center;}
+Css: table.pmatrix {width:100%;}
+Css: span.pmatrix img{vertical-align:middle;}
+Css: div.pmatrix {text-align:center;}
+Css: table.pmatrix {width:100%;}
+Css: span.bar-css {text-decoration:overline;}
+Css: img.cdots{vertical-align:middle;}
+Css: .partToc a, .partToc, .likepartToc a, .likepartToc {line-height: 200%; font-weight:bold; font-size:110%;}
+Css: .index-item, .index-subitem, .index-subsubitem {display:block}
+Css: div.caption {text-indent:-2em; margin-left:3em; margin-right:1em; text-align:left;}
+Css: div.caption span.id{font-weight: bold; white-space: nowrap; }
+Css: h1.partHead{text-align: center}
+Css: p.bibitem { text-indent: -2em; margin-left: 2em; margin-top:0.6em; margin-bottom:0.6em; }
+Css: p.bibitem-p { text-indent: 0em; margin-left: 2em; margin-top:0.6em; margin-bottom:0.6em; }
+Css: .paragraphHead, .likeparagraphHead { margin-top:2em; font-weight: bold;}
+Css: .subparagraphHead, .likesubparagraphHead { font-weight: bold;}
+Css: .quote {margin-bottom:0.25em; margin-top:0.25em; margin-left:1em; margin-right:1em; text-align:justify;}
+Css: .verse{white-space:nowrap; margin-left:2em}
+Css: div.maketitle {text-align:center;}
+Css: h2.titleHead{text-align:center;}
+Css: div.maketitle{ margin-bottom: 2em; }
+Css: div.author, div.date {text-align:center;}
+Css: div.thanks{text-align:left; margin-left:10%; font-size:85%; font-style:italic; }
+Font_Size: 12
+Css: .quotation {margin-bottom:0.25em; margin-top:0.25em; margin-left:1em; }
+Css: .abstract p {margin-left:5%; margin-right:5%;}
+Css: div.abstract {width:100%;}
+Css: .equation td{text-align:center; }
+Css: .equation-star td{text-align:center; }
+Css: table.equation-star { width:100%; }
+Css: table.equation { width:100%; }
+Css: table.align, table.alignat, table.xalignat, table.xxalignat, table.flalign {width:100%; margin-left:5%; white-space: nowrap;}
+Css: table.align-star, table.alignat-star, table.xalignat-star, table.flalign-star {margin-left:auto; margin-right:auto; white-space: nowrap;}
+Css: td.align-label { width:5%; text-align:center; }
+Css: td.align-odd { text-align:right; padding-right:0.3em;}
+Css: td.align-even { text-align:left; padding-right:0.6em;}
+Css: table.multline, table.multline-star {width:100%;}
+Css: td.gather {text-align:center; }
+Css: table.gather {width:100%;}
+Css: div.gather-star {text-align:center;}
+Css: .lstlisting .label{margin-right:0.5em; }
+Css: div.lstlisting{font-family: monospace; white-space: nowrap; margin-top:0.5em; margin-bottom:0.5em; }
+Css: div.lstinputlisting{ font-family: monospace; white-space: nowrap; }
+Css: .lstinputlisting .label{margin-right:0.5em;}
+--- needs --- latex_template.idv[3] ==> latex_template1x.png ---
+--- empty picture --- latex_template.idv[3] ---
+--- needs --- latex_template.idv[4] ==> latex_template2x.png ---
+--- empty picture --- latex_template.idv[4] ---
+--- needs --- latex_template.idv[6] ==> latex_template3x.png ---
+--- empty picture --- latex_template.idv[6] ---
+--- needs --- latex_template.idv[7] ==> latex_template4x.png ---
+--- empty picture --- latex_template.idv[7] ---
+--- needs --- latex_template.idv[9] ==> latex_template5x.png ---
+--- empty picture --- latex_template.idv[9] ---
+--- needs --- latex_template.idv[10] ==> latex_template8x.png ---
+--- empty picture --- latex_template.idv[10] ---
+--- needs --- latex_template.idv[12] ==> latex_template6x.png ---
+--- needs --- latex_template.idv[14] ==> latex_template7x.png ---
+--- needs --- latex_template.idv[16] ==> latex_template9x.png ---
+--- empty picture --- latex_template.idv[16] ---
+--- needs --- latex_template.idv[17] ==> latex_template11x.png ---
+--- empty picture --- latex_template.idv[17] ---
+--- needs --- latex_template.idv[19] ==> latex_template10x.png ---
+--- needs --- latex_template.idv[21] ==> latex_template12x.png ---
+--- empty picture --- latex_template.idv[21] ---
+--- needs --- latex_template.idv[22] ==> latex_template14x.png ---
+--- empty picture --- latex_template.idv[22] ---
+--- needs --- latex_template.idv[24] ==> latex_template13x.png ---
+--- needs --- latex_template.idv[26] ==> latex_template15x.png ---
+--- empty picture --- latex_template.idv[26] ---
+--- needs --- latex_template.idv[27] ==> latex_template20x.png ---
+--- empty picture --- latex_template.idv[27] ---
+--- needs --- latex_template.idv[29] ==> latex_template16x.png ---
+--- needs --- latex_template.idv[30] ==> latex_template17x.png ---
+--- needs --- latex_template.idv[32] ==> latex_template18x.png ---
+--- needs --- latex_template.idv[34] ==> latex_template21x.png ---
+--- empty picture --- latex_template.idv[34] ---
+--- needs --- latex_template.idv[35] ==> latex_template24x.png ---
+--- empty picture --- latex_template.idv[35] ---
+--- needs --- latex_template.idv[37] ==> latex_template19x.png ---
+--- needs --- latex_template.idv[39] ==> latex_template22x.png ---
+--- needs --- latex_template.idv[41] ==> latex_template25x.png ---
+--- empty picture --- latex_template.idv[41] ---
+--- needs --- latex_template.idv[42] ==> latex_template29x.png ---
+--- empty picture --- latex_template.idv[42] ---
+--- needs --- latex_template.idv[44] ==> latex_template23x.png ---
+--- needs --- latex_template.idv[46] ==> latex_template26x.png ---
+--- needs --- latex_template.idv[48] ==> latex_template27x.png ---
+--- needs --- latex_template.idv[50] ==> latex_template30x.png ---
+--- empty picture --- latex_template.idv[50] ---
+--- needs --- latex_template.idv[51] ==> latex_template32x.png ---
+--- empty picture --- latex_template.idv[51] ---
+--- needs --- latex_template.idv[53] ==> latex_template28x.png ---
+--- needs --- latex_template.idv[55] ==> latex_template31x.png ---
+--- needs --- latex_template.idv[57] ==> latex_template33x.png ---
+--- empty picture --- latex_template.idv[57] ---
+--- needs --- latex_template.idv[58] ==> latex_template37x.png ---
+--- empty picture --- latex_template.idv[58] ---
+--- needs --- latex_template.idv[60] ==> latex_template34x.png ---
+--- needs --- latex_template.idv[62] ==> latex_template35x.png ---
+--- needs --- latex_template.idv[63] ==> latex_template36x.png ---
+--- needs --- latex_template.idv[65] ==> latex_template38x.png ---
+--- empty picture --- latex_template.idv[65] ---
+--- needs --- latex_template.idv[66] ==> latex_template41x.png ---
+--- empty picture --- latex_template.idv[66] ---
+--- needs --- latex_template.idv[68] ==> latex_template39x.png ---
+--- needs --- latex_template.idv[70] ==> latex_template40x.png ---
+--- needs --- latex_template.idv[72] ==> latex_template42x.png ---
+--- empty picture --- latex_template.idv[72] ---
+--- needs --- latex_template.idv[73] ==> latex_template46x.png ---
+--- empty picture --- latex_template.idv[73] ---
+--- needs --- latex_template.idv[75] ==> latex_template43x.png ---
+--- needs --- latex_template.idv[76] ==> latex_template44x.png ---
+--- needs --- latex_template.idv[77] ==> latex_template45x.png ---
+--- needs --- latex_template.idv[79] ==> latex_template47x.png ---
+--- empty picture --- latex_template.idv[79] ---
+--- needs --- latex_template.idv[80] ==> latex_template50x.png ---
+--- empty picture --- latex_template.idv[80] ---
+--- needs --- latex_template.idv[82] ==> latex_template48x.png ---
+--- needs --- latex_template.idv[84] ==> latex_template49x.png ---
+--- needs --- latex_template.idv[86] ==> latex_template51x.png ---
+--- empty picture --- latex_template.idv[86] ---
+--- needs --- latex_template.idv[87] ==> latex_template54x.png ---
+--- empty picture --- latex_template.idv[87] ---
+--- needs --- latex_template.idv[89] ==> latex_template52x.png ---
+--- needs --- latex_template.idv[91] ==> latex_template53x.png ---
+--- needs --- latex_template.idv[93] ==> latex_template55x.png ---
+--- empty picture --- latex_template.idv[93] ---
+--- needs --- latex_template.idv[94] ==> latex_template59x.png ---
+--- empty picture --- latex_template.idv[94] ---
+--- needs --- latex_template.idv[96] ==> latex_template56x.png ---
+--- needs --- latex_template.idv[98] ==> latex_template57x.png ---
+--- needs --- latex_template.idv[100] ==> latex_template58x.png ---
+--- needs --- latex_template.idv[102] ==> latex_template60x.png ---
+--- empty picture --- latex_template.idv[102] ---
+--- needs --- latex_template.idv[103] ==> latex_template63x.png ---
+--- empty picture --- latex_template.idv[103] ---
+--- needs --- latex_template.idv[105] ==> latex_template61x.png ---
+--- needs --- latex_template.idv[107] ==> latex_template64x.png ---
+--- empty picture --- latex_template.idv[107] ---
+--- needs --- latex_template.idv[108] ==> latex_template66x.png ---
+--- empty picture --- latex_template.idv[108] ---
+--- needs --- latex_template.idv[110] ==> latex_template62x.png ---
+--- needs --- latex_template.idv[111] ==> latex_template65x.png ---
+--- needs --- latex_template.idv[113] ==> latex_template67x.png ---
+--- empty picture --- latex_template.idv[113] ---
+--- needs --- latex_template.idv[114] ==> latex_template70x.png ---
+--- empty picture --- latex_template.idv[114] ---
+--- needs --- latex_template.idv[116] ==> latex_template68x.png ---
+--- needs --- latex_template.idv[118] ==> latex_template69x.png ---
+--- needs --- latex_template.idv[120] ==> latex_template71x.png ---
+--- empty picture --- latex_template.idv[120] ---
+--- needs --- latex_template.idv[121] ==> latex_template73x.png ---
+--- empty picture --- latex_template.idv[121] ---
+--- needs --- latex_template.idv[123] ==> latex_template72x.png ---
+--- needs --- latex_template.idv[125] ==> latex_template74x.png ---
+--- empty picture --- latex_template.idv[125] ---
+--- needs --- latex_template.idv[126] ==> latex_template75x.png ---
+--- empty picture --- latex_template.idv[126] ---
+--- needs --- latex_template.idv[128] ==> latex_template76x.png ---
+--- empty picture --- latex_template.idv[128] ---
+--- needs --- latex_template.idv[129] ==> latex_template77x.png ---
+--- empty picture --- latex_template.idv[129] ---
+--- needs --- latex_template.idv[131] ==> latex_template78x.png ---
+--- empty picture --- latex_template.idv[131] ---
+--- needs --- latex_template.idv[132] ==> latex_template79x.png ---
+--- empty picture --- latex_template.idv[132] ---
+--- needs --- latex_template.idv[134] ==> latex_template80x.png ---
+--- empty picture --- latex_template.idv[134] ---
+--- needs --- latex_template.idv[135] ==> latex_template81x.png ---
+--- empty picture --- latex_template.idv[135] ---
+--- needs --- latex_template.idv[137] ==> latex_template82x.png ---
+--- empty picture --- latex_template.idv[137] ---
+--- needs --- latex_template.idv[138] ==> latex_template83x.png ---
+--- empty picture --- latex_template.idv[138] ---
+--- needs --- latex_template.idv[140] ==> latex_template84x.png ---
+--- empty picture --- latex_template.idv[140] ---
+--- needs --- latex_template.idv[141] ==> latex_template85x.png ---
+--- empty picture --- latex_template.idv[141] ---
+--- needs --- latex_template.idv[143] ==> latex_template86x.png ---
+--- empty picture --- latex_template.idv[143] ---
+--- needs --- latex_template.idv[144] ==> latex_template87x.png ---
+--- empty picture --- latex_template.idv[144] ---
+--- needs --- latex_template.idv[146] ==> latex_template88x.png ---
+--- empty picture --- latex_template.idv[146] ---
+--- needs --- latex_template.idv[147] ==> latex_template89x.png ---
+--- empty picture --- latex_template.idv[147] ---
+Css: tr#TBL-3-1- td{border-top:0.13159em solid} 
+Css: tr#TBL-3-1- td{border-bottom:0.08224em solid}
+Css: tr#TBL-3-5- td{border-bottom:0.08224em solid}
+Css: tr#TBL-3-8- td{border-bottom:0.08224em solid}
+Css: tr#TBL-3-12- td{border-bottom:0.13159em solid}
+--- needs --- latex_template.idv[149] ==> latex_template90x.png ---
+--- empty picture --- latex_template.idv[149] ---
+--- needs --- latex_template.idv[150] ==> latex_template95x.png ---
+--- empty picture --- latex_template.idv[150] ---
+--- needs --- latex_template.idv[152] ==> latex_template91x.png ---
+--- needs --- latex_template.idv[153] ==> latex_template92x.png ---
+--- needs --- latex_template.idv[154] ==> latex_template93x.png ---
+--- needs --- latex_template.idv[155] ==> latex_template94x.png ---
+--- needs --- latex_template.idv[157] ==> latex_template96x.png ---
+--- empty picture --- latex_template.idv[157] ---
+--- needs --- latex_template.idv[158] ==> latex_template97x.png ---
+--- empty picture --- latex_template.idv[158] ---
+--- needs --- latex_template.idv[160] ==> latex_template98x.png ---
+--- empty picture --- latex_template.idv[160] ---
+--- needs --- latex_template.idv[161] ==> latex_template102x.png ---
+--- empty picture --- latex_template.idv[161] ---
+--- needs --- latex_template.idv[163] ==> latex_template99x.png ---
+Css: tr#TBL-4-1- td{border-top:0.13159em solid} 
+--- needs --- latex_template.idv[164] ==> latex_template100x.png ---
+--- needs --- latex_template.idv[165] ==> latex_template101x.png ---
+Css: tr#TBL-4-1- td{border-bottom:0.08224em solid}
+Css: tr#TBL-4-4- td{border-bottom:0.08224em solid}
+Css: tr#TBL-4-7- td{border-bottom:0.13159em solid}
+--- needs --- latex_template.idv[167] ==> latex_template103x.png ---
+--- empty picture --- latex_template.idv[167] ---
+--- needs --- latex_template.idv[168] ==> latex_template104x.png ---
+--- empty picture --- latex_template.idv[168] ---
+--- needs --- latex_template.idv[170] ==> latex_template105x.png ---
+--- empty picture --- latex_template.idv[170] ---
+--- needs --- latex_template.idv[171] ==> latex_template106x.png ---
+--- empty picture --- latex_template.idv[171] ---
+--- needs --- latex_template.idv[173] ==> latex_template107x.png ---
+--- empty picture --- latex_template.idv[173] ---
+--- needs --- latex_template.idv[174] ==> latex_template108x.png ---
+--- empty picture --- latex_template.idv[174] ---
+--- needs --- latex_template.idv[176] ==> latex_template109x.png ---
+--- empty picture --- latex_template.idv[176] ---
+--- needs --- latex_template.idv[177] ==> latex_template110x.png ---
+--- empty picture --- latex_template.idv[177] ---
+--- needs --- latex_template.idv[179] ==> latex_template111x.png ---
+--- empty picture --- latex_template.idv[179] ---
+--- needs --- latex_template.idv[180] ==> latex_template112x.png ---
+--- empty picture --- latex_template.idv[180] ---
+--- needs --- latex_template.idv[182] ==> latex_template113x.png ---
+--- empty picture --- latex_template.idv[182] ---
+--- needs --- latex_template.idv[183] ==> latex_template114x.png ---
+--- empty picture --- latex_template.idv[183] ---
+Css: tr#TBL-5-1- td{border-top:0.13159em solid} 
+Css: tr#TBL-5-1- td{border-bottom:0.08224em solid}
+Css: tr#TBL-5-4- td{border-bottom:0.08224em solid}
+Css: tr#TBL-5-7- td{border-bottom:0.08224em solid}
+Css: tr#TBL-5-10- td{border-bottom:0.13159em solid}
+--- needs --- latex_template.idv[185] ==> latex_template115x.png ---
+--- empty picture --- latex_template.idv[185] ---
+--- needs --- latex_template.idv[186] ==> latex_template116x.png ---
+--- empty picture --- latex_template.idv[186] ---
+--- needs --- latex_template.idv[188] ==> latex_template117x.png ---
+--- empty picture --- latex_template.idv[188] ---
+--- needs --- latex_template.idv[189] ==> latex_template118x.png ---
+--- empty picture --- latex_template.idv[189] ---
+--- needs --- latex_template.idv[191] ==> latex_template119x.png ---
+--- empty picture --- latex_template.idv[191] ---
+--- needs --- latex_template.idv[192] ==> latex_template120x.png ---
+--- empty picture --- latex_template.idv[192] ---
+--- needs --- latex_template.idv[194] ==> latex_template121x.png ---
+--- empty picture --- latex_template.idv[194] ---
+--- needs --- latex_template.idv[195] ==> latex_template122x.png ---
+--- empty picture --- latex_template.idv[195] ---
+--- needs --- latex_template.idv[197] ==> latex_template123x.png ---
+--- empty picture --- latex_template.idv[197] ---
+--- needs --- latex_template.idv[198] ==> latex_template124x.png ---
+--- empty picture --- latex_template.idv[198] ---
+--- needs --- latex_template.idv[200] ==> latex_template125x.png ---
+--- empty picture --- latex_template.idv[200] ---
+--- needs --- latex_template.idv[201] ==> latex_template126x.png ---
+--- empty picture --- latex_template.idv[201] ---
+--- needs --- latex_template.idv[203] ==> latex_template127x.png ---
+--- empty picture --- latex_template.idv[203] ---
+--- needs --- latex_template.idv[204] ==> latex_template128x.png ---
+--- empty picture --- latex_template.idv[204] ---
+--- needs --- latex_template.idv[206] ==> latex_template129x.png ---
+--- empty picture --- latex_template.idv[206] ---
+--- needs --- latex_template.idv[207] ==> latex_template130x.png ---
+--- empty picture --- latex_template.idv[207] ---
+--- needs --- latex_template.idv[209] ==> latex_template131x.png ---
+--- empty picture --- latex_template.idv[209] ---
+--- needs --- latex_template.idv[210] ==> latex_template132x.png ---
+--- empty picture --- latex_template.idv[210] ---
+--- needs --- latex_template.idv[212] ==> latex_template133x.png ---
+--- empty picture --- latex_template.idv[212] ---
+--- needs --- latex_template.idv[213] ==> latex_template134x.png ---
+--- empty picture --- latex_template.idv[213] ---
+--- needs --- latex_template.idv[215] ==> latex_template135x.png ---
+--- empty picture --- latex_template.idv[215] ---
+--- needs --- latex_template.idv[216] ==> latex_template136x.png ---
+--- empty picture --- latex_template.idv[216] ---
+--- needs --- latex_template.idv[218] ==> latex_template137x.png ---
+--- empty picture --- latex_template.idv[218] ---
+--- needs --- latex_template.idv[219] ==> latex_template138x.png ---
+--- empty picture --- latex_template.idv[219] ---
+--- needs --- latex_template.idv[221] ==> latex_template139x.png ---
+--- empty picture --- latex_template.idv[221] ---
+tex4ht.c error: 21
+--- characters ---
+Font("cmex","10","10","100")
+Font("cmmi","10","10","100")
+Font("cmsy","7","7","100")
+Font("cmsy","10","10","100")
+--- needs --- latex_template.idv[222] ==> cmsy10-4f.png ---
+Font("ptmr7t","","10","100")
+Font("ptmb7t","","10","172")
+Font("eurm","10","10","100")
+Font("eurm","7","7","100")
+Font("eurm","5","5","100")
+Font("msbm","10","10","100")
+Font("eufm","10","10","100")
+Font("eufm","7","7","100")
+Font("eusm","10","10","100")
+Font("eusm","7","7","100")
+Font("euex","10","10","100")
+Font("ptmb7t","","10","100")
+Font("ot1-zi4b-0","","10","100")
+Font("ptmb7t","","10","120")
+Font("ptmrc7t","","10","100")
+Font("ot1-zi4r-0","","10","100")
+Font("euex","10","10","172")
+Font("ot1-zi4r-0","","10","90")
+Font("ptmr7t","","10","60")
+Font("ts1-zi4r","","10","90")
+Font("ptmri7t","","10","100")
