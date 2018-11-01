@@ -11,11 +11,9 @@
 **Objectives:**
 This project implements three algorithms based on support vector machine against class-dependent classification noise.
 
-The first algorithm extends an existing Expectation Maximisation method to class-dependent classification noise. The method was based on:
-1. Expectation Maximisation by [Biggio et al. [2011]](http://proceedings.mlr.press/v20/biggio11/biggio11.pdf)
+The first algorithm extends an existing Expectation Maximisation method to class-dependent classification noise. The method was based on: Expectation Maximisation by [Biggio et al. [2011]](http://proceedings.mlr.press/v20/biggio11/biggio11.pdf)
 
-The second algorithm reproduces existing state-of-the-art algorithms which are robust to label noise. The algorithm is based on:
-2. Importance Reweighing by [Liu and Tao [2016]](https://arxiv.org/pdf/1411.7718.pdf)
+The second algorithm reproduces existing state-of-the-art algorithms which are robust to label noise. The algorithm is based on: Importance Reweighing by [Liu and Tao [2016]](https://arxiv.org/pdf/1411.7718.pdf)
 
 We also heuristically  propose a `quick and dirty' approach, which we called:
 3. Heuristic Approach by Relabelling
