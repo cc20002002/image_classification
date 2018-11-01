@@ -30,7 +30,7 @@ method = {
     '3': 'relabelling',
 }
 
-# proportion of test data
+# The proportion of data set aside. 1-prop is the proportion of training set. 
 prop = 0.2
 
 # Maximum of iteration.
