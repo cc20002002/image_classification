@@ -37,7 +37,7 @@ Both datasets are injected with label noise.
 Running Environment Setup
 ------------
 
-1. Make sure to put the dataset file `mnist_dataset.npz` and `cifar_dataset.npz` into the folder with name `input_data` under the `Code` directory. Please make sure you have the following file tree structure:
+1. Make sure to put the dataset file `mnist_dataset.npz` and `cifar_dataset.npz` into the folder with name `input_data` under the `Code` directory. The tree structure of our algorithm is:
 
 ```
 project
