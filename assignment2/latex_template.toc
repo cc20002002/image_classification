@@ -1,36 +1,45 @@
-\contentsline {section}{\numberline {1}Introduction}{1}{section.1}
-\contentsline {section}{\numberline {2}Related work}{2}{section.2}
-\contentsline {section}{\numberline {3}Methods}{2}{section.3}
-\contentsline {subsection}{\numberline {3.1}Preprocess}{3}{subsection.3.1}
-\contentsline {subsubsection}{\numberline {3.1.1}Photometric normalisation improves classification performance}{3}{subsubsection.3.1.1}
-\contentsline {subsubsection}{\numberline {3.1.2}Principle component analysis reduces dimensionality}{3}{subsubsection.3.1.2}
-\contentsline {subsection}{\numberline {3.2}The original data set is balanced}{3}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Flip rates estimation}{4}{subsection.3.3}
-\contentsline {subsubsection}{\numberline {3.3.1}Density ratio method estimates conditional probability}{4}{subsubsection.3.3.1}
-\contentsline {subsubsection}{\numberline {3.3.2}Estimate flip rates}{4}{subsubsection.3.3.2}
-\contentsline {subsection}{\numberline {3.4}Method 1: Expectation Maximisation}{4}{subsection.3.4}
-\contentsline {subsubsection}{\numberline {3.4.1}Expectation Maximisation derives loss function}{5}{subsubsection.3.4.1}
-\contentsline {subsubsection}{\numberline {3.4.2}Modifying kernel improves robustness against label noise}{5}{subsubsection.3.4.2}
-\contentsline {subsection}{\numberline {3.5}Method 2: Importance Reweighting}{5}{subsection.3.5}
-\contentsline {subsubsection}{\numberline {3.5.1}Sigmoid function estimates conditional probability}{5}{subsubsection.3.5.1}
-\contentsline {subsubsection}{\numberline {3.5.2}Reweighting coefficient improves robustness against label noise.}{6}{subsubsection.3.5.2}
-\contentsline {subsection}{\numberline {3.6}Method 3: heuristic approach by relabelling}{6}{subsection.3.6}
-\contentsline {subsubsection}{\numberline {3.6.1}Conditional probability filters samples}{6}{subsubsection.3.6.1}
-\contentsline {subsubsection}{\numberline {3.6.2}Label correction}{7}{subsubsection.3.6.2}
-\contentsline {subsection}{\numberline {3.7}Tuning hyperparameters}{7}{subsection.3.7}
-\contentsline {subsection}{\numberline {3.8}Bootstrap constructs confidence intervals and hypothesis tests}{7}{subsection.3.8}
-\contentsline {subsubsection}{\numberline {3.8.1}Bootstrapping percentile confidence intervals}{7}{subsubsection.3.8.1}
-\contentsline {subsubsection}{\numberline {3.8.2}Kolmogorov-Smirnov test compares the accuracy of algorithms}{7}{subsubsection.3.8.2}
-\contentsline {section}{\numberline {4}Experiments}{8}{section.4}
-\contentsline {subsection}{\numberline {4.1}Experiment Setting}{8}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Compare Images}{8}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Discuss flip rate}{9}{subsection.4.3}
-\contentsline {subsection}{\numberline {4.4}Hayperparameter Tuning}{9}{subsection.4.4}
-\contentsline {subsection}{\numberline {4.5}Compare Results}{9}{subsection.4.5}
-\contentsline {subsubsection}{\numberline {4.5.1}Expectation Maximisation is the fastest}{9}{subsubsection.4.5.1}
-\contentsline {subsubsection}{\numberline {4.5.2}\textsc {cifar} is more difficult to classify}{10}{subsubsection.4.5.2}
-\contentsline {subsubsection}{\numberline {4.5.3}Heuristic approach is inconsistent}{10}{subsubsection.4.5.3}
-\contentsline {subsubsection}{\numberline {4.5.4}Hypothesis test justifies observations}{10}{subsubsection.4.5.4}
-\contentsline {subsection}{\numberline {4.6}Discussion}{10}{subsection.4.6}
-\contentsline {subsection}{\numberline {4.7}Backup Statements}{12}{subsection.4.7}
-\contentsline {section}{\numberline {5}Conclusion}{12}{section.5}
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}
+\contentsline {section}{\numberline {2}Related work}{3}{section.2}
+\contentsline {section}{\numberline {3}Methods}{4}{section.3}
+\contentsline {subsection}{\numberline {3.1}Base model: support vector machine}{4}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}Support vector machine resists over-fitting}{4}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}Support vector machine is not robust to label noise}{4}{subsubsection.3.1.2}
+\contentsline {subsection}{\numberline {3.2}Preprocess}{4}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Photometric normalisation improves classification performance}{4}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Principal component analysis reduces dimensionality}{5}{subsubsection.3.2.2}
+\contentsline {subsection}{\numberline {3.3}The original dataset is balanced}{5}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Flip rates estimation}{5}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}Density ratio method estimates conditional probability}{5}{subsubsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.2}Minimum of conditional probability estimates flip rates}{6}{subsubsection.3.4.2}
+\contentsline {subsection}{\numberline {3.5}Method 1: Expectation Maximisation}{6}{subsection.3.5}
+\contentsline {subsubsection}{\numberline {3.5.1}Expectation Maximisation derives loss function}{6}{subsubsection.3.5.1}
+\contentsline {subsubsection}{\numberline {3.5.2}Bernoulli random variable models latent label noise}{6}{subsubsection.3.5.2}
+\contentsline {subsubsection}{\numberline {3.5.3}Modifying kernel improves robustness against label noise}{7}{subsubsection.3.5.3}
+\contentsline {subsubsection}{\numberline {3.5.4}Proof: proposed kernel matrix is positive definite}{7}{subsubsection.3.5.4}
+\contentsline {subsection}{\numberline {3.6}Method 2: Importance Reweighting}{8}{subsection.3.6}
+\contentsline {subsubsection}{\numberline {3.6.1}Sigmoid function estimates conditional probability}{8}{subsubsection.3.6.1}
+\contentsline {subsubsection}{\numberline {3.6.2}Reweighting coefficient improves robustness against label noise}{8}{subsubsection.3.6.2}
+\contentsline {subsection}{\numberline {3.7}Method 3: heuristic approach by relabelling}{9}{subsection.3.7}
+\contentsline {subsubsection}{\numberline {3.7.1}Conditional probability filters samples}{9}{subsubsection.3.7.1}
+\contentsline {subsubsection}{\numberline {3.7.2}Pre-training model corrects labels}{9}{subsubsection.3.7.2}
+\contentsline {subsection}{\numberline {3.8}Tuning hyperparameters}{10}{subsection.3.8}
+\contentsline {subsection}{\numberline {3.9}Bootstrap constructs confidence intervals and hypothesis tests}{10}{subsection.3.9}
+\contentsline {subsubsection}{\numberline {3.9.1}Bootstrapping percentile confidence intervals}{10}{subsubsection.3.9.1}
+\contentsline {subsubsection}{\numberline {3.9.2}Kolmogorov-Smirnov test compares the accuracy of algorithms}{10}{subsubsection.3.9.2}
+\contentsline {section}{\numberline {4}Experiments}{11}{section.4}
+\contentsline {subsection}{\numberline {4.1}Experiment Setting}{11}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Preprocessing}{11}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}Photometric normalisation improves convergence}{12}{subsubsection.4.2.1}
+\contentsline {subsubsection}{\numberline {4.2.2}Principal component analysis speeds up algorithms}{12}{subsubsection.4.2.2}
+\contentsline {subsection}{\numberline {4.3}Discuss flip rate}{12}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Selected hyperparameters}{13}{subsection.4.4}
+\contentsline {subsubsection}{\numberline {4.4.1}Hyperparameters for algorithms}{13}{subsubsection.4.4.1}
+\contentsline {subsubsection}{\numberline {4.4.2}Hyperparameters for algorithms}{13}{subsubsection.4.4.2}
+\contentsline {subsection}{\numberline {4.5}Regression estimates running time}{13}{subsection.4.5}
+\contentsline {subsection}{\numberline {4.6}Compare algorithms and datasets}{14}{subsection.4.6}
+\contentsline {subsubsection}{\numberline {4.6.1}Hypothesis tests justify visualisations}{14}{subsubsection.4.6.1}
+\contentsline {subsubsection}{\numberline {4.6.2}Expectation Maximisation is the fastest}{15}{subsubsection.4.6.2}
+\contentsline {subsubsection}{\numberline {4.6.3}\textsc {cifar} is more difficult to classify}{16}{subsubsection.4.6.3}
+\contentsline {subsubsection}{\numberline {4.6.4}Relabelling approach is inconsistent and less robust}{16}{subsubsection.4.6.4}
+\contentsline {subsection}{\numberline {4.7}Discussion and personal reflection}{17}{subsection.4.7}
+\contentsline {section}{\numberline {5}Conclusion}{18}{section.5}

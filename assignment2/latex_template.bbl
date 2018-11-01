@@ -1,9 +1,15 @@
-\begin{thebibliography}{17}
+\begin{thebibliography}{23}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Liu and Tao(2016)]{liu2016classification}
+Tongliang Liu and Dacheng Tao.
+\newblock Classification with noisy labels by importance reweighting.
+\newblock \emph{IEEE Transactions on pattern analysis and machine
+  intelligence}, 38\penalty0 (3):\penalty0 447--461, 2016.
 
 \bibitem[H{\"a}rdle and Simar(2007)]{hardle2007applied}
 Wolfgang H{\"a}rdle and L{\'e}opold Simar.
@@ -29,12 +35,6 @@ Carla~E Brodley, Mark~A Friedl, et~al.
 \newblock In \emph{Proceedings of the National Conference on Artificial
   Intelligence}, pages 799--805, 1996.
 
-\bibitem[Liu and Tao(2016)]{liu2016classification}
-Tongliang Liu and Dacheng Tao.
-\newblock Classification with noisy labels by importance reweighting.
-\newblock \emph{IEEE Transactions on pattern analysis and machine
-  intelligence}, 38\penalty0 (3):\penalty0 447--461, 2016.
-
 \bibitem[Jin and Wang(2012)]{NIPS2012_4500}
 Chi Jin and Liwei Wang.
 \newblock Dimensionality dependent pac-bayes margin bound.
@@ -51,7 +51,6 @@ Matthias Seeger.
 \newblock \emph{J. Mach. Learn. Res.}, 3:\penalty0 233--269, March 2003.
 \newblock ISSN 1532-4435.
 \newblock \doi{10.1162/153244303765208386}.
-\newblock URL \url{https://doi.org/10.1162/153244303765208386}.
 
 \bibitem[Cortes and Vapnik(1995)]{Cortes1995}
 Corinna Cortes and Vladimir Vapnik.
@@ -94,7 +93,6 @@ Bernhard~E. Boser, Isabelle~M. Guyon, and Vladimir~N. Vapnik.
   Learning Theory}, COLT '92, pages 144--152, New York, NY, USA, 1992. ACM.
 \newblock ISBN 0-89791-497-X.
 \newblock \doi{10.1145/130385.130401}.
-\newblock URL \url{http://doi.acm.org/10.1145/130385.130401}.
 
 \bibitem[Hastie et~al.(2001)Hastie, Tibshirani, and
   Friedman]{hastie01statisticallearning}
@@ -109,6 +107,31 @@ Kenneth Jonsson, Josef Kittler, YP~Li, and Jiri Matas.
 \newblock Support vector machines for face authentication.
 \newblock \emph{Image and Vision Computing}, 20\penalty0 (5-6):\penalty0
   369--375, 2002.
+
+\bibitem[Kanamori et~al.(2009)Kanamori, Hido, and
+  Sugiyama]{DBLP:journals/jmlr/KanamoriHS09}
+Takafumi Kanamori, Shohei Hido, and Masashi Sugiyama.
+\newblock A least-squares approach to direct importance estimation.
+\newblock \emph{Journal of Machine Learning Research}, 10:\penalty0 1391--1445,
+  2009.
+
+\bibitem[Theodoridis and Koutroumbas(2008)]{Theodoridis:2008:PRF:1457541}
+Sergios Theodoridis and Konstantinos Koutroumbas.
+\newblock \emph{Pattern Recognition, Fourth Edition}.
+\newblock Academic Press, Inc., Orlando, FL, USA, 4th edition, 2008.
+\newblock ISBN 1597492728, 9781597492720.
+
+\bibitem[Schur(1911)]{Schur1911}
+J.~Schur.
+\newblock Bemerkungen zur theorie der beschränkten bilinearformen mit
+  unendlich vielen veränderlichen.
+\newblock \emph{Journal für die reine und angewandte Mathematik},
+  140:\penalty0 1--28, 1911.
+\newblock URL \url{http://eudml.org/doc/149352}.
+
+\bibitem[Sugiyama and et~al.(2010)]{Sugiyama10densityratio}
+Masashi Sugiyama and et~al.
+\newblock Density ratio estimation: A comprehensive review, 2010.
 
 \bibitem[Platt(1999)]{Platt99probabilisticoutputs}
 John~C. Platt.
@@ -129,5 +152,21 @@ Christian Walck.
 \newblock \emph{{Hand-book on statistical distributions for experimentalists}}.
 \newblock 1996.
 \newblock URL \url{http://www.fysik.su.se/~walck/suf9601.pdf}.
+
+\bibitem[Roberts(2014)]{Roberts:2014:MED:2746455}
+A.J. Roberts.
+\newblock \emph{Model Emergent Dynamics in Complex Systems}.
+\newblock Society for Industrial and Applied Mathematics, Philadelphia, PA,
+  USA, 2014.
+\newblock ISBN 1611973554, 9781611973556.
+
+\bibitem[Ghahramani and Beal(2000)]{NIPS1999_1672}
+Zoubin Ghahramani and Matthew~J. Beal.
+\newblock Variational inference for bayesian mixtures of factor analysers.
+\newblock In S.~A. Solla, T.~K. Leen, and K.~M\"{u}ller, editors,
+  \emph{Advances in Neural Information Processing Systems 12}, pages 449--455.
+  MIT Press, 2000.
+\newblock URL
+  \url{http://papers.nips.cc/paper/1672-variational-inference-for-bayesian-mixtures-of-factor-analysers.pdf}.
 
 \end{thebibliography}

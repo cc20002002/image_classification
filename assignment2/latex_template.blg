@@ -1,6 +1,11 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: latex_template.aux
 The style file: unsrtnat.bst
 Database file #1: reference.bib
+I was expecting a `,' or a `}'---line 102 of file reference.bib
+ :   
+ :   doi       = {10.1145/1577069.1755831},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
 Warning--there's a number but no volume in yang2018adasampling
 Warning--empty publisher in Walck:1996cca
-(There were 2 warnings)
+(There was 1 error message)

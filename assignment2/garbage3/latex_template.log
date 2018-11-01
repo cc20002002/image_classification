@@ -1,0 +1,1734 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9) (preloaded format=latex 2015.3.22)  1 NOV 2018 23:07
+entering extended mode
+**\makeatletter\def\HCode{\futurelet\HCode\HChar}\def\HChar{\ifx\HCode\def\HCod
+e##1{\Link##1}\expandafter\HCode\else\expandafter\Link\fi}\def\Link#1.a.b.c.{\g
+@addto@macro\@documentclasshook{\RequirePackage[#1,html]{tex4ht}}\let\HCode\doc
+umentstyle\def\documentstyle{\let\documentstyle\HCode\expandafter\def\csname te
+x4ht\endcsname{#1,html}\def\HCode####1{\documentstyle[tex4ht,}\@ifnextchar[{\HC
+ode}{\documentstyle[tex4ht]}}}\makeatother\HCode html,fn-in,imgdir:Images/,.a.b
+.c.\input  latex_template.tex
+(latex_template.tex (d:\CTEX\MiKTeX\tex\latex\base\article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(d:\CTEX\MiKTeX\tex\latex\base\size12.clo
+File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\tex4ht.sty
+version 2008-10-27-17:23
+Package: tex4ht 
+--------------------------------------
+--- Note --- for _ at preamble, use the command line option `early_'
+--------------------------------------
+--------------------------------------
+--- Note --- for ^ at preamble, use the command line option `early^'
+--------------------------------------
+\tmp:toks=\toks14
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\usepackage.4ht
+version 2009-05-21-09:32
+) (latex_template.sty
+(d:\CTEX\MiKTeX\tex\latex\eso-pic\eso-pic.sty
+Package: eso-pic 2013/10/06 v2.0d eso-pic (RN)
+
+(d:\CTEX\MiKTeX\tex\generic\oberdiek\atbegshi.sty
+Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
+
+(d:\CTEX\MiKTeX\tex\generic\oberdiek\infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+(d:\CTEX\MiKTeX\tex\generic\oberdiek\ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+(d:\CTEX\MiKTeX\tex\generic\oberdiek\ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is not detected.
+))
+(d:\CTEX\MiKTeX\tex\latex\graphics\keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks15
+)
+(d:\CTEX\MiKTeX\tex\latex\xcolor\xcolor.sty
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+(d:\CTEX\MiKTeX\tex\latex\00miktex\color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Driver file: dvips.def on input line 225.
+
+(d:\CTEX\MiKTeX\tex\latex\graphics\dvips.def
+File: dvips.def 2014/10/14 v3.0j Driver-dependent file (DPC,SPQR)
+)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+))
+\nipsrulerbox=\box26
+\nipsrulercount=\count87
+\nipsruleroffset=\dimen103
+\cv@lineheight=\dimen104
+\cv@boxheight=\dimen105
+\cv@tmpbox=\box27
+\cv@refno=\count88
+\cv@tot=\count89
+\cv@tmpc@=\count90
+\cv@tmpc=\count91
+)
+(d:\CTEX\MiKTeX\tex\latex\psnfss\times.sty
+Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
+)
+(d:\CTEX\MiKTeX\tex\latex\hyperref\hyperref.sty
+Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
+
+(d:\CTEX\MiKTeX\tex\generic\oberdiek\hobsub-hyperref.sty
+Package: hobsub-hyperref 2012/04/25 v1.12 Bundle oberdiek, subset hyperref (HO)
+
+
+(d:\CTEX\MiKTeX\tex\generic\oberdiek\hobsub-generic.sty
+Package: hobsub-generic 2012/04/25 v1.12 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2012/04/25 v1.12 Construct package bundles (HO)
+Package hobsub Info: Skipping package `infwarerr' (already loaded).
+Package hobsub Info: Skipping package `ltxcmds' (already loaded).
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+Package: intcalc 2007/09/27 v1.1 Expandable calculations with integers (HO)
+Package hobsub Info: Skipping package `ifpdf' (already loaded).
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode is ignored in DVI mode.
+Package: pdfescape 2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2012/04/08 v1.3 Expandable calculations on big integers (HO
+)
+Package: bitset 2011/01/30 v1.1 Handle bit-vector datatype (HO)
+Package: uniquecounter 2011/01/30 v1.2 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+Package: hopatch 2011/06/24 v1.1 Wrapper for package hooks (HO)
+Package: xcolor-patch 2011/01/30 xcolor patch
+Package: atveryend 2011/06/30 v1.8 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+Package hobsub Info: Skipping package `atbegshi' (already loaded).
+Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
+Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+)
+(d:\CTEX\MiKTeX\tex\generic\ifxetex\ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+(d:\CTEX\MiKTeX\tex\latex\oberdiek\auxhook.sty
+Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
+
+
+Package auxhook Warning: Cannot patch \document,
+(auxhook)                using \AtBeginDocument instead.
+
+) (d:\CTEX\MiKTeX\tex\latex\oberdiek\kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+)
+\@linkdim=\dimen106
+\Hy@linkcounter=\count92
+\Hy@pagecounter=\count93
+
+(d:\CTEX\MiKTeX\tex\latex\hyperref\pd1enc.def
+File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
+)
+\Hy@SavedSpaceFactor=\count94
+
+(d:\CTEX\MiKTeX\tex\latex\00miktex\hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 4319.
+Package hyperref Info: Hyper figures OFF on input line 4443.
+Package hyperref Info: Link nesting OFF on input line 4448.
+Package hyperref Info: Hyper index ON on input line 4451.
+Package hyperref Info: Plain pages OFF on input line 4458.
+Package hyperref Info: Backreferencing OFF on input line 4463.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4688.
+\c@Hy@tempcnt=\count95
+
+(d:\CTEX\MiKTeX\tex\latex\url\url.sty
+\Urlmuskip=\muskip10
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5041.
+\XeTeXLinkMargin=\dimen107
+\Fld@menulength=\count96
+\Field@Width=\dimen108
+\Fld@charsize=\dimen109
+\Field@toks=\toks16
+Package hyperref Info: Hyper figures OFF on input line 6295.
+Package hyperref Info: Link nesting OFF on input line 6300.
+Package hyperref Info: Hyper index ON on input line 6303.
+Package hyperref Info: backreferencing OFF on input line 6310.
+Package hyperref Info: Link coloring ON on input line 6313.
+Package hyperref Info: Link coloring with OCG OFF on input line 6320.
+Package hyperref Info: PDF/A mode OFF on input line 6325.
+LaTeX Info: Redefining \ref on input line 6365.
+LaTeX Info: Redefining \pageref on input line 6369.
+\Hy@abspage=\count97
+
+
+Package hyperref Message: Stopped early.
+
+)
+
+Package hyperref Message: Driver: htex4ht.
+
+(d:\CTEX\MiKTeX\tex\latex\hyperref\htex4ht.def
+File: htex4ht.def 2012/11/06 v6.83m Hyperref driver for TeX4ht
+Package hyperref Info: tex4ht is already loaded.
+)
+(d:\CTEX\MiKTeX\tex\latex\bigints\bigints.sty
+Package: bigints 2010/02/15 Writing big integrals
+Package bigints Info: This is Bigints by Merciadri Luca. on input line 5.
+
+(d:\CTEX\MiKTeX\tex\latex\amsmath\amsmath.sty
+Package: amsmath 2013/01/14 v2.14 AMS math features
+\@mathmargin=\skip43
+
+For additional information on amsmath, use the `?' option.
+(d:\CTEX\MiKTeX\tex\latex\amsmath\amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(d:\CTEX\MiKTeX\tex\latex\amsmath\amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks17
+\ex@=\dimen110
+))
+(d:\CTEX\MiKTeX\tex\latex\amsmath\amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen111
+)
+(d:\CTEX\MiKTeX\tex\latex\amsmath\amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count98
+LaTeX Info: Redefining \frac on input line 210.
+\uproot@=\count99
+\leftroot@=\count100
+LaTeX Info: Redefining \overline on input line 306.
+\classnum@=\count101
+\DOTSCASE@=\count102
+LaTeX Info: Redefining \ldots on input line 378.
+LaTeX Info: Redefining \dots on input line 381.
+LaTeX Info: Redefining \cdots on input line 466.
+\Mathstrutbox@=\box28
+\strutbox@=\box29
+\big@size=\dimen112
+LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
+\macc@depth=\count103
+\c@MaxMatrixCols=\count104
+\dotsspace@=\muskip11
+\c@parentequation=\count105
+\dspbrk@lvl=\count106
+\tag@help=\toks18
+\row@=\count107
+\column@=\count108
+\maxfields@=\count109
+\andhelp@=\toks19
+\eqnshift@=\dimen113
+\alignsep@=\dimen114
+\tagshift@=\dimen115
+\tagwidth@=\dimen116
+\totwidth@=\dimen117
+\lineht@=\dimen118
+\@envbody=\toks20
+\multlinegap=\skip44
+\multlinetaggap=\skip45
+\mathdisplay@stack=\toks21
+LaTeX Info: Redefining \[ on input line 2665.
+LaTeX Info: Redefining \] on input line 2666.
+))
+(d:\CTEX\MiKTeX\tex\latex\natbib\natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip46
+\bibsep=\skip47
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count110
+)
+(d:\CTEX\MiKTeX\tex\latex\amsfonts\amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(d:\CTEX\MiKTeX\tex\latex\amsfonts\amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(d:\CTEX\MiKTeX\tex\latex\euler\euler.sty
+Package: euler 1995/03/05 v2.5
+
+Package: `euler' v2.5 <1995/03/05> (FJ and FMi)
+LaTeX Font Info:    Redeclaring symbol font `letters' on input line 35.
+LaTeX Font Info:    Encoding `OML' has changed to `U' for symbol font
+(Font)              `letters' in the math version `normal' on input line 35.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> U/eur/m/n on input line 35.
+LaTeX Font Info:    Encoding `OML' has changed to `U' for symbol font
+(Font)              `letters' in the math version `bold' on input line 35.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> U/eur/m/n on input line 35.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  U/eur/m/n --> U/eur/b/n on input line 36.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 47.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 48.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 49.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 50.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 51.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 52.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 53.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 54.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 55.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 56.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 57.
+\symEulerFraktur=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `EulerFraktur' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 63.
+LaTeX Font Info:    Redeclaring math alphabet \mathfrak on input line 64.
+LaTeX Info: Redefining \oldstylenums on input line 85.
+\symEulerScript=\mathgroup7
+LaTeX Font Info:    Overwriting symbol font `EulerScript' in version `bold'
+(Font)                  U/eus/m/n --> U/eus/b/n on input line 93.
+LaTeX Font Info:    Redeclaring math symbol \aleph on input line 97.
+LaTeX Font Info:    Redeclaring math symbol \Re on input line 98.
+LaTeX Font Info:    Redeclaring math symbol \Im on input line 99.
+LaTeX Font Info:    Redeclaring math delimiter \vert on input line 101.
+LaTeX Font Info:    Redeclaring math delimiter \backslash on input line 103.
+LaTeX Font Info:    Redeclaring math symbol \neg on input line 106.
+LaTeX Font Info:    Redeclaring math symbol \wedge on input line 108.
+LaTeX Font Info:    Redeclaring math symbol \vee on input line 110.
+LaTeX Font Info:    Redeclaring math symbol \setminus on input line 112.
+LaTeX Font Info:    Redeclaring math symbol \sim on input line 113.
+LaTeX Font Info:    Redeclaring math symbol \mid on input line 114.
+LaTeX Font Info:    Redeclaring math delimiter \arrowvert on input line 116.
+LaTeX Font Info:    Redeclaring math symbol \mathsection on input line 117.
+\symEulerExtension=\mathgroup8
+LaTeX Font Info:    Redeclaring math symbol \coprod@ on input line 125.
+LaTeX Font Info:    Redeclaring math symbol \prod@ on input line 125.
+LaTeX Font Info:    Redeclaring math symbol \sum@ on input line 125.
+LaTeX Font Info:    Redeclaring math symbol \intop on input line 130.
+LaTeX Font Info:    Redeclaring math symbol \ointop on input line 131.
+LaTeX Font Info:    Redeclaring math symbol \braceld on input line 132.
+LaTeX Font Info:    Redeclaring math symbol \bracerd on input line 133.
+LaTeX Font Info:    Redeclaring math symbol \bracelu on input line 134.
+LaTeX Font Info:    Redeclaring math symbol \braceru on input line 135.
+LaTeX Font Info:    Redeclaring math symbol \infty on input line 136.
+LaTeX Font Info:    Redeclaring math symbol \nearrow on input line 153.
+LaTeX Font Info:    Redeclaring math symbol \searrow on input line 154.
+LaTeX Font Info:    Redeclaring math symbol \nwarrow on input line 155.
+LaTeX Font Info:    Redeclaring math symbol \swarrow on input line 156.
+LaTeX Font Info:    Redeclaring math symbol \Leftrightarrow on input line 157.
+LaTeX Font Info:    Redeclaring math symbol \Leftarrow on input line 158.
+LaTeX Font Info:    Redeclaring math symbol \Rightarrow on input line 159.
+LaTeX Font Info:    Redeclaring math symbol \leftrightarrow on input line 160.
+LaTeX Font Info:    Redeclaring math symbol \leftarrow on input line 161.
+LaTeX Font Info:    Redeclaring math symbol \rightarrow on input line 163.
+LaTeX Font Info:    Redeclaring math delimiter \uparrow on input line 166.
+LaTeX Font Info:    Redeclaring math delimiter \downarrow on input line 168.
+LaTeX Font Info:    Redeclaring math delimiter \updownarrow on input line 170.
+LaTeX Font Info:    Redeclaring math delimiter \Uparrow on input line 172.
+LaTeX Font Info:    Redeclaring math delimiter \Downarrow on input line 174.
+LaTeX Font Info:    Redeclaring math delimiter \Updownarrow on input line 176.
+LaTeX Font Info:    Redeclaring math symbol \leftharpoonup on input line 177.
+LaTeX Font Info:    Redeclaring math symbol \leftharpoondown on input line 178.
+
+LaTeX Font Info:    Redeclaring math symbol \rightharpoonup on input line 179.
+LaTeX Font Info:    Redeclaring math symbol \rightharpoondown on input line 180
+.
+LaTeX Font Info:    Redeclaring math delimiter \lbrace on input line 182.
+LaTeX Font Info:    Redeclaring math delimiter \rbrace on input line 184.
+\symcmmigroup=\mathgroup9
+LaTeX Font Info:    Overwriting symbol font `cmmigroup' in version `bold'
+(Font)                  OML/cmm/m/it --> OML/cmm/b/it on input line 200.
+LaTeX Font Info:    Redeclaring math accent \vec on input line 201.
+LaTeX Font Info:    Redeclaring math symbol \triangleleft on input line 202.
+LaTeX Font Info:    Redeclaring math symbol \triangleright on input line 203.
+LaTeX Font Info:    Redeclaring math symbol \star on input line 204.
+LaTeX Font Info:    Redeclaring math symbol \lhook on input line 205.
+LaTeX Font Info:    Redeclaring math symbol \rhook on input line 206.
+LaTeX Font Info:    Redeclaring math symbol \flat on input line 207.
+LaTeX Font Info:    Redeclaring math symbol \natural on input line 208.
+LaTeX Font Info:    Redeclaring math symbol \sharp on input line 209.
+LaTeX Font Info:    Redeclaring math symbol \smile on input line 210.
+LaTeX Font Info:    Redeclaring math symbol \frown on input line 211.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 254.
+) (d:\CTEX\MiKTeX\tex\latex\prettyref\prettyref.sty
+Package: prettyref 1998/07/09 v3.0
+)
+(d:\CTEX\MiKTeX\tex\latex\mathtools\mathtools.sty
+Package: mathtools 2014/07/16 v1.15 mathematical typesetting tools
+
+(d:\CTEX\MiKTeX\tex\latex\tools\calc.sty
+Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count111
+\calc@Bcount=\count112
+\calc@Adimen=\dimen119
+\calc@Bdimen=\dimen120
+\calc@Askip=\skip48
+\calc@Bskip=\skip49
+LaTeX Info: Redefining \setlength on input line 75.
+LaTeX Info: Redefining \addtolength on input line 76.
+\calc@Ccount=\count113
+\calc@Cskip=\skip50
+)
+(d:\CTEX\MiKTeX\tex\latex\mathtools\mhsetup.sty
+Package: mhsetup 2010/01/21 v1.2a programming setup (MH)
+)
+LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
+\g_MT_multlinerow_int=\count114
+\l_MT_multwidth_dim=\dimen121
+\origjot=\skip51
+\l_MT_shortvdotswithinadjustabove_dim=\dimen122
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen123
+\l_MT_above_intertext_sep=\dimen124
+\l_MT_below_intertext_sep=\dimen125
+\l_MT_above_shortintertext_sep=\dimen126
+\l_MT_below_shortintertext_sep=\dimen127
+)
+(d:\CTEX\MiKTeX\tex\latex\csvsimple\csvsimple.sty
+Package: csvsimple 2014/07/14 version 1.12 LaTeX CSV file processing
+
+(d:\CTEX\MiKTeX\tex\latex\pgf\utilities\pgfkeys.sty
+(d:\CTEX\MiKTeX\tex\generic\pgf\utilities\pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks22
+\pgfkeys@temptoks=\toks23
+
+(d:\CTEX\MiKTeX\tex\generic\pgf\utilities\pgfkeysfiltered.code.tex
+\pgfkeys@tmptoks=\toks24
+)))
+(d:\CTEX\MiKTeX\tex\latex\base\ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\csv@file=\read1
+\c@csvinputline=\count115
+\c@csvrow=\count116
+\c@csvcol=\count117
+\csv@out=\write3
+)
+(d:\CTEX\MiKTeX\tex\latex\booktabs\booktabs.sty
+Package: booktabs 2005/04/14 v1.61803 publication quality tables
+\heavyrulewidth=\dimen128
+\lightrulewidth=\dimen129
+\cmidrulewidth=\dimen130
+\belowrulesep=\dimen131
+\belowbottomsep=\dimen132
+\aboverulesep=\dimen133
+\abovetopsep=\dimen134
+\cmidrulesep=\dimen135
+\cmidrulekern=\dimen136
+\defaultaddspace=\dimen137
+\@cmidla=\count118
+\@cmidlb=\count119
+\@aboverulesep=\dimen138
+\@belowrulesep=\dimen139
+\@thisruleclass=\count120
+\@lastruleclass=\count121
+\@thisrulewidth=\dimen140
+)
+(d:\CTEX\MiKTeX\tex\latex\microtype\microtype.sty
+Package: microtype 2013/05/23 v2.5a Micro-typographical refinements (RS)
+\MT@toks=\toks25
+\MT@count=\count122
+LaTeX Info: Redefining \textls on input line 766.
+\MT@outer@kern=\dimen141
+LaTeX Info: Redefining \textmicrotypecontext on input line 1285.
+\MT@listname@count=\count123
+
+(d:\CTEX\MiKTeX\tex\latex\microtype\microtype-pdftex.def
+File: microtype-pdftex.def 2013/05/23 v2.5a Definitions specific to pdftex (RS)
+
+LaTeX Info: Redefining \lsstyle on input line 915.
+LaTeX Info: Redefining \lslig on input line 915.
+\MT@outer@space=\skip52
+)
+Package microtype Info: Loading configuration file microtype.cfg.
+
+(d:\CTEX\MiKTeX\tex\latex\microtype\microtype.cfg
+File: microtype.cfg 2013/05/23 v2.5a microtype main configuration file (RS)
+))
+(d:\CTEX\MiKTeX\tex\latex\doi\doi.sty
+Package: doi 2007/07/24 handle doi numbers
+) (d:\CTEX\MiKTeX\tex\latex\tools\bm.sty
+Package: bm 2014/10/28 v1.1c Bold Symbol Support (DPC/FMi)
+\symboldoperators=\mathgroup10
+\symboldletters=\mathgroup11
+\symboldsymbols=\mathgroup12
+\symboldEulerFraktur=\mathgroup13
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 137.
+LaTeX Info: Redefining \bm on input line 203.
+)
+(d:\CTEX\MiKTeX\tex\latex\listings\listings.sty
+\lst@mode=\count124
+\lst@gtempboxa=\box30
+\lst@token=\toks26
+\lst@length=\count125
+\lst@currlwidth=\dimen142
+\lst@column=\count126
+\lst@pos=\count127
+\lst@lostspace=\dimen143
+\lst@width=\dimen144
+\lst@newlines=\count128
+\lst@lineno=\count129
+\lst@maxwidth=\dimen145
+
+(d:\CTEX\MiKTeX\tex\latex\listings\lstmisc.sty
+File: lstmisc.sty 2014/09/06 1.5e (Carsten Heinz)
+\c@lstnumber=\count130
+\lst@skipnumbers=\count131
+\lst@framebox=\box31
+)
+(d:\CTEX\MiKTeX\tex\latex\listings\listings.cfg
+File: listings.cfg 2014/09/06 1.5e listings configuration
+))
+Package: listings 2014/09/06 1.5e (Carsten Heinz)
+
+(d:\CTEX\MiKTeX\tex\latex\inconsolata\inconsolata.sty
+Package: inconsolata 2014/06/22 v1.05
+
+`inconsolata-zi4' v1.05, 2014/06/22 Text macros for Inconsolata (msharpe)
+(d:\CTEX\MiKTeX\tex\latex\base\textcomp.sty
+Package: textcomp 2005/09/27 v1.99g Standard LaTeX package
+Package textcomp Info: Sub-encoding information:
+(textcomp)               5 = only ISO-Adobe without \textcurrency
+(textcomp)               4 = 5 + \texteuro
+(textcomp)               3 = 4 + \textohm
+(textcomp)               2 = 3 + \textestimated + \textcurrency
+(textcomp)               1 = TS1 - \textcircled - \t
+(textcomp)               0 = TS1 (full)
+(textcomp)             Font families with sub-encoding setting implement
+(textcomp)             only a restricted character set as indicated.
+(textcomp)             Family '?' is the default used for unknown fonts.
+(textcomp)             See the documentation for details.
+Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 71.
+
+(d:\CTEX\MiKTeX\tex\latex\base\ts1enc.def
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+)
+LaTeX Info: Redefining \oldstylenums on input line 266.
+Package textcomp Info: Setting cmr sub-encoding to TS1/0 on input line 281.
+Package textcomp Info: Setting cmss sub-encoding to TS1/0 on input line 282.
+Package textcomp Info: Setting cmtt sub-encoding to TS1/0 on input line 283.
+Package textcomp Info: Setting cmvtt sub-encoding to TS1/0 on input line 284.
+Package textcomp Info: Setting cmbr sub-encoding to TS1/0 on input line 285.
+Package textcomp Info: Setting cmtl sub-encoding to TS1/0 on input line 286.
+Package textcomp Info: Setting ccr sub-encoding to TS1/0 on input line 287.
+Package textcomp Info: Setting ptm sub-encoding to TS1/4 on input line 288.
+Package textcomp Info: Setting pcr sub-encoding to TS1/4 on input line 289.
+Package textcomp Info: Setting phv sub-encoding to TS1/4 on input line 290.
+Package textcomp Info: Setting ppl sub-encoding to TS1/3 on input line 291.
+Package textcomp Info: Setting pag sub-encoding to TS1/4 on input line 292.
+Package textcomp Info: Setting pbk sub-encoding to TS1/4 on input line 293.
+Package textcomp Info: Setting pnc sub-encoding to TS1/4 on input line 294.
+Package textcomp Info: Setting pzc sub-encoding to TS1/4 on input line 295.
+Package textcomp Info: Setting bch sub-encoding to TS1/4 on input line 296.
+Package textcomp Info: Setting put sub-encoding to TS1/5 on input line 297.
+Package textcomp Info: Setting uag sub-encoding to TS1/5 on input line 298.
+Package textcomp Info: Setting ugq sub-encoding to TS1/5 on input line 299.
+Package textcomp Info: Setting ul8 sub-encoding to TS1/4 on input line 300.
+Package textcomp Info: Setting ul9 sub-encoding to TS1/4 on input line 301.
+Package textcomp Info: Setting augie sub-encoding to TS1/5 on input line 302.
+Package textcomp Info: Setting dayrom sub-encoding to TS1/3 on input line 303.
+Package textcomp Info: Setting dayroms sub-encoding to TS1/3 on input line 304.
+
+Package textcomp Info: Setting pxr sub-encoding to TS1/0 on input line 305.
+Package textcomp Info: Setting pxss sub-encoding to TS1/0 on input line 306.
+Package textcomp Info: Setting pxtt sub-encoding to TS1/0 on input line 307.
+Package textcomp Info: Setting txr sub-encoding to TS1/0 on input line 308.
+Package textcomp Info: Setting txss sub-encoding to TS1/0 on input line 309.
+Package textcomp Info: Setting txtt sub-encoding to TS1/0 on input line 310.
+Package textcomp Info: Setting lmr sub-encoding to TS1/0 on input line 311.
+Package textcomp Info: Setting lmdh sub-encoding to TS1/0 on input line 312.
+Package textcomp Info: Setting lmss sub-encoding to TS1/0 on input line 313.
+Package textcomp Info: Setting lmssq sub-encoding to TS1/0 on input line 314.
+Package textcomp Info: Setting lmvtt sub-encoding to TS1/0 on input line 315.
+Package textcomp Info: Setting qhv sub-encoding to TS1/0 on input line 316.
+Package textcomp Info: Setting qag sub-encoding to TS1/0 on input line 317.
+Package textcomp Info: Setting qbk sub-encoding to TS1/0 on input line 318.
+Package textcomp Info: Setting qcr sub-encoding to TS1/0 on input line 319.
+Package textcomp Info: Setting qcs sub-encoding to TS1/0 on input line 320.
+Package textcomp Info: Setting qpl sub-encoding to TS1/0 on input line 321.
+Package textcomp Info: Setting qtm sub-encoding to TS1/0 on input line 322.
+Package textcomp Info: Setting qzc sub-encoding to TS1/0 on input line 323.
+Package textcomp Info: Setting qhvc sub-encoding to TS1/0 on input line 324.
+Package textcomp Info: Setting futs sub-encoding to TS1/4 on input line 325.
+Package textcomp Info: Setting futx sub-encoding to TS1/4 on input line 326.
+Package textcomp Info: Setting futj sub-encoding to TS1/4 on input line 327.
+Package textcomp Info: Setting hlh sub-encoding to TS1/3 on input line 328.
+Package textcomp Info: Setting hls sub-encoding to TS1/3 on input line 329.
+Package textcomp Info: Setting hlst sub-encoding to TS1/3 on input line 330.
+Package textcomp Info: Setting hlct sub-encoding to TS1/5 on input line 331.
+Package textcomp Info: Setting hlx sub-encoding to TS1/5 on input line 332.
+Package textcomp Info: Setting hlce sub-encoding to TS1/5 on input line 333.
+Package textcomp Info: Setting hlcn sub-encoding to TS1/5 on input line 334.
+Package textcomp Info: Setting hlcw sub-encoding to TS1/5 on input line 335.
+Package textcomp Info: Setting hlcf sub-encoding to TS1/5 on input line 336.
+Package textcomp Info: Setting pplx sub-encoding to TS1/3 on input line 337.
+Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 338.
+Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 339.
+Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 340.
+)
+\zifour@ocount=\count132
+)
+(d:\CTEX\MiKTeX\tex\latex\pdfcomment\pdfcomment.sty
+Package: pdfcomment 2012/09/28 pdfcomment.sty v2.3a - Josef Kleber (C) 2008-201
+2
+
+(d:\CTEX\MiKTeX\tex\latex\xkeyval\xkeyval.sty
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+
+(d:\CTEX\MiKTeX\tex\generic\xkeyval\xkeyval.tex
+(d:\CTEX\MiKTeX\tex\generic\xkeyval\xkvutils.tex
+\XKV@toks=\toks27
+\XKV@tempa@toks=\toks28
+)
+\XKV@depth=\count133
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+\c@pc@count@i=\count134
+\c@pc@count@ii=\count135
+\c@pc@count@iii=\count136
+\c@pc@count@iv=\count137
+\pc@mathannot@box=\box32
+\pc@dima=\skip53
+\pc@dimb=\skip54
+\pc@Sposx=\skip55
+\pc@Sposy=\skip56
+\pc@Eposx=\skip57
+\pc@Eposy=\skip58
+\pc@column=\skip59
+\pc@box@width=\skip60
+\pc@box@height=\skip61
+\pc@box@depth=\skip62
+
+(d:\CTEX\MiKTeX\tex\latex\oberdiek\zref-savepos.sty
+Package: zref-savepos 2012/04/04 v2.24 Module savepos for zref (HO)
+
+(d:\CTEX\MiKTeX\tex\latex\oberdiek\zref-base.sty
+Package: zref-base 2012/04/04 v2.24 Module base for zref (HO)
+Package zref Info: New property list: main on input line 759.
+Package zref Info: New property: default on input line 760.
+Package zref Info: New property: page on input line 761.
+)
+Package zref Info: New property list: savepos on input line 75.
+Package zref Info: New property: posx on input line 76.
+Package zref Info: New property: posy on input line 77.
+)
+\c@zref@unique=\count138
+
+(d:\CTEX\MiKTeX\tex\latex\marginnote\marginnote.sty
+Package: marginnote 2012/03/29 v1.1i non floating margin notes for LaTeX
+\c@mn@abspage=\count139
+)
+(d:\CTEX\MiKTeX\tex\latex\datetime\datetime.sty
+Package: datetime 2013/09/10 v2.59 Date Time Package
+
+(d:\CTEX\MiKTeX\tex\latex\etoolbox\etoolbox.sty
+Package: etoolbox 2015/03/19 v2.1d e-TeX tools for LaTeX (JAW)
+
+(d:\CTEX\MiKTeX\tex\latex\misc\etex.sty
+Package: etex 2015/03/02 v2.1 eTeX basic definition package (PEB,DPC)
+\et@xins=\count140
+)
+\etb@tempcnta=\count141
+)
+(d:\CTEX\MiKTeX\tex\latex\fmtcount\fmtcount.sty
+Package: fmtcount 2014/07/18 v3.00
+
+(d:\CTEX\MiKTeX\tex\latex\fmtcount\fcprefix.sty
+Package: fcprefix 2012/09/28
+
+(d:\CTEX\MiKTeX\tex\latex\fmtcount\fcnumparser.sty
+Package: fcnumparser 2012/09/28
+\fc@digit@counter=\count142
+))
+\c@padzeroesN=\count143
+\fc@tmpcatcode=\count144
+\@DT@modctr=\count145
+\@ordinalctr=\count146
+\@orgargctr=\count147
+\@strctr=\count148
+\@tmpstrctr=\count149
+\@DT@loopN=\count150
+\@DT@X=\count151
+
+(d:\CTEX\MiKTeX\tex\latex\fmtcount\fc-english.def
+File: fc-english.def 2013/08/17
+))
+(d:\CTEX\MiKTeX\tex\latex\datetime\datetime-defaults.sty
+Package: datetime-defaults 2013/09/10
+)
+\@day=\count152
+\@month=\count153
+\@year=\count154
+\c@HOUR=\count155
+\c@HOURXII=\count156
+\c@MINUTE=\count157
+\c@TOHOUR=\count158
+\c@TOMINUTE=\count159
+\c@SECOND=\count160
+\currenthour=\count161
+\currentminute=\count162
+\currentsecond=\count163
+Package datetime Info: No datetime.cfg file found, using default settings on in
+put line 308.
+\@dtctr=\count164
+\dayofyear=\count165
+\dayofweek=\count166
+LaTeX Info: Redefining \today on input line 736.
+\dt@a=\toks29
+\dt@b=\toks30
+)
+(d:\CTEX\MiKTeX\tex\latex\bezos\soulpos.sty
+Package: soulpos 2012/02/25 v1.0 Fancy underlining
+\ulp@subcnt=\count167
+\ulp@cnt=\count168
+\ulp@out=\write4
+\ulp@in=\read2
+\ulwidth=\dimen146
+)
+
+Package hyperref Warning: Option `dvips' has already been used,
+(hyperref)                setting the option has no effect on input line 1371.
+
+Package zref Info: New property list: pdfcomment on input line 2714.
+Package zref Info: New property: PCPDFOBJID on input line 2715.
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 29.
+
+
+Package hyperref Warning: Option `pagecolor' is not available anymore.
+
+Package hyperref Info: Option `breaklinks' set `true' on input line 29.
+
+Package hyperref Warning: Option `dvips' has already been used,
+(hyperref)                setting the option has no effect on input line 29.
+
+
+Package hyperref Warning: Option `bookmarks' has already been used,
+(hyperref)                setting the option has no effect on input line 29.
+
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 29.
+(d:\CTEX\MiKTeX\tex\latex\amscls\amsthm.sty
+Package: amsthm 2009/07/02 v2.20.1
+\thm@style=\toks31
+\thm@bodyfont=\toks32
+\thm@headfont=\toks33
+\thm@notefont=\toks34
+\thm@headpunct=\toks35
+\thm@preskip=\skip63
+\thm@postskip=\skip64
+\thm@headsep=\skip65
+\dth@everypar=\toks36
+)
+(d:\CTEX\MiKTeX\tex\latex\listings\lstlang1.sty
+File: lstlang1.sty 2014/09/06 1.5e listings language file
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\tex4ht.4ht
+version 2009-01-07-07:11
+--------------------------------------
+--- Note --- for additional information, use the command line option `info'
+--------------------------------------
+
+::::::::::::::::::::::::::::::::::::::::::
+ TeX4ht info is available in the log file 
+::::::::::::::::::::::::::::::::::::::::::
+) (d:\CTEX\MiKTeX\tex\generic\tex4ht\tex4ht.sty
+version 2008-10-27-17:23
+
+--- needs --- tex4ht latex_template ---
+\tmp:cnt=\count169
+(latex_template.tmp)
+\tmp:dim=\skip66
+--------------------------------------
+--- Note --- for XML code, use the command line option `xml' or `xhtml'
+--------------------------------------
+ (latex_template.xref)
+\:refout=\write5
+
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4.4ht
+version 2009-05-18-23:01
+--------------------------------------
+--- Note --- to remove the <?xml version=...?> processing instruction use the c
+ommand line option `no-VERSION'
+--------------------------------------
+--------------------------------------
+--- Note --- to remove the DOCTYPE declaration use the command line option `no-
+DOCTYPE'
+--------------------------------------
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4-math.4ht
+version 2009-05-18-23:01
+)
+--------------------------------------
+--- Note --- for marking of the base font, use the command line option `fonts+'
+
+--------------------------------------
+--------------------------------------
+--- Note --- for non active _, use the command line option `no_'
+--------------------------------------
+--------------------------------------
+--- Note --- for _ of catcode 13, use the command line option `_13'
+--------------------------------------
+--------------------------------------
+--- Note --- for non active ^, use the command line option `no^'
+--------------------------------------
+--------------------------------------
+--- Note --- for ^ of catcode 13, use the command line option `^13'
+--------------------------------------
+
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4.4ht
+version 2009-05-18-23:01
+--------------------------------------
+--- Note --- for alternative charset, use the command line option `charset=...'
+
+--------------------------------------
+--------------------------------------
+--- Note --- to ignore CSS font decoration, use the `NoFonts' command line opti
+on
+--------------------------------------
+--------------------------------------
+--- Note --- for jpg bitmaps of pictures, use the `jpg' command line option. (C
+haracter bitmaps are controled only by `g' records of tex4ht.env and `-g' switc
+hes of tex4ht.c) 
+--------------------------------------
+--------------------------------------
+--- Note --- for gif bitmaps of pictures, use the `gif' command line option. (C
+haracter bitmaps are controled only by `g' records of tex4ht.env and `-g' switc
+hes of tex4ht.c) 
+--------------------------------------
+--------------------------------------
+--- Note --- for content and toc in 2 frames, use the command line option `fram
+es'
+--------------------------------------
+--------------------------------------
+--- Note --- for content, toc, and footnotes in 3 frames, use the command line 
+option `frames-fn'
+--------------------------------------
+--------------------------------------
+--- Note --- for file extension name xht, use the command line option `xht'
+--------------------------------------
+TeX4ht package options: html,fn-in,imgdir:Images/
+--------------------------------------
+--- Note --- to ignore CSS code, use the command line option `-css
+--------------------------------------
+--------------------------------------
+--- Note --- for inline CSS code, use the command line option `css-in'
+--------------------------------------
+--------------------------------------
+--- Note --- for pop ups on mouse over, use the command line option `mouseover'
+
+--------------------------------------
+--------------------------------------
+--- Note --- for addressing images in a subdirectory, use the command line opti
+on `imgdir:.../'
+--------------------------------------
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4-math.4ht
+version 2009-05-18-23:01
+)
+\:tokwrite=\toks37
+\:tokpage=\toks38
+--------------------------------------
+--- Note --- for back links to toc, use the command line option `sections+'
+--------------------------------------
+--------------------------------------
+--- Note --- for linear crosslinks of pages, use the command line option `next'
+
+--------------------------------------
+\:tocout=\write6
+
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4.4ht
+version 2009-05-18-23:01
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4-math.4ht
+version 2009-05-18-23:01
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\latex.4ht
+version 2009-05-21-09:32
+--------------------------------------
+--- Note --- for links into captions, instead of float heads, use the command l
+ine option `refcaption'
+--------------------------------------
+
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4.4ht
+version 2009-05-18-23:01
+--------------------------------------
+--- Note --- For mini tocs immediately aftter the header use the command line o
+ption `minitoc<'
+--------------------------------------
+--------------------------------------
+--- Note --- for enumerated list elements with valued data, use the command lin
+e option `enumerate+'
+--------------------------------------
+--------------------------------------
+--- Note --- for enumerated list elements li's with value attributes, use the c
+ommand line option `enumerate-'
+--------------------------------------
+--------------------------------------
+--- Note --- for CSS2 code, use the command line option `css2'
+--------------------------------------
+--------------------------------------
+--- Note --- for pictorial tabular, use the command line option `pic-tabular'
+--------------------------------------
+--------------------------------------
+--- Note --- for bitmap fbox'es, use the command line option `pic-fbox'
+--------------------------------------
+--------------------------------------
+--- Note --- for bitmap framebox'es, use the command line option `pic-framebox'
+
+--------------------------------------
+\fn:box=\box33
+--------------------------------------
+--- Note --- for tracing of latex font commands, use the command line option `f
+onts'
+--------------------------------------
+--------------------------------------
+--- Note --- for width specifications of tabular p entries, use the `p-width' c
+ommand line option or a configuration similar to \Configure{HColWidth}{\HCode{ 
+style="width:\HColWidth"}}
+--------------------------------------
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4-math.4ht
+version 2009-05-18-23:01
+--------------------------------------
+--- Note --- for pictorial eqnarray, use the command line option `pic-eqnarray'
+
+--------------------------------------
+--------------------------------------
+--- Note --- for pictorial array, use the command line option `pic-array'
+--------------------------------------
+--------------------------------------
+--- Note --- for pictorial $...$ environments, use the command line option `pic
+-m' (not recommended!!)
+--------------------------------------
+--------------------------------------
+--- Note --- for pictorial $...$ and $$...$$ environments with latex alt, use t
+he command line option `pic-m+' (not safe!!)
+--------------------------------------
+--------------------------------------
+--- Note --- for pictorial array, use the command line option `pic-array'
+--------------------------------------
+))
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\fontmath.4ht
+version 2009-05-21-09:32
+
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4.4ht
+version 2009-05-18-23:01
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4-math.4ht
+version 2009-05-18-23:01
+))
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\article.4ht
+version 2009-05-21-09:32
+
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4.4ht
+version 2009-05-18-23:01
+--------------------------------------
+--- Note --- for automatic sectioning pagination, use the command line option `
+1', `2', `3', '4', '5', '6', or '7'
+--------------------------------------
+--------------------------------------
+--- Note --- for files named derived from section titles, use the command line 
+option `sec-filename'
+--------------------------------------
+--------------------------------------
+--- Note --- for i-columns index, use the command line option `index=i' (e.g., 
+index=2)
+--------------------------------------
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4-math.4ht
+version 2009-05-18-23:01
+))
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\xcolor.4ht
+version 2009-05-21-09:32
+
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\color.4ht
+version 2009-05-21-09:32
+
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4.4ht
+version 2009-05-18-23:01
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4-math.4ht
+version 2009-05-18-23:01
+))
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4.4ht
+version 2009-05-18-23:01
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4-math.4ht
+version 2009-05-18-23:01
+))
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\color.4ht
+version 2009-05-21-09:32
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\dvips.4ht
+version 2009-05-21-09:32
+
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4.4ht
+version 2009-05-18-23:01
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4-math.4ht
+version 2009-05-18-23:01
+))
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\hyperref.4ht
+version 2011-01-30-16:01
+
+(d:\CTEX\MiKTeX\tex\latex\hyperref\nameref.sty
+Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
+
+(d:\CTEX\MiKTeX\tex\generic\oberdiek\gettitlestring.sty
+Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
+)
+\c@section@level=\count170
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\nameref.4ht
+version 2010-09-04-21:02
+
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4.4ht
+version 2009-05-18-23:01
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4-math.4ht
+version 2009-05-18-23:01
+))
+LaTeX Info: Redefining \autoref on input line 100.
+\Hy@SectionHShift=\skip67
+
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4.4ht
+version 2009-05-18-23:01
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4-math.4ht
+version 2009-05-18-23:01
+))
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\pd1enc.4ht
+version 2009-05-21-09:32
+
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4.4ht
+version 2009-05-18-23:01
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4-math.4ht
+version 2009-05-18-23:01
+))
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\url.4ht
+version 2009-05-21-09:32
+
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4.4ht
+version 2009-05-18-23:01
+--------------------------------------
+--- Note --- for URL encoding within href use the command line option `url-enc'
+
+--------------------------------------
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4-math.4ht
+version 2009-05-18-23:01
+))
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\amsmath.4ht
+version 2009-05-21-09:32
+\tmp:muskip=\muskip12
+
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4.4ht
+version 2009-05-18-23:01
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4-math.4ht
+version 2009-05-18-23:01
+))
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\amstext.4ht
+version 2009-05-21-09:32
+
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4.4ht
+version 2009-05-18-23:01
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4-math.4ht
+version 2009-05-18-23:01
+))
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\amsbsy.4ht
+version 2009-05-21-09:32
+
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4.4ht
+version 2009-05-18-23:01
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4-math.4ht
+version 2009-05-18-23:01
+))
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\amsopn.4ht
+version 2009-05-21-09:32
+
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4.4ht
+version 2009-05-18-23:01
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4-math.4ht
+version 2009-05-18-23:01
+))
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\natbib.4ht
+version 2009-05-21-09:32
+
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4.4ht
+version 2009-05-18-23:01
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4-math.4ht
+version 2009-05-18-23:01
+))
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\amssymb.4ht
+version 2009-05-21-09:32
+
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4.4ht
+version 2009-05-18-23:01
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4-math.4ht
+version 2009-05-18-23:01
+))
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\amsfonts.4ht
+version 2009-05-21-09:32
+
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4.4ht
+version 2009-05-18-23:01
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4-math.4ht
+version 2009-05-18-23:01
+))
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\euler.4ht
+version 2009-05-21-09:32
+
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4.4ht
+version 2009-05-18-23:01
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4-math.4ht
+version 2009-05-18-23:01
+))
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\mathtools.4ht
+version 2009-05-21-09:32
+
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4.4ht
+version 2009-05-18-23:01
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4-math.4ht
+version 2009-05-18-23:01
+))
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\ifthen.4ht
+version 2009-05-21-09:32
+
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4.4ht
+version 2009-05-18-23:01
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4-math.4ht
+version 2009-05-18-23:01
+))
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\booktabs.4ht
+version 2009-05-21-09:32
+
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4.4ht
+version 2009-05-18-23:01
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4-math.4ht
+version 2009-05-18-23:01
+))
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\microtype.4ht
+version 2009-05-21-09:32
+
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4.4ht
+version 2009-05-18-23:01
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4-math.4ht
+version 2009-05-18-23:01
+))
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\bm.4ht
+version 2009-05-21-09:32
+
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4.4ht
+version 2009-05-18-23:01
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4-math.4ht
+version 2009-05-18-23:01
+))
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\listings.4ht
+version 2009-05-21-09:32
+
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4.4ht
+version 2009-05-18-23:01
+--------------------------------------
+--- Note --- to ensure proper alignments use fixed size fonts (see listings.dtx
+)
+--------------------------------------
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4-math.4ht
+version 2009-05-18-23:01
+))
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\amsthm.4ht
+version 2009-05-21-09:32
+
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4.4ht
+version 2009-05-18-23:01
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4-math.4ht
+version 2009-05-18-23:01
+))
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4.4ht
+version 2009-05-18-23:01
+)
+(d:\CTEX\MiKTeX\tex\generic\tex4ht\html4-math.4ht
+version 2009-05-18-23:01
+)) (latex_template.aux
+
+LaTeX Warning: Label `sec:over' multiply defined.
+
+)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 82.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 82.
+ (d:\CTEX\MiKTeX\tex\latex\base\ts1cmr.fd
+File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 82.
+
+(d:\CTEX\MiKTeX\tex\latex\psnfss\ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+\AtBeginShipoutBox=\box34
+Package hyperref Info: Link coloring ON on input line 82.
+LaTeX Info: Redefining \ref on input line 82.
+LaTeX Info: Redefining \pageref on input line 82.
+LaTeX Info: Redefining \nameref on input line 82.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 82.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/ptm/m/n on input line 82.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/ptm/m/n on input line 82.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/ptm/m/n --> OT1/ptm/bx/n on input line 82.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/phv/bx/n on input line 82.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/phv/m/n --> OT1/phv/bx/n on input line 82.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/ptm/bx/it on input line 82.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/ptm/m/it --> OT1/ptm/bx/it on input line 82.
+
+(d:\CTEX\MiKTeX\tex\latex\graphics\graphicx.sty
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+
+(d:\CTEX\MiKTeX\tex\latex\graphics\graphics.sty
+Package: graphics 2014/10/28 v1.0p Standard LaTeX Graphics (DPC,SPQR)
+
+(d:\CTEX\MiKTeX\tex\latex\graphics\trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(d:\CTEX\MiKTeX\tex\latex\00miktex\graphics.cfg
+File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: dvips.def on input line 91.
+)
+\Gin@req@height=\dimen147
+\Gin@req@width=\dimen148
+)
+LaTeX Info: Redefining \microtypecontext on input line 82.
+Package microtype Info: Generating DVI output.
+Package microtype Info: No character protrusion.
+Package microtype Info: No font expansion.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of interword spacing.
+Package microtype Info: No adjustment of character kerning.
+\c@lstlisting=\count171
+
+(d:\CTEX\MiKTeX\tex\latex\upquote\upquote.sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
+tim
+)
+Package marginnote Info: \pdfoutput not 0 and \pdflastxpos available.
+(marginnote)             Extended position detection mode activated.
+Package soulpos Info: Loading soulutf8 on input line 82.
+
+(d:\CTEX\MiKTeX\tex\generic\oberdiek\soulutf8.sty
+Package: soulutf8 2007/09/09 v1.0 Permit use of UTF-8 characters in soul (HO)
+
+(d:\CTEX\MiKTeX\tex\latex\soul\soul.sty
+Package: soul 2003/11/17 v2.4 letterspacing/underlining (mf)
+\SOUL@word=\toks39
+\SOUL@lasttoken=\toks40
+\SOUL@cmds=\toks41
+\SOUL@buffer=\toks42
+\SOUL@token=\toks43
+\SOUL@spaceskip=\skip68
+\SOUL@ttwidth=\dimen149
+\SOUL@uldp=\dimen150
+\SOUL@ulht=\dimen151
+))
+--- file latex_template.css ---
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 93.
+LaTeX Font Info:    Try loading font information for U+eur on input line 93.
+
+(d:\CTEX\MiKTeX\tex\latex\amsfonts\ueur.fd
+File: ueur.fd 2013/01/14 v3.01 Euler Roman
+)
+LaTeX Font Info:    Try loading font information for U+msa on input line 93.
+
+(d:\CTEX\MiKTeX\tex\latex\amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 93.
+
+(d:\CTEX\MiKTeX\tex\latex\amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Try loading font information for U+euf on input line 93.
+
+(d:\CTEX\MiKTeX\tex\latex\amsfonts\ueuf.fd
+File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
+)
+LaTeX Font Info:    Try loading font information for U+eus on input line 93.
+
+(d:\CTEX\MiKTeX\tex\latex\amsfonts\ueus.fd
+File: ueus.fd 2013/01/14 v3.01 Euler Script
+)
+LaTeX Font Info:    Try loading font information for U+euex on input line 93.
+
+(d:\CTEX\MiKTeX\tex\latex\amsfonts\ueuex.fd
+File: ueuex.fd 2013/01/14 v3.01 Euler extra symbols
+)
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 93.
+LaTeX Font Info:    Try loading font information for OT1+zi4 on input line 93.
+
+(d:\CTEX\MiKTeX\tex\latex\inconsolata\ot1zi4.fd
+File: ot1zi4.fd 2014/06/22 OT1/zi4 (Inconsolata)
+)
+LaTeX Font Info:    Font shape `OT1/zi4/bx/n' in size <10> not available
+(Font)              Font shape `OT1/zi4/b/n' tried instead on input line 93.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 97.
+ (latex_template.4ct
+l. 10 Writing latex_template.idv[1] (latex_template0x.png)
+l. 10 Writing latex_template.idv[2] (latex_template1x.png)
+ [1
+
+])
+l. 102 Writing latex_template.idv[3] (latex_template2x.png)
+l. 102 Writing latex_template.idv[4] (latex_template3x.png)
+
+[2]
+l. 128 Writing latex_template.idv[5] (latex_template4x.png)
+l. 128 Writing latex_template.idv[6] (latex_template5x.png)
+ [3]
+l. 137 Writing latex_template.idv[7] (latex_template6x.png)
+l. 141 Writing latex_template.idv[8] (latex_template7x.png)
+l. 145 Writing latex_template.idv[9] (latex_template8x.png)
+l. 145 Writing latex_template.idv[10] (latex_template9x.png)
+ [4]
+l. 145 Writing latex_template.idv[11] (latex_template10x.png)
+l. 162 Writing latex_template.idv[12] (latex_template11x.png)
+l. 162 Writing latex_template.idv[13] (latex_template12x.png)
+ [5]
+l. 175 Writing latex_template.idv[14] (latex_template13x.png)
+l. 179 Writing latex_template.idv[15] (latex_template14x.png)
+l. 179 Writing latex_template.idv[16] (latex_template15x.png)
+ [6]
+l. 179 Writing latex_template.idv[17] (latex_template16x.png)
+l. 183 Writing latex_template.idv[18] (latex_template17x.png)
+l. 188 Writing latex_template.idv[19] (latex_template18x.png)
+l. 192 Writing latex_template.idv[20] (latex_template19x.png)
+l. 194 Writing latex_template.idv[21] (latex_template20x.png)
+l. 194 Writing latex_template.idv[22] (latex_template21x.png)
+ [7]
+l. 197 Writing latex_template.idv[23] (latex_template22x.png)
+l. 210 Writing latex_template.idv[24] (latex_template23x.png)
+l. 212 Writing latex_template.idv[25] (latex_template24x.png)
+l. 212 Writing latex_template.idv[26] (latex_template25x.png)
+ [8]
+
+Package natbib Warning: Citation `DBLP:journals/jmlr/KanamoriHS09' on page 9 un
+defined on input line 213.
+
+l. 216 Writing latex_template.idv[27] (latex_template26x.png)
+l. 220 Writing latex_template.idv[28] (latex_template27x.png)
+l. 224 Writing latex_template.idv[29] (latex_template28x.png)
+l. 226 Writing latex_template.idv[30] (latex_template29x.png)
+l. 226 Writing latex_template.idv[31] (latex_template30x.png)
+[9]
+l. 234 Writing latex_template.idv[32] (latex_template31x.png)
+l. 247 Writing latex_template.idv[33] (latex_template32x.png)
+l. 247 Writing latex_template.idv[34] (latex_template33x.png)
+ [10]
+l. 253 Writing latex_template.idv[35] (latex_template34x.png)
+l. 257 Writing latex_template.idv[36] (latex_template35x.png)
+l. 263 Writing latex_template.idv[37] (latex_template36x.png)
+l. 267 Writing latex_template.idv[38] (latex_template37x.png)
+l. 267 Writing latex_template.idv[39] (latex_template38x.png)
+ [11]
+l. 268 Writing latex_template.idv[40] (latex_template39x.png)
+l. 277 Writing latex_template.idv[41] (latex_template40x.png)
+l. 284 Writing latex_template.idv[42] (latex_template41x.png)
+l. 284 Writing latex_template.idv[43] (latex_template42x.png)
+ [12]
+LaTeX Font Info:    Try loading font information for TS1+zi4 on input line 294.
+
+ (d:\CTEX\MiKTeX\tex\latex\inconsolata\ts1zi4.fd
+File: ts1zi4.fd 2014/06/22 Fontinst v1.933 font definitions for TS1/zi4.
+)
+
+Package natbib Warning: Citation `Theodoridis:2008:PRF:1457541' on page 13 unde
+fined on input line 303.
+
+l. 305 Writing latex_template.idv[44] (latex_template43x.png)
+l. 305 Writing latex_template.idv[45] (latex_template44x.png)
+l. 306 Writing latex_template.idv[46] (latex_template45x.png)
+l. 310 Writing latex_template.idv[47] (latex_template46x.png)
+l. 310 Writing latex_template.idv[48] (latex_template47x.png)
+[13]
+l. 310 Writing latex_template.idv[49] (latex_template48x.png)
+l. 314 Writing latex_template.idv[50] (latex_template49x.png)
+
+
+Package natbib Warning: Citation `Schur1911' on page 14 undefined on input line
+ 321.
+
+
+Package natbib Warning: Citation `Theodoridis:2008:PRF:1457541' on page 14 unde
+fined on input line 321.
+
+l. 364 Writing latex_template.idv[51] (latex_template50x.png)
+l. 364 Writing latex_template.idv[52] (latex_template51x.png)
+[14]
+l. 364 Writing latex_template.idv[53] (latex_template52x.png)
+
+
+Package natbib Warning: Citation `Sugiyama10densityratio' on page 15 undefined 
+on input line 367.
+
+l. 373 Writing latex_template.idv[54] (latex_template53x.png)
+l. 402 Writing latex_template.idv[55] (latex_template54x.png)
+l. 402 Writing latex_template.idv[56] (latex_template55x.png)
+[15]
+l. 402 Writing latex_template.idv[57] (latex_template56x.png)
+l. 406 Writing latex_template.idv[58] (latex_template57x.png)
+l. 412 Writing latex_template.idv[59] (latex_template58x.png)
+l. 417 Writing latex_template.idv[60] (latex_template59x.png)
+l. 417 Writing latex_template.idv[61] (latex_template60x.png)
+ [16]
+l. 429 Writing latex_template.idv[62] (latex_template61x.png)
+l. 439 Writing latex_template.idv[63] (latex_template62x.png)
+l. 440 Writing latex_template.idv[64] (latex_template63x.png)
+l. 440 Writing latex_template.idv[65] (latex_template64x.png)
+ [17]
+l. 440 Writing latex_template.idv[66] (latex_template65x.png)
+l. 466 Writing latex_template.idv[67] (latex_template66x.png)
+l. 466 Writing latex_template.idv[68] (latex_template67x.png)
+ [18]
+l. 468 Writing latex_template.idv[69] (latex_template68x.png)
+l. 479 Writing latex_template.idv[70] (latex_template69x.png)
+l. 481 Writing latex_template.idv[71] (latex_template70x.png)
+l. 481 Writing latex_template.idv[72] (latex_template71x.png)
+ [19]
+l. 483 Writing latex_template.idv[73] (latex_template72x.png)
+l. 504 Writing latex_template.idv[74] (latex_template73x.png)
+l. 504 Writing latex_template.idv[75] (latex_template74x.png)
+ [20]
+l. 504 Writing latex_template.idv[76] (latex_template75x.png)
+l. 504 Writing latex_template.idv[77] (latex_template76x.png)
+ [21
+
+]
+
+! LaTeX Error: File `hpc' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.505 	\includegraphics[scale=.7]{hpc}
+                                      
+I could not locate the file with any of these extensions:
+.eps,.ps,.eps.gz,.ps.gz,.eps.Z,.mps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+l. 508 Writing latex_template.idv[78] (latex_template77x.png)
+l. 508 Writing latex_template.idv[79] (latex_template78x.png)
+[22
+
+]
+l. 523 Writing latex_template.idv[80] (latex_template79x.png)
+l. 523 Writing latex_template.idv[81] (latex_template80x.png)
+ [23
+
+]
+l. 523 Writing latex_template.idv[82] (latex_template81x.png)
+l. 523 Writing latex_template.idv[83] (latex_template82x.png)
+ [24
+
+]
+
+! LaTeX Error: File `img' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.524 	\includegraphics[scale=0.6]{img}
+                                       
+I could not locate the file with any of these extensions:
+.eps,.ps,.eps.gz,.ps.gz,.eps.Z,.mps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+l. 527 Writing latex_template.idv[84] (latex_template83x.png)
+l. 527 Writing latex_template.idv[85] (latex_template84x.png)
+[25
+
+]
+l. 531 Writing latex_template.idv[86] (latex_template85x.png)
+l. 531 Writing latex_template.idv[87] (latex_template86x.png)
+ [26
+
+]
+l. 531 Writing latex_template.idv[88] (latex_template87x.png)
+l. 531 Writing latex_template.idv[89] (latex_template88x.png)
+ [27
+
+]
+l. 552 Writing latex_template.idv[90] (latex_template89x.png)
+l. 552 Writing latex_template.idv[91] (latex_template90x.png)
+ [28
+
+]
+l. 558 Writing latex_template.idv[92] (latex_template91x.png)
+l. 558 Writing latex_template.idv[93] (latex_template92x.png)
+l. 559 Writing latex_template.idv[94] (latex_template93x.png)
+l. 559 Writing latex_template.idv[95] (latex_template94x.png)
+l. 570 Writing latex_template.idv[96] (latex_template95x.png)
+l. 570 Writing latex_template.idv[97] (latex_template96x.png)
+ [29
+
+]
+l. 570 Writing latex_template.idv[98] (latex_template97x.png)
+l. 570 Writing latex_template.idv[99] (latex_template98x.png)
+ [30
+
+]
+l. 570 Writing latex_template.idv[100] (latex_template99x.png)
+l. 575 Writing latex_template.idv[101] (latex_template100x.png)
+l. 575 Writing latex_template.idv[102] (latex_template101x.png)
+l. 585 Writing latex_template.idv[103] (latex_template102x.png)
+l. 585 Writing latex_template.idv[104] (latex_template103x.png)
+ [31
+
+]
+l. 596 Writing latex_template.idv[105] (latex_template104x.png)
+l. 596 Writing latex_template.idv[106] (latex_template105x.png)
+ [32
+
+]
+l. 596 Writing latex_template.idv[107] (latex_template106x.png)
+l. 596 Writing latex_template.idv[108] (latex_template107x.png)
+ [33
+
+]
+
+! LaTeX Error: File `speed' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.597     \includegraphics[scale=.8]{speed}
+                                           %maybe use the large one
+I could not locate the file with any of these extensions:
+.eps,.ps,.eps.gz,.ps.gz,.eps.Z,.mps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+l. 601 Writing latex_template.idv[109] (latex_template108x.png)
+l. 601 Writing latex_template.idv[110] (latex_template109x.png)
+[34
+
+]
+
+Package natbib Warning: Citation `Roberts:2014:MED:2746455' on page 35 undefine
+d on input line 606.
+
+l. 614 Writing latex_template.idv[111] (latex_template110x.png)
+l. 614 Writing latex_template.idv[112] (latex_template111x.png)
+[35
+
+]
+l. 614 Writing latex_template.idv[113] (latex_template112x.png)
+l. 614 Writing latex_template.idv[114] (latex_template113x.png)
+ [36
+
+]
+l. 641 Writing latex_template.idv[115] (latex_template114x.png)
+l. 641 Writing latex_template.idv[116] (latex_template115x.png)
+ [37
+
+]
+l. 649 Writing latex_template.idv[117] (latex_template116x.png)
+l. 649 Writing latex_template.idv[118] (latex_template117x.png)
+ [38
+
+]
+l. 649 Writing latex_template.idv[119] (latex_template118x.png)
+l. 649 Writing latex_template.idv[120] (latex_template119x.png)
+ [39
+
+]
+
+! LaTeX Error: File `histo' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.650 	\includegraphics[scale=0.8]{histo}
+                                         
+I could not locate the file with any of these extensions:
+.eps,.ps,.eps.gz,.ps.gz,.eps.Z,.mps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+l. 654 Writing latex_template.idv[121] (latex_template120x.png)
+l. 654 Writing latex_template.idv[122] (latex_template121x.png)
+[40
+
+]
+l. 674 Writing latex_template.idv[123] (latex_template122x.png)
+l. 674 Writing latex_template.idv[124] (latex_template123x.png)
+ [41
+
+]
+l. 674 Writing latex_template.idv[125] (latex_template124x.png)
+l. 674 Writing latex_template.idv[126] (latex_template125x.png)
+ [42
+
+]
+
+! LaTeX Error: File `boxplotv' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.675     \includegraphics[scale=0.7]{boxplotv}
+                                               %maybe use the large one
+I could not locate the file with any of these extensions:
+.eps,.ps,.eps.gz,.ps.gz,.eps.Z,.mps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+l. 679 Writing latex_template.idv[127] (latex_template126x.png)
+l. 679 Writing latex_template.idv[128] (latex_template127x.png)
+[43
+
+]
+l. 685 Writing latex_template.idv[129] (latex_template128x.png)
+l. 685 Writing latex_template.idv[130] (latex_template129x.png)
+ [44
+
+]
+l. 685 Writing latex_template.idv[131] (latex_template130x.png)
+l. 685 Writing latex_template.idv[132] (latex_template131x.png)
+ [45
+
+]
+
+! LaTeX Error: File `accuracy' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.686     \includegraphics[scale=.8]{accuracy}
+                                              %maybe use the large one
+I could not locate the file with any of these extensions:
+.eps,.ps,.eps.gz,.ps.gz,.eps.Z,.mps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+l. 690 Writing latex_template.idv[133] (latex_template132x.png)
+l. 690 Writing latex_template.idv[134] (latex_template133x.png)
+[46
+
+]
+
+Package natbib Warning: Citation `NIPS1999_1672' on page 47 undefined on input 
+line 727.
+
+l. 756 Writing latex_template.idv[135] (latex_template134x.png)
+l. 756 Writing latex_template.idv[136] (latex_template135x.png)
+[47
+
+] (latex_template.bbl
+l. 55 Writing latex_template.idv[137] (latex_template136x.png)
+l. 55 Writing latex_template.idv[138] (latex_template137x.png)
+ [48])
+
+Package natbib Warning: There were undefined citations.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 768.
+l. 768 Writing latex_template.idv[139] (latex_template138x.png)
+l. 768 Writing latex_template.idv[140] (latex_template139x.png)
+[49]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 768.
+ (latex_template.aux
+* soulpos - computing points - it may take a few seconds * (latex_template.upa)
+)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 768.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 768.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 768.
+ ) 
+Here is how much of TeX's memory you used:
+ 19099 strings out of 493699
+ 288670 string characters out of 3149778
+ 543742 words of memory out of 3000000
+ 21933 multiletter control sequences out of 15000+200000
+ 26053 words of font info for 91 fonts, out of 3000000 for 9000
+ 1025 hyphenation exceptions out of 8191
+ 47i,13n,95p,1719b,1465s stack positions out of 5000i,500n,10000p,200000b,50000s
+
+Output written on latex_template.dvi (49 pages, 236912 bytes).
