@@ -31,6 +31,7 @@ Both datasets are injected with label noise.
 - multiprocessing
 - numpy
 - matplotlib
+- densratio
 
 
 Running Environment Setup
@@ -80,6 +81,3 @@ project
    ```
 
 All results will be auto-saved to `result/{generated-time-dataname}`. 
-Note that we set the `max_itera` to be 100 in `main.py`. This is because the training process may take a lot of time.
-It normally takes 4.5 minutes on a i7-6th gen laptop with CIFAR dataset. However, 
-fell free to increase this parameter to get a more accurate result.
