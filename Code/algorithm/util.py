@@ -4,6 +4,9 @@ from sklearn.decomposition import IncrementalPCA as PCA
 
 
 def load_data(dset):
+    '''
+    Load the datasets. 
+    '''
     # result stores the data splits
     result = {}
 
@@ -31,6 +34,8 @@ def load_data(dset):
 
     Xts2 = scaler.fit_transform(Xts2.T).T
     Xtr2 = scaler.fit_transform(Xtr2.T).T
+    
+    #only excute if require for speed
     if dset==2:   
     # principal component analysis for dataset 2
         pca = PCA(n_components=100)
