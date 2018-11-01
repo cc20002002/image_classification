@@ -30,15 +30,15 @@ method = {
     '3': 'relabelling',
 }
 
-# test dataset split rate
+# proportion of test data
 prop = 0.2
 
 # Maximum of iteration.
 # When set to -1, it's unlimited.
-# DO NOT set this < 1000, cause some algorithm will not work if not converge.
+# This is only for testing purpose. Do not change this parameter
 max_itera = -1
 
-# load the data into data_cache. Use `dset` on the top to change the dataset.
+# load the data into data_cache.
 # -- data_cache[1] for MINIST
 # -- data_cache[2] for CIFAR.
 data_cache = load_data()
@@ -46,7 +46,7 @@ data_cache = load_data()
 
 def my_kernel(X, Y):
     """
-    We create a custom kernel. This custom kernel is used by the function expectationMaximisation.
+    We desinged a new kernel for the function expectationMaximisation.
     Please see Section 3.5.3 for the mathematical derivation.
     Parameters
     ----------
@@ -77,7 +77,7 @@ def my_kernel(X, Y):
 # num_run determines the number of iterations.
 def expectationMaximisation(run):
     """
-    This function implements the expectation Maximisation model classifying 
+    This function implements the Expectation Maximisation algorithm classifying 
     image with label noise described in Section 3.5.
    
     Parameters
