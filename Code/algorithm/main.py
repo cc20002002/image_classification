@@ -15,7 +15,6 @@ from multiprocessing import Pool
 import time
 from scipy.spatial.distance import cdist
 from scipy import exp
-from itertools import product
 from util import estimateBeta, load_data
 import csv
 import argparse
@@ -35,7 +34,7 @@ prop = 0.2
 
 # Maximum of iteration.
 # When set to -1, it's unlimited.
-# This is only for testing purpose. Do not change this parameter
+# This parameter is only for testing purpose. Do not change this parameter
 max_itera = -1
 
 # load the data into data_cache.
@@ -98,7 +97,7 @@ def expectationMaximisation(run):
     # clf1 is the first classifier while clf2 is the second
     clf = svm.SVC(C=2.5, kernel=my_kernel, max_iter=max_itera)
     if run == 1:
-        print("learn initial probability dset:", dset)
+        print("learn probability dset:", dset)
     clf.fit(X_train, y_train)
 
     return clf.score(Xts, Yts)
@@ -129,11 +128,11 @@ def cv_reweighting(run):
     if dset == 2:
         clf1 = svm.SVC(C=2.5, gamma=0.000225, probability=True, max_iter=max_itera)
     else:
-        clf1 = svm.SVC(gammma = 'scale',probability=True, max_iter=max_itera)
+        clf1 = svm.SVC(gamma = 'scale',probability=True, max_iter=max_itera)
     if run == 1:
         print("learn initial probability dset:", dset)
     clf1.fit(X_train, y_train)
-
+    return clf1.score(Xts, Yts)
     if run == 1:
         print("calculating weighting dset:", dset)
 
@@ -144,7 +143,7 @@ def cv_reweighting(run):
         if weights[i] < 0:
             weights[i] = 0.0
     if run == 1:
-        print("calculating final model dset:", dset)
+        print("fit final model dset:", dset)
     if dset == 2:
         clf2 = svm.SVC(gamma=0.000225, C=0.8, max_iter=max_itera)
     else:
@@ -179,10 +178,10 @@ def relabelling(run):
     else:
         clf1 = svm.SVC(gammma = 'scale',probability=True, max_iter=max_itera)
     if run == 1:
-        print("learn initial probability dset:", dset)
+        print("learn pre training model:")
     clf1.fit(X_train, y_train)
     if run == 1:
-        print("calculating weighting dset:", dset)
+        print("calculating weighting and fit final model:")
     bb = clf1.predict_proba(X_train)
     nn = len(y_train)
     ind = np.where(abs(bb[:, 1] - y_train) >= 0.5)
@@ -197,7 +196,7 @@ def relabelling(run):
     return clf2.score(Xts, Yts)
 
 
-def run_algorithm(alg_type, dset, num_run):
+def run_algorithm(alg_type, num_run):
     #  alg_type: type of the algorithm, choose from
     # 'expectationMaximisation', 'reweighting' and 'relabelling'.
     start = time.time()
@@ -234,7 +233,7 @@ def run_algorithm(alg_type, dset, num_run):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--dset', help='Set the dataset to use, 1 = MINIST, 2 = CIFAR. Default is CIFAR.', default=2)
+    parser.add_argument('--dset', help='Set the dataset to use, 1 = MINIST, 2 = CIFAR. Default is CIFAR.', default=1)
     parser.add_argument('--method', help='Set the algorithm to run, '
                                          '1 = Expectation Maximisation, 2 = Importance Reweig'
                                          'hting, 3 = Heuristic Approach. Default is \'Importance Reweighting\'.',

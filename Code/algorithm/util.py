@@ -3,7 +3,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import IncrementalPCA as PCA
 
 
-def load_data():
+def load_data(dset):
     # result stores the data splits
     result = {}
 
@@ -22,6 +22,7 @@ def load_data():
     Xts2 = dataset2['Xts'].astype(float)
     Yts2 = dataset2['Yts'].ravel()
 
+
     # Standardise images
     scaler = StandardScaler()
     Xts1 = scaler.fit_transform(Xts1.T).T
@@ -30,13 +31,13 @@ def load_data():
 
     Xts2 = scaler.fit_transform(Xts2.T).T
     Xtr2 = scaler.fit_transform(Xtr2.T).T
-
+    if dset==2:   
     # principal component analysis for dataset 2
-    pca = PCA(n_components=100)
-    pca.fit(Xtr2)
-    Xtr2 = pca.transform(Xtr2)
-    Xts2 = pca.transform(Xts2)
-    result[2] = (Xtr2, Str2, Xts2, Yts2)
+        pca = PCA(n_components=100)
+        pca.fit(Xtr2)
+        Xtr2 = pca.transform(Xtr2)
+        Xts2 = pca.transform(Xts2)
+        result[2] = (Xtr2, Str2, Xts2, Yts2)
 
     return result
 
